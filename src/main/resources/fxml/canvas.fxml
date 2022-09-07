@@ -1,37 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/18"
-  xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.CanvasController"
-  style="-fx-background-color: white;">
+
+<VBox alignment="CENTER" prefHeight="745.0" prefWidth="480.0" spacing="20.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.CanvasController">
   <children>
-    <Label alignment="CENTER" layoutX="124.0" layoutY="14.0" prefHeight="23.0" prefWidth="355.0"
-      text="Quick, Draw! SE206  Edition" textAlignment="CENTER">
+    <Label alignment="CENTER" layoutX="124.0" layoutY="14.0" prefHeight="23.0" prefWidth="355.0" text="Quick, Draw! SE206  Edition" textAlignment="CENTER">
       <font>
-        <Font size="18.0"/>
+        <Font size="20.0" />
       </font>
     </Label>
-    <Canvas fx:id="canvas" height="243.0" layoutX="101.0" layoutY="65.0" width="400.0">
-      <cursor>
-        <Cursor fx:constant="HAND"/>
-      </cursor>
-    </Canvas>
-    <HBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="400.0">
+      <Label fx:id="wordLabel" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="word" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="time" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="time" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: blue;">
+               <children>
+                <Canvas fx:id="canvas" height="243.0" width="400.0">
+                  <cursor>
+                    <Cursor fx:constant="HAND" />
+                  </cursor>
+                </Canvas>
+               </children>
+            </VBox>
+            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <Label fx:id="resultLabel" text="result message">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="60.0" prefWidth="480.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="58.0" prefWidth="241.0">
+               <children>
+              <Button fx:id="readyButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSetGameStart" prefHeight="25.0" prefWidth="130.0" text="Ready" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="241.0">
+               <children>
+                  <Button fx:id="playAgainButton" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#onInitialize" prefHeight="25.0" prefWidth="130.0" text="Play again" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+    <HBox alignment="CENTER" prefHeight="194.0" prefWidth="480.0">
       <children>
-        <Button fx:id="predictButton" mnemonicParsing="false" onAction="#onPredict" text="Predict"/>
-        <Button fx:id="clearButton" mnemonicParsing="false" onAction="#onClear" text="Clear"/>
+            <VBox alignment="TOP_CENTER" prefHeight="152.0" prefWidth="241.0">
+               <children>
+                  <Label text="Predictions:">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
+                  <Label fx:id="predictionBox1" prefHeight="202.0" prefWidth="240.0" text="predictions" />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="152.0" prefWidth="241.0">
+               <children>
+                  <Button fx:id="penButton" disable="true" mnemonicParsing="false" onAction="#onBlackPen" prefHeight="25.0" prefWidth="130.0" text="Pen" />
+                  <Region prefHeight="20.0" prefWidth="245.0" />
+                  <Button fx:id="eraserButton" disable="true" mnemonicParsing="false" onAction="#onErase" prefHeight="25.0" prefWidth="130.0" text="Eraser" />
+                  <Region prefHeight="20.0" prefWidth="245.0" />
+              <Button fx:id="clearButton" disable="true" mnemonicParsing="false" onAction="#onClear" prefHeight="25.0" prefWidth="130.0" text="Clear" />
+                  <Region prefHeight="20.0" prefWidth="245.0" />
+                  <Button fx:id="saveDrawingButton" disable="true" mnemonicParsing="false" onAction="#onSaveCurrentSnapshotOnFileSpecific" prefHeight="25.0" prefWidth="130.0" text="Save drawing" />
+               </children>
+            </VBox>
       </children>
     </HBox>
 
   </children>
   <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
 </VBox>

@@ -17,15 +17,26 @@ public class App extends Application {
   }
 
   /**
-   * Returns the node associated to the input file. The method expects that the file is located in
-   * "src/main/resources/fxml".
+   * Returns the node associated to the input file.
    *
-   * @param fxml The name of the FXML file (without extension).
+   * @param loader The name of the FXML file loader .
    * @return The node of the input file.
    * @throws IOException If the file is not found.
    */
-  private static Parent loadFxml(final String fxml) throws IOException {
-    return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
+  protected static Parent loadFxml(final FXMLLoader loader) throws IOException {
+    return loader.load();
+  }
+
+  /**
+   * Creates the loader for the specified fxml file. The method expects that the file is located in
+   * "src/main/resources/fxml"
+   *
+   * @param fxml The name of the FXML file (without extension)
+   * @return The created FXML loader
+   * @throws IOException
+   */
+  protected static FXMLLoader makeLoader(final String fxml) throws IOException {
+    return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
   }
 
   /**
@@ -36,7 +47,15 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    final Scene scene = new Scene(loadFxml("canvas"), 840, 680);
+    // Adds the UI to the scene manager
+    SceneManager.addUi(SceneManager.AppUi.MENU, loadFxml(makeLoader("menu")));
+    FXMLLoader canvasLoader = makeLoader("canvas");
+
+    // Saves the canvas loader to scene manager
+    SceneManager.setLoader(canvasLoader);
+    SceneManager.addUi(SceneManager.AppUi.CANVAS, loadFxml(canvasLoader));
+
+    final Scene scene = new Scene(SceneManager.getUi(SceneManager.AppUi.MENU), 480, 745);
 
     stage.setScene(scene);
     stage.show();
