@@ -70,6 +70,35 @@ public class DoodlePrediction {
     System.out.println(sb);
   }
 
+  /**
+   * Makes a string containing the top predictions
+   *
+   * @param predictions The list of predictions to print
+   * @return string containing the predictions
+   */
+  public static String makePredictionString(
+      final List<Classifications.Classification> predictions) {
+    final StringBuilder sb = new StringBuilder();
+
+    int i = 1;
+
+    // Creates a string builder containing the information of the top predictions
+    for (final Classifications.Classification classification : predictions) {
+      sb.append("TOP ")
+          .append(i)
+          .append(" : ")
+          .append(classification.getClassName())
+          .append(" : ")
+          .append(String.format("%.2f%%", 100 * classification.getProbability()))
+          .append(System.lineSeparator());
+
+      i++;
+    }
+
+    // Returns a string of top predictions
+    return sb.toString();
+  }
+
   private final ZooModel<Image, Classifications> model;
 
   /**
