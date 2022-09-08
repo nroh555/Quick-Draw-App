@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/git,java,maven,linux,macos,eclipse,windows,netbeans,intellij+all,visualstudio,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=git,java,maven,linux,macos,eclipse,windows,netbeans,intellij+all,visualstudio,visualstudiocode
 
+# Fix ml folder
+!src/main/resources/ml/*
+
 ### Eclipse ###
 .metadata
 bin/
