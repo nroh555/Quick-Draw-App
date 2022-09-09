@@ -29,10 +29,18 @@
       <TextField fx:id="passwordField" promptText="Enter Password" />
       <ButtonBar prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button fx:id="b1" mnemonicParsing="false" onAction="#onb1Click" text="Register User" />
-            <Button fx:id="b2" mnemonicParsing="false" onAction="#onb2Click" text="Check User Exists" />
-            <Button fx:id="b3" mnemonicParsing="false" onAction="#onb3Click" text="Button" />
-            <Button fx:id="b4" mnemonicParsing="false" onAction="#onb4Click" text="Button" />
+          <Button fx:id="b1" mnemonicParsing="false" onAction="#onRegister" text="Register User" />
+            <Button fx:id="b2" mnemonicParsing="false" onAction="#onLogin" text="Check User Exists" />
+            <Button fx:id="b3" mnemonicParsing="false" onAction="#onb3Click" text="Add win" />
+            <Button fx:id="b4" mnemonicParsing="false" onAction="#onb4Click" text="Add loss" />
+        </buttons>
+      </ButtonBar>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button fx:id="b5" mnemonicParsing="false" onAction="#onb5Click" text="Button" />
+            <Button fx:id="b6" mnemonicParsing="false" onAction="#onb6Click" text="Button" />
+            <Button fx:id="b7" mnemonicParsing="false" onAction="#onb7Click" text="Button" />
+            <Button fx:id="b8" mnemonicParsing="false" onAction="#onb8Click" text="User Info" />
         </buttons>
       </ButtonBar>
       <Region prefHeight="100.0" prefWidth="400.0" />

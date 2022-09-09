@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import ai.djl.translate.TranslateException;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
@@ -57,63 +58,98 @@ public class MenuController {
   @FXML
   private Button b4;
 
+  @FXML
+  private Button b5;
+
+  @FXML
+  private Button b6;
+
+  @FXML
+  private Button b7;
+
+  @FXML
+  private Button b8;
+
+  // Create hashmap to store all of the users.
   HashMap<String, User> usersHashMap = new HashMap<String, User>();
 
-  /** Updates the info text */
-  private void updateLabelInfo() {
-    // Updates the GUI to display the predictions
-    infoLabel.setText("set");
+  // Gets all
+  private void loadUsers() {
+
   }
 
-  /** This method is called when the "Clear" button is pressed. */
+  // This handles registration of new users
   @FXML
-  private void onb1Click() {
+  private void onRegister() {
 
-    infoLabel.setText(usernameField.getText());
-    User newUser = new User(usernameField.getText(), passwordField.getText());
-    System.out.println(newUser.getDetails());
-    usersHashMap.put(usernameField.getText(), newUser);
-    System.out.println("hashmap is " + usersHashMap);
+    // If the username does not already exist, register user
+    if (!usersHashMap.containsKey(usernameField.getText())) {
+      // Create a new user profile with the inputted username and password
+      User newUser = new User(usernameField.getText(), passwordField.getText());
+      // Add user to hashmap
+      usersHashMap.put(usernameField.getText(), newUser);
 
-    // new file object
-    File file = new File("users.txt");
-
-    BufferedWriter bf = null;
-
-    try {
-
-      // create new BufferedWriter for the output file
-      bf = new BufferedWriter(new FileWriter(file));
-
-      // iterate map entries
-      for (Entry<String, User> entry : usersHashMap.entrySet()) {
-
-        // put key and value separated by a colon
-        bf.write(entry.getKey() + ":"
-            + entry.getValue());
-
-        // new line
-        bf.newLine();
-      }
-
-      bf.flush();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } finally {
-
+      // Save the new user to the file
+      BufferedWriter bf = null;
       try {
+        // Create new BufferedWriter for the output file, append mode on
+        bf = new BufferedWriter(new FileWriter("users.txt", true));
 
-        // always close the writer
-        bf.close();
-      } catch (Exception e) {
+        // Add key and value corresponding to the new user to the file
+        bf.write(usernameField.getText() + ":"
+            + usersHashMap.get(usernameField.getText()));
+
+        bf.newLine();
+        bf.flush();
+      } catch (IOException e) {
+        // Print exceptions
+        e.printStackTrace();
+      } finally {
+        try {
+          // Close the writer
+          bf.close();
+        } catch (Exception e) {
+          // Print exceptions
+          e.printStackTrace();
+        }
+      }
+    } else {
+      System.out.println("Sorry, that username is already taken! Please try again.");
+    }
+
+  }
+
+  /**
+   * For log in functionality - checks if a user exists.
+   * 
+   * @throws IOException
+   */
+  @FXML
+  private void onLogin() throws IOException {
+
+    String filePath = "users.txt";
+    HashMap<String, String> fetchHashMap = new HashMap<String, String>();
+
+    String line;
+    BufferedReader reader = new BufferedReader(new FileReader(filePath));
+    while ((line = reader.readLine()) != null) {
+      System.out.println(line);
+      String[] parts = line.split(":", 2);
+      if (parts.length >= 2) {
+        String fetchKey = parts[0];
+        String fetchValue = parts[1];
+        fetchHashMap.put(fetchKey, fetchValue);
+      } else {
+        System.out.println("ignoring line: " + line);
       }
     }
-  }
 
-  /** This method is called when the "Clear" button is pressed. */
-  @FXML
-  private void onb2Click() {
-    infoLabel.setText(passwordField.getText());
+    System.out.println("new hashmap is: " + fetchHashMap);
+
+    // for (String key : map.keySet()) {
+    // System.out.println(key + ":" + map.get(key));
+    // }
+    reader.close();
   }
 
   /** This method is called when the "Clear" button is pressed. */
@@ -129,6 +165,30 @@ public class MenuController {
    */
   @FXML
   private void onb4Click() throws Exception {
+    infoLabel.setText("b4");
+    // writeJsonSimpleDemo("users.json");
+  }
+
+  @FXML
+  private void onb5Click() throws Exception {
+    infoLabel.setText("b4");
+    // writeJsonSimpleDemo("users.json");
+  }
+
+  @FXML
+  private void onb6Click() throws Exception {
+    infoLabel.setText("b4");
+    // writeJsonSimpleDemo("users.json");
+  }
+
+  @FXML
+  private void onb7Click() throws Exception {
+    infoLabel.setText("b4");
+    // writeJsonSimpleDemo("users.json");
+  }
+
+  @FXML
+  private void onb8Click() throws Exception {
     infoLabel.setText("b4");
     // writeJsonSimpleDemo("users.json");
   }
