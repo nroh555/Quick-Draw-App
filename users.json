@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Benjamin Watson",
+    "age": 31,
+    "isMarried": true,
+    "hobbies": ["Football", "Swimming"],
+    "kids": [
+      {
+        "name": "Billy",
+        "age": 5
+      },
+      {
+        "name": "Milly",
+        "age": 3
+      }
+    ]
+  },
+  {
+    "name": "FSDF Watson",
+    "age": 31,
+    "isMarried": true,
+    "hobbies": ["Football", "Swimming"],
+    "kids": [
+      {
+        "name": "Billy",
+        "age": 5
+      },
+      {
+        "name": "Milly",
+        "age": 3
+      }
+    ]
+  }
+]
