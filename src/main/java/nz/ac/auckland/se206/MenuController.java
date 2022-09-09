@@ -2,11 +2,16 @@ package nz.ac.auckland.se206;
 
 import ai.djl.translate.TranslateException;
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -21,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.profile.Person;
+import nz.ac.auckland.se206.profile.User;
 
 public class MenuController {
 
@@ -51,6 +57,8 @@ public class MenuController {
   @FXML
   private Button b4;
 
+  HashMap<String, User> usersHashMap = new HashMap<String, User>();
+
   /** Updates the info text */
   private void updateLabelInfo() {
     // Updates the GUI to display the predictions
@@ -60,7 +68,46 @@ public class MenuController {
   /** This method is called when the "Clear" button is pressed. */
   @FXML
   private void onb1Click() {
+
     infoLabel.setText(usernameField.getText());
+    User newUser = new User(usernameField.getText(), passwordField.getText());
+    System.out.println(newUser.getDetails());
+    usersHashMap.put(usernameField.getText(), newUser);
+    System.out.println("hashmap is " + usersHashMap);
+
+    // new file object
+    File file = new File("users.txt");
+
+    BufferedWriter bf = null;
+
+    try {
+
+      // create new BufferedWriter for the output file
+      bf = new BufferedWriter(new FileWriter(file));
+
+      // iterate map entries
+      for (Entry<String, User> entry : usersHashMap.entrySet()) {
+
+        // put key and value separated by a colon
+        bf.write(entry.getKey() + ":"
+            + entry.getValue());
+
+        // new line
+        bf.newLine();
+      }
+
+      bf.flush();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } finally {
+
+      try {
+
+        // always close the writer
+        bf.close();
+      } catch (Exception e) {
+      }
+    }
   }
 
   /** This method is called when the "Clear" button is pressed. */

@@ -7,12 +7,12 @@ public class User {
 	private String password;
 	private List<String> usedWords;
 
-	User(String username, String password) {
+	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
 
-	public String getUsername() {
+	public String getDetails() {
 		return username;
 	}
 }
