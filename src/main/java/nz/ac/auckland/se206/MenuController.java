@@ -153,27 +153,35 @@ public class MenuController {
     // Check if username does exist
     if (usersHashMap.containsKey(usernameField.getText())) {
       currentUser = usersHashMap.get(usernameField.getText());
-      System.out.println("username exists");
+      // System.out.println("username exists");
+      // Update user details on UI
       infoLabel.setText(currentUser.formatUserDetails());
     }
 
   }
 
-  /** This method is called when the "Clear" button is pressed. */
+  /** Adds one to wins count */
   @FXML
   private void onb3Click() {
-    infoLabel.setText("b3");
+    currentUser.setStats(currentUser.getWins() + 1, currentUser.getLosses(), currentUser.getFastestWin());
+    // Update user details on UI
+    infoLabel.setText(currentUser.formatUserDetails());
+
+    // TODO WILL NEED TO ADD SAVE TO FILE
   }
 
   /**
-   * This method is called when the "Clear" button is pressed.
+   * Adds one to loss count
    * 
    * @throws Exception
    */
   @FXML
   private void onb4Click() throws Exception {
-    infoLabel.setText("b4");
-    // writeJsonSimpleDemo("users.json");
+    currentUser.setStats(currentUser.getWins(), currentUser.getLosses() + 1, currentUser.getFastestWin());
+    // Update user details on UI
+    infoLabel.setText(currentUser.formatUserDetails());
+
+    // TODO WILL NEED TO ADD SAVE TO FILE
   }
 
   @FXML

@@ -46,4 +46,26 @@ public class User implements Serializable {
 
 		return displayString;
 	}
+
+	// Set user stats
+	public void setStats(Integer wins, Integer losses, Integer fastestWin) {
+		this.wins = wins;
+		this.losses = losses;
+		this.fastestWin = fastestWin;
+	}
+
+	// Get user wins
+	public Integer getWins() {
+		return wins;
+	}
+
+	// Get user losses
+	public Integer getLosses() {
+		return losses;
+	}
+
+	// Get user fastest win
+	public Integer getFastestWin() {
+		return fastestWin;
+	}
 }
