@@ -5,18 +5,19 @@ import ai.djl.translate.TranslateException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import com.google.gson.Gson;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +27,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import nz.ac.auckland.se206.SceneManager.AppUi;
-import nz.ac.auckland.se206.profile.Person;
 import nz.ac.auckland.se206.profile.User;
 
 public class MenuController {
@@ -71,22 +71,44 @@ public class MenuController {
   private Button b8;
 
   // Create hashmap to store all of the users.
+  // HashMap<String, User> usersHashMap;
   HashMap<String, User> usersHashMap = new HashMap<String, User>();
 
-  // Gets all
-  private void loadUsers() {
+  // Current user logged in
+  User currentUser = new User("None", "none");
 
+  // Gets users data from file and populates users hash map
+  private void loadUsers() throws IOException {
+    String line;
+    BufferedReader reader = new BufferedReader(new FileReader("users.txt"));
+    // Create hashmap to store all of the users.
+    // HashMap<String, User> usersHashMap = new HashMap<String, User>();
+    while ((line = reader.readLine()) != null) {
+      String[] parts = line.split(":", 5); // Should have 5 parts
+
+      // Create user based of information in file, and insert into hashmap
+      User insertUser = new User(parts[0], parts[1]);
+      insertUser.loadUser(parts[0], parts[1], Integer.valueOf(parts[2]), Integer.valueOf(parts[3]),
+          Integer.valueOf(parts[4]));
+      usersHashMap.put(parts[0], insertUser);
+    }
+
+    // System.out.println("hashmap is: " + usersHashMap);
+    reader.close();
   }
 
   // This handles registration of new users
   @FXML
-  private void onRegister() {
+  private void onRegister() throws IOException {
+
+    loadUsers();
 
     // If the username does not already exist, register user
     if (!usersHashMap.containsKey(usernameField.getText())) {
       // Create a new user profile with the inputted username and password
       User newUser = new User(usernameField.getText(), passwordField.getText());
       // Add user to hashmap
+
       usersHashMap.put(usernameField.getText(), newUser);
 
       // Save the new user to the file
@@ -95,9 +117,8 @@ public class MenuController {
         // Create new BufferedWriter for the output file, append mode on
         bf = new BufferedWriter(new FileWriter("users.txt", true));
 
-        // Add key and value corresponding to the new user to the file
-        bf.write(usernameField.getText() + ":"
-            + usersHashMap.get(usernameField.getText()));
+        // Add information regarding the new user to the save file
+        bf.write(newUser.getSaveDetails());
 
         bf.newLine();
         bf.flush();
@@ -114,7 +135,7 @@ public class MenuController {
         }
       }
     } else {
-      System.out.println("Sorry, that username is already taken! Please try again.");
+      System.out.println("This username is already taken. Please try again.");
     }
 
   }
@@ -127,29 +148,15 @@ public class MenuController {
   @FXML
   private void onLogin() throws IOException {
 
-    String filePath = "users.txt";
-    HashMap<String, String> fetchHashMap = new HashMap<String, String>();
+    loadUsers();
 
-    String line;
-    BufferedReader reader = new BufferedReader(new FileReader(filePath));
-    while ((line = reader.readLine()) != null) {
-      System.out.println(line);
-      String[] parts = line.split(":", 2);
-      if (parts.length >= 2) {
-        String fetchKey = parts[0];
-        String fetchValue = parts[1];
-        fetchHashMap.put(fetchKey, fetchValue);
-      } else {
-        System.out.println("ignoring line: " + line);
-      }
+    // Check if username does exist
+    if (usersHashMap.containsKey(usernameField.getText())) {
+      currentUser = usersHashMap.get(usernameField.getText());
+      System.out.println("username exists");
+      infoLabel.setText(currentUser.formatUserDetails());
     }
 
-    System.out.println("new hashmap is: " + fetchHashMap);
-
-    // for (String key : map.keySet()) {
-    // System.out.println(key + ":" + map.get(key));
-    // }
-    reader.close();
   }
 
   /** This method is called when the "Clear" button is pressed. */
