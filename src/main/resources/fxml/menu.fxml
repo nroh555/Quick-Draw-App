@@ -40,7 +40,7 @@
           <Button fx:id="b5" mnemonicParsing="false" onAction="#onb5Click" text="Button" />
             <Button fx:id="b6" mnemonicParsing="false" onAction="#onb6Click" text="Button" />
             <Button fx:id="b7" mnemonicParsing="false" onAction="#onb7Click" text="Button" />
-            <Button fx:id="b8" mnemonicParsing="false" onAction="#onb8Click" text="User Info" />
+            <Button fx:id="b8" mnemonicParsing="false" onAction="#saveData" text="Save Data" />
         </buttons>
       </ButtonBar>
       <Region prefHeight="100.0" prefWidth="400.0" />

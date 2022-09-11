@@ -1,24 +1,12 @@
 package nz.ac.auckland.se206;
 
 import ai.djl.translate.TranslateException;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
-
-import com.google.gson.Gson;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,39 +24,27 @@ public class MenuController {
    *
    * @throws TranslateException
    */
+  @FXML private Label infoLabel;
 
-  @FXML
-  private Label infoLabel;
+  @FXML private TextField usernameField;
 
-  @FXML
-  private TextField usernameField;
+  @FXML private TextField passwordField;
 
-  @FXML
-  private TextField passwordField;
+  @FXML private Button b1;
 
-  @FXML
-  private Button b1;
+  @FXML private Button b2;
 
-  @FXML
-  private Button b2;
+  @FXML private Button b3;
 
-  @FXML
-  private Button b3;
+  @FXML private Button b4;
 
-  @FXML
-  private Button b4;
+  @FXML private Button b5;
 
-  @FXML
-  private Button b5;
+  @FXML private Button b6;
 
-  @FXML
-  private Button b6;
+  @FXML private Button b7;
 
-  @FXML
-  private Button b7;
-
-  @FXML
-  private Button b8;
+  @FXML private Button b8;
 
   // Create hashmap to store all of the users.
   // HashMap<String, User> usersHashMap;
@@ -84,11 +60,23 @@ public class MenuController {
     // Create hashmap to store all of the users.
     // HashMap<String, User> usersHashMap = new HashMap<String, User>();
     while ((line = reader.readLine()) != null) {
+
       String[] parts = line.split(":", 5); // Should have 5 parts
+
+      System.out.println("THIS PART SI WORKING : " + line);
+      System.out.println("printing " + parts[0]);
+      System.out.println("printing " + parts[1]);
+      System.out.println("printing " + parts[2]);
+      System.out.println("printing " + parts[3]);
+      System.out.println("printing " + parts[4]);
 
       // Create user based of information in file, and insert into hashmap
       User insertUser = new User(parts[0], parts[1]);
-      insertUser.loadUser(parts[0], parts[1], Integer.valueOf(parts[2]), Integer.valueOf(parts[3]),
+      insertUser.loadUser(
+          parts[0],
+          parts[1],
+          Integer.valueOf(parts[2]),
+          Integer.valueOf(parts[3]),
           Integer.valueOf(parts[4]));
       usersHashMap.put(parts[0], insertUser);
     }
@@ -119,6 +107,7 @@ public class MenuController {
 
         // Add information regarding the new user to the save file
         bf.write(newUser.getSaveDetails());
+        System.out.println("Should have just written......");
 
         bf.newLine();
         bf.flush();
@@ -137,12 +126,11 @@ public class MenuController {
     } else {
       System.out.println("This username is already taken. Please try again.");
     }
-
   }
 
   /**
    * For log in functionality - checks if a user exists.
-   * 
+   *
    * @throws IOException
    */
   @FXML
@@ -157,13 +145,13 @@ public class MenuController {
       // Update user details on UI
       infoLabel.setText(currentUser.formatUserDetails());
     }
-
   }
 
   /** Adds one to wins count */
   @FXML
   private void onb3Click() {
-    currentUser.setStats(currentUser.getWins() + 1, currentUser.getLosses(), currentUser.getFastestWin());
+    currentUser.setStats(
+        currentUser.getWins() + 1, currentUser.getLosses(), currentUser.getFastestWin());
     // Update user details on UI
     infoLabel.setText(currentUser.formatUserDetails());
 
@@ -172,12 +160,13 @@ public class MenuController {
 
   /**
    * Adds one to loss count
-   * 
+   *
    * @throws Exception
    */
   @FXML
   private void onb4Click() throws Exception {
-    currentUser.setStats(currentUser.getWins(), currentUser.getLosses() + 1, currentUser.getFastestWin());
+    currentUser.setStats(
+        currentUser.getWins(), currentUser.getLosses() + 1, currentUser.getFastestWin());
     // Update user details on UI
     infoLabel.setText(currentUser.formatUserDetails());
 
@@ -202,10 +191,71 @@ public class MenuController {
     // writeJsonSimpleDemo("users.json");
   }
 
+  // Save data
   @FXML
-  private void onb8Click() throws Exception {
-    infoLabel.setText("b4");
-    // writeJsonSimpleDemo("users.json");
+  private void saveData() throws Exception {
+    infoLabel.setText("save data");
+
+    // Save all the new data to the file
+    BufferedWriter bf = null;
+
+    // Overwrite existing file data
+    try {
+      // Create new BufferedWriter for the output file, append mode on
+      bf = new BufferedWriter(new FileWriter("users.txt"));
+
+      Boolean isFirst = true;
+      for (String key : usersHashMap.keySet()) {
+        if (isFirst == true) {
+          // Add information regarding first user to each first
+          bf.write(usersHashMap.get(key).getSaveDetails());
+          isFirst = false;
+        } else {
+          break;
+        }
+      }
+      bf.newLine();
+      bf.flush();
+    } catch (IOException e) {
+      // Print exceptions
+      e.printStackTrace();
+    } finally {
+      try {
+        // Close the writer
+        bf.close();
+      } catch (Exception e) {
+        // Print exceptions
+        e.printStackTrace();
+      }
+    }
+
+    try {
+      // Create new BufferedWriter for the output file, append mode on
+      bf = new BufferedWriter(new FileWriter("users.txt", true));
+
+      Boolean isFirst = true;
+      for (String key : usersHashMap.keySet()) {
+        if (isFirst == true) {
+          isFirst = false;
+        } else {
+          // Add information regarding each user (other than the first) to the save file
+          bf.write(usersHashMap.get(key).getSaveDetails());
+          bf.newLine();
+        }
+      }
+      bf.flush();
+    } catch (IOException e) {
+      // Print exceptions
+      e.printStackTrace();
+    } finally {
+      try {
+        // Close the writer
+        bf.close();
+      } catch (Exception e) {
+        // Print exceptions
+        e.printStackTrace();
+      }
+    }
   }
 
   @FXML
