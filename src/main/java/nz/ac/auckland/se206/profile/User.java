@@ -77,6 +77,24 @@ public class User implements Serializable {
     }
   }
 
+  private String formatWordsForSave() {
+    String wordsString = "";
+
+    for (int i = 0; i < usedWords.size(); i++) {
+      System.out.println(usedWords.get(i));
+      wordsString = wordsString + ";" + usedWords.get(i);
+    }
+
+    wordsString = wordsString.substring(0, wordsString.length() - 2);
+
+    return wordsString;
+  }
+
+  public ArrayList<String> getWordsToArray(String wordsString) {
+    // TODO extract words from string to array
+    return usedWords;
+  }
+
   // Set user stats
   public void setStats(Integer wins, Integer losses, Integer fastestWin) {
     this.wins = wins;
