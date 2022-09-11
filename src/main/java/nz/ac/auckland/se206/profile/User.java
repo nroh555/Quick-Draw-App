@@ -1,7 +1,7 @@
 package nz.ac.auckland.se206.profile;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 
 public class User implements Serializable {
   private String username;
@@ -9,7 +9,7 @@ public class User implements Serializable {
   private Integer wins;
   private Integer losses;
   private Integer fastestWin;
-  private List<String> usedWords;
+  private ArrayList<String> usedWords;
 
   public User(String username, String password) {
     this.username = username;
@@ -61,6 +61,20 @@ public class User implements Serializable {
             + fastestWin.toString();
 
     return displayString;
+  }
+
+  public ArrayList<String> getUsedWords() {
+    return usedWords;
+  }
+
+  public void addUsedWord(String word) {
+    usedWords.add(word);
+  }
+
+  public void displayUsedWords() {
+    for (int i = 0; i < usedWords.size(); i++) {
+      System.out.println(usedWords.get(i));
+    }
   }
 
   // Set user stats

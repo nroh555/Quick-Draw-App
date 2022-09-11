@@ -152,10 +152,12 @@ public class MenuController {
   private void onb3Click() {
     currentUser.setStats(
         currentUser.getWins() + 1, currentUser.getLosses(), currentUser.getFastestWin());
+
+    // Update users hash map
+    usersHashMap.put(currentUser.getUsername(), currentUser);
+
     // Update user details on UI
     infoLabel.setText(currentUser.formatUserDetails());
-
-    // TODO WILL NEED TO ADD SAVE TO FILE
   }
 
   /**
@@ -167,10 +169,12 @@ public class MenuController {
   private void onb4Click() throws Exception {
     currentUser.setStats(
         currentUser.getWins(), currentUser.getLosses() + 1, currentUser.getFastestWin());
+
+    // Update users hash map
+    usersHashMap.put(currentUser.getUsername(), currentUser);
+
     // Update user details on UI
     infoLabel.setText(currentUser.formatUserDetails());
-
-    // TODO WILL NEED TO ADD SAVE TO FILE
   }
 
   @FXML
