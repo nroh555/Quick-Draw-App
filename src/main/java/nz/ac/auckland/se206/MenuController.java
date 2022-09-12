@@ -61,14 +61,15 @@ public class MenuController {
     // HashMap<String, User> usersHashMap = new HashMap<String, User>();
     while ((line = reader.readLine()) != null) {
 
-      String[] parts = line.split(":", 5); // Should have 5 parts
+      // TODO ADD THE 5 BACK
+      String[] parts = line.split(":"); // Should have 5 parts
 
-      System.out.println("THIS PART SI WORKING : " + line);
-      System.out.println("printing " + parts[0]);
-      System.out.println("printing " + parts[1]);
-      System.out.println("printing " + parts[2]);
-      System.out.println("printing " + parts[3]);
-      System.out.println("printing " + parts[4]);
+      // System.out.println("THIS PART SI WORKING : " + line);
+      // System.out.println("printing " + parts[0]);
+      // System.out.println("printing " + parts[1]);
+      // System.out.println("printing " + parts[2]);
+      // System.out.println("printing " + parts[3]);
+      // System.out.println("printing " + parts[4]);
 
       // Create user based of information in file, and insert into hashmap
       User insertUser = new User(parts[0], parts[1]);
@@ -177,10 +178,13 @@ public class MenuController {
     infoLabel.setText(currentUser.formatUserDetails());
   }
 
+  // Add a word to current user word list
   @FXML
   private void onb5Click() throws Exception {
     infoLabel.setText("b4");
-    // writeJsonSimpleDemo("users.json");
+
+    usersHashMap.get(currentUser.getUsername()).addUsedWord("eggs");
+    System.out.println(usersHashMap.get(currentUser.getUsername()).getUsedWords());
   }
 
   @FXML

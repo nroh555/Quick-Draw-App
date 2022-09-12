@@ -17,6 +17,7 @@ public class User implements Serializable {
     this.wins = 0;
     this.losses = 0;
     this.fastestWin = 0;
+    this.usedWords = new ArrayList<String>();
   }
 
   // This loads user details from the file to a user
@@ -68,7 +69,7 @@ public class User implements Serializable {
   }
 
   public void addUsedWord(String word) {
-    usedWords.add(word);
+    this.usedWords.add(word);
   }
 
   public void displayUsedWords() {
@@ -90,8 +91,14 @@ public class User implements Serializable {
     return wordsString;
   }
 
-  public ArrayList<String> getWordsToArray(String wordsString) {
-    // TODO extract words from string to array
+  private ArrayList<String> getWordsToArray(String wordsString) {
+
+    String[] parts = wordsString.split(";");
+
+    for (String part : parts) {
+      this.usedWords.add(part);
+    }
+
     return usedWords;
   }
 
