@@ -142,9 +142,6 @@ public class MenuController {
     // Check if username does exist
     if (usersHashMap.containsKey(usernameField.getText())) {
 
-      System.out.println(usersHashMap.get(usernameField.getText()).getPassword());
-      System.out.println(passwordField.getText());
-
       // Check if password is correct
       if (usersHashMap.get(usernameField.getText()).getPassword().equals(passwordField.getText())) {
         // Set the current user ('logs them in')
