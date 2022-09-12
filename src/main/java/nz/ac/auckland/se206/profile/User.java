@@ -81,6 +81,8 @@ public class User implements Serializable {
   }
 
   /**
+   * This returns the array list of used words
+   *
    * @return ArrayList<String>
    */
   public ArrayList<String> getUsedWords() {
@@ -88,6 +90,8 @@ public class User implements Serializable {
   }
 
   /**
+   * This adds a word to the list of used words
+   *
    * @param word
    */
   public void addUsedWord(String word) {
@@ -101,8 +105,10 @@ public class User implements Serializable {
   }
 
   /**
+   * Takes the list of used words and chucks it all into a string so it can be saved to a file
+   *
    * @param usedWords
-   * @return String
+   * @return String format of the used words
    */
   public String formatWordsForSave(ArrayList<String> usedWords) {
     String wordsString = "";
@@ -117,6 +123,8 @@ public class User implements Serializable {
   }
 
   /**
+   * This gets the string version of all the used words and chucks them all into an array
+   *
    * @param wordsString
    */
   public void getWordsToArray(String wordsString) {
@@ -131,11 +139,12 @@ public class User implements Serializable {
   }
 
   /**
+   * Sets either of the wins, losses, or fastestWins stats for the user
+   *
    * @param wins
    * @param losses
    * @param fastestWin
    */
-  // Set user stats
   public void setStats(Integer wins, Integer losses, Integer fastestWin) {
     this.wins = wins;
     this.losses = losses;
@@ -143,33 +152,37 @@ public class User implements Serializable {
   }
 
   /**
+   * Gets the user's username
+   *
    * @return String
    */
-  // Get user username
   public String getUsername() {
     return username;
   }
 
   /**
+   * Gets the user's number of wins
+   *
    * @return Integer
    */
-  // Get user wins
   public Integer getWins() {
     return wins;
   }
 
   /**
+   * Gets the user's number of losses
+   *
    * @return Integer
    */
-  // Get user losses
   public Integer getLosses() {
     return losses;
   }
 
   /**
+   * Gets the user's fastest win
+   *
    * @return Integer
    */
-  // Get user fastest win
   public Integer getFastestWin() {
     return fastestWin;
   }
