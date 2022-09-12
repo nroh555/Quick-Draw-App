@@ -31,13 +31,13 @@
         <buttons>
           <Button fx:id="b1" mnemonicParsing="false" onAction="#onRegister" text="Register User" />
             <Button fx:id="b2" mnemonicParsing="false" onAction="#onLogin" text="Check User Exists" />
-            <Button fx:id="b3" mnemonicParsing="false" onAction="#onb3Click" text="Add win" />
-            <Button fx:id="b4" mnemonicParsing="false" onAction="#onb4Click" text="Add loss" />
+            <Button fx:id="b3" mnemonicParsing="false" onAction="#addWin" text="Add win" />
+            <Button fx:id="b4" mnemonicParsing="false" onAction="#addLoss" text="Add loss" />
         </buttons>
       </ButtonBar>
       <ButtonBar prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button fx:id="b5" mnemonicParsing="false" onAction="#onb5Click" text="Add word" />
+          <Button fx:id="b5" mnemonicParsing="false" onAction="#addWord" text="Add word" />
             <Button fx:id="b6" mnemonicParsing="false" text="Button" />
             <Button fx:id="b7" mnemonicParsing="false" text="Button" />
             <Button fx:id="b8" mnemonicParsing="false" onAction="#saveData" text="Save Data" />

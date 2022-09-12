@@ -141,16 +141,23 @@ public class MenuController {
 
     // Check if username does exist
     if (usersHashMap.containsKey(usernameField.getText())) {
-      currentUser = usersHashMap.get(usernameField.getText());
 
-      // Update user details on UI
-      infoLabel.setText(currentUser.formatUserDetails());
+      System.out.println(usersHashMap.get(usernameField.getText()).getPassword());
+      System.out.println(passwordField.getText());
+
+      // Check if password is correct
+      if (usersHashMap.get(usernameField.getText()).getPassword().equals(passwordField.getText())) {
+        // Set the current user ('logs them in')
+        currentUser = usersHashMap.get(usernameField.getText());
+        // Update user details on UI
+        infoLabel.setText(currentUser.formatUserDetails());
+      }
     }
   }
 
   /** Adds 1 to the user's current wins count */
   @FXML
-  private void onb3Click() {
+  private void addWin() {
     currentUser.setStats(
         currentUser.getWins() + 1, currentUser.getLosses(), currentUser.getFastestWin());
 
@@ -167,7 +174,7 @@ public class MenuController {
    * @throws Exception
    */
   @FXML
-  private void onb4Click() throws Exception {
+  private void addLoss() throws Exception {
     currentUser.setStats(
         currentUser.getWins(), currentUser.getLosses() + 1, currentUser.getFastestWin());
 
@@ -184,7 +191,7 @@ public class MenuController {
    * @throws Exception
    */
   @FXML
-  private void onb5Click() throws Exception {
+  private void addWord() throws Exception {
     // Adds egg to the current user's used words list
     usersHashMap.get(currentUser.getUsername()).addUsedWord("eggs");
   }

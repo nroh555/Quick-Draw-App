@@ -134,8 +134,6 @@ public class User implements Serializable {
     for (String part : parts) {
       this.usedWords.add(part);
     }
-
-    System.out.println(usedWords);
   }
 
   /**
@@ -158,6 +156,15 @@ public class User implements Serializable {
    */
   public String getUsername() {
     return username;
+  }
+
+  /**
+   * Gets the user's password
+   *
+   * @return String
+   */
+  public String getPassword() {
+    return password;
   }
 
   /**
