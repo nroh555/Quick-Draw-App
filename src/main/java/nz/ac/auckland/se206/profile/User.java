@@ -78,20 +78,19 @@ public class User implements Serializable {
     }
   }
 
-  private String formatWordsForSave() {
+  public String formatWordsForSave(ArrayList<String> usedWords) {
     String wordsString = "";
 
     for (int i = 0; i < usedWords.size(); i++) {
-      System.out.println(usedWords.get(i));
       wordsString = wordsString + ";" + usedWords.get(i);
     }
 
-    wordsString = wordsString.substring(0, wordsString.length() - 2);
+    wordsString = wordsString.substring(1, wordsString.length());
 
     return wordsString;
   }
 
-  private ArrayList<String> getWordsToArray(String wordsString) {
+  public void getWordsToArray(String wordsString) {
 
     String[] parts = wordsString.split(";");
 
@@ -99,7 +98,7 @@ public class User implements Serializable {
       this.usedWords.add(part);
     }
 
-    return usedWords;
+    System.out.println(usedWords);
   }
 
   // Set user stats

@@ -61,8 +61,7 @@ public class MenuController {
     // HashMap<String, User> usersHashMap = new HashMap<String, User>();
     while ((line = reader.readLine()) != null) {
 
-      // TODO ADD THE 5 BACK
-      String[] parts = line.split(":"); // Should have 5 parts
+      String[] parts = line.split(":"); // Should have 5 parts, or 6 if words
 
       // System.out.println("THIS PART SI WORKING : " + line);
       // System.out.println("printing " + parts[0]);
@@ -80,6 +79,12 @@ public class MenuController {
           Integer.valueOf(parts[3]),
           Integer.valueOf(parts[4]));
       usersHashMap.put(parts[0], insertUser);
+
+      // If the user has used words, add those too
+      if (parts.length == 6) {
+        System.out.println("GOT WORDS!");
+        usersHashMap.get(parts[0]).getWordsToArray(parts[5]);
+      }
     }
 
     // System.out.println("hashmap is: " + usersHashMap);
@@ -215,8 +220,18 @@ public class MenuController {
       Boolean isFirst = true;
       for (String key : usersHashMap.keySet()) {
         if (isFirst == true) {
-          // Add information regarding first user to each first
-          bf.write(usersHashMap.get(key).getSaveDetails());
+          // If user doesn't have any used words
+          if (usersHashMap.get(key).getUsedWords().isEmpty()) {
+            // Add information regarding first user to each first
+            bf.write(usersHashMap.get(key).getSaveDetails());
+          } else {
+            bf.write(
+                usersHashMap.get(key).getSaveDetails()
+                    + ":"
+                    + usersHashMap
+                        .get(key)
+                        .formatWordsForSave(usersHashMap.get(key).getUsedWords()));
+          }
           isFirst = false;
         } else {
           break;
@@ -247,7 +262,18 @@ public class MenuController {
           isFirst = false;
         } else {
           // Add information regarding each user (other than the first) to the save file
-          bf.write(usersHashMap.get(key).getSaveDetails());
+          // If user doesn't have any used words
+          if (usersHashMap.get(key).getUsedWords().isEmpty()) {
+            // Add information regarding first user to each first
+            bf.write(usersHashMap.get(key).getSaveDetails());
+          } else {
+            bf.write(
+                usersHashMap.get(key).getSaveDetails()
+                    + ":"
+                    + usersHashMap
+                        .get(key)
+                        .formatWordsForSave(usersHashMap.get(key).getUsedWords()));
+          }
           bf.newLine();
         }
       }
