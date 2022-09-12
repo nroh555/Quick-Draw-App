@@ -19,11 +19,6 @@ import nz.ac.auckland.se206.profile.User;
 
 public class MenuController {
 
-  /**
-   * This method switches from menu to canvas
-   *
-   * @throws TranslateException
-   */
   @FXML private Label infoLabel;
 
   @FXML private TextField usernameField;
@@ -47,28 +42,25 @@ public class MenuController {
   @FXML private Button b8;
 
   // Create hashmap to store all of the users.
-  // HashMap<String, User> usersHashMap;
   HashMap<String, User> usersHashMap = new HashMap<String, User>();
 
   // Current user logged in
   User currentUser = new User("None", "none");
 
-  // Gets users data from file and populates users hash map
+  /**
+   * Gets the saved users data from file and loads this data onto the users hash map. This is done
+   * before every register/login operation
+   *
+   * @throws IOException
+   */
   private void loadUsers() throws IOException {
     String line;
     BufferedReader reader = new BufferedReader(new FileReader("users.txt"));
-    // Create hashmap to store all of the users.
-    // HashMap<String, User> usersHashMap = new HashMap<String, User>();
+
+    // Read every line of the file, and insert into users hash map
     while ((line = reader.readLine()) != null) {
 
       String[] parts = line.split(":"); // Should have 5 parts, or 6 if words
-
-      // System.out.println("THIS PART SI WORKING : " + line);
-      // System.out.println("printing " + parts[0]);
-      // System.out.println("printing " + parts[1]);
-      // System.out.println("printing " + parts[2]);
-      // System.out.println("printing " + parts[3]);
-      // System.out.println("printing " + parts[4]);
 
       // Create user based of information in file, and insert into hashmap
       User insertUser = new User(parts[0], parts[1]);
@@ -82,16 +74,19 @@ public class MenuController {
 
       // If the user has used words, add those too
       if (parts.length == 6) {
-        System.out.println("GOT WORDS!");
         usersHashMap.get(parts[0]).getWordsToArray(parts[5]);
       }
     }
 
-    // System.out.println("hashmap is: " + usersHashMap);
     reader.close();
   }
 
-  // This handles registration of new users
+  /**
+   * Handles registration of new users. Will check if their username exists in the hashmap, and if
+   * not, it registers them. This currently doesn't care about the password.
+   *
+   * @throws IOException
+   */
   @FXML
   private void onRegister() throws IOException {
 
@@ -113,7 +108,6 @@ public class MenuController {
 
         // Add information regarding the new user to the save file
         bf.write(newUser.getSaveDetails());
-        System.out.println("Should have just written......");
 
         bf.newLine();
         bf.flush();
@@ -135,7 +129,8 @@ public class MenuController {
   }
 
   /**
-   * For log in functionality - checks if a user exists.
+   * For log in functionality - checks if a username exists in the hashmap, and if it does, it logs
+   * them in (displays their main stats). Currently doesn't check the password.
    *
    * @throws IOException
    */
@@ -147,13 +142,13 @@ public class MenuController {
     // Check if username does exist
     if (usersHashMap.containsKey(usernameField.getText())) {
       currentUser = usersHashMap.get(usernameField.getText());
-      // System.out.println("username exists");
+
       // Update user details on UI
       infoLabel.setText(currentUser.formatUserDetails());
     }
   }
 
-  /** Adds one to wins count */
+  /** Adds 1 to the user's current wins count */
   @FXML
   private void onb3Click() {
     currentUser.setStats(
@@ -167,7 +162,7 @@ public class MenuController {
   }
 
   /**
-   * Adds one to loss count
+   * Adds one to the current user's loss count
    *
    * @throws Exception
    */
@@ -183,36 +178,30 @@ public class MenuController {
     infoLabel.setText(currentUser.formatUserDetails());
   }
 
-  // Add a word to current user word list
+  /**
+   * Add a word (the word is just egg) to current user word list
+   *
+   * @throws Exception
+   */
   @FXML
   private void onb5Click() throws Exception {
-    infoLabel.setText("b4");
-
+    // Adds egg to the current user's used words list
     usersHashMap.get(currentUser.getUsername()).addUsedWord("eggs");
-    System.out.println(usersHashMap.get(currentUser.getUsername()).getUsedWords());
   }
 
-  @FXML
-  private void onb6Click() throws Exception {
-    infoLabel.setText("b4");
-    // writeJsonSimpleDemo("users.json");
-  }
-
-  @FXML
-  private void onb7Click() throws Exception {
-    infoLabel.setText("b4");
-    // writeJsonSimpleDemo("users.json");
-  }
-
-  // Save data
+  /**
+   * Saves any stats data. This is a manual save that is performed via a button (as it's going to be
+   * very time consuming to write the save contents all the time)
+   *
+   * @throws Exception
+   */
   @FXML
   private void saveData() throws Exception {
-    infoLabel.setText("save data");
 
     // Save all the new data to the file
     BufferedWriter bf = null;
 
-    // Overwrite existing file data
+    // Overwrite existing file data for the first line we save
     try {
       // Create new BufferedWriter for the output file, append mode on
       bf = new BufferedWriter(new FileWriter("users.txt"));
@@ -252,6 +241,7 @@ public class MenuController {
       }
     }
 
+    // Every other line we save after the first one is on append mode for the file
     try {
       // Create new BufferedWriter for the output file, append mode on
       bf = new BufferedWriter(new FileWriter("users.txt", true));
@@ -292,6 +282,13 @@ public class MenuController {
     }
   }
 
+  /**
+   * Button to switch to the canvas page
+   *
+   * @param event
+   * @throws IOException
+   * @throws TranslateException
+   */
   @FXML
   private void onSwitchToCanvas(ActionEvent event) throws IOException, TranslateException {
     // Changes the scene to canvas

@@ -20,7 +20,15 @@ public class User implements Serializable {
     this.usedWords = new ArrayList<String>();
   }
 
-  // This loads user details from the file to a user
+  /**
+   * This loads user details from the file to create a user instance
+   *
+   * @param username
+   * @param password
+   * @param wins
+   * @param losses
+   * @param fastestWin
+   */
   public void loadUser(
       String username, String password, Integer wins, Integer losses, Integer fastestWin) {
     this.username = username;
@@ -30,7 +38,11 @@ public class User implements Serializable {
     this.fastestWin = fastestWin;
   }
 
-  // This formats all information about the user so it can be saved to a file
+  /**
+   * This formats all information about the user so it can be saved to a file
+   *
+   * @return String in the format to go into the save file
+   */
   public String getSaveDetails() {
 
     String saveString =
@@ -47,8 +59,12 @@ public class User implements Serializable {
     return saveString;
   }
 
-  // This gets and formats all information (excluding password) about a user to be
-  // displayed
+  /**
+   * This gets and formats all key information (excluding password and words) about a user to be
+   * displayed
+   *
+   * @return String to display the key details
+   */
   public String formatUserDetails() {
 
     String displayString =
@@ -64,10 +80,16 @@ public class User implements Serializable {
     return displayString;
   }
 
+  /**
+   * @return ArrayList<String>
+   */
   public ArrayList<String> getUsedWords() {
     return usedWords;
   }
 
+  /**
+   * @param word
+   */
   public void addUsedWord(String word) {
     this.usedWords.add(word);
   }
@@ -78,6 +100,10 @@ public class User implements Serializable {
     }
   }
 
+  /**
+   * @param usedWords
+   * @return String
+   */
   public String formatWordsForSave(ArrayList<String> usedWords) {
     String wordsString = "";
 
@@ -90,6 +116,9 @@ public class User implements Serializable {
     return wordsString;
   }
 
+  /**
+   * @param wordsString
+   */
   public void getWordsToArray(String wordsString) {
 
     String[] parts = wordsString.split(";");
@@ -101,6 +130,11 @@ public class User implements Serializable {
     System.out.println(usedWords);
   }
 
+  /**
+   * @param wins
+   * @param losses
+   * @param fastestWin
+   */
   // Set user stats
   public void setStats(Integer wins, Integer losses, Integer fastestWin) {
     this.wins = wins;
@@ -108,21 +142,33 @@ public class User implements Serializable {
     this.fastestWin = fastestWin;
   }
 
+  /**
+   * @return String
+   */
   // Get user username
   public String getUsername() {
     return username;
   }
 
+  /**
+   * @return Integer
+   */
   // Get user wins
   public Integer getWins() {
     return wins;
   }
 
+  /**
+   * @return Integer
+   */
   // Get user losses
   public Integer getLosses() {
     return losses;
   }
 
+  /**
+   * @return Integer
+   */
   // Get user fastest win
   public Integer getFastestWin() {
     return fastestWin;
