@@ -36,12 +36,6 @@
       <Region prefHeight="30.0" prefWidth="400.0" />
       <Button fx:id="b1" mnemonicParsing="false" onAction="#onRegister" prefHeight="43.0" prefWidth="78.0" text="Register" />
       <Region prefHeight="30.0" prefWidth="400.0" />
-      <Button mnemonicParsing="false" onAction="#onSwitchToCanvas" prefHeight="47.0" prefWidth="80.0" text="Start!">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <Region prefHeight="30.0" prefWidth="400.0" />
    </children>
    <opaqueInsets>
       <Insets />
