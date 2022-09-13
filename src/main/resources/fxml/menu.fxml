@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="400.0" stylesheets="@app.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.MenuController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="400.0" stylesheets="@../css/menu.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.MenuController">
    <children>
       <Label alignment="CENTER" prefHeight="23.0" prefWidth="355.0" stylesheets="@app.css" text="Quick, Draw! SE206  Edition" textAlignment="CENTER">
          <font>
@@ -21,7 +21,7 @@
       <Region prefHeight="20.0" prefWidth="400.0" />
       <ImageView fitHeight="241.0" fitWidth="241.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../Documents/SoftEng206/quick-draw-beta-final-team-29/src/main/resources/images/logo-speedy-sketchers.png" />
+            <Image url="@../images/logo-speedy-sketchers.png" />
          </image>
       </ImageView>
       <Region prefHeight="20.0" prefWidth="400.0" />
@@ -47,4 +47,3 @@
       <Insets />
    </opaqueInsets>
 </VBox>
-
