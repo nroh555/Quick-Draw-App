@@ -58,6 +58,9 @@ public class App extends Application {
     // Saves the dashboard loader to scene manager
     SceneManager.addUi(SceneManager.AppUi.DASHBOARD, loadFxml(makeLoader("dashboard")));
 
+    // Saves the profile loader to scene manager
+    SceneManager.addUi(SceneManager.AppUi.PROFILE, loadFxml(makeLoader("profile")));
+
     final Scene scene = new Scene(SceneManager.getUi(SceneManager.AppUi.MENU), 480, 745);
 
     stage.setScene(scene);
