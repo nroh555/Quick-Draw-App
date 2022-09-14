@@ -47,8 +47,10 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    // Adds the UI to the scene manager
-    SceneManager.addUi(SceneManager.AppUi.MENU, loadFxml(makeLoader("menu")));
+    // Saves the menu loader to scene manager
+    FXMLLoader menuLoader = makeLoader("menu");
+    SceneManager.setMenuLoader(menuLoader);
+    SceneManager.addUi(SceneManager.AppUi.MENU, loadFxml(menuLoader));
 
     // Saves the canvas loader to scene manager
     FXMLLoader canvasLoader = makeLoader("canvas");

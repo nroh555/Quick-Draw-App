@@ -253,6 +253,12 @@ public class DashboardController {
   }
 
   protected void updateWelcomeLabel() {
+	// Get current user
+    FXMLLoader menuLoader = SceneManager.getMenuLoader();
+    MenuController menuController = menuLoader.getController();
+    currentUser = menuController.getCurrentUser();
+
+    // Update welcome label
     welcomeLabel.setText("Welcome, " + currentUser.getUsername() + "!");
   }
 }

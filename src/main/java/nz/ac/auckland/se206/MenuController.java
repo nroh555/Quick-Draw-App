@@ -154,12 +154,12 @@ public class MenuController {
          * Uncomment this line of code later. Now it is removed to prevent errors in the menu page
          * infoLabel.setText(currentUser.formatUserDetails());
          */
-        
-        
+
+        // Update welcome label
         FXMLLoader dashboardLoader = SceneManager.getDashboardLoader();
         DashboardController dashboardController = dashboardLoader.getController();
         dashboardController.updateWelcomeLabel();
-        
+
         // Changes the scene to canvas
         Button btnThatWasClicked = (Button) event.getSource();
         Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
