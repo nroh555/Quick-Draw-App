@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -18,223 +17,224 @@ import nz.ac.auckland.se206.profile.User;
 
 public class MenuController {
 
-	@FXML
-	private Label infoLabel;
+  @FXML private Label infoLabel;
 
-	@FXML
-	private TextField usernameField;
+  @FXML private TextField usernameField;
 
-	@FXML
-	private TextField passwordField;
+  @FXML private TextField passwordField;
 
-	@FXML
-	private Button b1;
+  @FXML private Button b1;
 
-	@FXML
-	private Button b2;
+  @FXML private Button b2;
 
-	// Create hashmap to store all of the users.
-	HashMap<String, User> usersHashMap = new HashMap<String, User>();
+  // Create hashmap to store all of the users.
+  HashMap<String, User> usersHashMap = new HashMap<String, User>();
 
-	// Current user logged in
-	User currentUser = new User("None", "none");
+  // Current user logged in
+  User currentUser = new User("None", "none");
 
-	/**
-	 * Gets the saved users data from file and loads this data onto the users hash
-	 * map. This is done before every register/login operation
-	 *
-	 * @throws IOException
-	 */
-	private void loadUsers() throws IOException {
-		String line;
-		BufferedReader reader = new BufferedReader(new FileReader("users.txt"));
+  /**
+   * Gets the saved users data from file and loads this data onto the users hash map. This is done
+   * before every register/login operation
+   *
+   * @throws IOException
+   */
+  private void loadUsers() throws IOException {
+    String line;
+    BufferedReader reader = new BufferedReader(new FileReader("users.txt"));
 
-		// Read every line of the file, and insert into users hash map
-		while ((line = reader.readLine()) != null) {
+    // Read every line of the file, and insert into users hash map
+    while ((line = reader.readLine()) != null) {
 
-			String[] parts = line.split(":"); // Should have 5 parts, or 6 if words
+      String[] parts = line.split(":"); // Should have 5 parts, or 6 if words
 
-			// Create user based of information in file, and insert into hashmap
-			User insertUser = new User(parts[0], parts[1]);
-			insertUser.loadUser(parts[0], parts[1], Integer.valueOf(parts[2]), Integer.valueOf(parts[3]),
-					Integer.valueOf(parts[4]));
-			usersHashMap.put(parts[0], insertUser);
+      // Create user based of information in file, and insert into hashmap
+      User insertUser = new User(parts[0], parts[1]);
+      insertUser.loadUser(
+          parts[0],
+          parts[1],
+          Integer.valueOf(parts[2]),
+          Integer.valueOf(parts[3]),
+          Integer.valueOf(parts[4]));
+      usersHashMap.put(parts[0], insertUser);
 
-			// If the user has used words, add those too
-			if (parts.length == 6) {
-				usersHashMap.get(parts[0]).getWordsToArray(parts[5]);
-			}
-		}
+      // If the user has used words, add those too
+      if (parts.length == 6) {
+        usersHashMap.get(parts[0]).getWordsToArray(parts[5]);
+      }
+    }
 
-		reader.close();
-	}
+    reader.close();
+  }
 
-	/**
-	 * Handles registration of new users. Will check if their username exists in the
-	 * hashmap, and if not, it registers them. This currently doesn't care about the
-	 * password.
-	 *
-	 * @throws IOException
-	 */
-	@FXML
-	private void onRegister() throws IOException {
+  /**
+   * Handles registration of new users. Will check if their username exists in the hashmap, and if
+   * not, it registers them. This currently doesn't care about the password.
+   *
+   * @throws IOException
+   */
+  @FXML
+  private void onRegister() throws IOException {
 
-		loadUsers();
+    loadUsers();
 
-		// If the username does not already exist, register user
-		if (!usersHashMap.containsKey(usernameField.getText())) {
-			// Create a new user profile with the inputted username and password
-			User newUser = new User(usernameField.getText(), passwordField.getText());
-			// Add user to hashmap
+    // If the username does not already exist, register user
+    if (!usersHashMap.containsKey(usernameField.getText())) {
+      // Create a new user profile with the inputted username and password
+      User newUser = new User(usernameField.getText(), passwordField.getText());
+      // Add user to hashmap
 
-			usersHashMap.put(usernameField.getText(), newUser);
+      usersHashMap.put(usernameField.getText(), newUser);
 
-			// Save the new user to the file
-			BufferedWriter bf = null;
-			try {
-				// Create new BufferedWriter for the output file, append mode on
-				bf = new BufferedWriter(new FileWriter("users.txt", true));
+      // Save the new user to the file
+      BufferedWriter bf = null;
+      try {
+        // Create new BufferedWriter for the output file, append mode on
+        bf = new BufferedWriter(new FileWriter("users.txt", true));
 
-				// Add information regarding the new user to the save file
-				bf.write(newUser.getSaveDetails());
+        // Add information regarding the new user to the save file
+        bf.write(newUser.getSaveDetails());
 
-				bf.newLine();
-				bf.flush();
-			} catch (IOException e) {
-				// Print exceptions
-				e.printStackTrace();
-			} finally {
-				try {
-					// Close the writer
-					bf.close();
-				} catch (Exception e) {
-					// Print exceptions
-					e.printStackTrace();
-				}
-			}
-		} else {
-			System.out.println("This username is already taken. Please try again.");
-		}
-	}
+        bf.newLine();
+        bf.flush();
+      } catch (IOException e) {
+        // Print exceptions
+        e.printStackTrace();
+      } finally {
+        try {
+          // Close the writer
+          bf.close();
+        } catch (Exception e) {
+          // Print exceptions
+          e.printStackTrace();
+        }
+      }
+    } else {
+      System.out.println("This username is already taken. Please try again.");
+    }
+  }
 
-	/**
-	 * For log in functionality - checks if a username exists in the hashmap, and if
-	 * it does, it logs them in (displays their main stats). Currently doesn't check
-	 * the password.
-	 *
-	 * @throws IOException
-	 */
-	@FXML
-	private void onLogin(ActionEvent event) throws IOException {
+  /**
+   * For log in functionality - checks if a username exists in the hashmap, and if it does, it logs
+   * them in (displays their main stats). Currently doesn't check the password.
+   *
+   * @throws IOException
+   */
+  @FXML
+  private void onLogin(ActionEvent event) throws IOException {
 
-		loadUsers();
+    loadUsers();
 
-		// Check if username does exist
-		if (usersHashMap.containsKey(usernameField.getText())) {
+    // Check if username does exist
+    if (usersHashMap.containsKey(usernameField.getText())) {
 
-			// Check if password is correct
-			if (usersHashMap.get(usernameField.getText()).getPassword().equals(passwordField.getText())) {
-				// Set the current user ('logs them in')
-				currentUser = usersHashMap.get(usernameField.getText());
-				// Update user details on UI
-				/**
-				 * Uncomment this line of code later. Now it is removed to prevent errors in the
-				 * menu page infoLabel.setText(currentUser.formatUserDetails());
-				 * 
-				 **/
-				// Changes the scene to canvas
-				Button btnThatWasClicked = (Button) event.getSource();
-				Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
-				sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.DASHBOARD));
+      // Check if password is correct
+      if (usersHashMap.get(usernameField.getText()).getPassword().equals(passwordField.getText())) {
+        // Set the current user ('logs them in')
+        currentUser = usersHashMap.get(usernameField.getText());
+        // Update user details on UI
+        /**
+         * Uncomment this line of code later. Now it is removed to prevent errors in the menu page
+         * infoLabel.setText(currentUser.formatUserDetails());
+         */
+        // Changes the scene to canvas
+        Button btnThatWasClicked = (Button) event.getSource();
+        Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
+        sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.DASHBOARD));
+      }
+    }
+  }
 
-			}
-		}
-	}
+  /**
+   * Saves any stats data. This is a manual save that is performed via a button (as it's going to be
+   * very time consuming to write the save contents all the time)
+   *
+   * @throws Exception
+   */
+  @FXML
+  private void saveData() throws Exception {
 
-	/**
-	 * Saves any stats data. This is a manual save that is performed via a button
-	 * (as it's going to be very time consuming to write the save contents all the
-	 * time)
-	 *
-	 * @throws Exception
-	 */
-	@FXML
-	private void saveData() throws Exception {
+    // Save all the new data to the file
+    BufferedWriter bf = null;
 
-		// Save all the new data to the file
-		BufferedWriter bf = null;
+    // Overwrite existing file data for the first line we save
+    try {
+      // Create new BufferedWriter for the output file, append mode on
+      bf = new BufferedWriter(new FileWriter("users.txt"));
 
-		// Overwrite existing file data for the first line we save
-		try {
-			// Create new BufferedWriter for the output file, append mode on
-			bf = new BufferedWriter(new FileWriter("users.txt"));
+      Boolean isFirst = true;
+      for (String key : usersHashMap.keySet()) {
+        if (isFirst == true) {
+          // If user doesn't have any used words
+          if (usersHashMap.get(key).getUsedWords().isEmpty()) {
+            // Add information regarding first user to each first
+            bf.write(usersHashMap.get(key).getSaveDetails());
+          } else {
+            bf.write(
+                usersHashMap.get(key).getSaveDetails()
+                    + ":"
+                    + usersHashMap
+                        .get(key)
+                        .formatWordsForSave(usersHashMap.get(key).getUsedWords()));
+          }
+          isFirst = false;
+        } else {
+          break;
+        }
+      }
+      bf.newLine();
+      bf.flush();
+    } catch (IOException e) {
+      // Print exceptions
+      e.printStackTrace();
+    } finally {
+      try {
+        // Close the writer
+        bf.close();
+      } catch (Exception e) {
+        // Print exceptions
+        e.printStackTrace();
+      }
+    }
 
-			Boolean isFirst = true;
-			for (String key : usersHashMap.keySet()) {
-				if (isFirst == true) {
-					// If user doesn't have any used words
-					if (usersHashMap.get(key).getUsedWords().isEmpty()) {
-						// Add information regarding first user to each first
-						bf.write(usersHashMap.get(key).getSaveDetails());
-					} else {
-						bf.write(usersHashMap.get(key).getSaveDetails() + ":"
-								+ usersHashMap.get(key).formatWordsForSave(usersHashMap.get(key).getUsedWords()));
-					}
-					isFirst = false;
-				} else {
-					break;
-				}
-			}
-			bf.newLine();
-			bf.flush();
-		} catch (IOException e) {
-			// Print exceptions
-			e.printStackTrace();
-		} finally {
-			try {
-				// Close the writer
-				bf.close();
-			} catch (Exception e) {
-				// Print exceptions
-				e.printStackTrace();
-			}
-		}
+    // Every other line we save after the first one is on append mode for the file
+    try {
+      // Create new BufferedWriter for the output file, append mode on
+      bf = new BufferedWriter(new FileWriter("users.txt", true));
 
-		// Every other line we save after the first one is on append mode for the file
-		try {
-			// Create new BufferedWriter for the output file, append mode on
-			bf = new BufferedWriter(new FileWriter("users.txt", true));
-
-			Boolean isFirst = true;
-			for (String key : usersHashMap.keySet()) {
-				if (isFirst == true) {
-					isFirst = false;
-				} else {
-					// Add information regarding each user (other than the first) to the save file
-					// If user doesn't have any used words
-					if (usersHashMap.get(key).getUsedWords().isEmpty()) {
-						// Add information regarding first user to each first
-						bf.write(usersHashMap.get(key).getSaveDetails());
-					} else {
-						bf.write(usersHashMap.get(key).getSaveDetails() + ":"
-								+ usersHashMap.get(key).formatWordsForSave(usersHashMap.get(key).getUsedWords()));
-					}
-					bf.newLine();
-				}
-			}
-			bf.flush();
-		} catch (IOException e) {
-			// Print exceptions
-			e.printStackTrace();
-		} finally {
-			try {
-				// Close the writer
-				bf.close();
-			} catch (Exception e) {
-				// Print exceptions
-				e.printStackTrace();
-			}
-		}
-	}
-
+      Boolean isFirst = true;
+      for (String key : usersHashMap.keySet()) {
+        if (isFirst == true) {
+          isFirst = false;
+        } else {
+          // Add information regarding each user (other than the first) to the save file
+          // If user doesn't have any used words
+          if (usersHashMap.get(key).getUsedWords().isEmpty()) {
+            // Add information regarding first user to each first
+            bf.write(usersHashMap.get(key).getSaveDetails());
+          } else {
+            bf.write(
+                usersHashMap.get(key).getSaveDetails()
+                    + ":"
+                    + usersHashMap
+                        .get(key)
+                        .formatWordsForSave(usersHashMap.get(key).getUsedWords()));
+          }
+          bf.newLine();
+        }
+      }
+      bf.flush();
+    } catch (IOException e) {
+      // Print exceptions
+      e.printStackTrace();
+    } finally {
+      try {
+        // Close the writer
+        bf.close();
+      } catch (Exception e) {
+        // Print exceptions
+        e.printStackTrace();
+      }
+    }
+  }
 }
