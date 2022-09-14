@@ -52,7 +52,7 @@ public class App extends Application {
     FXMLLoader canvasLoader = makeLoader("canvas");
 
     // Saves the canvas loader to scene manager
-    SceneManager.setLoader(canvasLoader);
+    SceneManager.setCanvasLoader(canvasLoader);
     SceneManager.addUi(SceneManager.AppUi.CANVAS, loadFxml(canvasLoader));
 
     // Saves the dashboard loader to scene manager

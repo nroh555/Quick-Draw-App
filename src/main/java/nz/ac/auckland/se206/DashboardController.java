@@ -245,7 +245,7 @@ public class DashboardController {
     sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.CANVAS));
 
     // Runs a prediction to reduce lag
-    FXMLLoader loader = SceneManager.getLoader();
+    FXMLLoader loader = SceneManager.getCanvasLoader();
     CanvasController controller = loader.getController();
     controller.updatePrediction();
   }

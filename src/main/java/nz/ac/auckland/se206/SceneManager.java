@@ -29,11 +29,11 @@ public class SceneManager {
     return sceneMap.get(uiType);
   }
 
-  public static void setLoader(FXMLLoader loader) {
+  public static void setCanvasLoader(FXMLLoader loader) {
     canvasLoader = loader;
   }
 
-  public static FXMLLoader getLoader() {
+  public static FXMLLoader getCanvasLoader() {
     return canvasLoader;
   }
 }
