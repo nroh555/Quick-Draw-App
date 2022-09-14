@@ -13,6 +13,7 @@ public class SceneManager {
   public enum AppUi {
     MENU,
     DASHBOARD,
+    PROFILE,
     CANVAS
   }
 

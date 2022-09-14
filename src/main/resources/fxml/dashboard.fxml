@@ -12,22 +12,22 @@
    <children>
       <VBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="370.0">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onSwitchToCanvas" prefHeight="47.0" prefWidth="95.0" text="Profile">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onSwitchToProfile" prefHeight="47.0" prefWidth="95.0" text="Profile">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
          </children>
       </VBox>
-      <Label alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="Quick, Draw! SE206  Edition" textAlignment="CENTER">
+      <Label alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="Welcome, .......... !" textAlignment="CENTER">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
       <Region prefHeight="100.0" prefWidth="400.0" />
-      <ButtonBar prefHeight="40.0" prefWidth="200.0">
+      <ButtonBar prefHeight="47.0" prefWidth="390.0">
         <buttons>
-            <Button fx:id="b3" mnemonicParsing="false" onAction="#addWin" text="Add win" />
+            <Button fx:id="b3" mnemonicParsing="false" onAction="#addWin" prefHeight="47.0" prefWidth="89.0" text="Add win" />
             <Button fx:id="b4" mnemonicParsing="false" onAction="#addLoss" text="Add loss" />
           <Button fx:id="b5" mnemonicParsing="false" onAction="#addWord" text="Add word" />
             <Button fx:id="b8" mnemonicParsing="false" onAction="#saveData" text="Save Data" />

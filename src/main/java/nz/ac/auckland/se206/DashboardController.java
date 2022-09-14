@@ -81,77 +81,6 @@ public class DashboardController {
     reader.close();
   }
 
-  /**
-   * Handles registration of new users. Will check if their username exists in the hashmap, and if
-   * not, it registers them. This currently doesn't care about the password.
-   *
-   * @throws IOException
-   */
-  @FXML
-  private void onRegister() throws IOException {
-
-    loadUsers();
-
-    // If the username does not already exist, register user
-    if (!usersHashMap.containsKey(usernameField.getText())) {
-      // Create a new user profile with the inputted username and password
-      User newUser = new User(usernameField.getText(), passwordField.getText());
-      // Add user to hashmap
-
-      usersHashMap.put(usernameField.getText(), newUser);
-
-      // Save the new user to the file
-      BufferedWriter bf = null;
-      try {
-        // Create new BufferedWriter for the output file, append mode on
-        bf = new BufferedWriter(new FileWriter("users.txt", true));
-
-        // Add information regarding the new user to the save file
-        bf.write(newUser.getSaveDetails());
-
-        bf.newLine();
-        bf.flush();
-      } catch (IOException e) {
-        // Print exceptions
-        e.printStackTrace();
-      } finally {
-        try {
-          // Close the writer
-          bf.close();
-        } catch (Exception e) {
-          // Print exceptions
-          e.printStackTrace();
-        }
-      }
-    } else {
-      System.out.println("This username is already taken. Please try again.");
-    }
-  }
-
-  /**
-   * For log in functionality - checks if a username exists in the hashmap, and if it does, it logs
-   * them in (displays their main stats). Currently doesn't check the password.
-   *
-   * @throws IOException
-   */
-  @FXML
-  private void onLogin() throws IOException {
-
-    loadUsers();
-
-    // Check if username does exist
-    if (usersHashMap.containsKey(usernameField.getText())) {
-
-      // Check if password is correct
-      if (usersHashMap.get(usernameField.getText()).getPassword().equals(passwordField.getText())) {
-        // Set the current user ('logs them in')
-        currentUser = usersHashMap.get(usernameField.getText());
-        // Update user details on UI
-        infoLabel.setText(currentUser.formatUserDetails());
-      }
-    }
-  }
-
   /** Adds 1 to the user's current wins count */
   @FXML
   private void addWin() {
@@ -284,6 +213,21 @@ public class DashboardController {
         e.printStackTrace();
       }
     }
+  }
+
+  /**
+   * Button to switch to the profile page
+   *
+   * @param event
+   * @throws IOException
+   * @throws TranslateException
+   */
+  @FXML
+  private void onSwitchToProfile(ActionEvent event) throws IOException, TranslateException {
+    // Changes the scene to canvas
+    Button btnThatWasClicked = (Button) event.getSource();
+    Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
+    sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.PROFILE));
   }
 
   /**
