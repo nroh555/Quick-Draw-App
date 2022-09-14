@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -153,6 +154,12 @@ public class MenuController {
          * Uncomment this line of code later. Now it is removed to prevent errors in the menu page
          * infoLabel.setText(currentUser.formatUserDetails());
          */
+        
+        
+        FXMLLoader dashboardLoader = SceneManager.getDashboardLoader();
+        DashboardController dashboardController = dashboardLoader.getController();
+        dashboardController.updateWelcomeLabel();
+        
         // Changes the scene to canvas
         Button btnThatWasClicked = (Button) event.getSource();
         Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();

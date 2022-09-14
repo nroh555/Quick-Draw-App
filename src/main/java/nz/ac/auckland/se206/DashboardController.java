@@ -252,7 +252,7 @@ public class DashboardController {
     canvasController.updatePrediction();
   }
 
-  private void updateWelcomeMessage() {
+  protected void updateWelcomeLabel() {
     welcomeLabel.setText("Welcome, " + currentUser.getUsername() + "!");
   }
 }
