@@ -391,7 +391,7 @@ public class CanvasController {
 
   /** Runs the game (allows the user to interact with the canvas) */
   @FXML
-  private void onSetGameStart() {
+  private void onReady() {
     gameOver = false;
 
     // Enables the canvas
