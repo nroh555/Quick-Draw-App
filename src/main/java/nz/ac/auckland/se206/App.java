@@ -55,6 +55,9 @@ public class App extends Application {
     SceneManager.setLoader(canvasLoader);
     SceneManager.addUi(SceneManager.AppUi.CANVAS, loadFxml(canvasLoader));
 
+    // Saves the dashboard loader to scene manager
+    SceneManager.addUi(SceneManager.AppUi.DASHBOARD, loadFxml(makeLoader("dashboard")));
+
     final Scene scene = new Scene(SceneManager.getUi(SceneManager.AppUi.MENU), 480, 745);
 
     stage.setScene(scene);

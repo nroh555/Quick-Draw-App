@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 public class SceneManager {
   public enum AppUi {
     MENU,
+    DASHBOARD,
     CANVAS
   }
 

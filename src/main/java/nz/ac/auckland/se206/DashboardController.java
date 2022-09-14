@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+import ai.djl.translate.TranslateException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -8,6 +9,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,7 +17,7 @@ import javafx.scene.control.TextField;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.profile.User;
 
-public class MenuController {
+public class DashboardController {
 
   @FXML private Label infoLabel;
 
@@ -26,6 +28,18 @@ public class MenuController {
   @FXML private Button b1;
 
   @FXML private Button b2;
+
+  @FXML private Button b3;
+
+  @FXML private Button b4;
+
+  @FXML private Button b5;
+
+  @FXML private Button b6;
+
+  @FXML private Button b7;
+
+  @FXML private Button b8;
 
   // Create hashmap to store all of the users.
   HashMap<String, User> usersHashMap = new HashMap<String, User>();
@@ -121,7 +135,7 @@ public class MenuController {
    * @throws IOException
    */
   @FXML
-  private void onLogin(ActionEvent event) throws IOException {
+  private void onLogin() throws IOException {
 
     loadUsers();
 
@@ -133,16 +147,50 @@ public class MenuController {
         // Set the current user ('logs them in')
         currentUser = usersHashMap.get(usernameField.getText());
         // Update user details on UI
-        /**
-         * Uncomment this line of code later. Now it is removed to prevent errors in the menu page
-         * infoLabel.setText(currentUser.formatUserDetails());
-         */
-        // Changes the scene to canvas
-        Button btnThatWasClicked = (Button) event.getSource();
-        Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
-        sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.DASHBOARD));
+        infoLabel.setText(currentUser.formatUserDetails());
       }
     }
+  }
+
+  /** Adds 1 to the user's current wins count */
+  @FXML
+  private void addWin() {
+    currentUser.setStats(
+        currentUser.getWins() + 1, currentUser.getLosses(), currentUser.getFastestWin());
+
+    // Update users hash map
+    usersHashMap.put(currentUser.getUsername(), currentUser);
+
+    // Update user details on UI
+    infoLabel.setText(currentUser.formatUserDetails());
+  }
+
+  /**
+   * Adds one to the current user's loss count
+   *
+   * @throws Exception
+   */
+  @FXML
+  private void addLoss() throws Exception {
+    currentUser.setStats(
+        currentUser.getWins(), currentUser.getLosses() + 1, currentUser.getFastestWin());
+
+    // Update users hash map
+    usersHashMap.put(currentUser.getUsername(), currentUser);
+
+    // Update user details on UI
+    infoLabel.setText(currentUser.formatUserDetails());
+  }
+
+  /**
+   * Add a word (the word is just egg) to current user word list
+   *
+   * @throws Exception
+   */
+  @FXML
+  private void addWord() throws Exception {
+    // Adds egg to the current user's used words list
+    usersHashMap.get(currentUser.getUsername()).addUsedWord("eggs");
   }
 
   /**
@@ -236,5 +284,25 @@ public class MenuController {
         e.printStackTrace();
       }
     }
+  }
+
+  /**
+   * Button to switch to the canvas page
+   *
+   * @param event
+   * @throws IOException
+   * @throws TranslateException
+   */
+  @FXML
+  private void onSwitchToCanvas(ActionEvent event) throws IOException, TranslateException {
+    // Changes the scene to canvas
+    Button btnThatWasClicked = (Button) event.getSource();
+    Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
+    sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.CANVAS));
+
+    // Runs a prediction to reduce lag
+    FXMLLoader loader = SceneManager.getLoader();
+    CanvasController controller = loader.getController();
+    controller.updatePrediction();
   }
 }
