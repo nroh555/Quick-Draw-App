@@ -19,11 +19,12 @@
             </Button>
          </children>
       </VBox>
-      <Label alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="Welcome, .......... !" textAlignment="CENTER">
+      <Label fx:id="welcomeLabel" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="Welcome, .......... !" textAlignment="CENTER">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
+      <Label fx:id="infoLabel" text="Label" />
       <Region prefHeight="100.0" prefWidth="400.0" />
       <ButtonBar prefHeight="47.0" prefWidth="390.0">
         <buttons>

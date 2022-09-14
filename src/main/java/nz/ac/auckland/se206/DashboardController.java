@@ -20,6 +20,8 @@ import nz.ac.auckland.se206.profile.User;
 public class DashboardController {
 
   @FXML private Label infoLabel;
+  
+  @FXML private Label welcomeLabel;
 
   @FXML private TextField usernameField;
 
@@ -248,5 +250,9 @@ public class DashboardController {
     FXMLLoader loader = SceneManager.getCanvasLoader();
     CanvasController controller = loader.getController();
     controller.updatePrediction();
+  }
+  
+  private void updateWelcomeMessage() {
+	  welcomeLabel.setText("Welcome, " + currentUser.getUsername() + "!");
   }
 }
