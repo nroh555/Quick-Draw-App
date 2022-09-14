@@ -28,10 +28,26 @@ public class MenuController {
   @FXML private Button b2;
 
   // Create hashmap to store all of the users.
-  HashMap<String, User> usersHashMap = new HashMap<String, User>();
+  private HashMap<String, User> usersHashMap = new HashMap<String, User>();
 
   // Current user logged in
-  User currentUser = new User("None", "none");
+  private User currentUser = new User("None", "none");
+
+  public HashMap<String, User> getUsersHashMap() {
+    return usersHashMap;
+  }
+
+  public void setUsersHashMap(HashMap<String, User> usersHashMap) {
+    this.usersHashMap = usersHashMap;
+  }
+
+  public User getCurrentUser() {
+    return currentUser;
+  }
+
+  public void setCurrentUser(User currentUser) {
+    this.currentUser = currentUser;
+  }
 
   /**
    * Gets the saved users data from file and loads this data onto the users hash map. This is done
