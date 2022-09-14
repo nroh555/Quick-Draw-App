@@ -49,17 +49,21 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
     // Adds the UI to the scene manager
     SceneManager.addUi(SceneManager.AppUi.MENU, loadFxml(makeLoader("menu")));
-    FXMLLoader canvasLoader = makeLoader("canvas");
 
     // Saves the canvas loader to scene manager
+    FXMLLoader canvasLoader = makeLoader("canvas");
     SceneManager.setCanvasLoader(canvasLoader);
     SceneManager.addUi(SceneManager.AppUi.CANVAS, loadFxml(canvasLoader));
 
     // Saves the dashboard loader to scene manager
-    SceneManager.addUi(SceneManager.AppUi.DASHBOARD, loadFxml(makeLoader("dashboard")));
+    FXMLLoader dashboardLoader = makeLoader("dashboard");
+    SceneManager.setDashboardLoader(dashboardLoader);
+    SceneManager.addUi(SceneManager.AppUi.DASHBOARD, loadFxml(dashboardLoader));
 
     // Saves the profile loader to scene manager
-    SceneManager.addUi(SceneManager.AppUi.PROFILE, loadFxml(makeLoader("profile")));
+    FXMLLoader profileLoader = makeLoader("profile");
+    SceneManager.setProfileLoader(profileLoader);
+    SceneManager.addUi(SceneManager.AppUi.PROFILE, loadFxml(profileLoader));
 
     final Scene scene = new Scene(SceneManager.getUi(SceneManager.AppUi.MENU), 480, 745);
 

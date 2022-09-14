@@ -20,7 +20,7 @@ import nz.ac.auckland.se206.profile.User;
 public class DashboardController {
 
   @FXML private Label infoLabel;
-  
+
   @FXML private Label welcomeLabel;
 
   @FXML private TextField usernameField;
@@ -247,12 +247,12 @@ public class DashboardController {
     sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.CANVAS));
 
     // Runs a prediction to reduce lag
-    FXMLLoader loader = SceneManager.getCanvasLoader();
-    CanvasController controller = loader.getController();
-    controller.updatePrediction();
+    FXMLLoader canvasLoader = SceneManager.getCanvasLoader();
+    CanvasController canvasController = canvasLoader.getController();
+    canvasController.updatePrediction();
   }
-  
+
   private void updateWelcomeMessage() {
-	  welcomeLabel.setText("Welcome, " + currentUser.getUsername() + "!");
+    welcomeLabel.setText("Welcome, " + currentUser.getUsername() + "!");
   }
 }
