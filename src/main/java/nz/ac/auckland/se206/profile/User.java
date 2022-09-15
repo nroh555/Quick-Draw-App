@@ -68,9 +68,7 @@ public class User implements Serializable {
   public String formatUserDetails() {
 
     String displayString =
-        "Username: "
-            + username
-            + "\nWins: "
+        "Wins: "
             + wins.toString()
             + "\nLosses: "
             + losses.toString()

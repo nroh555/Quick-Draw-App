@@ -520,8 +520,11 @@ public class CanvasController {
     return randomWord;
   }
 
-  /** Adds 1 to the user's current wins count 
- * @throws Exception */
+  /**
+   * Adds 1 to the user's current wins count
+   *
+   * @throws Exception
+   */
   private void addFastestWin(int currentWinTime) throws Exception {
 
     int recordFastestWin = currentUser.getFastestWin();
@@ -535,7 +538,7 @@ public class CanvasController {
 
       // Prints record
       System.out.println("New record: " + currentUser.getFastestWin());
-      
+
       saveData();
     }
   }

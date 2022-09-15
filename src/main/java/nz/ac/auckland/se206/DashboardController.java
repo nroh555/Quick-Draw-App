@@ -226,6 +226,11 @@ public class DashboardController {
    */
   @FXML
   private void onSwitchToProfile(ActionEvent event) throws IOException, TranslateException {
+    // Update welcome label in profile
+    FXMLLoader profileLoader = SceneManager.getProfileLoader();
+    ProfileController profileController = profileLoader.getController();
+    profileController.updateLabels();
+
     // Changes the scene to canvas
     Button btnThatWasClicked = (Button) event.getSource();
     Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
