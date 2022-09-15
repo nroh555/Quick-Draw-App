@@ -20,6 +20,7 @@ import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -543,6 +544,14 @@ public class CanvasController {
     }
   }
 
+  /** Updates the user hash map and current user in the menu controller */
+  private void updateUserAndMap() {
+    FXMLLoader menuLoader = SceneManager.getMenuLoader();
+    MenuController menuController = menuLoader.getController();
+    menuController.setUsersHashMap(usersHashMap);
+    menuController.setCurrentUser(currentUser);
+  }
+
   /**
    * Saves any stats data. This is a manual save that is performed via a button (as it's going to be
    * very time consuming to write the save contents all the time)
@@ -551,6 +560,7 @@ public class CanvasController {
    */
   @FXML
   private void saveData() throws Exception {
+    updateUserAndMap();
 
     // Save all the new data to the file
     BufferedWriter bf = null;
