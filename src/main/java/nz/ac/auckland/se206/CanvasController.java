@@ -258,6 +258,7 @@ public class CanvasController {
       endMessage = "Sorry, you have lost :(";
       resultLabel.setText(endMessage);
       gameOver = true;
+      addLoss();
     }
   }
 
@@ -452,11 +453,31 @@ public class CanvasController {
     // Update users hash map
     usersHashMap.put(currentUser.getUsername(), currentUser);
 
-    // Update user details on UI
+    // Print user detail to console
     System.out.println("CANVAS USER DETAILS " + currentUser.formatUserDetails());
     
     saveData();
   }
+  
+  /**
+   * Adds one to the current user's loss count
+   *
+   * @throws Exception
+   */
+  @FXML
+  private void addLoss() throws Exception {
+    currentUser.setStats(
+        currentUser.getWins(), currentUser.getLosses() + 1, currentUser.getFastestWin());
+
+    // Update users hash map
+    usersHashMap.put(currentUser.getUsername(), currentUser);
+
+    // Print user detail to console
+    System.out.println("CANVAS USER DETAILS " + currentUser.formatUserDetails());
+    
+    saveData();
+  }
+  
   
   /**
    * Saves any stats data. This is a manual save that is performed via a button (as it's going to be
