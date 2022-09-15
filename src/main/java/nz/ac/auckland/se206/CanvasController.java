@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javafx.animation.Animation;
@@ -80,7 +81,7 @@ public class CanvasController {
 
   private String noUnderscoreWord;
 
-  private int initialCount = 10;
+  private int initialCount = 1;
 
   private int count = initialCount;
 
@@ -96,7 +97,7 @@ public class CanvasController {
 
   // Create hashmap to store all of the users.
   private HashMap<String, User> usersHashMap = new HashMap<String, User>();
-  
+
   // Current user logged in
   private User currentUser = new User("None", "none");
 
@@ -132,12 +133,11 @@ public class CanvasController {
     model = new DoodlePrediction();
 
     // Gets a random word from the easy difficulty
-    CategorySelector categorySelector = new CategorySelector();
-    String randomWord = categorySelector.getRandomCategory(Difficulty.E);
+    currentWord = getRandomWord();
 
     // Displays the random word
-    wordLabel.setText(randomWord);
-    currentWord = randomWord;
+    wordLabel.setText(currentWord);
+
     noUnderscoreWord = currentWord.replaceAll(" ", "_");
 
     // Sets the timer to the count value
@@ -240,8 +240,11 @@ public class CanvasController {
     predictionString = DoodlePrediction.makePredictionString(predictionResults);
   }
 
-  /** Updates the prediction UI 
- * @throws Exception */
+  /**
+   * Updates the prediction UI
+   *
+   * @throws Exception
+   */
   private void updatePredictionText() throws Exception {
 
     // Updates the GUI to display the predictions
@@ -268,12 +271,12 @@ public class CanvasController {
    *
    * @param classifications the list of predictions
    * @return A boolean which indicates if the user won
- * @throws Exception 
+   * @throws Exception
    */
   private boolean isWin(List<Classification> classifications) throws Exception {
     for (int i = 0; i < 3; i++) {
       if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
-    	  addWin();
+        addWin();
         return true;
       }
     }
@@ -419,9 +422,13 @@ public class CanvasController {
     speakThread.start();
   }
 
-  /** Runs the game (allows the user to interact with the canvas) */
+  /**
+   * Runs the game (allows the user to interact with the canvas)
+   *
+   * @throws Exception
+   */
   @FXML
-  private void onReady() {
+  private void onReady() throws Exception {
     gameOver = false;
 
     // Enables the canvas
@@ -441,10 +448,19 @@ public class CanvasController {
     runTimer();
 
     initialGameStart = true;
+
+    currentUser.addUsedWord(currentWord);
+    saveData();
+
+    // System.out.println("USED WORDS: ");
+    // currentUser.displayUsedWords();
   }
-  
-  /** Adds 1 to the user's current wins count 
- * @throws Exception */
+
+  /**
+   * Adds 1 to the user's current wins count
+   *
+   * @throws Exception
+   */
   @FXML
   private void addWin() throws Exception {
     currentUser.setStats(
@@ -455,10 +471,10 @@ public class CanvasController {
 
     // Print user detail to console
     System.out.println("CANVAS USER DETAILS " + currentUser.formatUserDetails());
-    
+
     saveData();
   }
-  
+
   /**
    * Adds one to the current user's loss count
    *
@@ -474,11 +490,34 @@ public class CanvasController {
 
     // Print user detail to console
     System.out.println("CANVAS USER DETAILS " + currentUser.formatUserDetails());
-    
+
     saveData();
   }
-  
-  
+
+  /**
+   * Add a word (the word is just egg) to current user word list
+   *
+   * @throws Exception
+   */
+  @FXML
+  private void addWord() throws Exception {
+    // Adds egg to the current user's used words list
+    usersHashMap.get(currentUser.getUsername()).addUsedWord("eggs");
+  }
+
+  protected String getRandomWord() throws IOException, CsvException, URISyntaxException {
+    ArrayList<String> usedWords = currentUser.getUsedWords();
+    CategorySelector categorySelector = new CategorySelector();
+    String randomWord = categorySelector.getRandomCategory(Difficulty.E);
+
+    while (usedWords.contains(randomWord)) {
+      System.out.println(randomWord + " has been already used =================");
+      randomWord = categorySelector.getRandomCategory(Difficulty.E);
+    }
+
+    return randomWord;
+  }
+
   /**
    * Saves any stats data. This is a manual save that is performed via a button (as it's going to be
    * very time consuming to write the save contents all the time)
@@ -571,5 +610,4 @@ public class CanvasController {
       }
     }
   }
-
 }

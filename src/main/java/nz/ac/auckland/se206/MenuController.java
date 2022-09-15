@@ -166,6 +166,8 @@ public class MenuController {
         canvasController.setCurrentUser(currentUser);
         canvasController.setUsersHashMap(usersHashMap);
         System.out.println("MENU USER DETAILS " + currentUser.formatUserDetails());
+        System.out.println("USED WORDS: ");
+        currentUser.displayUsedWords();
 
         // Changes the scene to dashboard
         Button btnThatWasClicked = (Button) event.getSource();
