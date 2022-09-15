@@ -81,7 +81,7 @@ public class CanvasController {
 
   private String noUnderscoreWord;
 
-  private int initialCount = 1;
+  private int initialCount = 60;
 
   private int count = initialCount;
 
@@ -276,6 +276,8 @@ public class CanvasController {
   private boolean isWin(List<Classification> classifications) throws Exception {
     for (int i = 0; i < 3; i++) {
       if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
+        int winTime = initialCount - count;
+        addFastestWin(winTime);
         addWin();
         return true;
       }
@@ -516,6 +518,26 @@ public class CanvasController {
     }
 
     return randomWord;
+  }
+
+  /** Adds 1 to the user's current wins count 
+ * @throws Exception */
+  private void addFastestWin(int currentWinTime) throws Exception {
+
+    int recordFastestWin = currentUser.getFastestWin();
+    if (recordFastestWin == 0 || currentWinTime < recordFastestWin) {
+      System.out.println("=======================================================================");
+      System.out.println("Current record: " + recordFastestWin);
+      currentUser.setStats(currentUser.getWins(), currentUser.getLosses(), currentWinTime);
+
+      // Update users hash map
+      usersHashMap.put(currentUser.getUsername(), currentUser);
+
+      // Prints record
+      System.out.println("New record: " + currentUser.getFastestWin());
+      
+      saveData();
+    }
   }
 
   /**
