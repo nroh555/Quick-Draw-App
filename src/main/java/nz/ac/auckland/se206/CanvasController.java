@@ -6,7 +6,9 @@ import ai.djl.translate.TranslateException;
 import com.opencsv.exceptions.CsvException;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -78,7 +80,7 @@ public class CanvasController {
 
   private String noUnderscoreWord;
 
-  private int initialCount = 60;
+  private int initialCount = 10;
 
   private int count = initialCount;
 
@@ -238,8 +240,9 @@ public class CanvasController {
     predictionString = DoodlePrediction.makePredictionString(predictionResults);
   }
 
-  /** Updates the prediction UI */
-  private void updatePredictionText() {
+  /** Updates the prediction UI 
+ * @throws Exception */
+  private void updatePredictionText() throws Exception {
 
     // Updates the GUI to display the predictions
     predictionBox1.setText(predictionString);
@@ -264,10 +267,12 @@ public class CanvasController {
    *
    * @param classifications the list of predictions
    * @return A boolean which indicates if the user won
+ * @throws Exception 
    */
-  private boolean isWin(List<Classification> classifications) {
+  private boolean isWin(List<Classification> classifications) throws Exception {
     for (int i = 0; i < 3; i++) {
       if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
+    	  addWin();
         return true;
       }
     }
@@ -360,7 +365,7 @@ public class CanvasController {
                 // Runs predictions
                 updatePrediction();
                 updatePredictionText();
-              } catch (TranslateException e1) {
+              } catch (Exception e1) {
                 e1.printStackTrace();
               }
 
@@ -436,4 +441,114 @@ public class CanvasController {
 
     initialGameStart = true;
   }
+  
+  /** Adds 1 to the user's current wins count 
+ * @throws Exception */
+  @FXML
+  private void addWin() throws Exception {
+    currentUser.setStats(
+        currentUser.getWins() + 1, currentUser.getLosses(), currentUser.getFastestWin());
+
+    // Update users hash map
+    usersHashMap.put(currentUser.getUsername(), currentUser);
+
+    // Update user details on UI
+    System.out.println("CANVAS USER DETAILS " + currentUser.formatUserDetails());
+    
+    saveData();
+  }
+  
+  /**
+   * Saves any stats data. This is a manual save that is performed via a button (as it's going to be
+   * very time consuming to write the save contents all the time)
+   *
+   * @throws Exception
+   */
+  @FXML
+  private void saveData() throws Exception {
+
+    // Save all the new data to the file
+    BufferedWriter bf = null;
+
+    // Overwrite existing file data for the first line we save
+    try {
+      // Create new BufferedWriter for the output file, append mode on
+      bf = new BufferedWriter(new FileWriter("users.txt"));
+
+      Boolean isFirst = true;
+      for (String key : usersHashMap.keySet()) {
+        if (isFirst == true) {
+          // If user doesn't have any used words
+          if (usersHashMap.get(key).getUsedWords().isEmpty()) {
+            // Add information regarding first user to each first
+            bf.write(usersHashMap.get(key).getSaveDetails());
+          } else {
+            bf.write(
+                usersHashMap.get(key).getSaveDetails()
+                    + ":"
+                    + usersHashMap
+                        .get(key)
+                        .formatWordsForSave(usersHashMap.get(key).getUsedWords()));
+          }
+          isFirst = false;
+        } else {
+          break;
+        }
+      }
+      bf.newLine();
+      bf.flush();
+    } catch (IOException e) {
+      // Print exceptions
+      e.printStackTrace();
+    } finally {
+      try {
+        // Close the writer
+        bf.close();
+      } catch (Exception e) {
+        // Print exceptions
+        e.printStackTrace();
+      }
+    }
+
+    // Every other line we save after the first one is on append mode for the file
+    try {
+      // Create new BufferedWriter for the output file, append mode on
+      bf = new BufferedWriter(new FileWriter("users.txt", true));
+
+      Boolean isFirst = true;
+      for (String key : usersHashMap.keySet()) {
+        if (isFirst == true) {
+          isFirst = false;
+        } else {
+          // Add information regarding each user (other than the first) to the save file
+          // If user doesn't have any used words
+          if (usersHashMap.get(key).getUsedWords().isEmpty()) {
+            // Add information regarding first user to each first
+            bf.write(usersHashMap.get(key).getSaveDetails());
+          } else {
+            bf.write(
+                usersHashMap.get(key).getSaveDetails()
+                    + ":"
+                    + usersHashMap
+                        .get(key)
+                        .formatWordsForSave(usersHashMap.get(key).getUsedWords()));
+          }
+          bf.newLine();
+        }
+      }
+      bf.flush();
+    } catch (IOException e) {
+      // Print exceptions
+      e.printStackTrace();
+    } finally {
+      try {
+        // Close the writer
+        bf.close();
+      } catch (Exception e) {
+        // Print exceptions
+        e.printStackTrace();
+      }
+    }
+  }
+
 }
