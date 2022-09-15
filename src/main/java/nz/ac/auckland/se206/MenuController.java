@@ -8,30 +8,39 @@ import java.io.IOException;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.profile.User;
 
 public class MenuController {
-
-  @FXML private Label infoLabel;
-
   @FXML private TextField usernameField;
 
   @FXML private TextField passwordField;
 
-  @FXML private Button b1;
-
-  @FXML private Button b2;
-
   // Create hashmap to store all of the users.
-  HashMap<String, User> usersHashMap = new HashMap<String, User>();
+  private HashMap<String, User> usersHashMap = new HashMap<String, User>();
 
   // Current user logged in
-  User currentUser = new User("None", "none");
+  private User currentUser = new User("None", "none");
+
+  public HashMap<String, User> getUsersHashMap() {
+    return usersHashMap;
+  }
+
+  public void setUsersHashMap(HashMap<String, User> usersHashMap) {
+    this.usersHashMap = usersHashMap;
+  }
+
+  public User getCurrentUser() {
+    return currentUser;
+  }
+
+  public void setCurrentUser(User currentUser) {
+    this.currentUser = currentUser;
+  }
 
   /**
    * Gets the saved users data from file and loads this data onto the users hash map. This is done
@@ -132,12 +141,19 @@ public class MenuController {
       if (usersHashMap.get(usernameField.getText()).getPassword().equals(passwordField.getText())) {
         // Set the current user ('logs them in')
         currentUser = usersHashMap.get(usernameField.getText());
-        // Update user details on UI
-        /**
-         * Uncomment this line of code later. Now it is removed to prevent errors in the menu page
-         * infoLabel.setText(currentUser.formatUserDetails());
-         */
-        // Changes the scene to canvas
+
+        // Update welcome label
+        FXMLLoader dashboardLoader = SceneManager.getDashboardLoader();
+        DashboardController dashboardController = dashboardLoader.getController();
+        dashboardController.updateWelcomeLabel();
+
+        // Pass current user and user hash map to canvas
+        FXMLLoader canvasLoader = SceneManager.getCanvasLoader();
+        CanvasController canvasController = canvasLoader.getController();
+        canvasController.setCurrentUser(currentUser);
+        canvasController.setUsersHashMap(usersHashMap);
+
+        // Changes the scene to dashboard
         Button btnThatWasClicked = (Button) event.getSource();
         Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
         sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.DASHBOARD));

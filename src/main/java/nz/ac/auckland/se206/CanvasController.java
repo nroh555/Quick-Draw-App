@@ -6,9 +6,13 @@ import ai.djl.translate.TranslateException;
 import com.opencsv.exceptions.CsvException;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -16,6 +20,7 @@ import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -28,6 +33,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
+import nz.ac.auckland.se206.profile.User;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.words.CategorySelector;
 import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
@@ -90,6 +96,28 @@ public class CanvasController {
 
   private boolean initialGameStart = false;
 
+  // Create hashmap to store all of the users.
+  private HashMap<String, User> usersHashMap = new HashMap<String, User>();
+
+  // Current user logged in
+  private User currentUser = new User("None", "none");
+
+  public HashMap<String, User> getUsersHashMap() {
+    return usersHashMap;
+  }
+
+  public void setUsersHashMap(HashMap<String, User> usersHashMap) {
+    this.usersHashMap = usersHashMap;
+  }
+
+  public User getCurrentUser() {
+    return currentUser;
+  }
+
+  public void setCurrentUser(User currentUser) {
+    this.currentUser = currentUser;
+  }
+
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
    * the drawing, and we load the ML model.
@@ -106,12 +134,11 @@ public class CanvasController {
     model = new DoodlePrediction();
 
     // Gets a random word from the easy difficulty
-    CategorySelector categorySelector = new CategorySelector();
-    String randomWord = categorySelector.getRandomCategory(Difficulty.E);
+    currentWord = getRandomWord();
 
     // Displays the random word
-    wordLabel.setText(randomWord);
-    currentWord = randomWord;
+    wordLabel.setText(currentWord);
+
     noUnderscoreWord = currentWord.replaceAll(" ", "_");
 
     // Sets the timer to the count value
@@ -214,8 +241,12 @@ public class CanvasController {
     predictionString = DoodlePrediction.makePredictionString(predictionResults);
   }
 
-  /** Updates the prediction UI */
-  private void updatePredictionText() {
+  /**
+   * Updates the prediction UI
+   *
+   * @throws Exception
+   */
+  private void updatePredictionText() throws Exception {
 
     // Updates the GUI to display the predictions
     predictionBox1.setText(predictionString);
@@ -231,6 +262,7 @@ public class CanvasController {
       endMessage = "Sorry, you have lost :(";
       resultLabel.setText(endMessage);
       gameOver = true;
+      addLoss();
     }
   }
 
@@ -240,10 +272,14 @@ public class CanvasController {
    *
    * @param classifications the list of predictions
    * @return A boolean which indicates if the user won
+   * @throws Exception
    */
-  private boolean isWin(List<Classification> classifications) {
+  private boolean isWin(List<Classification> classifications) throws Exception {
     for (int i = 0; i < 3; i++) {
       if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
+        int winTime = initialCount - count;
+        addFastestWin(winTime);
+        addWin();
         return true;
       }
     }
@@ -336,7 +372,7 @@ public class CanvasController {
                 // Runs predictions
                 updatePrediction();
                 updatePredictionText();
-              } catch (TranslateException e1) {
+              } catch (Exception e1) {
                 e1.printStackTrace();
               }
 
@@ -389,9 +425,13 @@ public class CanvasController {
     speakThread.start();
   }
 
-  /** Runs the game (allows the user to interact with the canvas) */
+  /**
+   * Runs the game (allows the user to interact with the canvas)
+   *
+   * @throws Exception
+   */
   @FXML
-  private void onSetGameStart() {
+  private void onReady() throws Exception {
     gameOver = false;
 
     // Enables the canvas
@@ -411,5 +451,196 @@ public class CanvasController {
     runTimer();
 
     initialGameStart = true;
+
+    // Adds current word to list of used words
+    currentUser.addUsedWord(currentWord);
+
+    saveData();
+  }
+
+  /**
+   * Adds 1 to the current user's wins count
+   *
+   * @throws Exception
+   */
+  @FXML
+  private void addWin() throws Exception {
+    currentUser.setStats(
+        currentUser.getWins() + 1, currentUser.getLosses(), currentUser.getFastestWin());
+
+    // Update users hash map
+    usersHashMap.put(currentUser.getUsername(), currentUser);
+
+    // Print user detail to console
+    System.out.println("CANVAS USER DETAILS");
+    System.out.println(currentUser.formatUserDetails());
+    
+    saveData();
+  }
+
+  /**
+   * Adds 1 to the current user's loss count
+   *
+   * @throws Exception
+   */
+  @FXML
+  private void addLoss() throws Exception {
+    currentUser.setStats(
+        currentUser.getWins(), currentUser.getLosses() + 1, currentUser.getFastestWin());
+
+    // Update users hash map
+    usersHashMap.put(currentUser.getUsername(), currentUser);
+    
+    // Print user detail to console
+    System.out.println("CANVAS USER DETAILS");
+    System.out.println(currentUser.formatUserDetails());
+
+    saveData();
+  }
+
+  /**
+   * This method generates the random word that the user has to draw
+   *
+   * @return
+   * @throws IOException
+   * @throws CsvException
+   * @throws URISyntaxException
+   */
+  protected String getRandomWord() throws IOException, CsvException, URISyntaxException {
+    ArrayList<String> usedWords = currentUser.getUsedWords();
+
+    // Get random word
+    CategorySelector categorySelector = new CategorySelector();
+    String randomWord = categorySelector.getRandomCategory(Difficulty.E);
+
+    // While the random word is already in the list of used words, choose another random word
+    while (usedWords.contains(randomWord)) {
+      randomWord = categorySelector.getRandomCategory(Difficulty.E);
+    }
+
+    return randomWord;
+  }
+
+  /**
+   * Updates the user's fastest win time if the current win time is faster than the record time.
+   *
+   * @throws Exception
+   */
+  private void addFastestWin(int currentWinTime) throws Exception {
+    int recordFastestWin = currentUser.getFastestWin();
+
+    // Check if user has no recorded win time or if the current win time is faster than the record
+    // win time
+    if (recordFastestWin == 0 || currentWinTime < recordFastestWin) {
+      // Updates users stats
+      currentUser.setStats(currentUser.getWins(), currentUser.getLosses(), currentWinTime);
+
+      // Update users hash map
+      usersHashMap.put(currentUser.getUsername(), currentUser);
+
+      saveData();
+    }
+  }
+
+  /** Updates the user hash map and current user in the menu controller */
+  private void updateUserAndMap() {
+    FXMLLoader menuLoader = SceneManager.getMenuLoader();
+    MenuController menuController = menuLoader.getController();
+    menuController.setUsersHashMap(usersHashMap);
+    menuController.setCurrentUser(currentUser);
+  }
+
+  /**
+   * Saves any stats data. This is a manual save that is performed via a button (as it's going to be
+   * very time consuming to write the save contents all the time)
+   *
+   * @throws Exception
+   */
+  @FXML
+  private void saveData() throws Exception {
+    updateUserAndMap();
+
+    // Save all the new data to the file
+    BufferedWriter bf = null;
+
+    // Overwrite existing file data for the first line we save
+    try {
+      // Create new BufferedWriter for the output file, append mode on
+      bf = new BufferedWriter(new FileWriter("users.txt"));
+
+      Boolean isFirst = true;
+      for (String key : usersHashMap.keySet()) {
+        if (isFirst == true) {
+          // If user doesn't have any used words
+          if (usersHashMap.get(key).getUsedWords().isEmpty()) {
+            // Add information regarding first user to each first
+            bf.write(usersHashMap.get(key).getSaveDetails());
+          } else {
+            bf.write(
+                usersHashMap.get(key).getSaveDetails()
+                    + ":"
+                    + usersHashMap
+                        .get(key)
+                        .formatWordsForSave(usersHashMap.get(key).getUsedWords()));
+          }
+          isFirst = false;
+        } else {
+          break;
+        }
+      }
+      bf.newLine();
+      bf.flush();
+    } catch (IOException e) {
+      // Print exceptions
+      e.printStackTrace();
+    } finally {
+      try {
+        // Close the writer
+        bf.close();
+      } catch (Exception e) {
+        // Print exceptions
+        e.printStackTrace();
+      }
+    }
+
+    // Every other line we save after the first one is on append mode for the file
+    try {
+      // Create new BufferedWriter for the output file, append mode on
+      bf = new BufferedWriter(new FileWriter("users.txt", true));
+
+      Boolean isFirst = true;
+      for (String key : usersHashMap.keySet()) {
+        if (isFirst == true) {
+          isFirst = false;
+        } else {
+          // Add information regarding each user (other than the first) to the save file
+          // If user doesn't have any used words
+          if (usersHashMap.get(key).getUsedWords().isEmpty()) {
+            // Add information regarding first user to each first
+            bf.write(usersHashMap.get(key).getSaveDetails());
+          } else {
+            bf.write(
+                usersHashMap.get(key).getSaveDetails()
+                    + ":"
+                    + usersHashMap
+                        .get(key)
+                        .formatWordsForSave(usersHashMap.get(key).getUsedWords()));
+          }
+          bf.newLine();
+        }
+      }
+      bf.flush();
+    } catch (IOException e) {
+      // Print exceptions
+      e.printStackTrace();
+    } finally {
+      try {
+        // Close the writer
+        bf.close();
+      } catch (Exception e) {
+        // Print exceptions
+        e.printStackTrace();
+      }
+    }
   }
 }

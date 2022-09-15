@@ -51,7 +51,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="58.0" prefWidth="241.0">
                <children>
-              <Button fx:id="readyButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSetGameStart" prefHeight="25.0" prefWidth="130.0" text="Ready" />
+              <Button fx:id="readyButton" alignment="CENTER" mnemonicParsing="false" onAction="#onReady" prefHeight="25.0" prefWidth="130.0" text="Ready" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="241.0">
