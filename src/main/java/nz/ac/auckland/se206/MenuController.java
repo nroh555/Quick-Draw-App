@@ -160,7 +160,13 @@ public class MenuController {
         DashboardController dashboardController = dashboardLoader.getController();
         dashboardController.updateWelcomeLabel();
 
-        // Changes the scene to canvas
+        // Pass current user and user hash map to canvas
+        FXMLLoader canvasLoader = SceneManager.getCanvasLoader();
+        CanvasController canvasController = canvasLoader.getController();
+        canvasController.setCurrentUser(currentUser);
+        canvasController.setUsersHashMap(usersHashMap);
+
+        // Changes the scene to dashboard
         Button btnThatWasClicked = (Button) event.getSource();
         Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
         sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.DASHBOARD));

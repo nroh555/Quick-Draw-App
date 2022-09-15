@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.List;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -28,6 +29,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
+import nz.ac.auckland.se206.profile.User;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.words.CategorySelector;
 import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
@@ -89,6 +91,28 @@ public class CanvasController {
   private String endMessage;
 
   private boolean initialGameStart = false;
+
+  // Create hashmap to store all of the users.
+  private HashMap<String, User> usersHashMap = new HashMap<String, User>();
+  
+  // Current user logged in
+  private User currentUser = new User("None", "none");
+
+  public HashMap<String, User> getUsersHashMap() {
+    return usersHashMap;
+  }
+
+  public void setUsersHashMap(HashMap<String, User> usersHashMap) {
+    this.usersHashMap = usersHashMap;
+  }
+
+  public User getCurrentUser() {
+    return currentUser;
+  }
+
+  public void setCurrentUser(User currentUser) {
+    this.currentUser = currentUser;
+  }
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
