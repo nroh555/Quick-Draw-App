@@ -452,15 +452,14 @@ public class CanvasController {
 
     initialGameStart = true;
 
+    // Adds current word to list of used words
     currentUser.addUsedWord(currentWord);
-    saveData();
 
-    // System.out.println("USED WORDS: ");
-    // currentUser.displayUsedWords();
+    saveData();
   }
 
   /**
-   * Adds 1 to the user's current wins count
+   * Adds 1 to the current user's wins count
    *
    * @throws Exception
    */
@@ -473,13 +472,14 @@ public class CanvasController {
     usersHashMap.put(currentUser.getUsername(), currentUser);
 
     // Print user detail to console
-    System.out.println("CANVAS USER DETAILS " + currentUser.formatUserDetails());
-
+    System.out.println("CANVAS USER DETAILS");
+    System.out.println(currentUser.formatUserDetails());
+    
     saveData();
   }
 
   /**
-   * Adds one to the current user's loss count
+   * Adds 1 to the current user's loss count
    *
    * @throws Exception
    */
@@ -490,31 +490,31 @@ public class CanvasController {
 
     // Update users hash map
     usersHashMap.put(currentUser.getUsername(), currentUser);
-
+    
     // Print user detail to console
-    System.out.println("CANVAS USER DETAILS " + currentUser.formatUserDetails());
+    System.out.println("CANVAS USER DETAILS");
+    System.out.println(currentUser.formatUserDetails());
 
     saveData();
   }
 
   /**
-   * Add a word (the word is just egg) to current user word list
+   * This method generates the random word that the user has to draw
    *
-   * @throws Exception
+   * @return
+   * @throws IOException
+   * @throws CsvException
+   * @throws URISyntaxException
    */
-  @FXML
-  private void addWord() throws Exception {
-    // Adds egg to the current user's used words list
-    usersHashMap.get(currentUser.getUsername()).addUsedWord("eggs");
-  }
-
   protected String getRandomWord() throws IOException, CsvException, URISyntaxException {
     ArrayList<String> usedWords = currentUser.getUsedWords();
+
+    // Get random word
     CategorySelector categorySelector = new CategorySelector();
     String randomWord = categorySelector.getRandomCategory(Difficulty.E);
 
+    // While the random word is already in the list of used words, choose another random word
     while (usedWords.contains(randomWord)) {
-      System.out.println(randomWord + " has been already used =================");
       randomWord = categorySelector.getRandomCategory(Difficulty.E);
     }
 
@@ -522,23 +522,21 @@ public class CanvasController {
   }
 
   /**
-   * Adds 1 to the user's current wins count
+   * Updates the user's fastest win time if the current win time is faster than the record time.
    *
    * @throws Exception
    */
   private void addFastestWin(int currentWinTime) throws Exception {
-
     int recordFastestWin = currentUser.getFastestWin();
+
+    // Check if user has no recorded win time or if the current win time is faster than the record
+    // win time
     if (recordFastestWin == 0 || currentWinTime < recordFastestWin) {
-      System.out.println("=======================================================================");
-      System.out.println("Current record: " + recordFastestWin);
+      // Updates users stats
       currentUser.setStats(currentUser.getWins(), currentUser.getLosses(), currentWinTime);
 
       // Update users hash map
       usersHashMap.put(currentUser.getUsername(), currentUser);
-
-      // Prints record
-      System.out.println("New record: " + currentUser.getFastestWin());
 
       saveData();
     }

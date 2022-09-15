@@ -11,22 +11,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.profile.User;
 
 public class MenuController {
-
-  @FXML private Label infoLabel;
-
   @FXML private TextField usernameField;
 
   @FXML private TextField passwordField;
-
-  @FXML private Button b1;
-
-  @FXML private Button b2;
 
   // Create hashmap to store all of the users.
   private HashMap<String, User> usersHashMap = new HashMap<String, User>();
@@ -149,11 +141,6 @@ public class MenuController {
       if (usersHashMap.get(usernameField.getText()).getPassword().equals(passwordField.getText())) {
         // Set the current user ('logs them in')
         currentUser = usersHashMap.get(usernameField.getText());
-        // Update user details on UI
-        /**
-         * Uncomment this line of code later. Now it is removed to prevent errors in the menu page
-         * infoLabel.setText(currentUser.formatUserDetails());
-         */
 
         // Update welcome label
         FXMLLoader dashboardLoader = SceneManager.getDashboardLoader();
@@ -165,9 +152,6 @@ public class MenuController {
         CanvasController canvasController = canvasLoader.getController();
         canvasController.setCurrentUser(currentUser);
         canvasController.setUsersHashMap(usersHashMap);
-        System.out.println("MENU USER DETAILS " + currentUser.formatUserDetails());
-        System.out.println("USED WORDS: ");
-        currentUser.displayUsedWords();
 
         // Changes the scene to dashboard
         Button btnThatWasClicked = (Button) event.getSource();
