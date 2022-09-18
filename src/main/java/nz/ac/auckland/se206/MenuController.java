@@ -164,10 +164,10 @@ public class MenuController {
         Button btnThatWasClicked = (Button) event.getSource();
         Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
         sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.DASHBOARD));
-      } else {
-        userStatusLabel.setText(
-            "Sorry, those login details are incorrect! Please try again or register.");
       }
+    } else {
+      userStatusLabel.setText(
+          "Sorry, those login details are incorrect! Please try again or register.");
     }
   }
 }
