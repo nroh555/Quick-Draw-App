@@ -31,7 +31,17 @@
          </font></TextField>
       <Region prefHeight="30.0" prefWidth="400.0" />
       <TextField fx:id="passwordField" maxWidth="200.0" minWidth="200.0" promptText="Enter Password" />
-      <ButtonBar prefHeight="30.0" prefWidth="400.0" />
+      <ButtonBar prefHeight="30.0" prefWidth="400.0">
+         <buttons>
+            <Label fx:id="userStatusLabel" alignment="CENTER" prefHeight="36.0" prefWidth="589.0" textAlignment="CENTER">
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </buttons></ButtonBar>
       <Button fx:id="b2" mnemonicParsing="false" onAction="#onLogin" prefHeight="43.0" prefWidth="78.0" text="Login" />
       <Region prefHeight="30.0" prefWidth="400.0" />
       <Button fx:id="b1" mnemonicParsing="false" onAction="#onRegister" prefHeight="43.0" prefWidth="78.0" text="Register" />

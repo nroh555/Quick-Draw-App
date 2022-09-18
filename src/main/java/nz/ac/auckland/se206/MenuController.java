@@ -20,6 +20,8 @@ public class MenuController {
 
   @FXML private TextField passwordField;
 
+  @FXML private Label userStatusLabel;
+
   // Create hashmap to store all of the users.
   private HashMap<String, User> usersHashMap = new HashMap<String, User>();
 
