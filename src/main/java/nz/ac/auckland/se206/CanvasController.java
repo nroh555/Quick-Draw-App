@@ -92,8 +92,6 @@ public class CanvasController {
 
   private String endMessage;
 
-  private boolean initialGameStart = false;
-
   private boolean isReady = false;
 
   // Create hashmap to store all of the users.
@@ -150,8 +148,9 @@ public class CanvasController {
 
     onBlackPen();
 
-    // Clears and disables canvas
+    // Clears and enables canvas, disables eraser
     canvas.setDisable(false);
+    eraserButton.setDisable(true);
     onClear();
 
     // Clears predictions
@@ -235,7 +234,7 @@ public class CanvasController {
   @FXML
   private void onClear() {
     graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-    if (initialGameStart) {
+    if (isReady) {
       onBlackPen();
     }
   }
@@ -459,8 +458,6 @@ public class CanvasController {
 
     // Runs the timer
     runTimer();
-
-    initialGameStart = true;
 
     // Adds current word to list of used words
     currentUser.addUsedWord(currentWord);
