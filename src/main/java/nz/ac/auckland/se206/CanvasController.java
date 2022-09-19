@@ -96,6 +96,8 @@ public class CanvasController {
 
   private boolean initialGameStart = false;
 
+  private boolean isReady = false;
+
   // Create hashmap to store all of the users.
   private HashMap<String, User> usersHashMap = new HashMap<String, User>();
 
@@ -148,8 +150,10 @@ public class CanvasController {
     // Sets the results label to display no text
     resultLabel.setText("");
 
+    onBlackPen();
+
     // Clears and disables canvas
-    canvas.setDisable(true);
+    canvas.setDisable(false);
     onClear();
 
     // Clears predictions
@@ -181,6 +185,16 @@ public class CanvasController {
     // save coordinates when mouse is pressed on the canvas
     canvas.setOnMouseDragged(
         e -> {
+          if (!isReady && !gameOver) {
+            try {
+              onReady();
+              isReady = true;
+            } catch (Exception e1) {
+              // TODO Auto-generated catch block
+              e1.printStackTrace();
+            }
+          }
+
           // Brush size (you can change this, it should not be too small or too large).
           final double size = 5.0;
 
@@ -395,6 +409,9 @@ public class CanvasController {
                 penButton.setDisable(true);
                 eraserButton.setDisable(true);
                 clearButton.setDisable(true);
+
+                isReady = false;
+                gameOver = false;
               }
             });
 
@@ -432,8 +449,6 @@ public class CanvasController {
    */
   @FXML
   private void onReady() throws Exception {
-    gameOver = false;
-
     // Enables the canvas
     canvas.setDisable(false);
 
@@ -474,7 +489,7 @@ public class CanvasController {
     // Print user detail to console
     System.out.println("CANVAS USER DETAILS");
     System.out.println(currentUser.formatUserDetails());
-    
+
     saveData();
   }
 
@@ -490,7 +505,7 @@ public class CanvasController {
 
     // Update users hash map
     usersHashMap.put(currentUser.getUsername(), currentUser);
-    
+
     // Print user detail to console
     System.out.println("CANVAS USER DETAILS");
     System.out.println(currentUser.formatUserDetails());
