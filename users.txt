@@ -1,6 +1,6 @@
 ::1:1:0:eggs
 newuser24:nkl32:0:0:0
-ABC:abc:0:0:0
+ABC:abc:1:0:27:strawberry
 newuser2424c:nkl32:0:0:0
 egg:egg33:0:0:0
 kjkj333wer:jojo9:0:0:0
@@ -39,3 +39,5 @@ puffy:p:0:0:0
 hjbi:243:0:0:0
 rega33444:43t:0:0:0:eggs
 eggss11:235t11:0:0:0
+ijoiods:werwfsd:0:0:0
+knjsndkf:wer:0:0:0

@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.profile.User;
@@ -19,6 +20,8 @@ public class MenuController {
   @FXML private TextField usernameField;
 
   @FXML private TextField passwordField;
+
+  @FXML private Label userStatusLabel;
 
   // Create hashmap to store all of the users.
   private HashMap<String, User> usersHashMap = new HashMap<String, User>();
@@ -94,6 +97,7 @@ public class MenuController {
       // Add user to hashmap
 
       usersHashMap.put(usernameField.getText(), newUser);
+      userStatusLabel.setText("Successfully registered! You may now log in.");
 
       // Save the new user to the file
       BufferedWriter bf = null;
@@ -106,6 +110,7 @@ public class MenuController {
 
         bf.newLine();
         bf.flush();
+
       } catch (IOException e) {
         // Print exceptions
         e.printStackTrace();
@@ -119,6 +124,8 @@ public class MenuController {
         }
       }
     } else {
+      userStatusLabel.setText(
+          "Sorry, this username is already taken! Please try a different username.");
       System.out.println("This username is already taken. Please try again.");
     }
   }
@@ -158,6 +165,9 @@ public class MenuController {
         Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
         sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.DASHBOARD));
       }
+    } else {
+      userStatusLabel.setText(
+          "Sorry, those login details are incorrect! Please try again or register.");
     }
   }
 }
