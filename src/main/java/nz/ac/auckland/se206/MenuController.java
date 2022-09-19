@@ -148,6 +148,9 @@ public class MenuController {
       if (usersHashMap.get(usernameField.getText()).getPassword().equals(passwordField.getText())) {
         // Set the current user ('logs them in')
         currentUser = usersHashMap.get(usernameField.getText());
+        
+        usernameField.clear();
+        passwordField.clear();
 
         // Update welcome label
         FXMLLoader dashboardLoader = SceneManager.getDashboardLoader();
