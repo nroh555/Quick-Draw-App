@@ -72,8 +72,6 @@ public class CanvasController {
 
   @FXML private Button saveDrawingButton;
 
-  @FXML private Button readyButton;
-
   private GraphicsContext graphic;
 
   private DoodlePrediction model;
@@ -171,7 +169,6 @@ public class CanvasController {
   @FXML
   public void onInitialize() throws ModelException, IOException, CsvException, URISyntaxException {
     initialize();
-    readyButton.setDisable(false);
     playAgainButton.setDisable(true);
     saveDrawingButton.setDisable(true);
   }
@@ -185,6 +182,7 @@ public class CanvasController {
     // save coordinates when mouse is pressed on the canvas
     canvas.setOnMouseDragged(
         e -> {
+          // Begin game if user clicks canvas for the first time
           if (!isReady && !gameOver) {
             try {
               onReady();
@@ -455,9 +453,6 @@ public class CanvasController {
     // Enables eraser and clear buttons
     eraserButton.setDisable(false);
     clearButton.setDisable(false);
-
-    // Disable ready button
-    readyButton.setDisable(true);
 
     // Sets the brush to pen
     onBlackPen();
