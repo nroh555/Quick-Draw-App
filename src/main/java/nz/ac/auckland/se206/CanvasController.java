@@ -183,7 +183,7 @@ public class CanvasController {
     canvas.setOnMouseDragged(
         e -> {
           // Begin game if user clicks canvas for the first time
-          if (!isReady && !gameOver) {
+          if (!isReady && count == initialCount) {
             try {
               onReady();
               isReady = true;
@@ -379,7 +379,7 @@ public class CanvasController {
 
               // Updates timer label
               time.setText(String.valueOf(count));
-
+              
               try {
                 // Runs predictions
                 updatePrediction();
