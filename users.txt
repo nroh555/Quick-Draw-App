@@ -5,9 +5,10 @@ newuser2424c:nkl32:0:0:0
 egg:egg33:0:0:0
 kjkj333wer:jojo9:0:0:0
 kjkj333wer24:jojo9:0:0:0
+knjsndkf:wer:0:0:0
 25v32v35:sss:0:0:0:eggs
 uijjio904:c23:0:0:0
-Naren:naren:0:0:0
+Naren:naren:2:0:1:bush;stairs
 uijjio90:c23:0:0:0
 eggssdsfersdfsd:235t:0:0:0
 54b6w55dfg:346:2:0:6:eggs;eggs;eggs;eggs;eggs;eggs;flower;pineapple
@@ -40,4 +41,3 @@ hjbi:243:0:0:0
 rega33444:43t:0:0:0:eggs
 eggss11:235t11:0:0:0
 ijoiods:werwfsd:0:0:0
-knjsndkf:wer:0:0:0

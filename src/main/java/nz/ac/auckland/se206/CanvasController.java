@@ -72,8 +72,6 @@ public class CanvasController {
 
   @FXML private Button saveDrawingButton;
 
-  @FXML private Button readyButton;
-
   private GraphicsContext graphic;
 
   private DoodlePrediction model;
@@ -94,7 +92,7 @@ public class CanvasController {
 
   private String endMessage;
 
-  private boolean initialGameStart = false;
+  private boolean isReady = false;
 
   // Create hashmap to store all of the users.
   private HashMap<String, User> usersHashMap = new HashMap<String, User>();
@@ -148,8 +146,11 @@ public class CanvasController {
     // Sets the results label to display no text
     resultLabel.setText("");
 
-    // Clears and disables canvas
-    canvas.setDisable(true);
+    onBlackPen();
+
+    // Clears and enables canvas, disables eraser
+    canvas.setDisable(false);
+    eraserButton.setDisable(true);
     onClear();
 
     // Clears predictions
@@ -167,7 +168,6 @@ public class CanvasController {
   @FXML
   public void onInitialize() throws ModelException, IOException, CsvException, URISyntaxException {
     initialize();
-    readyButton.setDisable(false);
     playAgainButton.setDisable(true);
     saveDrawingButton.setDisable(true);
   }
@@ -181,6 +181,17 @@ public class CanvasController {
     // save coordinates when mouse is pressed on the canvas
     canvas.setOnMouseDragged(
         e -> {
+          // Begin game if user clicks canvas for the first time
+          if (!isReady && count == initialCount) {
+            try {
+              onReady();
+              isReady = true;
+            } catch (Exception e1) {
+              // TODO Auto-generated catch block
+              e1.printStackTrace();
+            }
+          }
+
           // Brush size (you can change this, it should not be too small or too large).
           final double size = 5.0;
 
@@ -223,7 +234,7 @@ public class CanvasController {
   @FXML
   private void onClear() {
     graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-    if (initialGameStart) {
+    if (isReady) {
       onBlackPen();
     }
   }
@@ -367,7 +378,7 @@ public class CanvasController {
 
               // Updates timer label
               time.setText(String.valueOf(count));
-
+              
               try {
                 // Runs predictions
                 updatePrediction();
@@ -395,6 +406,9 @@ public class CanvasController {
                 penButton.setDisable(true);
                 eraserButton.setDisable(true);
                 clearButton.setDisable(true);
+
+                isReady = false;
+                gameOver = false;
               }
             });
 
@@ -432,8 +446,6 @@ public class CanvasController {
    */
   @FXML
   private void onReady() throws Exception {
-    gameOver = false;
-
     // Enables the canvas
     canvas.setDisable(false);
 
@@ -441,16 +453,11 @@ public class CanvasController {
     eraserButton.setDisable(false);
     clearButton.setDisable(false);
 
-    // Disable ready button
-    readyButton.setDisable(true);
-
     // Sets the brush to pen
     onBlackPen();
 
     // Runs the timer
     runTimer();
-
-    initialGameStart = true;
 
     // Adds current word to list of used words
     currentUser.addUsedWord(currentWord);
@@ -474,7 +481,7 @@ public class CanvasController {
     // Print user detail to console
     System.out.println("CANVAS USER DETAILS");
     System.out.println(currentUser.formatUserDetails());
-    
+
     saveData();
   }
 
@@ -490,7 +497,7 @@ public class CanvasController {
 
     // Update users hash map
     usersHashMap.put(currentUser.getUsername(), currentUser);
-    
+
     // Print user detail to console
     System.out.println("CANVAS USER DETAILS");
     System.out.println(currentUser.formatUserDetails());

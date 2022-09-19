@@ -87,7 +87,7 @@ public class DoodlePrediction {
       sb.append("TOP ")
           .append(i)
           .append(" : ")
-          .append(classification.getClassName())
+          .append(classification.getClassName().replaceAll("_", " "))
           .append(" : ")
           .append(String.format("%.2f%%", 100 * classification.getProbability()))
           .append(System.lineSeparator());
