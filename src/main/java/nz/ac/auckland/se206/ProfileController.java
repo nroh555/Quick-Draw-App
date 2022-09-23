@@ -17,7 +17,7 @@ public class ProfileController {
   @FXML private Label welcomeLabel;
 
   @FXML private Label infoLabel;
-  
+
   @FXML private TextArea usedWordsBox;
 
   protected void updateLabels() {
@@ -31,7 +31,7 @@ public class ProfileController {
 
     // Update info label
     infoLabel.setText(currentUser.formatUserDetails());
-    
+
     // Update used words label
     usedWordsBox.setText(currentUser.getUsedWordsString());
   }

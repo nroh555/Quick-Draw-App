@@ -31,6 +31,7 @@ public class User implements Serializable {
    */
   public void loadUser(
       String username, String password, Integer wins, Integer losses, Integer fastestWin) {
+    // Stores the user's details into corresponding variables
     this.username = username;
     this.password = password;
     this.wins = wins;
@@ -44,7 +45,7 @@ public class User implements Serializable {
    * @return String in the format to go into the save file
    */
   public String getSaveDetails() {
-
+    // Creates string of the users details
     String saveString =
         username
             + ":"
@@ -66,7 +67,7 @@ public class User implements Serializable {
    * @return String to display the key details
    */
   public String formatUserDetails() {
-
+    // Creates string of the key user details
     String displayString =
         "Wins: "
             + wins.toString()
@@ -99,15 +100,16 @@ public class User implements Serializable {
 
   /**
    * This returns a string containing the used words on new lines
+   *
    * @return
    */
   public String getUsedWordsString() {
-	StringBuilder sb = new StringBuilder();
-	
+    StringBuilder sb = new StringBuilder();
+
     for (int i = 0; i < usedWords.size(); i++) {
       sb.append(usedWords.get(i) + "\n");
     }
-    
+
     return sb.toString();
   }
 
@@ -118,15 +120,13 @@ public class User implements Serializable {
    * @return String format of the used words
    */
   public String formatWordsForSave(ArrayList<String> usedWords) {
-    String wordsString = "";
+    StringBuilder sb = new StringBuilder();
 
     for (int i = 0; i < usedWords.size(); i++) {
-      wordsString = wordsString + ";" + usedWords.get(i);
+      sb.append(";" + usedWords.get(i));
     }
 
-    wordsString = wordsString.substring(1, wordsString.length());
-
-    return wordsString;
+    return sb.toString().substring(1, sb.length());
   }
 
   /**
