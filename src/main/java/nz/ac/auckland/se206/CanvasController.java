@@ -143,8 +143,8 @@ public class CanvasController {
     count = initialCount;
     time.setText(String.valueOf(count));
 
-    // Sets the results label to display no text
-    resultLabel.setText("");
+    // Sets the results label to display draw prompt
+    resultLabel.setText("Draw on canvas to begin game!");
 
     onBlackPen();
 
@@ -461,6 +461,9 @@ public class CanvasController {
 
     // Adds current word to list of used words
     currentUser.addUsedWord(currentWord);
+    
+    // Sets the results label to display draw prompt 
+    resultLabel.setText("");
 
     saveData();
   }
