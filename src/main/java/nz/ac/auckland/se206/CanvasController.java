@@ -143,8 +143,8 @@ public class CanvasController {
     count = initialCount;
     time.setText(String.valueOf(count));
 
-    // Sets the results label to display no text
-    resultLabel.setText("");
+    // Sets the results label to display draw prompt
+    resultLabel.setText("Draw on canvas to begin game!");
 
     onBlackPen();
 
@@ -166,7 +166,7 @@ public class CanvasController {
    * @throws URISyntaxException
    */
   @FXML
-  public void onInitialize() throws ModelException, IOException, CsvException, URISyntaxException {
+  private void onInitialize() throws ModelException, IOException, CsvException, URISyntaxException {
     initialize();
     playAgainButton.setDisable(true);
     saveDrawingButton.setDisable(true);
@@ -286,7 +286,9 @@ public class CanvasController {
    * @throws Exception
    */
   private boolean isWin(List<Classification> classifications) throws Exception {
+    // Loops through top 3 predictions
     for (int i = 0; i < 3; i++) {
+      // Checks if a prediction equals the keyword, if so stops game
       if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
         int winTime = initialCount - count;
         addFastestWin(winTime);
@@ -378,7 +380,7 @@ public class CanvasController {
 
               // Updates timer label
               time.setText(String.valueOf(count));
-              
+
               try {
                 // Runs predictions
                 updatePrediction();
@@ -461,6 +463,9 @@ public class CanvasController {
 
     // Adds current word to list of used words
     currentUser.addUsedWord(currentWord);
+
+    // Sets the results label to display draw prompt
+    resultLabel.setText("");
 
     saveData();
   }
