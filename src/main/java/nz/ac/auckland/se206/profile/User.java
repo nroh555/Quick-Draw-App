@@ -73,7 +73,8 @@ public class User implements Serializable {
             + "\nLosses: "
             + losses.toString()
             + "\nFastest win: "
-            + fastestWin.toString();
+            + fastestWin.toString()
+            + "\nUsed words: ";
 
     return displayString;
   }
@@ -96,10 +97,18 @@ public class User implements Serializable {
     this.usedWords.add(word);
   }
 
-  public void displayUsedWords() {
+  /**
+   * This returns a string containing the used words on new lines
+   * @return
+   */
+  public String getUsedWordsString() {
+	StringBuilder sb = new StringBuilder();
+	
     for (int i = 0; i < usedWords.size(); i++) {
-      System.out.println(usedWords.get(i));
+      sb.append(usedWords.get(i) + "\n");
     }
+    
+    return sb.toString();
   }
 
   /**
