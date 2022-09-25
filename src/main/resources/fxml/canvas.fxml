@@ -15,7 +15,7 @@
   <children>
       <VBox prefHeight="35.0" prefWidth="440.0">
          <children>
-            <Button alignment="TOP_CENTER" mnemonicParsing="false" onAction="#onSwitchToDashboard" prefHeight="47.0" prefWidth="95.0" text="Back" textAlignment="RIGHT">
+            <Button fx:id="backButton" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#onSwitchToDashboard" prefHeight="47.0" prefWidth="95.0" text="Back" textAlignment="RIGHT">
                <font>
                   <Font size="18.0" />
                </font>

@@ -74,6 +74,8 @@ public class CanvasController {
 
   @FXML private Button clearButton;
 
+  @FXML private Button backButton;
+
   @FXML private Button saveDrawingButton;
 
   @FXML private ProgressBar myProgressBar;
@@ -449,9 +451,10 @@ public class CanvasController {
                 // Disables the canvas
                 canvas.setDisable(true);
 
-                // Enables the play again and save drawing button
+                // Enables the play again, save drawing and back button
                 playAgainButton.setDisable(false);
                 saveDrawingButton.setDisable(false);
+                backButton.setDisable(false);
 
                 // Disables the pen, eraser and clear button
                 penButton.setDisable(true);
@@ -499,6 +502,9 @@ public class CanvasController {
   private void onReady() throws Exception {
     // Enables the canvas
     canvas.setDisable(false);
+
+    // Disables the back button
+    backButton.setDisable(true);
 
     // Enables eraser and clear buttons
     eraserButton.setDisable(false);
