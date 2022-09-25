@@ -22,3 +22,9 @@
 .root{
 	-fx-background-color: #FFEBCD;
 }
+
+.label {
+	-fx-font-weight: bold;
+    -fx-font-family: papyrus;
+    -fx-font-size:25px;
+}
