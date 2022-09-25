@@ -23,20 +23,12 @@
 	-fx-background-color: #FFEBCD;
 }
 
-#title{
-    -fx-font-weight: bold;
-    -fx-font-family: papyrus;
-    -fx-font-size:20px;
-}
-
 #resultLabel{
-    -fx-font-weight: bold;
-    -fx-font-family: papyrus;
     -fx-font-size:17px;
 }
 
 #myProgressBar {
-	-fx-padding:8 9 9 9;
+	-fx-padding:3 4 4 4;
 	-fx-background-radius: 18;
 	-fx-background-insets:0,0 0 5 0,0 0 6 0,0 0 7 0;
 	-fx-effect: dropshadow(gaussian, rgba(0,0,0.4), 4, 0.0, 0, 1);
@@ -47,5 +39,16 @@
 	-fx-border-color:black;
 	-fx-effect: dropshadow(gaussian, rgba(0,0,0.4), 4, 0.0, 0, 1);
 	-fx-background-radius: 18;
+}
+
+#predictionLabel {
+	-fx-background-color:white;
+	-fx-border-color:black;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0.4), 4, 0.0, 0, 1);
+	-fx-background-radius: 18;
+}
+
+#predictionBox1 {
+	-fx-font-size:13px;
 }
 

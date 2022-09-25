@@ -15,19 +15,19 @@
   <children>
       <VBox prefHeight="35.0" prefWidth="440.0">
          <children>
-            <Button alignment="TOP_CENTER" mnemonicParsing="false" onAction="#onSwitchToDashboard" prefHeight="47.0" prefWidth="95.0" text="Back" textAlignment="RIGHT">
+            <Button fx:id="backButton" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#onSwitchToDashboard" prefHeight="47.0" prefWidth="95.0" text="Back" textAlignment="RIGHT">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
          </children>
       </VBox>
-      <Label fx:id="wordLabel" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="word" textAlignment="CENTER">
+      <Label fx:id="wordLabel" alignment="CENTER" prefHeight="32.0" prefWidth="355.0" text="word" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="time" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="time" textAlignment="CENTER">
+      <Label fx:id="time" alignment="CENTER" prefHeight="54.0" prefWidth="355.0" text="time" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
@@ -71,13 +71,9 @@
       </HBox>
     <HBox alignment="CENTER" prefHeight="194.0" prefWidth="480.0">
       <children>
-            <VBox alignment="TOP_CENTER" prefHeight="152.0" prefWidth="241.0">
+            <VBox fx:id="predictionLabel" alignment="TOP_CENTER" prefHeight="152.0" prefWidth="241.0">
                <children>
-                  <Label text="Predictions:">
-                     <font>
-                        <Font size="15.0" />
-                     </font></Label>
-                  <Label fx:id="predictionBox1" prefHeight="202.0" prefWidth="240.0" text="predictions" />
+                  <Label fx:id="predictionBox1" prefHeight="197.0" prefWidth="218.0" text="predictions" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="152.0" prefWidth="241.0">

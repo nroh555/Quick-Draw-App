@@ -29,6 +29,7 @@
 	-fx-background-insets:0,0 0 5 0,0 0 6 0,0 0 7 0;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0.4), 4, 0.0, 0, 1);
     -fx-font-family: papyrus;
+    -fx-font-size:16px;
 }
 
 #passwordField {
@@ -37,6 +38,7 @@
 	-fx-background-insets:0,0 0 5 0,0 0 6 0,0 0 7 0;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0.4), 4, 0.0, 0, 1);
     -fx-font-family: papyrus;
+    -fx-font-size:16px;
 }
 
 .label{
@@ -44,5 +46,10 @@
     -fx-font-family: papyrus;
     -fx-font-size:25px;
 }
+
+#userStatusLabel {
+	-fx-font-size:15px;
+}
+
 
 
