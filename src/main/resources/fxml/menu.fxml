@@ -35,7 +35,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </PasswordField>
-      <Label fx:id="userStatusLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="589.0" textAlignment="CENTER">
+      <Label fx:id="userStatusLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="469.0" textAlignment="CENTER">
          <padding>
             <Insets right="5.0" />
          </padding>
@@ -43,6 +43,7 @@
             <Font size="10.0" />
          </font>
       </Label>
+      <Region prefHeight="30.0" prefWidth="400.0" />
       <Button mnemonicParsing="false" onAction="#onLogin" prefHeight="43.0" prefWidth="78.0" text="Login" />
       <Region prefHeight="30.0" prefWidth="400.0" />
       <Button mnemonicParsing="false" onAction="#onRegister" prefHeight="43.0" prefWidth="78.0" text="Register" />
