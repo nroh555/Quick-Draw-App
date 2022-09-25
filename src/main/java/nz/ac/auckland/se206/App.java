@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -68,6 +69,13 @@ public class App extends Application {
     SceneManager.addUi(SceneManager.AppUi.PROFILE, loadFxml(profileLoader));
 
     final Scene scene = new Scene(SceneManager.getUi(SceneManager.AppUi.MENU), 480, 785);
+
+    // Close all threads when app is closed
+    stage.setOnCloseRequest(
+        e -> {
+          Platform.exit();
+          System.exit(0);
+        });
 
     stage.setScene(scene);
     stage.show();
