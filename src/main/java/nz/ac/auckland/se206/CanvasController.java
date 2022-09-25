@@ -27,6 +27,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -74,6 +75,14 @@ public class CanvasController {
   @FXML private Button clearButton;
 
   @FXML private Button saveDrawingButton;
+
+  @FXML private ProgressBar myProgressBar;
+
+  @FXML private Button myButton;
+
+  @FXML private Label myLabel;
+
+  private double progress;
 
   private GraphicsContext graphic;
 
@@ -139,6 +148,11 @@ public class CanvasController {
 
     // Displays the random word
     wordLabel.setText(currentWord);
+
+    // Initialises the progress bar as green
+    myProgressBar.setStyle("-fx-accent:#00FF00;");
+    progress = 0.0;
+    myProgressBar.setProgress(progress);
 
     noUnderscoreWord = currentWord.replaceAll(" ", "_");
 
@@ -255,6 +269,23 @@ public class CanvasController {
     Button btnThatWasClicked = (Button) event.getSource();
     Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
     sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.DASHBOARD));
+  }
+
+  /** This function would increase the progress bar to match with the timer */
+  private void increaseProgress() {
+    // Increases the progress bar by a frequency per 60 seconds
+    progress += (1.0 / 60.0);
+    myProgressBar.setProgress(progress);
+
+    // The progress bar changes from green to orange under 30 seconds
+    if (progress >= 0.5 && progress < 0.85) {
+      myProgressBar.setStyle("-fx-accent:orange;");
+    }
+
+    // The progress bar changes from orange to red under 10 seconds
+    if (progress >= 0.85) {
+      myProgressBar.setStyle("-fx-accent:red;");
+    }
   }
 
   /**
@@ -395,10 +426,10 @@ public class CanvasController {
             Duration.seconds(1),
             e -> {
               count--;
+              increaseProgress();
 
               // Updates timer label
               time.setText(String.valueOf(count));
-
               try {
                 // Runs predictions
                 updatePrediction();

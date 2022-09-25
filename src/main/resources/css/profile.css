@@ -1,3 +1,20 @@
+#usedWordsBox {
+	-fx-background-color:white;
+	-fx-border-color:black;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0.4), 4, 0.0, 0, 1);
+	-fx-background-radius: 18;
+}
+
+.label {
+	-fx-font-weight: bold;
+    -fx-font-family: papyrus;
+    -fx-font-size:18px;
+}
+
+.root {
+	-fx-background-color: #FFEBCD;
+}
+
 .button {
 	-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #FAFAD2, #FFFACD);
 	-fx-padding:8 9 9 9;
@@ -19,12 +36,6 @@
 	-fx-background-insets: 2 0 0 0,2 0 3 0,2 0 4 0,2 0 5 0;
 }
 
-.root{
-	-fx-background-color: #FFEBCD;
-}
-
-.label {
-	-fx-font-weight: bold;
-    -fx-font-family: papyrus;
-    -fx-font-size:25px;
+#welcomeLabel {
+	-fx-font-size:25px
 }
