@@ -22,3 +22,18 @@
 .root{
 	-fx-background-color: #FFEBCD;
 }
+
+#title{
+    -fx-font-weight: bold;
+    -fx-font-family: papyrus;
+    -fx-font-size:20px;
+}
+
+#resultLabel{
+    -fx-font-weight: bold;
+    -fx-font-family: papyrus;
+    -fx-font-size:17px;
+}
+
+
+
