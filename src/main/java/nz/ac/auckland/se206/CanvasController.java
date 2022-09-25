@@ -19,8 +19,10 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -32,6 +34,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.imageio.ImageIO;
+import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 import nz.ac.auckland.se206.profile.User;
 import nz.ac.auckland.se206.speech.TextToSpeech;
@@ -240,7 +243,22 @@ public class CanvasController {
   }
 
   /**
-   * Gets the latest predictions
+   * Button to switch to the dashboard page *
+   *
+   * @param event
+   * @throws IOException
+   * @throws TranslateException
+   */
+  @FXML
+  private void onSwitchToDashboard(ActionEvent event) throws IOException, TranslateException {
+    // Changes the scene to canvas
+    Button btnThatWasClicked = (Button) event.getSource();
+    Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
+    sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.DASHBOARD));
+  }
+
+  /**
+   * Gets the latest predictions every second
    *
    * @throws TranslateException
    */
@@ -525,7 +543,8 @@ public class CanvasController {
     CategorySelector categorySelector = new CategorySelector();
     String randomWord = categorySelector.getRandomCategory(Difficulty.E);
 
-    // While the random word is already in the list of used words, choose another random word
+    // While the random word is already in the list of used words, choose another
+    // random word
     while (usedWords.contains(randomWord)) {
       randomWord = categorySelector.getRandomCategory(Difficulty.E);
     }
@@ -541,7 +560,8 @@ public class CanvasController {
   private void addFastestWin(int currentWinTime) throws Exception {
     int recordFastestWin = currentUser.getFastestWin();
 
-    // Check if user has no recorded win time or if the current win time is faster than the record
+    // Check if user has no recorded win time or if the current win time is faster
+    // than the record
     // win time
     if (recordFastestWin == 0 || currentWinTime < recordFastestWin) {
       // Updates users stats

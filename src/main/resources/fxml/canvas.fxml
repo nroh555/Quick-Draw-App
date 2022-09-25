@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="745.0" prefWidth="480.0" spacing="20.0" style="-fx-background-color: white;" stylesheets="@../css/canvas.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.CanvasController">
+<VBox alignment="CENTER" prefHeight="700.0" prefWidth="480.0" spacing="20.0" style="-fx-background-color: #FFEBCD;" stylesheets="@../css/canvas.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.CanvasController">
   <children>
-    <Label alignment="CENTER" layoutX="124.0" layoutY="14.0" prefHeight="23.0" prefWidth="355.0" text="Quick, Draw! SE206  Edition" textAlignment="CENTER">
+    <Label fx:id="title" alignment="CENTER" layoutX="124.0" layoutY="14.0" prefHeight="34.0" prefWidth="355.0" text="Quick, Draw! SE206  Edition" textAlignment="CENTER">
       <font>
         <Font size="20.0" />
       </font>
@@ -30,7 +30,7 @@
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: blue;">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;">
                <children>
                 <Canvas fx:id="canvas" height="243.0" width="400.0">
                   <cursor>
@@ -51,6 +51,11 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="241.0">
                <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onSwitchToDashboard" prefHeight="47.0" prefWidth="95.0" text="Back">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="playAgainButton" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#onInitialize" prefHeight="25.0" prefWidth="130.0" text="Play again" />
                </children>
             </VBox>
