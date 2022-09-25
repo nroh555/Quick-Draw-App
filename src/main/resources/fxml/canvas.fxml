@@ -22,12 +22,12 @@
             </Button>
          </children>
       </VBox>
-      <Label fx:id="wordLabel" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="word" textAlignment="CENTER">
+      <Label fx:id="wordLabel" alignment="CENTER" prefHeight="32.0" prefWidth="355.0" text="word" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="time" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="time" textAlignment="CENTER">
+      <Label fx:id="time" alignment="CENTER" prefHeight="54.0" prefWidth="355.0" text="time" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
@@ -73,7 +73,7 @@
       <children>
             <VBox alignment="TOP_CENTER" prefHeight="152.0" prefWidth="241.0">
                <children>
-                  <Label text="Predictions:">
+                  <Label prefHeight="38.0" prefWidth="77.0" text="Predictions:">
                      <font>
                         <Font size="15.0" />
                      </font></Label>
