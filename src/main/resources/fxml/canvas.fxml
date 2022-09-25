@@ -43,7 +43,7 @@
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;">
+            <VBox fx:id="canvasBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;">
                <children>
                 <Canvas fx:id="canvas" height="243.0" width="400.0">
                   <cursor>
