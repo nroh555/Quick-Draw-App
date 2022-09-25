@@ -71,13 +71,9 @@
       </HBox>
     <HBox alignment="CENTER" prefHeight="194.0" prefWidth="480.0">
       <children>
-            <VBox alignment="TOP_CENTER" prefHeight="152.0" prefWidth="241.0">
+            <VBox fx:id="predictionLabel" alignment="TOP_CENTER" prefHeight="152.0" prefWidth="241.0">
                <children>
-                  <Label prefHeight="38.0" prefWidth="77.0" text="Predictions:">
-                     <font>
-                        <Font size="15.0" />
-                     </font></Label>
-                  <Label fx:id="predictionBox1" prefHeight="202.0" prefWidth="240.0" text="predictions" />
+                  <Label fx:id="predictionBox1" prefHeight="197.0" prefWidth="218.0" text="predictions" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="152.0" prefWidth="241.0">
