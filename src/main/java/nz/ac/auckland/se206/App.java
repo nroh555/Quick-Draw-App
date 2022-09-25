@@ -67,7 +67,7 @@ public class App extends Application {
     SceneManager.setProfileLoader(profileLoader);
     SceneManager.addUi(SceneManager.AppUi.PROFILE, loadFxml(profileLoader));
 
-    final Scene scene = new Scene(SceneManager.getUi(SceneManager.AppUi.MENU), 480, 745);
+    final Scene scene = new Scene(SceneManager.getUi(SceneManager.AppUi.MENU), 480, 785);
 
     stage.setScene(scene);
     stage.show();
