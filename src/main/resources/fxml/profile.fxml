@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="400.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.ProfileController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="400.0" stylesheets="@../css/profile.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.ProfileController">
    <children>
       <VBox prefHeight="100.0" prefWidth="370.0">
          <children>
@@ -25,11 +25,11 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Region prefHeight="53.0" prefWidth="360.0" />
-      <Label fx:id="infoLabel" prefHeight="77.0" prefWidth="160.0" text="infoLabel" />
+      <Region prefHeight="18.0" prefWidth="360.0" />
+      <Label fx:id="infoLabel" prefHeight="203.0" prefWidth="160.0" text="infoLabel" />
       <HBox alignment="CENTER" prefHeight="75.0" prefWidth="360.0">
          <children>
-            <TextArea fx:id="usedWordsBox" editable="false" prefHeight="126.0" prefWidth="160.0" />
+            <TextArea fx:id="usedWordsBox" editable="false" prefHeight="126.0" prefWidth="160.0" stylesheets="@../css/profile.css" />
          </children>
       </HBox>
       <Region prefHeight="43.0" prefWidth="360.0" />
