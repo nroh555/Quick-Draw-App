@@ -57,6 +57,10 @@ public class User implements Serializable {
             + ":"
             + fastestWin.toString();
 
+    /**
+     * Returns the user details which includes username, password, number of wins and losses as well
+     * as fastest win time
+     */
     return saveString;
   }
 
