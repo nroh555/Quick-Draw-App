@@ -71,14 +71,23 @@ public class User implements Serializable {
    * @return String to display the key details
    */
   public String formatUserDetails() {
-    // Creates string of the key user details
+    String fastestWinDisplay;
+
+    // Change fastest win display text depending on if the user has won yet
+    if (fastestWin == 0) {
+      fastestWinDisplay = "N/A";
+    } else {
+      fastestWinDisplay = fastestWin.toString() + "s";
+    }
+
+    // Creates and formats string of the key user details
     String displayString =
         "Wins: "
             + wins.toString()
             + "\nLosses: "
             + losses.toString()
             + "\nFastest win: "
-            + fastestWin.toString()
+            + fastestWinDisplay
             + "\nUsed words: ";
 
     return displayString;
