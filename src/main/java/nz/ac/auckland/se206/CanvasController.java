@@ -196,7 +196,7 @@ public class CanvasController {
    *
    * @param colour Colour of the brush
    */
-  private void setPen(Color colour) {
+  private void setPen(Color colour, double brushSize) {
     // save coordinates when mouse is pressed on the canvas
     canvas.setOnMouseDragged(
         e -> {
@@ -212,7 +212,7 @@ public class CanvasController {
           }
 
           // Brush size (you can change this, it should not be too small or too large).
-          final double size = 5.0;
+          final double size = brushSize;
 
           final double x = e.getX() - size / 2;
           final double y = e.getY() - size / 2;
@@ -233,7 +233,7 @@ public class CanvasController {
     penButton.setDisable(false);
 
     // Change brush
-    setPen(Color.WHITE);
+    setPen(Color.WHITE, 12.0);
   }
 
   /** Sets the brush to pen */
@@ -246,7 +246,7 @@ public class CanvasController {
     penButton.setDisable(true);
 
     // Change brush
-    setPen(Color.BLACK);
+    setPen(Color.BLACK, 5.0);
   }
 
   /** This method is called when the "Clear" button is pressed. */
