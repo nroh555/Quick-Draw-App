@@ -151,6 +151,7 @@ public class MenuController {
 
         usernameField.clear();
         passwordField.clear();
+        userStatusLabel.setText("");
 
         // Update welcome label
         FXMLLoader dashboardLoader = SceneManager.getDashboardLoader();
