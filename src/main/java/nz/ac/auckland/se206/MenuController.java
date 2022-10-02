@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import nz.ac.auckland.se206.SceneManager.AppUi;
+import nz.ac.auckland.se206.models.Level;
 import nz.ac.auckland.se206.profile.User;
 
 public class MenuController {
@@ -64,7 +65,11 @@ public class MenuController {
           parts[0],
           Integer.valueOf(parts[1]),
           Integer.valueOf(parts[2]),
-          Integer.valueOf(parts[3]));
+          Integer.valueOf(parts[3]),
+          Level.EASY,
+          Level.EASY,
+          Level.EASY,
+          Level.EASY);
       usersHashMap.put(parts[0], insertUser);
 
       // If the user has used words, add those too

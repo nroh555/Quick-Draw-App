@@ -2,12 +2,23 @@ package nz.ac.auckland.se206.profile;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import nz.ac.auckland.se206.models.Level;
 
 public class User implements Serializable {
   private String username;
+
+  // User statistics
   private Integer wins;
   private Integer losses;
   private Integer fastestWin;
+
+  // Difficulty information
+  private Level accuracySetting;
+  private Level wordsSetting;
+  private Level timeSetting;
+  private Level confidenceSetting;
+
+  // Used words
   private ArrayList<String> usedWords;
 
   public User(String username) {
@@ -15,6 +26,10 @@ public class User implements Serializable {
     this.wins = 0;
     this.losses = 0;
     this.fastestWin = 0;
+    this.accuracySetting = Level.EASY;
+    this.wordsSetting = Level.EASY;
+    this.timeSetting = Level.EASY;
+    this.confidenceSetting = Level.EASY;
     this.usedWords = new ArrayList<String>();
   }
 
@@ -26,12 +41,24 @@ public class User implements Serializable {
    * @param losses
    * @param fastestWin
    */
-  public void loadUser(String username, Integer wins, Integer losses, Integer fastestWin) {
+  public void loadUser(
+      String username,
+      Integer wins,
+      Integer losses,
+      Integer fastestWin,
+      Level accuracySetting,
+      Level wordsSetting,
+      Level timeSetting,
+      Level confidenceSetting) {
     // Stores the user's details into corresponding variables
     this.username = username;
     this.wins = wins;
     this.losses = losses;
     this.fastestWin = fastestWin;
+    this.accuracySetting = accuracySetting;
+    this.wordsSetting = wordsSetting;
+    this.timeSetting = timeSetting;
+    this.confidenceSetting = confidenceSetting;
   }
 
   /**
