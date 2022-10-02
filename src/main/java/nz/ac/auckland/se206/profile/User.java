@@ -289,6 +289,26 @@ public class User implements Serializable {
     }
   }
 
+  /** Sets the user's accuracy setting */
+  public void setAccuracySetting(Level accuracySetting) {
+    this.accuracySetting = accuracySetting;
+  }
+
+  /** Sets the user's words setting */
+  public void setWordsSetting(Level wordsSetting) {
+    this.wordsSetting = wordsSetting;
+  }
+
+  /** Sets the user's time setting */
+  public void setTimeSetting(Level timeSetting) {
+    this.timeSetting = timeSetting;
+  }
+
+  /** Sets the user's confidence setting */
+  public void setConfidenceSetting(Level confidenceSetting) {
+    this.confidenceSetting = confidenceSetting;
+  }
+
   private String formatDifficultySettings(ArrayList<Level> difficultyArray) {
     String difficultyString = "";
     for (int i = 0; i < difficultyArray.size(); i++) {
