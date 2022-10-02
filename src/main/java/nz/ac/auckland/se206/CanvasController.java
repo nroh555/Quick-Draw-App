@@ -112,7 +112,7 @@ public class CanvasController {
   private HashMap<String, User> usersHashMap = new HashMap<String, User>();
 
   // Current user logged in
-  private User currentUser = new User("None", "none");
+  private User currentUser = new User("None");
 
   public HashMap<String, User> getUsersHashMap() {
     return usersHashMap;

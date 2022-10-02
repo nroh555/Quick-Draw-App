@@ -5,15 +5,13 @@ import java.util.ArrayList;
 
 public class User implements Serializable {
   private String username;
-  private String password;
   private Integer wins;
   private Integer losses;
   private Integer fastestWin;
   private ArrayList<String> usedWords;
 
-  public User(String username, String password) {
+  public User(String username) {
     this.username = username;
-    this.password = password;
     this.wins = 0;
     this.losses = 0;
     this.fastestWin = 0;
@@ -24,16 +22,13 @@ public class User implements Serializable {
    * This loads user details from the file to create a user instance
    *
    * @param username
-   * @param password
    * @param wins
    * @param losses
    * @param fastestWin
    */
-  public void loadUser(
-      String username, String password, Integer wins, Integer losses, Integer fastestWin) {
+  public void loadUser(String username, Integer wins, Integer losses, Integer fastestWin) {
     // Stores the user's details into corresponding variables
     this.username = username;
-    this.password = password;
     this.wins = wins;
     this.losses = losses;
     this.fastestWin = fastestWin;
@@ -47,26 +42,17 @@ public class User implements Serializable {
   public String getSaveDetails() {
     // Creates string of the users details
     String saveString =
-        username
-            + ":"
-            + password
-            + ":"
-            + wins.toString()
-            + ":"
-            + losses.toString()
-            + ":"
-            + fastestWin.toString();
+        username + ":" + wins.toString() + ":" + losses.toString() + ":" + fastestWin.toString();
 
     /**
-     * Returns the user details which includes username, password, number of wins and losses as well
-     * as fastest win time
+     * Returns the user details which includes username, number of wins and losses as well as
+     * fastest win time
      */
     return saveString;
   }
 
   /**
-   * This gets and formats all key information (excluding password and words) about a user to be
-   * displayed
+   * This gets and formats all key information (excluding words) about a user to be displayed
    *
    * @return String to display the key details
    */
@@ -176,15 +162,6 @@ public class User implements Serializable {
    */
   public String getUsername() {
     return username;
-  }
-
-  /**
-   * Gets the user's password
-   *
-   * @return String
-   */
-  public String getPassword() {
-    return password;
   }
 
   /**
