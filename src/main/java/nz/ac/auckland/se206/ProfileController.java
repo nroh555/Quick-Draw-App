@@ -21,7 +21,13 @@ public class ProfileController {
 
   @FXML private TextArea usedWordsBox;
 
-  @FXML private MenuButton difficultyMenuButton;
+  @FXML private MenuButton accuracySettingButton;
+
+  @FXML private MenuButton wordsSettingButton;
+
+  @FXML private MenuButton timeSettingButton;
+
+  @FXML private MenuButton confidenceSettingButton;
 
   protected void updateLabels() {
     // Get current user
@@ -67,5 +73,80 @@ public class ProfileController {
     Button btnThatWasClicked = (Button) event.getSource();
     Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
     sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.DASHBOARD));
+  }
+
+  @FXML
+  private void onAccuracySetEasy() {
+    accuracySettingButton.setText("Accuracy: Easy");
+  }
+
+  @FXML
+  private void onAccuracySetMedium() {
+    accuracySettingButton.setText("Accuracy: Medium");
+  }
+
+  @FXML
+  private void onAccuracySetHard() {
+    accuracySettingButton.setText("Accuracy: Hard");
+  }
+
+  @FXML
+  private void onWordsSetEasy() {
+    wordsSettingButton.setText("Words: Easy");
+  }
+
+  @FXML
+  private void onWordsSetMedium() {
+    wordsSettingButton.setText("Words: Medium");
+  }
+
+  @FXML
+  private void onWordsSetHard() {
+    wordsSettingButton.setText("Words: Hard");
+  }
+
+  @FXML
+  private void onWordsSetMaster() {
+    wordsSettingButton.setText("Words: Master");
+  }
+
+  @FXML
+  private void onTimeSetEasy() {
+    timeSettingButton.setText("Time: Easy");
+  }
+
+  @FXML
+  private void onTimeSetMedium() {
+    timeSettingButton.setText("Time: Medium");
+  }
+
+  @FXML
+  private void onTimeSetHard() {
+    timeSettingButton.setText("Time: Hard");
+  }
+
+  @FXML
+  private void onTimeSetMaster() {
+    timeSettingButton.setText("Time: Master");
+  }
+
+  @FXML
+  private void onConfidenceSetEasy() {
+    confidenceSettingButton.setText("Confidence: Easy");
+  }
+
+  @FXML
+  private void onConfidenceSetMedium() {
+    confidenceSettingButton.setText("Confidence: Medium");
+  }
+
+  @FXML
+  private void onConfidenceSetHard() {
+    confidenceSettingButton.setText("Confidence: Hard");
+  }
+
+  @FXML
+  private void onConfidenceSetMaster() {
+    confidenceSettingButton.setText("Confidence: Master");
   }
 }

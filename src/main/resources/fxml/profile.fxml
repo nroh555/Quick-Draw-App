@@ -29,10 +29,35 @@
       </Label>
       <Region prefHeight="18.0" prefWidth="360.0" />
       <Label fx:id="infoLabel" prefHeight="269.0" prefWidth="254.0" text="infoLabel" />
-      <MenuButton fx:id="difficultyMenuButton" mnemonicParsing="false" text="MenuButton">
+      <MenuButton fx:id="accuracySettingButton" mnemonicParsing="false" text="Accuracy">
         <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
+          <MenuItem mnemonicParsing="false" onAction="#onAccuracySetEasy" text="Easy" />
+            <MenuItem mnemonicParsing="false" onAction="#onAccuracySetMedium" text="Medium" />
+          <MenuItem mnemonicParsing="false" onAction="#onAccuracySetHard" text="Hard" />
+        </items>
+      </MenuButton>
+      <MenuButton fx:id="wordsSettingButton" mnemonicParsing="false" text="Words">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#onWordsSetEasy" text="Easy" />
+            <MenuItem mnemonicParsing="false" onAction="#onWordsSetMedium" text="Medium" />
+          <MenuItem mnemonicParsing="false" onAction="#onWordsSetHard" text="Hard" />
+            <MenuItem mnemonicParsing="false" onAction="#onWordsSetMaster" text="Master" />
+        </items>
+      </MenuButton>
+      <MenuButton fx:id="timeSettingButton" mnemonicParsing="false" text="Time">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#onTimeSetEasy" text="Easy" />
+            <MenuItem mnemonicParsing="false" onAction="#onTimeSetMedium" text="Medium" />
+            <MenuItem mnemonicParsing="false" onAction="#onTimeSetHard" text="Hard" />
+          <MenuItem mnemonicParsing="false" onAction="#onTimeSetMaster" text="Master" />
+        </items>
+      </MenuButton>
+      <MenuButton fx:id="confidenceSettingButton" mnemonicParsing="false" text="Confidence">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetEasy" text="Easy" />
+            <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetMedium" text="Medium" />
+            <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetHard" text="Hard" />
+          <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetMaster" text="Master" />
         </items>
       </MenuButton>
       <Region prefHeight="43.0" prefWidth="360.0" />
