@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextArea;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.profile.User;
@@ -19,6 +20,8 @@ public class ProfileController {
   @FXML private Label infoLabel;
 
   @FXML private TextArea usedWordsBox;
+
+  @FXML private MenuButton difficultyMenuButton;
 
   protected void updateLabels() {
     // Get current user
