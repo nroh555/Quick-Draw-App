@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,6 +45,26 @@ public class MenuController {
     this.currentUser = currentUser;
   }
 
+  private ArrayList<Level> loadDifficultySettingsFromFile(String difficultyString) {
+    ArrayList<Level> difficultyArray = new ArrayList<Level>();
+
+    // Traverse the difficulty string
+    for (int i = 0; i < difficultyString.length(); i++) {
+
+      // Check what difficulty the current character represents
+      if (difficultyString.charAt(i) == 'E') {
+        difficultyArray.add(Level.EASY);
+      } else if (difficultyString.charAt(i) == 'M') {
+        difficultyArray.add(Level.MEDIUM);
+      } else if (difficultyString.charAt(i) == 'H') {
+        difficultyArray.add(Level.HARD);
+      } else {
+        difficultyArray.add(Level.MASTER);
+      }
+    }
+    return difficultyArray;
+  }
+
   /**
    * Gets the saved users data from file and loads this data onto the users hash map. This is done
    * before every register/login operation
@@ -66,10 +87,10 @@ public class MenuController {
           Integer.valueOf(parts[1]),
           Integer.valueOf(parts[2]),
           Integer.valueOf(parts[3]),
-          Level.EASY,
-          Level.EASY,
-          Level.EASY,
-          Level.EASY);
+          loadDifficultySettingsFromFile(parts[4]).get(0),
+          loadDifficultySettingsFromFile(parts[4]).get(1),
+          loadDifficultySettingsFromFile(parts[4]).get(2),
+          loadDifficultySettingsFromFile(parts[4]).get(3));
       usersHashMap.put(parts[0], insertUser);
 
       // If the user has used words, add those too
