@@ -241,6 +241,54 @@ public class User implements Serializable {
     return fastestWin;
   }
 
+  /**
+   * Gets the user's accuracy setting
+   *
+   * @return Level
+   */
+  public Level getAccuracySetting() {
+    return accuracySetting;
+  }
+
+  /**
+   * Gets the user's words setting
+   *
+   * @return Level
+   */
+  public Level getWordsSetting() {
+    return wordsSetting;
+  }
+
+  /**
+   * Gets the user's time setting
+   *
+   * @return Level
+   */
+  public Level getTimeSetting() {
+    return timeSetting;
+  }
+
+  /**
+   * Gets the user's confidence setting
+   *
+   * @return Level
+   */
+  public Level getConfidenceSetting() {
+    return confidenceSetting;
+  }
+
+  public String getDifficultyString(Level thisLevel) {
+    if (thisLevel == Level.EASY) {
+      return "Easy";
+    } else if (thisLevel == Level.MEDIUM) {
+      return "Medium";
+    } else if (thisLevel == Level.HARD) {
+      return "Hard";
+    } else {
+      return "Master";
+    }
+  }
+
   private String formatDifficultySettings(ArrayList<Level> difficultyArray) {
     String difficultyString = "";
     for (int i = 0; i < difficultyArray.size(); i++) {

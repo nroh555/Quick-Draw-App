@@ -43,6 +43,16 @@ public class ProfileController {
 
     // Update used words label
     usedWordsBox.setText(currentUser.getUsedWordsString());
+
+    // Update the menu button with the current user difficulty settings
+    accuracySettingButton.setText(
+        "Accuracy: " + currentUser.getDifficultyString(currentUser.getAccuracySetting()));
+    wordsSettingButton.setText(
+        "Words: " + currentUser.getDifficultyString(currentUser.getWordsSetting()));
+    timeSettingButton.setText(
+        "Time: " + currentUser.getDifficultyString(currentUser.getTimeSetting()));
+    confidenceSettingButton.setText(
+        "Confidence: " + currentUser.getDifficultyString(currentUser.getConfidenceSetting()));
   }
 
   /**
