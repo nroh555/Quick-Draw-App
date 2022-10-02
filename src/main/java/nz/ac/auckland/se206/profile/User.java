@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.profile;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import nz.ac.auckland.se206.models.Level;
 
 public class User implements Serializable {
@@ -66,14 +67,29 @@ public class User implements Serializable {
    *
    * @return String in the format to go into the save file
    */
+  // TODO SAVE DIFFICULTY DETAILS
   public String getSaveDetails() {
+    // Format the difficulty settings for save
+    ArrayList<Level> difficultyArray =
+        new ArrayList<Level>(
+            Arrays.asList(accuracySetting, wordsSetting, timeSetting, confidenceSetting));
+    String difficultySettingsString = formatDifficultySettings(difficultyArray);
+
     // Creates string of the users details
     String saveString =
-        username + ":" + wins.toString() + ":" + losses.toString() + ":" + fastestWin.toString();
+        username
+            + ":"
+            + wins.toString()
+            + ":"
+            + losses.toString()
+            + ":"
+            + fastestWin.toString()
+            + ":"
+            + difficultySettingsString;
 
     /**
      * Returns the user details which includes username, number of wins and losses as well as
-     * fastest win time
+     * fastest win time, and all the difficulty settings
      */
     return saveString;
   }
@@ -216,5 +232,25 @@ public class User implements Serializable {
    */
   public Integer getFastestWin() {
     return fastestWin;
+  }
+
+  private String formatDifficultySettings(ArrayList<Level> difficultyArray) {
+    String difficultyString = "";
+    for (int i = 0; i < difficultyArray.size(); i++) {
+      System.out.println(difficultyArray.get(i));
+      if (difficultyArray.get(i) == Level.EASY) {
+        difficultyString = difficultyString + "E";
+      } else if (difficultyArray.get(i) == Level.MEDIUM) {
+        difficultyString = difficultyString + "M";
+      } else if (difficultyArray.get(i) == Level.HARD) {
+        difficultyString = difficultyString + "H";
+      } else if (difficultyArray.get(i) == Level.MASTER) {
+        difficultyString = difficultyString + "S";
+      } else {
+        System.out.println("Error - no corresponding difficulty found");
+      }
+    }
+
+    return difficultyString;
   }
 }

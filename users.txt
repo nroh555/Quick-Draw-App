@@ -1,2 +1,2 @@
-hi:1:0:26:cactus
-hey:0:0:0
+hi:2:0:3:EEEE:cat
+hey:0:0:0:EEEE

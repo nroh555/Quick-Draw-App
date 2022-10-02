@@ -73,8 +73,8 @@ public class MenuController {
       usersHashMap.put(parts[0], insertUser);
 
       // If the user has used words, add those too
-      if (parts.length == 5) {
-        usersHashMap.get(parts[0]).getWordsToArray(parts[4]);
+      if (parts.length == 9) {
+        usersHashMap.get(parts[0]).getWordsToArray(parts[8]);
       }
     }
 
@@ -128,7 +128,6 @@ public class MenuController {
     } else {
       userStatusLabel.setText(
           "Sorry, this username is already taken! Please try a different username.");
-      System.out.println("This username is already taken. Please try again.");
     }
   }
 
