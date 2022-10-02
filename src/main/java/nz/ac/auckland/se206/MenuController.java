@@ -45,6 +45,12 @@ public class MenuController {
     this.currentUser = currentUser;
   }
 
+  /**
+   * Gets the difficulty string from file, and puts the difficulty settings into an array
+   *
+   * @param difficultyString
+   * @return ArrayList of the 4 different levels for the user difficulty settings
+   */
   private ArrayList<Level> loadDifficultySettingsFromFile(String difficultyString) {
     ArrayList<Level> difficultyArray = new ArrayList<Level>();
 

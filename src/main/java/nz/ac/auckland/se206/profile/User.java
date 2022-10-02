@@ -67,7 +67,6 @@ public class User implements Serializable {
    *
    * @return String in the format to go into the save file
    */
-  // TODO SAVE DIFFICULTY DETAILS
   public String getSaveDetails() {
     // Format the difficulty settings for save
     ArrayList<Level> difficultyArray =
@@ -117,6 +116,14 @@ public class User implements Serializable {
             + losses.toString()
             + "\nFastest win: "
             + fastestWinDisplay
+            + "\n"
+            + formatSettingForDisplay(accuracySetting)
+            + "\n"
+            + formatSettingForDisplay(wordsSetting)
+            + "\n"
+            + formatSettingForDisplay(timeSetting)
+            + "\n"
+            + formatSettingForDisplay(confidenceSetting)
             + "\nUsed words: ";
 
     return displayString;
@@ -252,5 +259,28 @@ public class User implements Serializable {
     }
 
     return difficultyString;
+  }
+
+  /**
+   * Takes the difficulty level and returns the string of the difficulty level the setting
+   * corresponds to
+   *
+   * @param difficultyLevel
+   * @return String of what the difficulty level corresponds to
+   */
+  private String formatSettingForDisplay(Level difficultyLevel) {
+    String difficultyAsString = "";
+    if (difficultyLevel == Level.EASY) {
+      difficultyAsString = "Easy";
+    } else if (difficultyLevel == Level.MEDIUM) {
+      difficultyAsString = "Medium";
+    } else if (difficultyLevel == Level.HARD) {
+      difficultyAsString = "Hard";
+    } else if (difficultyLevel == Level.MASTER) {
+      difficultyAsString = "Master";
+    } else {
+      System.out.println("Error - no corresponding difficulty found");
+    }
+    return difficultyAsString;
   }
 }
