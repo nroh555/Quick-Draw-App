@@ -1,7 +1,10 @@
 package nz.ac.auckland.se206;
 
 import ai.djl.translate.TranslateException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,11 +33,35 @@ public class ProfileController {
 
   @FXML private MenuButton confidenceSettingButton;
 
+  // Create hashmap to store all of the users.
+  private HashMap<String, User> usersHashMap = new HashMap<String, User>();
+
+  // Current user logged in
+  private User currentUser = new User("None");
+
+  // TODO these may be redundant
+  public HashMap<String, User> getUsersHashMap() {
+    return usersHashMap;
+  }
+
+  public void setUsersHashMap(HashMap<String, User> usersHashMap) {
+    this.usersHashMap = usersHashMap;
+  }
+
+  public User getCurrentUser() {
+    return currentUser;
+  }
+
+  public void setCurrentUser(User currentUser) {
+    this.currentUser = currentUser;
+  }
+
   protected void updateLabels() {
     // Get current user
     FXMLLoader menuLoader = SceneManager.getMenuLoader();
     MenuController menuController = menuLoader.getController();
-    User currentUser = menuController.getCurrentUser();
+    this.currentUser = menuController.getCurrentUser();
+    this.usersHashMap = menuController.getUsersHashMap();
 
     // Update welcome label
     welcomeLabel.setText("Welcome, " + currentUser.getUsername() + "!");
@@ -193,6 +220,75 @@ public class ProfileController {
       currentUser.setConfidenceSetting(levelSetting);
     }
 
-    System.out.println("set");
+    try {
+      saveData();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  /** Updates the user hash map and current user in the menu controller */
+  private void updateUserAndMap() {
+    FXMLLoader menuLoader = SceneManager.getMenuLoader();
+    MenuController menuController = menuLoader.getController();
+    menuController.setUsersHashMap(usersHashMap);
+    menuController.setCurrentUser(currentUser);
+    System.out.println(usersHashMap);
+    System.out.println(currentUser);
+  }
+
+  /**
+   * Saves any stats data. This is a manual save that is performed via a button (as it's going to be
+   * very time consuming to write the save contents all the time)
+   *
+   * @throws Exception
+   */
+  @FXML
+  private void saveData() throws Exception {
+    updateUserAndMap();
+
+    // Save all the new data to the file
+    BufferedWriter bf = null;
+
+    // Overwrite existing file data for the first line we save
+    try {
+      System.out.println("In the try for bufferwriter");
+      // Create new BufferedWriter for the output file, append mode on
+      bf = new BufferedWriter(new FileWriter("users.txt"));
+
+      Boolean isFirst = true;
+      for (String key : usersHashMap.keySet()) {
+        if (isFirst == true) {
+          // If user doesn't have any used words
+          if (usersHashMap.get(key).getUsedWords().isEmpty()) {
+            // Add information regarding first user to each first
+            bf.write(usersHashMap.get(key).getSaveDetails());
+          } else {
+            bf.write(
+                usersHashMap.get(key).getSaveDetails()
+                    + ":"
+                    + usersHashMap
+                        .get(key)
+                        .formatWordsForSave(usersHashMap.get(key).getUsedWords()));
+          }
+          isFirst = false;
+        } else {
+          break;
+        }
+      }
+      bf.newLine();
+      bf.flush();
+    } catch (IOException e) {
+      // Print exceptions
+      e.printStackTrace();
+    } finally {
+      try {
+        // Close the writer
+        bf.close();
+      } catch (Exception e) {
+        // Print exceptions
+        e.printStackTrace();
+      }
+    }
   }
 }
