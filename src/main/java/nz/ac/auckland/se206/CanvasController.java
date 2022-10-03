@@ -14,6 +14,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -603,15 +604,53 @@ public class CanvasController {
    */
   protected String getRandomWord() throws IOException, CsvException, URISyntaxException {
     ArrayList<String> usedWords = currentUser.getUsedWords();
+    String randomWord = "";
+    Boolean firstSelection = true;
 
     // Get random word
     CategorySelector categorySelector = new CategorySelector();
-    String randomWord = categorySelector.getRandomCategory(Difficulty.E);
 
     // While the random word is already in the list of used words, choose another
     // random word
-    while (usedWords.contains(randomWord)) {
-      randomWord = categorySelector.getRandomCategory(Difficulty.E);
+    while (firstSelection == true || usedWords.contains(randomWord)) {
+      // If words difficulty setting is easy, select only easy words
+      if (currentUser.getWordsSetting() == Level.EASY) {
+        firstSelection = false;
+        randomWord = categorySelector.getRandomCategory(Difficulty.E);
+      } else if (currentUser.getWordsSetting() == Level.MEDIUM) {
+        // If words difficulty setting is medium, select only easy or medium words
+        firstSelection = false;
+        String[] possibleWords =
+            new String[] {
+              categorySelector.getRandomCategory(Difficulty.E),
+              categorySelector.getRandomCategory(Difficulty.M)
+            };
+
+        // randomly selects a number out of 2
+        Random random = new Random();
+        int select = random.nextInt(2);
+
+        randomWord = possibleWords[select];
+      } else if (currentUser.getWordsSetting() == Level.HARD) {
+        // If words difficulty setting is hard, select only easy, medium, or hard words
+        firstSelection = false;
+        String[] possibleWords =
+            new String[] {
+              categorySelector.getRandomCategory(Difficulty.E),
+              categorySelector.getRandomCategory(Difficulty.M),
+              categorySelector.getRandomCategory(Difficulty.H)
+            };
+
+        // randomly selects a number out of 3
+        Random random = new Random();
+        int select = random.nextInt(3);
+
+        randomWord = possibleWords[select];
+      } else if (currentUser.getWordsSetting() == Level.MASTER) {
+        // If words difficulty setting is master, select only hard words
+        firstSelection = false;
+        randomWord = categorySelector.getRandomCategory(Difficulty.H);
+      }
     }
 
     return randomWord;

@@ -1,1 +1,1 @@
-hi:4:0:3:HEMS:smiley face;triangle;bucket
+hi:5:0:3:HSMS:butterfly
