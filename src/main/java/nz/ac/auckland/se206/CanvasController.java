@@ -37,6 +37,7 @@ import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
+import nz.ac.auckland.se206.models.Level;
 import nz.ac.auckland.se206.profile.User;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.words.CategorySelector;
@@ -337,16 +338,43 @@ public class CanvasController {
    * @throws Exception
    */
   private boolean isWin(List<Classification> classifications) throws Exception {
-    // Loops through top 3 predictions
-    for (int i = 0; i < 3; i++) {
-      // Checks if a prediction equals the keyword, if so stops game
-      if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
+
+    // If accuracy setting is easy, players wins if word is in top 3
+    if (currentUser.getAccuracySetting() == Level.EASY) {
+      // Loops through top 3 predictions
+      for (int i = 0; i < 3; i++) {
+        // Checks if a prediction equals the keyword, if so stops game
+        if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
+          int winTime = initialCount - count;
+          addFastestWin(winTime);
+          addWin();
+          return true;
+        }
+      }
+      // If accuracy setting is medium, players wins if word is in top 2
+    } else if (currentUser.getAccuracySetting() == Level.MEDIUM) {
+
+      // Loops through top 2 predictions
+      for (int i = 0; i < 2; i++) {
+        // Checks if a prediction equals the keyword, if so stops game
+        if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
+          int winTime = initialCount - count;
+          addFastestWin(winTime);
+          addWin();
+          return true;
+        }
+      }
+      // If accuracy setting is hard, players wins if word is in top 1
+    } else if (currentUser.getAccuracySetting() == Level.HARD) {
+      // Check top prediction only
+      if (classifications.get(0).getClassName().equals(noUnderscoreWord)) {
         int winTime = initialCount - count;
         addFastestWin(winTime);
         addWin();
         return true;
       }
     }
+
     return false;
   }
 
