@@ -233,8 +233,6 @@ public class ProfileController {
     MenuController menuController = menuLoader.getController();
     menuController.setUsersHashMap(usersHashMap);
     menuController.setCurrentUser(currentUser);
-    System.out.println(usersHashMap);
-    System.out.println(currentUser);
   }
 
   /**
@@ -252,7 +250,6 @@ public class ProfileController {
 
     // Overwrite existing file data for the first line we save
     try {
-      System.out.println("In the try for bufferwriter");
       // Create new BufferedWriter for the output file, append mode on
       bf = new BufferedWriter(new FileWriter("users.txt"));
 

@@ -96,7 +96,7 @@ public class CanvasController {
 
   private String noUnderscoreWord;
 
-  private int initialCount = 60;
+  private int initialCount = 15;
 
   private int count = initialCount;
 
@@ -160,8 +160,25 @@ public class CanvasController {
 
     noUnderscoreWord = currentWord.replaceAll(" ", "_");
 
-    // Sets the timer to the count value
+    System.out.println(currentUser);
+    System.out.println(currentUser.getTimeSetting());
+    // Set timer count depending on the difficulty value
+    if (currentUser.getTimeSetting() == Level.EASY) {
+      initialCount = 60;
+      System.out.println("eas");
+    } else if (currentUser.getTimeSetting() == Level.MEDIUM) {
+      initialCount = 45;
+      System.out.println("m");
+    } else if (currentUser.getTimeSetting() == Level.HARD) {
+      initialCount = 30;
+      System.out.println("h");
+    } else if (currentUser.getTimeSetting() == Level.MASTER) {
+      initialCount = 15;
+      System.out.println("master");
+    }
+
     count = initialCount;
+
     time.setText(String.valueOf(count));
 
     // Sets the results label to display draw prompt
@@ -208,7 +225,6 @@ public class CanvasController {
               onReady();
               isReady = true;
             } catch (Exception e1) {
-              // TODO Auto-generated catch block
               e1.printStackTrace();
             }
           }
@@ -277,8 +293,8 @@ public class CanvasController {
 
   /** This function would increase the progress bar to match with the timer */
   private void increaseProgress() {
-    // Increases the progress bar by a frequency per 60 seconds
-    progress += (1.0 / 60.0);
+    // Increases the progress bar by a frequency per initial count number of seconds
+    progress += (1.0 / initialCount);
     myProgressBar.setProgress(progress);
 
     // The progress bar changes from green to orange under 30 seconds
@@ -686,6 +702,7 @@ public class CanvasController {
     menuController.setCurrentUser(currentUser);
   }
 
+  // TODO SAVING WORDS IS OVERWRITING, NOT WORKING
   /**
    * Saves any stats data. This is a manual save that is performed via a button (as it's going to be
    * very time consuming to write the save contents all the time)
