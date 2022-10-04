@@ -100,8 +100,8 @@ public class MenuController {
       usersHashMap.put(parts[0], insertUser);
 
       // If the user has used words, add those too
-      if (parts.length == 9) {
-        usersHashMap.get(parts[0]).getWordsToArray(parts[8]);
+      if (parts.length == 6) {
+        usersHashMap.get(parts[0]).getWordsToArray(parts[5]);
       }
     }
 
