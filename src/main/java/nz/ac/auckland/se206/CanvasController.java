@@ -14,6 +14,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -37,6 +38,7 @@ import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
+import nz.ac.auckland.se206.models.Level;
 import nz.ac.auckland.se206.profile.User;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 import nz.ac.auckland.se206.words.CategorySelector;
@@ -94,7 +96,7 @@ public class CanvasController {
 
   private String noUnderscoreWord;
 
-  private int initialCount = 60;
+  private int initialCount = 15;
 
   private int count = initialCount;
 
@@ -158,8 +160,25 @@ public class CanvasController {
 
     noUnderscoreWord = currentWord.replaceAll(" ", "_");
 
-    // Sets the timer to the count value
+    System.out.println(currentUser);
+    System.out.println(currentUser.getTimeSetting());
+    // Set timer count depending on the difficulty value
+    if (currentUser.getTimeSetting() == Level.EASY) {
+      initialCount = 60;
+      System.out.println("eas");
+    } else if (currentUser.getTimeSetting() == Level.MEDIUM) {
+      initialCount = 45;
+      System.out.println("m");
+    } else if (currentUser.getTimeSetting() == Level.HARD) {
+      initialCount = 30;
+      System.out.println("h");
+    } else if (currentUser.getTimeSetting() == Level.MASTER) {
+      initialCount = 15;
+      System.out.println("master");
+    }
+
     count = initialCount;
+
     time.setText(String.valueOf(count));
 
     // Sets the results label to display draw prompt
@@ -206,7 +225,6 @@ public class CanvasController {
               onReady();
               isReady = true;
             } catch (Exception e1) {
-              // TODO Auto-generated catch block
               e1.printStackTrace();
             }
           }
@@ -275,8 +293,8 @@ public class CanvasController {
 
   /** This function would increase the progress bar to match with the timer */
   private void increaseProgress() {
-    // Increases the progress bar by a frequency per 60 seconds
-    progress += (1.0 / 60.0);
+    // Increases the progress bar by a frequency per initial count number of seconds
+    progress += (1.0 / initialCount);
     myProgressBar.setProgress(progress);
 
     // The progress bar changes from green to orange under 30 seconds
@@ -337,13 +355,74 @@ public class CanvasController {
    * @throws Exception
    */
   private boolean isWin(List<Classification> classifications) throws Exception {
-    // Loops through top 3 predictions
-    for (int i = 0; i < 3; i++) {
-      // Checks if a prediction equals the keyword, if so stops game
-      if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
-        int winTime = initialCount - count;
-        addFastestWin(winTime);
-        addWin();
+
+    // If accuracy setting is easy, player could win if word is in top 1
+    if (currentUser.getAccuracySetting() == Level.EASY) {
+      // Loops through top 3 predictions
+      for (int i = 0; i < 3; i++) {
+        // Checks if a prediction equals the keyword, if so stops game
+        if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
+          if (checkConfidenceLevel(classifications, i) == true) {
+            int winTime = initialCount - count;
+            addFastestWin(winTime);
+            addWin();
+            return true;
+          }
+        }
+      }
+      // If accuracy setting is medium, player could win if word is in top 2
+    } else if (currentUser.getAccuracySetting() == Level.MEDIUM) {
+      // Loops through top 2 predictions
+      for (int i = 0; i < 2; i++) {
+        // Checks if a prediction equals the keyword, if so stops game
+        if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
+          if (checkConfidenceLevel(classifications, i) == true) {
+            int winTime = initialCount - count;
+            addFastestWin(winTime);
+            addWin();
+            return true;
+          }
+        }
+      }
+      // If accuracy setting is hard, player could win if word is in top 1
+    } else if (currentUser.getAccuracySetting() == Level.HARD) {
+      // Check top prediction only
+      if (classifications.get(0).getClassName().equals(noUnderscoreWord)) {
+        if (checkConfidenceLevel(classifications, 0) == true) {
+          int winTime = initialCount - count;
+          addFastestWin(winTime);
+          addWin();
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  /*
+   * Checks if the confidence level of the top predictions are of sufficient
+   * percentage for a win
+   */
+  private boolean checkConfidenceLevel(List<Classification> classifications, Integer wordIndex) {
+    // If user confidence level setting is easy
+    if (currentUser.getConfidenceSetting() == Level.EASY) {
+      if (classifications.get(wordIndex).getProbability() >= 0.01) {
+        return true;
+      }
+    } else if (currentUser.getConfidenceSetting() == Level.MEDIUM) {
+      // If user confidence level setting is medium
+      if (classifications.get(wordIndex).getProbability() >= 0.10) {
+        return true;
+      }
+    } else if (currentUser.getConfidenceSetting() == Level.HARD) {
+      // If user confidence level setting is hard
+      if (classifications.get(wordIndex).getProbability() >= 0.25) {
+        return true;
+      }
+    } else if (currentUser.getConfidenceSetting() == Level.MASTER) {
+      // If user confidence level setting is master
+      if (classifications.get(wordIndex).getProbability() >= 0.50) {
         return true;
       }
     }
@@ -558,10 +637,6 @@ public class CanvasController {
     // Update users hash map
     usersHashMap.put(currentUser.getUsername(), currentUser);
 
-    // Print user detail to console
-    System.out.println("CANVAS USER DETAILS");
-    System.out.println(currentUser.formatUserDetails());
-
     saveData();
   }
 
@@ -575,15 +650,53 @@ public class CanvasController {
    */
   protected String getRandomWord() throws IOException, CsvException, URISyntaxException {
     ArrayList<String> usedWords = currentUser.getUsedWords();
+    String randomWord = "";
+    Boolean firstSelection = true;
 
     // Get random word
     CategorySelector categorySelector = new CategorySelector();
-    String randomWord = categorySelector.getRandomCategory(Difficulty.E);
 
     // While the random word is already in the list of used words, choose another
     // random word
-    while (usedWords.contains(randomWord)) {
-      randomWord = categorySelector.getRandomCategory(Difficulty.E);
+    while (firstSelection == true || usedWords.contains(randomWord)) {
+      // If words difficulty setting is easy, select only easy words
+      if (currentUser.getWordsSetting() == Level.EASY) {
+        firstSelection = false;
+        randomWord = categorySelector.getRandomCategory(Difficulty.E);
+      } else if (currentUser.getWordsSetting() == Level.MEDIUM) {
+        // If words difficulty setting is medium, select only easy or medium words
+        firstSelection = false;
+        String[] possibleWords =
+            new String[] {
+              categorySelector.getRandomCategory(Difficulty.E),
+              categorySelector.getRandomCategory(Difficulty.M)
+            };
+
+        // randomly selects a number out of 2
+        Random random = new Random();
+        int select = random.nextInt(2);
+
+        randomWord = possibleWords[select];
+      } else if (currentUser.getWordsSetting() == Level.HARD) {
+        // If words difficulty setting is hard, select only easy, medium, or hard words
+        firstSelection = false;
+        String[] possibleWords =
+            new String[] {
+              categorySelector.getRandomCategory(Difficulty.E),
+              categorySelector.getRandomCategory(Difficulty.M),
+              categorySelector.getRandomCategory(Difficulty.H)
+            };
+
+        // randomly selects a number out of 3
+        Random random = new Random();
+        int select = random.nextInt(3);
+
+        randomWord = possibleWords[select];
+      } else if (currentUser.getWordsSetting() == Level.MASTER) {
+        // If words difficulty setting is master, select only hard words
+        firstSelection = false;
+        randomWord = categorySelector.getRandomCategory(Difficulty.H);
+      }
     }
 
     return randomWord;
@@ -619,6 +732,7 @@ public class CanvasController {
     menuController.setCurrentUser(currentUser);
   }
 
+  // TODO SAVING WORDS IS OVERWRITING, NOT WORKING
   /**
    * Saves any stats data. This is a manual save that is performed via a button (as it's going to be
    * very time consuming to write the save contents all the time)

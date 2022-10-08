@@ -312,7 +312,6 @@ public class User implements Serializable {
   private String formatDifficultySettings(ArrayList<Level> difficultyArray) {
     String difficultyString = "";
     for (int i = 0; i < difficultyArray.size(); i++) {
-      System.out.println(difficultyArray.get(i));
       if (difficultyArray.get(i) == Level.EASY) {
         difficultyString = difficultyString + "E";
       } else if (difficultyArray.get(i) == Level.MEDIUM) {
