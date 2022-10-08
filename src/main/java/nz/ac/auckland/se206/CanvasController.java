@@ -147,7 +147,15 @@ public class CanvasController {
 
     model = new DoodlePrediction();
 
-    // Gets a random word from the easy difficulty
+    System.out.println("REINITIALISED");
+
+    // Get updated current user
+    FXMLLoader menuLoader = SceneManager.getMenuLoader();
+    MenuController menuController = menuLoader.getController();
+    this.currentUser = menuController.getCurrentUser();
+    this.usersHashMap = menuController.getUsersHashMap();
+
+    // Gets a random word depending on difficulty setting
     currentWord = getRandomWord();
 
     // Displays the random word
@@ -160,6 +168,7 @@ public class CanvasController {
 
     noUnderscoreWord = currentWord.replaceAll(" ", "_");
 
+    System.out.println(currentUser.formatUserDetails());
     System.out.println(currentUser);
     System.out.println(currentUser.getTimeSetting());
     // Set timer count depending on the difficulty value
@@ -179,6 +188,7 @@ public class CanvasController {
 
     count = initialCount;
 
+    System.out.println("Time shoudl be " + count);
     time.setText(String.valueOf(count));
 
     // Sets the results label to display draw prompt
@@ -732,7 +742,6 @@ public class CanvasController {
     menuController.setCurrentUser(currentUser);
   }
 
-  // TODO SAVING WORDS IS OVERWRITING, NOT WORKING
   /**
    * Saves any stats data. This is a manual save that is performed via a button (as it's going to be
    * very time consuming to write the save contents all the time)

@@ -3,11 +3,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="400.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.DashboardController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1150.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.DashboardController">
    <children>
       <VBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="370.0">
          <children>
@@ -24,6 +26,37 @@
          </font>
       </Label>
       <Region prefHeight="100.0" prefWidth="400.0" />
+      <MenuButton fx:id="accuracySettingButton" mnemonicParsing="false" text="Accuracy">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#onAccuracySetEasy" text="Easy" />
+            <MenuItem mnemonicParsing="false" onAction="#onAccuracySetMedium" text="Medium" />
+            <MenuItem mnemonicParsing="false" onAction="#onAccuracySetHard" text="Hard" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="wordsSettingButton" mnemonicParsing="false" text="Words">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#onWordsSetEasy" text="Easy" />
+            <MenuItem mnemonicParsing="false" onAction="#onWordsSetMedium" text="Medium" />
+            <MenuItem mnemonicParsing="false" onAction="#onWordsSetHard" text="Hard" />
+            <MenuItem mnemonicParsing="false" onAction="#onWordsSetMaster" text="Master" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="timeSettingButton" mnemonicParsing="false" text="Time">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#onTimeSetEasy" text="Easy" />
+            <MenuItem mnemonicParsing="false" onAction="#onTimeSetMedium" text="Medium" />
+            <MenuItem mnemonicParsing="false" onAction="#onTimeSetHard" text="Hard" />
+            <MenuItem mnemonicParsing="false" onAction="#onTimeSetMaster" text="Master" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="confidenceSettingButton" mnemonicParsing="false" text="Confidence">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetEasy" text="Easy" />
+            <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetMedium" text="Medium" />
+            <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetHard" text="Hard" />
+            <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetMaster" text="Master" />
+         </items>
+      </MenuButton>
       <Button mnemonicParsing="false" onAction="#onSwitchToCanvas" prefHeight="35.0" prefWidth="110.0" text="Start!">
          <font>
             <Font size="18.0" />
