@@ -356,42 +356,76 @@ public class CanvasController {
    */
   private boolean isWin(List<Classification> classifications) throws Exception {
 
-    // If accuracy setting is easy, players wins if word is in top 3
+    // If accuracy setting is easy, player could win if word is in top 1
     if (currentUser.getAccuracySetting() == Level.EASY) {
       // Loops through top 3 predictions
       for (int i = 0; i < 3; i++) {
         // Checks if a prediction equals the keyword, if so stops game
         if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
-          int winTime = initialCount - count;
-          addFastestWin(winTime);
-          addWin();
-          return true;
+          if (checkConfidenceLevel(classifications, i) == true) {
+            int winTime = initialCount - count;
+            addFastestWin(winTime);
+            addWin();
+            return true;
+          }
         }
       }
-      // If accuracy setting is medium, players wins if word is in top 2
+      // If accuracy setting is medium, player could win if word is in top 2
     } else if (currentUser.getAccuracySetting() == Level.MEDIUM) {
-
       // Loops through top 2 predictions
       for (int i = 0; i < 2; i++) {
         // Checks if a prediction equals the keyword, if so stops game
         if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
+          if (checkConfidenceLevel(classifications, i) == true) {
+            int winTime = initialCount - count;
+            addFastestWin(winTime);
+            addWin();
+            return true;
+          }
+        }
+      }
+      // If accuracy setting is hard, player could win if word is in top 1
+    } else if (currentUser.getAccuracySetting() == Level.HARD) {
+      // Check top prediction only
+      if (classifications.get(0).getClassName().equals(noUnderscoreWord)) {
+        if (checkConfidenceLevel(classifications, 0) == true) {
           int winTime = initialCount - count;
           addFastestWin(winTime);
           addWin();
           return true;
         }
       }
-      // If accuracy setting is hard, players wins if word is in top 1
-    } else if (currentUser.getAccuracySetting() == Level.HARD) {
-      // Check top prediction only
-      if (classifications.get(0).getClassName().equals(noUnderscoreWord)) {
-        int winTime = initialCount - count;
-        addFastestWin(winTime);
-        addWin();
+    }
+
+    return false;
+  }
+
+  /*
+   * Checks if the confidence level of the top predictions are of sufficient
+   * percentage for a win
+   */
+  private boolean checkConfidenceLevel(List<Classification> classifications, Integer wordIndex) {
+    // If user confidence level setting is easy
+    if (currentUser.getConfidenceSetting() == Level.EASY) {
+      if (classifications.get(wordIndex).getProbability() >= 0.01) {
+        return true;
+      }
+    } else if (currentUser.getConfidenceSetting() == Level.MEDIUM) {
+      // If user confidence level setting is medium
+      if (classifications.get(wordIndex).getProbability() >= 0.10) {
+        return true;
+      }
+    } else if (currentUser.getConfidenceSetting() == Level.HARD) {
+      // If user confidence level setting is hard
+      if (classifications.get(wordIndex).getProbability() >= 0.25) {
+        return true;
+      }
+    } else if (currentUser.getConfidenceSetting() == Level.MASTER) {
+      // If user confidence level setting is master
+      if (classifications.get(wordIndex).getProbability() >= 0.50) {
         return true;
       }
     }
-
     return false;
   }
 
@@ -602,10 +636,6 @@ public class CanvasController {
 
     // Update users hash map
     usersHashMap.put(currentUser.getUsername(), currentUser);
-
-    // Print user detail to console
-    System.out.println("CANVAS USER DETAILS");
-    System.out.println(currentUser.formatUserDetails());
 
     saveData();
   }

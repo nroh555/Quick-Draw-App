@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="700.0" prefWidth="480.0" spacing="20.0" style="-fx-background-color: #FFEBCD;" stylesheets="@../css/canvas.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.CanvasController">
+<VBox alignment="CENTER" prefHeight="879.0" prefWidth="480.0" spacing="20.0" style="-fx-background-color: #FFEBCD;" stylesheets="@../css/canvas.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.CanvasController">
   <children>
       <VBox prefHeight="35.0" prefWidth="440.0">
          <children>
