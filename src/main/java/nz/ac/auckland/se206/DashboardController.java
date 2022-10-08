@@ -289,9 +289,5 @@ public class DashboardController {
     MenuController menuController = menuLoader.getController();
     menuController.setUsersHashMap(usersHashMap);
     menuController.setCurrentUser(currentUser);
-
-    System.out.println(currentUser.formatUserDetails());
-    System.out.println(currentUser);
-    System.out.println(currentUser.getTimeSetting());
   }
 }

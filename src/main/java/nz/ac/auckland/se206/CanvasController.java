@@ -147,8 +147,6 @@ public class CanvasController {
 
     model = new DoodlePrediction();
 
-    System.out.println("REINITIALISED");
-
     // Get updated current user
     FXMLLoader menuLoader = SceneManager.getMenuLoader();
     MenuController menuController = menuLoader.getController();
@@ -168,27 +166,19 @@ public class CanvasController {
 
     noUnderscoreWord = currentWord.replaceAll(" ", "_");
 
-    System.out.println(currentUser.formatUserDetails());
-    System.out.println(currentUser);
-    System.out.println(currentUser.getTimeSetting());
     // Set timer count depending on the difficulty value
     if (currentUser.getTimeSetting() == Level.EASY) {
       initialCount = 60;
-      System.out.println("eas");
     } else if (currentUser.getTimeSetting() == Level.MEDIUM) {
       initialCount = 45;
-      System.out.println("m");
     } else if (currentUser.getTimeSetting() == Level.HARD) {
       initialCount = 30;
-      System.out.println("h");
     } else if (currentUser.getTimeSetting() == Level.MASTER) {
       initialCount = 15;
-      System.out.println("master");
     }
 
     count = initialCount;
 
-    System.out.println("Time shoudl be " + count);
     time.setText(String.valueOf(count));
 
     // Sets the results label to display draw prompt
