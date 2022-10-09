@@ -1,55 +1,60 @@
 .button {
-	-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #FAFAD2, #FFFACD);
-	-fx-padding:8 9 9 9;
-	-fx-background-radius: 18;
-	-fx-background-insets:0,0 0 5 0,0 0 6 0,0 0 7 0;
-	-fx-effect: dropshadow(gaussian, rgba(0,0,0.4), 4, 0.0, 0, 1);
-	-fx-font-weight:bold;
-    -fx-font-family: papyrus;
-    -fx-font-size: 14px;
+  -fx-padding: 8 9 9 9;
+  -fx-background-radius: 18;
+  -fx-background-insets: 0, 0 0 5 0, 0 0 6 0, 0 0 7 0;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0.4), 4, 0, 0, 1);
 }
 
 .button:hover {
-	-fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #FFEBCD, #FFE4C4);
-
+  -fx-background-color: linear-gradient(
+    from 0% 93% to 0% 100%,
+    #ffebcd,
+    #ffe4c4
+  );
 }
 
 .button:pressed {
-	-fx-padding: 10 10 10 10;
-	-fx-background-insets: 2 0 0 0,2 0 3 0,2 0 4 0,2 0 5 0;
+  -fx-padding: 10 10 10 10;
+  -fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
 }
 
-.root{
-	-fx-background-color: #FFEBCD;
+#loginButton,
+#registerButton {
+  -fx-background-color: linear-gradient(
+    from 0% 93% to 0% 100%,
+    #fafad2,
+    #fffacd
+  );
 }
 
-#usernameField{
-    -fx-padding:11 12 12 12;
-	-fx-background-radius: 18;
-	-fx-background-insets:0,0 0 5 0,0 0 6 0,0 0 7 0;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0.4), 4, 0.0, 0, 1);
-    -fx-font-family: papyrus;
-    -fx-font-size:16px;
+#playerOneButton,
+#playerTwoButton,
+#playerThreeButton,
+#playerFourButton,
+#playerFiveButton,
+#playerSixButton,
+#playerSevenButton,
+#playerEightButton {
+  -fx-background-radius: 25;
+  -fx-background-color: rgba(0, 0, 0, 0);
+}
+
+#usernameField {
+  -fx-padding: 11 12 12 12;
+  -fx-background-radius: 18;
+  -fx-background-insets: 0, 0 0 5 0, 0 0 6 0, 0 0 7 0;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0.4), 4, 0, 0, 1);
 }
 
 #passwordField {
-    -fx-padding:11 12 12 12;
-	-fx-background-radius: 18;
-	-fx-background-insets:0,0 0 5 0,0 0 6 0,0 0 7 0;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0.4), 4, 0.0, 0, 1);
-    -fx-font-family: papyrus;
-    -fx-font-size:16px;
+  -fx-padding: 11 12 12 12;
+  -fx-background-radius: 18;
+  -fx-background-insets: 0, 0 0 5 0, 0 0 6 0, 0 0 7 0;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0.4), 4, 0, 0, 1);
 }
 
-.label{
-    -fx-font-weight: bold;
-    -fx-font-family: papyrus;
-    -fx-font-size:25px;
+.label {
 }
 
 #userStatusLabel {
-	-fx-font-size:15px;
 }
-
-
-

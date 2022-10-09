@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.models.Level;
 import nz.ac.auckland.se206.profile.User;
@@ -22,6 +23,42 @@ public class MenuController {
   @FXML private TextField usernameField;
 
   @FXML private Label userStatusLabel;
+
+  @FXML private Text playerOneText;
+
+  @FXML private Text playerTwoText;
+
+  @FXML private Text playerThreeText;
+
+  @FXML private Text playerFourText;
+
+  @FXML private Text playerFiveText;
+
+  @FXML private Text playerSixText;
+
+  @FXML private Text playerSevenText;
+
+  @FXML private Text playerEightText;
+
+  @FXML private Button playerOneButton;
+
+  @FXML private Button playerTwoButton;
+
+  @FXML private Button playerThreeButton;
+
+  @FXML private Button playerFourButton;
+
+  @FXML private Button playerFiveButton;
+
+  @FXML private Button playerSixButton;
+
+  @FXML private Button playerSevenButton;
+
+  @FXML private Button playerEightButton;
+
+  @FXML private Button loginButton;
+
+  @FXML private Button registerButton;
 
   // Create hashmap to store all of the users.
   private HashMap<String, User> usersHashMap = new HashMap<String, User>();
@@ -43,6 +80,37 @@ public class MenuController {
 
   public void setCurrentUser(User currentUser) {
     this.currentUser = currentUser;
+  }
+
+  public void initialize() throws IOException {
+    loadUsers();
+
+    loginButton.setDisable(true);
+    registerButton.setDisable(true);
+    usernameField.setDisable(true);
+
+    Integer profileIndex = 0;
+    // Loop through every user in the usersHashMap
+    for (String thisUser : usersHashMap.keySet()) {
+      if (profileIndex == 0) {
+        playerOneText.setText(thisUser);
+      } else if (profileIndex == 1) {
+        playerTwoText.setText(thisUser);
+      } else if (profileIndex == 2) {
+        playerThreeText.setText(thisUser);
+      } else if (profileIndex == 3) {
+        playerFourText.setText(thisUser);
+      } else if (profileIndex == 4) {
+        playerFiveText.setText(thisUser);
+      } else if (profileIndex == 5) {
+        playerSixText.setText(thisUser);
+      } else if (profileIndex == 6) {
+        playerSevenText.setText(thisUser);
+      } else if (profileIndex == 7) {
+        playerEightText.setText(thisUser);
+      }
+      profileIndex++;
+    }
   }
 
   /**
@@ -126,7 +194,7 @@ public class MenuController {
       // Add user to hashmap
 
       usersHashMap.put(usernameField.getText(), newUser);
-      userStatusLabel.setText("Successfully registered! You may now log in.");
+      userStatusLabel.setText("Successfully registered!");
 
       // Save the new user to the file
       BufferedWriter bf = null;
@@ -144,6 +212,7 @@ public class MenuController {
         // Print exceptions
         e.printStackTrace();
       } finally {
+        initialize();
         try {
           // Close the writer
           bf.close();
@@ -153,8 +222,7 @@ public class MenuController {
         }
       }
     } else {
-      userStatusLabel.setText(
-          "Sorry, this username is already taken! Please try a different username.");
+      userStatusLabel.setText("Sorry, this name is taken!");
     }
   }
 
@@ -195,8 +263,75 @@ public class MenuController {
       sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.DASHBOARD));
 
     } else {
-      userStatusLabel.setText(
-          "Sorry, those login details are incorrect! Please try again or register.");
+      userStatusLabel.setText("Sorry, incorrect login!");
     }
+  }
+
+  /** Sets the profile details on click */
+  private void setProfileDetails(Text thisText) {
+    // If the user profile has already been registered
+    if (!thisText.getText().equals("+")) {
+      // Display profile username at the bottom of the screen, and enable login button
+      registerButton.setDisable(true);
+      usernameField.setText(thisText.getText());
+      usernameField.setDisable(true);
+      loginButton.setDisable(false);
+      userStatusLabel.setText("Welcome, " + thisText.getText() + "!");
+    } else {
+      // If the user profile is empty (not registered yet)
+      loginButton.setDisable(true);
+      registerButton.setDisable(false);
+      usernameField.setText("");
+      usernameField.setDisable(false);
+      userStatusLabel.setText("You may register!");
+    }
+  }
+
+  /** Handles login/register for when user 1 is clicked */
+  @FXML
+  private void onP1Click() {
+    setProfileDetails(playerOneText);
+  }
+
+  /** Handles login/register for when user 1 is clicked */
+  @FXML
+  private void onP2Click() {
+    setProfileDetails(playerTwoText);
+  }
+
+  /** Handles login/register for when user 1 is clicked */
+  @FXML
+  private void onP3Click() {
+    setProfileDetails(playerThreeText);
+  }
+
+  /** Handles login/register for when user 1 is clicked */
+  @FXML
+  private void onP4Click() {
+    setProfileDetails(playerFourText);
+  }
+
+  /** Handles login/register for when user 1 is clicked */
+  @FXML
+  private void onP5Click() {
+    setProfileDetails(playerFiveText);
+  }
+
+  /** Handles login/register for when user 1 is clicked */
+  @FXML
+  private void onP6Click() {
+    setProfileDetails(playerSixText);
+  }
+
+  /** Handles login/register for when user 1 is clicked */
+  @FXML
+  private void onP7Click() {
+    setProfileDetails(playerSevenText);
+  }
+
+  /** Handles login/register for when user 1 is clicked */
+  @FXML
+  private void onP8Click() {
+    setProfileDetails(playerEightText);
   }
 }

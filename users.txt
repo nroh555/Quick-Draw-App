@@ -1,1 +1,6 @@
-hi:14:1:3:EESS:shovel
+hi:3:0:4:EESE:guitar
+a:0:0:0:EEEE
+b:0:0:0:EEEE
+c:0:0:0:EEEE
+d:0:0:0:EEEE
+hey:0:0:0:EEEE

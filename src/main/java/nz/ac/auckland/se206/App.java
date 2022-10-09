@@ -1,6 +1,9 @@
 package nz.ac.auckland.se206;
 
+import ai.djl.ModelException;
+import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -47,11 +50,14 @@ public class App extends Application {
    * @throws IOException If "src/main/resources/fxml/canvas.fxml" is not found.
    */
   @Override
-  public void start(final Stage stage) throws IOException {
+  public void start(final Stage stage)
+      throws ModelException, CsvException, URISyntaxException, IOException {
     // Saves the menu loader to scene manager
     FXMLLoader menuLoader = makeLoader("menu");
     SceneManager.setMenuLoader(menuLoader);
     SceneManager.addUi(SceneManager.AppUi.MENU, loadFxml(menuLoader));
+    MenuController menuController = menuLoader.getController();
+    menuController.initialize();
 
     // Saves the canvas loader to scene manager
     FXMLLoader canvasLoader = makeLoader("canvas");
@@ -68,7 +74,7 @@ public class App extends Application {
     SceneManager.setProfileLoader(profileLoader);
     SceneManager.addUi(SceneManager.AppUi.PROFILE, loadFxml(profileLoader));
 
-    final Scene scene = new Scene(SceneManager.getUi(SceneManager.AppUi.MENU), 480, 785);
+    final Scene scene = new Scene(SceneManager.getUi(SceneManager.AppUi.MENU), 1150, 800);
 
     // Close all threads when app is closed
     stage.setOnCloseRequest(
