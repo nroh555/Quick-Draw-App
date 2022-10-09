@@ -58,6 +58,8 @@ public class ProfileController {
 
     // Update used words label
     usedWordsBox.setText(currentUser.getUsedWordsString());
+
+    System.out.println(currentUser.getUsedWordsString());
   }
 
   /**

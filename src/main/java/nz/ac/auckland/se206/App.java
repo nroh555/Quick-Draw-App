@@ -68,7 +68,7 @@ public class App extends Application {
     SceneManager.setProfileLoader(profileLoader);
     SceneManager.addUi(SceneManager.AppUi.PROFILE, loadFxml(profileLoader));
 
-    final Scene scene = new Scene(SceneManager.getUi(SceneManager.AppUi.MENU), 480, 785);
+    final Scene scene = new Scene(SceneManager.getUi(SceneManager.AppUi.MENU), 1150, 800);
 
     // Close all threads when app is closed
     stage.setOnCloseRequest(

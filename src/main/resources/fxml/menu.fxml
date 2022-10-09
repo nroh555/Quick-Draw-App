@@ -6,42 +6,129 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="400.0" stylesheets="@../css/menu.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.MenuController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1150.0" stylesheets="@../css/menu.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.MenuController">
    <children>
-      <Label alignment="CENTER" prefHeight="23.0" prefWidth="355.0" stylesheets="@app.css" text="Quick, Draw! SE206  Edition" textAlignment="CENTER">
-         <font>
-            <Font name="System Italic" size="20.0" />
-         </font>
-      </Label>
-      <Region prefHeight="20.0" prefWidth="400.0" />
-      <ImageView fitHeight="241.0" fitWidth="241.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/logo-speedy-sketchers.png" />
-         </image>
-      </ImageView>
-      <Region prefHeight="20.0" prefWidth="400.0" />
-      <TextField fx:id="usernameField" maxWidth="200.0" minWidth="200.0" prefHeight="26.0" prefWidth="254.0" promptText="Enter Username">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></TextField>
-      <Region prefHeight="30.0" prefWidth="400.0" />
-      <Label fx:id="userStatusLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="469.0" textAlignment="CENTER">
-         <padding>
-            <Insets right="5.0" />
-         </padding>
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Region prefHeight="30.0" prefWidth="400.0" />
-      <Button mnemonicParsing="false" onAction="#onLogin" prefHeight="43.0" prefWidth="78.0" text="Login" />
-      <Region prefHeight="30.0" prefWidth="400.0" />
-      <Button mnemonicParsing="false" onAction="#onRegister" prefHeight="43.0" prefWidth="78.0" text="Register" />
-      <Region prefHeight="30.0" prefWidth="400.0" />
+      <AnchorPane prefHeight="905.0" prefWidth="1150.0">
+         <children>
+            <ImageView fitHeight="800.0" fitWidth="1150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Frame%205%20(1).png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="usernameField" layoutX="400.0" layoutY="590.0" maxWidth="310.0" minWidth="200.0" prefHeight="57.0" prefWidth="310.0" promptText="Enter Username">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </TextField>
+            <Button layoutX="400.0" layoutY="659.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="47.0" prefWidth="310.0" text="Login" />
+            <Button layoutX="786.0" layoutY="624.0" mnemonicParsing="false" onAction="#onRegister" prefHeight="43.0" prefWidth="78.0" text="Register">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+            </Button>
+            <Label fx:id="userStatusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="400.0" layoutY="550.0" prefHeight="33.0" prefWidth="310.0" textAlignment="CENTER">
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Button layoutX="234.0" layoutY="223.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0" />
+            <Button layoutX="400.0" layoutY="223.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0" />
+            <Button layoutX="567.0" layoutY="223.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0" />
+            <Button layoutX="732.0" layoutY="223.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0" />
+            <Button layoutX="234.0" layoutY="382.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0" />
+            <Button layoutX="400.0" layoutY="382.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0" />
+            <Button layoutX="567.0" layoutY="382.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0" />
+            <Button layoutX="732.0" layoutY="382.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0" />
+            <ImageView fitHeight="80.0" fitWidth="78.0" layoutX="265.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/cat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="78.0" layoutX="431.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/dog.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="78.0" layoutX="598.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/bear.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="78.0" layoutX="763.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/koala.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="78.0" layoutX="265.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/lion.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="78.0" layoutX="431.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/tiger.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="78.0" layoutX="598.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/monkey.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="78.0" layoutX="763.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/panda.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="251.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="106.359375">
+               <font>
+                  <Font name="Comic Sans MS" size="22.0" />
+               </font>
+            </Text>
+            <Text layoutX="417.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="106.359375">
+               <font>
+                  <Font name="Comic Sans MS" size="22.0" />
+               </font>
+            </Text>
+            <Text layoutX="584.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="106.359375">
+               <font>
+                  <Font name="Comic Sans MS" size="22.0" />
+               </font>
+            </Text>
+            <Text layoutX="749.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="106.359375">
+               <font>
+                  <Font name="Comic Sans MS" size="22.0" />
+               </font>
+            </Text>
+            <Text layoutX="251.0" layoutY="508.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="106.359375">
+               <font>
+                  <Font name="Comic Sans MS" size="22.0" />
+               </font>
+            </Text>
+            <Text layoutX="417.0" layoutY="507.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="106.359375">
+               <font>
+                  <Font name="Comic Sans MS" size="22.0" />
+               </font>
+            </Text>
+            <Text layoutX="584.0" layoutY="507.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="106.359375">
+               <font>
+                  <Font name="Comic Sans MS" size="22.0" />
+               </font>
+            </Text>
+            <Text layoutX="749.0" layoutY="507.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="106.359375">
+               <font>
+                  <Font name="Comic Sans MS" size="22.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
    </children>
    <opaqueInsets>
       <Insets />
