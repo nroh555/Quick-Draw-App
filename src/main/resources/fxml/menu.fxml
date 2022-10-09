@@ -32,28 +32,31 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffd9" height="140.0" layoutX="732.0" layoutY="382.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
             <TextField fx:id="usernameField" layoutX="400.0" layoutY="590.0" maxWidth="310.0" minWidth="200.0" prefHeight="57.0" prefWidth="310.0" promptText="Enter Username">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="Comic Sans MS Bold" size="22.0" />
                </font>
             </TextField>
             <Button fx:id="loginButton" layoutX="400.0" layoutY="663.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="47.0" prefWidth="140.0" text="Login">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <font>
+                  <Font name="Comic Sans MS" size="22.0" />
+               </font>
             </Button>
             <Button fx:id="registerButton" layoutX="567.0" layoutY="663.0" mnemonicParsing="false" onAction="#onRegister" prefHeight="47.0" prefWidth="140.0" text="Register">
                <font>
-                  <Font name="Comic Sans MS" size="12.0" />
+                  <Font name="Comic Sans MS" size="22.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="userStatusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="400.0" layoutY="550.0" prefHeight="33.0" prefWidth="310.0" textAlignment="CENTER">
+            <Label fx:id="userStatusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="400.0" layoutY="548.0" prefHeight="33.0" prefWidth="310.0" textAlignment="CENTER">
                <padding>
                   <Insets right="5.0" />
                </padding>
                <font>
-                  <Font size="10.0" />
+                  <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Label>
             <ImageView fitHeight="80.0" fitWidth="78.0" layoutX="265.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
@@ -136,42 +139,42 @@
                   <Font name="Comic Sans MS" size="22.0" />
                </font>
             </Text>
-            <Button fx:id="playerOneButton" layoutX="234.0" layoutY="223.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0">
+            <Button fx:id="playerOneButton" layoutX="234.0" layoutY="223.0" mnemonicParsing="false" onAction="#onP1Click" prefHeight="140.0" prefWidth="140.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="playerTwoButton" layoutX="400.0" layoutY="223.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0">
+            <Button fx:id="playerTwoButton" layoutX="400.0" layoutY="223.0" mnemonicParsing="false" onAction="#onP2Click" prefHeight="140.0" prefWidth="140.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="playerThreeButton" layoutX="567.0" layoutY="223.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0">
+            <Button fx:id="playerThreeButton" layoutX="567.0" layoutY="223.0" mnemonicParsing="false" onAction="#onP3Click" prefHeight="140.0" prefWidth="140.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="playerFourButton" layoutX="732.0" layoutY="223.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0">
+            <Button fx:id="playerFourButton" layoutX="732.0" layoutY="223.0" mnemonicParsing="false" onAction="#onP4Click" prefHeight="140.0" prefWidth="140.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="playerFiveButton" layoutX="234.0" layoutY="382.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0">
+            <Button fx:id="playerFiveButton" layoutX="234.0" layoutY="382.0" mnemonicParsing="false" onAction="#onP5Click" prefHeight="140.0" prefWidth="140.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="playerSixButton" layoutX="400.0" layoutY="382.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0">
+            <Button fx:id="playerSixButton" layoutX="400.0" layoutY="382.0" mnemonicParsing="false" onAction="#onP6Click" prefHeight="140.0" prefWidth="140.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="playerSevenButton" layoutX="567.0" layoutY="382.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0">
+            <Button fx:id="playerSevenButton" layoutX="567.0" layoutY="382.0" mnemonicParsing="false" onAction="#onP7Click" prefHeight="140.0" prefWidth="140.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="playerEightButton" layoutX="732.0" layoutY="382.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0" textFill="#941515">
+            <Button fx:id="playerEightButton" layoutX="732.0" layoutY="382.0" mnemonicParsing="false" onAction="#onP8Click" prefHeight="140.0" prefWidth="140.0" textFill="#941515">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
