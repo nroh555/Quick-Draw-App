@@ -25,11 +25,17 @@
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="logoutButton" layoutX="978.0" layoutY="53.0" mnemonicParsing="false" onAction="#onSwitchToMenu" prefHeight="36.0" prefWidth="94.0" text="Log out">
                <font>
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <TextArea fx:id="usedWordsBox" editable="false" layoutX="44.0" layoutY="515.0" prefHeight="183.0" prefWidth="414.0" stylesheets="@../css/profile.css">
                <font>
@@ -126,7 +132,7 @@
                   <Font name="Comic Sans MS" size="18.0" />
                </font>
             </Text>
-            <Text fx:id="badgeDescription" layoutX="689.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Finish a game within 30 seconds.">
+            <Text fx:id="badgeDescription" layoutX="673.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="304.9541015625">
                <font>
                   <Font name="Comic Sans MS" size="18.0" />
                </font>
