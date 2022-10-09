@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.models.Level;
 import nz.ac.auckland.se206.profile.User;
@@ -22,6 +23,38 @@ public class MenuController {
   @FXML private TextField usernameField;
 
   @FXML private Label userStatusLabel;
+
+  @FXML private Text playerOneText;
+
+  @FXML private Text playerTwoText;
+
+  @FXML private Text playerThreeText;
+
+  @FXML private Text playerFourText;
+
+  @FXML private Text playerFiveText;
+
+  @FXML private Text playerSixText;
+
+  @FXML private Text playerSevenText;
+
+  @FXML private Text playerEightText;
+
+  @FXML private Button playerOneButton;
+
+  @FXML private Button playerTwoButton;
+
+  @FXML private Button playerThreeButton;
+
+  @FXML private Button playerFourButton;
+
+  @FXML private Button playerFiveButton;
+
+  @FXML private Button playerSixButton;
+
+  @FXML private Button playerSevenButton;
+
+  @FXML private Button playerEightButton;
 
   // Create hashmap to store all of the users.
   private HashMap<String, User> usersHashMap = new HashMap<String, User>();
@@ -43,6 +76,33 @@ public class MenuController {
 
   public void setCurrentUser(User currentUser) {
     this.currentUser = currentUser;
+  }
+
+  public void initialize() throws IOException {
+    loadUsers();
+
+    Integer profileIndex = 0;
+    // Loop through every user in the usersHashMap
+    for (String thisUser : usersHashMap.keySet()) {
+      if (profileIndex == 0) {
+        playerOneText.setText(thisUser);
+      } else if (profileIndex == 1) {
+        playerTwoText.setText(thisUser);
+      } else if (profileIndex == 2) {
+        playerThreeText.setText(thisUser);
+      } else if (profileIndex == 3) {
+        playerFourText.setText(thisUser);
+      } else if (profileIndex == 4) {
+        playerFiveText.setText(thisUser);
+      } else if (profileIndex == 5) {
+        playerSixText.setText(thisUser);
+      } else if (profileIndex == 6) {
+        playerSevenText.setText(thisUser);
+      } else if (profileIndex == 7) {
+        playerEightText.setText(thisUser);
+      }
+      profileIndex++;
+    }
   }
 
   /**
@@ -144,6 +204,7 @@ public class MenuController {
         // Print exceptions
         e.printStackTrace();
       } finally {
+        initialize();
         try {
           // Close the writer
           bf.close();

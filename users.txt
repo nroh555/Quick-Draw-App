@@ -1,1 +1,8 @@
 hi:3:0:4:EESE:guitar
+a:0:0:0:EEEE
+b:0:0:0:EEEE
+c:0:0:0:EEEE
+d:0:0:0:EEEE
+e:0:0:0:EEEE
+f:0:0:0:EEEE
+:0:0:0:EEEE

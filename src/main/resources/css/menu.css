@@ -1,9 +1,4 @@
 .button {
-  -fx-background-color: linear-gradient(
-    from 0% 93% to 0% 100%,
-    #fafad2,
-    #fffacd
-  );
   -fx-padding: 8 9 9 9;
   -fx-background-radius: 18;
   -fx-background-insets: 0, 0 0 5 0, 0 0 6 0, 0 0 7 0;
@@ -26,7 +21,25 @@
   -fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
 }
 
-.root {
+#loginButton,
+#registerButton {
+  -fx-background-color: linear-gradient(
+    from 0% 93% to 0% 100%,
+    #fafad2,
+    #fffacd
+  );
+}
+
+#playerOneButton,
+#playerTwoButton,
+#playerThreeButton,
+#playerFourButton,
+#playerFiveButton,
+#playerSixButton,
+#playerSevenButton,
+#playerEightButton {
+  -fx-background-radius: 25;
+  -fx-background-color: rgba(0, 0, 0, 0);
 }
 
 #usernameField {
