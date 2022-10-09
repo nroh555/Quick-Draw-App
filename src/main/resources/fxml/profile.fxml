@@ -126,7 +126,7 @@
                   <Font name="Comic Sans MS" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="689.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Finish a game within 30 seconds.">
+            <Text fx:id="badgeDescription" layoutX="689.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Finish a game within 30 seconds.">
                <font>
                   <Font name="Comic Sans MS" size="18.0" />
                </font>
@@ -136,62 +136,62 @@
                   <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="b1b" layoutX="623.0" layoutY="463.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="50.0">
+            <Button fx:id="b1b" layoutX="624.0" layoutY="463.0" mnemonicParsing="false" onAction="#onB1Click" prefHeight="70.0" prefWidth="50.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="b2b" layoutX="693.0" layoutY="463.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="50.0">
+            <Button fx:id="b2b" layoutX="693.0" layoutY="463.0" mnemonicParsing="false" onAction="#onB2Click" prefHeight="70.0" prefWidth="50.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="b3b" layoutX="763.0" layoutY="463.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="50.0">
+            <Button fx:id="b3b" layoutX="764.0" layoutY="463.0" mnemonicParsing="false" onAction="#onB3Click" prefHeight="70.0" prefWidth="50.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="b4b" layoutX="833.0" layoutY="463.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="50.0">
+            <Button fx:id="b4b" layoutX="833.0" layoutY="463.0" mnemonicParsing="false" onAction="#onB4Click" prefHeight="70.0" prefWidth="50.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="b5b" layoutX="903.0" layoutY="463.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="50.0">
+            <Button fx:id="b5b" layoutX="903.0" layoutY="463.0" mnemonicParsing="false" onAction="#onB5Click" prefHeight="70.0" prefWidth="50.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="b6b" layoutX="973.0" layoutY="463.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="50.0">
+            <Button fx:id="b6b" layoutX="973.0" layoutY="463.0" mnemonicParsing="false" onAction="#onB6Click" prefHeight="70.0" prefWidth="50.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="b7b" layoutX="623.0" layoutY="587.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="50.0">
+            <Button fx:id="b7b" layoutX="623.0" layoutY="587.0" mnemonicParsing="false" onAction="#onB7Click" prefHeight="70.0" prefWidth="50.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="b8b" layoutX="693.0" layoutY="587.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="50.0">
+            <Button fx:id="b8b" layoutX="693.0" layoutY="587.0" mnemonicParsing="false" onAction="#onB8Click" prefHeight="70.0" prefWidth="50.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="b9b" layoutX="763.0" layoutY="587.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="50.0">
+            <Button fx:id="b9b" layoutX="763.0" layoutY="587.0" mnemonicParsing="false" onAction="#onB9Click" prefHeight="70.0" prefWidth="50.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="b10b" layoutX="833.0" layoutY="587.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="50.0">
+            <Button fx:id="b10b" layoutX="833.0" layoutY="587.0" mnemonicParsing="false" onAction="#onB10Click" prefHeight="70.0" prefWidth="50.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="b11b" layoutX="903.0" layoutY="587.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="50.0">
+            <Button fx:id="b11b" layoutX="903.0" layoutY="587.0" mnemonicParsing="false" onAction="#onB11Click" prefHeight="70.0" prefWidth="50.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="b12b" layoutX="973.0" layoutY="587.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="50.0">
+            <Button fx:id="b12b" layoutX="973.0" layoutY="587.0" mnemonicParsing="false" onAction="#onB12Click" prefHeight="70.0" prefWidth="50.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
