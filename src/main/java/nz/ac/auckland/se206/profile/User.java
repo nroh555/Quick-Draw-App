@@ -116,14 +116,6 @@ public class User implements Serializable {
             + losses.toString()
             + "\nFastest win: "
             + fastestWinDisplay
-            + "\n"
-            + formatSettingForDisplay(accuracySetting)
-            + "\n"
-            + formatSettingForDisplay(wordsSetting)
-            + "\n"
-            + formatSettingForDisplay(timeSetting)
-            + "\n"
-            + formatSettingForDisplay(confidenceSetting)
             + "\nUsed words: ";
 
     return displayString;

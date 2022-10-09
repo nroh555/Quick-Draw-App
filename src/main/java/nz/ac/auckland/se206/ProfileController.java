@@ -21,6 +21,10 @@ public class ProfileController {
 
   @FXML private TextArea usedWordsBox;
 
+  @FXML private Button backButton;
+
+  @FXML private Button logoutButton;
+
   // Create hashmap to store all of the users.
   private HashMap<String, User> usersHashMap = new HashMap<String, User>();
 
