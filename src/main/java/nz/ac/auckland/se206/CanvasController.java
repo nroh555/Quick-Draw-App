@@ -58,57 +58,59 @@ import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
  */
 public class CanvasController {
 
-  @FXML private Canvas canvas;
+  @FXML protected Canvas canvas;
 
-  @FXML private Label wordLabel;
+  @FXML protected Label wordLabel;
 
-  @FXML private Label time;
+  @FXML protected Label time;
 
-  @FXML private Label predictionLabel;
+  @FXML protected Label predictionLabel;
 
-  @FXML private Label resultLabel;
+  @FXML protected Label resultLabel;
 
-  @FXML private Button playAgainButton;
+  @FXML protected Button playAgainButton;
 
-  @FXML private Button penButton;
+  @FXML protected Button penButton;
 
-  @FXML private Button eraserButton;
+  @FXML protected Button eraserButton;
 
-  @FXML private Button clearButton;
+  @FXML protected Button clearButton;
 
-  @FXML private Button backButton;
+  @FXML protected Button backButton;
 
-  @FXML private Button saveDrawingButton;
+  @FXML protected Button saveDrawingButton;
 
-  @FXML private ProgressBar myProgressBar;
+  @FXML protected ProgressBar myProgressBar;
 
-  @FXML private Button myButton;
+  @FXML protected Button myButton;
 
-  @FXML private Label myLabel;
+  @FXML protected Label myLabel;
 
-  private double progress;
+  protected double progress;
 
-  private GraphicsContext graphic;
+  protected GraphicsContext graphic;
 
-  private DoodlePrediction model;
+  protected DoodlePrediction model;
 
-  private String currentWord;
+  protected String currentWord;
 
-  private String noUnderscoreWord;
+  protected String noUnderscoreWord;
 
-  private int initialCount = 15;
+  protected int initialCount = 15;
 
-  private int count = initialCount;
+  protected int count = initialCount;
 
-  private boolean gameOver = false;
+  protected boolean gameOver = false;
 
-  private List<Classification> predictionResults;
+  protected List<Classification> predictionResults;
 
-  private String predictionString;
+  protected String predictionString;
 
-  private String endMessage;
+  protected String endMessage;
 
-  private boolean isReady = false;
+  protected boolean isReady = false;
+  
+  protected Color currentColor = Color.BLACK;
 
   // Create hashmap to store all of the users.
   private HashMap<String, User> usersHashMap = new HashMap<String, User>();
@@ -215,7 +217,7 @@ public class CanvasController {
    *
    * @param colour Colour of the brush
    */
-  private void setPen(Color colour, double brushSize) {
+  protected void setPen(Color colour, double brushSize) {
     // save coordinates when mouse is pressed on the canvas
     canvas.setOnMouseDragged(
         e -> {

@@ -99,7 +99,7 @@ public class DashboardController {
     Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
     sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.CANVAS));
   }
-  
+
   /**
    * Button to switch to the zen canvas page
    *
