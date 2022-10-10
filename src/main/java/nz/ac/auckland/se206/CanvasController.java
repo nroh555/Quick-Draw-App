@@ -64,7 +64,7 @@ public class CanvasController {
 
   @FXML private Label time;
 
-  @FXML private Label predictionBox1;
+  @FXML private Label predictionLabel;
 
   @FXML private Label resultLabel;
 
@@ -192,7 +192,7 @@ public class CanvasController {
     onClear();
 
     // Clears predictions
-    predictionBox1.setText("");
+    predictionLabel.setText("");
   }
 
   /**
@@ -329,7 +329,7 @@ public class CanvasController {
   private void updatePredictionText() throws Exception {
 
     // Updates the GUI to display the predictions
-    predictionBox1.setText(predictionString);
+    predictionLabel.setText(predictionString);
 
     // Check if user has won
     if (isWin(predictionResults)) {

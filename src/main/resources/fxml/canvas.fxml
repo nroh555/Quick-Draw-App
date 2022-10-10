@@ -1,97 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="879.0" prefWidth="480.0" spacing="20.0" style="-fx-background-color: #FFEBCD;" stylesheets="@../css/canvas.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.CanvasController">
-  <children>
-      <VBox prefHeight="35.0" prefWidth="440.0">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/canvas.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.CanvasController">
+   <children>
+      <Pane prefHeight="1077.0" prefWidth="1110.0">
          <children>
-            <Button fx:id="backButton" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#onSwitchToDashboard" prefHeight="47.0" prefWidth="95.0" text="Back" textAlignment="RIGHT">
+            <ImageView fitHeight="806.0" fitWidth="1150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/canvas_frame.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="backButton" alignment="CENTER" layoutX="33.0" layoutY="52.0" mnemonicParsing="false" onAction="#onSwitchToDashboard" prefHeight="47.0" prefWidth="95.0" text="Back">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ProgressBar fx:id="myProgressBar" layoutX="393.0" layoutY="170.0" prefHeight="30.0" prefWidth="356.0" progress="0.0" style="-fx-border-color: black;" />
+            <Label fx:id="time" alignment="CENTER" layoutX="408.0" layoutY="99.0" prefHeight="54.0" prefWidth="355.0" text="time" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
-            </Button>
+            </Label>
+            <Label fx:id="wordLabel" alignment="CENTER" layoutX="408.0" layoutY="60.0" prefHeight="32.0" prefWidth="355.0" text="word" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="penButton" disable="true" layoutX="154.0" layoutY="655.0" mnemonicParsing="false" onAction="#onBlackPen" prefHeight="25.0" prefWidth="130.0" text="Pen" />
+            <Button fx:id="eraserButton" disable="true" layoutX="318.0" layoutY="655.0" mnemonicParsing="false" onAction="#onErase" prefHeight="25.0" prefWidth="130.0" text="Eraser" />
+            <Button fx:id="clearButton" disable="true" layoutX="464.0" layoutY="655.0" mnemonicParsing="false" onAction="#onClear" prefHeight="25.0" prefWidth="130.0" text="Clear" />
+            <Button fx:id="saveDrawingButton" disable="true" layoutX="615.0" layoutY="655.0" mnemonicParsing="false" onAction="#onSaveCurrentSnapshotOnFileSpecific" prefHeight="25.0" prefWidth="130.0" text="Save drawing" />
+            <Button fx:id="playAgainButton" alignment="CENTER" disable="true" layoutX="770.0" layoutY="655.0" mnemonicParsing="false" onAction="#onInitialize" prefHeight="25.0" prefWidth="130.0" text="Play again" />
+            <VBox fx:id="canvasBox" layoutX="128.0" layoutY="286.0" prefHeight="315.0" prefWidth="468.0">
+               <children>
+                  <Canvas fx:id="canvas" height="314.0" width="467.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Canvas>
+               </children>
+            </VBox>
+            <Label fx:id="resultLabel" alignment="CENTER" layoutX="723.0" layoutY="570.0" prefHeight="32.0" prefWidth="355.0" text="word" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="predictionLabel" layoutX="749.0" layoutY="336.0" prefHeight="200.0" prefWidth="277.0" text="predictions" />
          </children>
-      </VBox>
-      <Label fx:id="wordLabel" alignment="CENTER" prefHeight="32.0" prefWidth="355.0" text="word" textAlignment="CENTER">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="time" alignment="CENTER" prefHeight="54.0" prefWidth="355.0" text="time" textAlignment="CENTER">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="time1" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="time" textAlignment="CENTER">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <graphic>
-            <ProgressBar fx:id="myProgressBar" prefHeight="30.0" prefWidth="356.0" progress="0.0" style="-fx-border-color: black;" />
-         </graphic>
-      </Label>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <VBox fx:id="canvasBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;">
-               <children>
-                <Canvas fx:id="canvas" height="243.0" width="400.0">
-                  <cursor>
-                    <Cursor fx:constant="HAND" />
-                  </cursor>
-                </Canvas>
-               </children>
-            </VBox>
-            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-         </children>
-      </HBox>
-      <Label fx:id="resultLabel" text="result message">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <HBox alignment="CENTER" prefHeight="60.0" prefWidth="480.0">
-         <children>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="241.0">
-               <children>
-                  <Button fx:id="playAgainButton" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#onInitialize" prefHeight="25.0" prefWidth="130.0" text="Play again" />
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-    <HBox alignment="CENTER" prefHeight="194.0" prefWidth="480.0">
-      <children>
-            <VBox fx:id="predictionLabel" alignment="TOP_CENTER" prefHeight="152.0" prefWidth="241.0">
-               <children>
-                  <Label fx:id="predictionBox1" prefHeight="197.0" prefWidth="218.0" text="predictions" />
-               </children>
-            </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="152.0" prefWidth="241.0">
-               <children>
-                  <Button fx:id="penButton" disable="true" mnemonicParsing="false" onAction="#onBlackPen" prefHeight="25.0" prefWidth="130.0" text="Pen" />
-                  <Region prefHeight="20.0" prefWidth="245.0" />
-                  <Button fx:id="eraserButton" disable="true" mnemonicParsing="false" onAction="#onErase" prefHeight="25.0" prefWidth="130.0" text="Eraser" />
-                  <Region prefHeight="20.0" prefWidth="245.0" />
-              <Button fx:id="clearButton" disable="true" mnemonicParsing="false" onAction="#onClear" prefHeight="25.0" prefWidth="130.0" text="Clear" />
-                  <Region prefHeight="20.0" prefWidth="245.0" />
-                  <Button fx:id="saveDrawingButton" disable="true" mnemonicParsing="false" onAction="#onSaveCurrentSnapshotOnFileSpecific" prefHeight="25.0" prefWidth="130.0" text="Save drawing" />
-               </children>
-            </VBox>
-      </children>
-    </HBox>
-
-  </children>
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-  </padding>
+      </Pane>
+   </children>
 </VBox>
