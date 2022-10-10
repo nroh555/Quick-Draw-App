@@ -109,14 +109,14 @@ public class CanvasController {
   protected String endMessage;
 
   protected boolean isReady = false;
-  
+
   protected Color currentColor = Color.BLACK;
 
   // Create hashmap to store all of the users.
-  private HashMap<String, User> usersHashMap = new HashMap<String, User>();
+  protected HashMap<String, User> usersHashMap = new HashMap<String, User>();
 
   // Current user logged in
-  private User currentUser = new User("None");
+  protected User currentUser = new User("None");
 
   public HashMap<String, User> getUsersHashMap() {
     return usersHashMap;
@@ -206,7 +206,8 @@ public class CanvasController {
    * @throws URISyntaxException
    */
   @FXML
-  private void onInitialize() throws ModelException, IOException, CsvException, URISyntaxException {
+  protected void onInitialize()
+      throws ModelException, IOException, CsvException, URISyntaxException {
     initialize();
     playAgainButton.setDisable(true);
     saveDrawingButton.setDisable(true);
@@ -246,7 +247,7 @@ public class CanvasController {
   public void setCurrentColor(Color colour) {
     this.currentColor = colour;
   }
-  
+
   /** Sets the brush to erase */
   @FXML
   private void onErase() {
@@ -262,7 +263,7 @@ public class CanvasController {
 
   /** Sets the brush to pen */
   @FXML
-  private void onPen() {
+  protected void onPen() {
     // Enable eraser button
     eraserButton.setDisable(false);
 
@@ -275,7 +276,7 @@ public class CanvasController {
 
   /** This method is called when the "Clear" button is pressed. */
   @FXML
-  private void onClear() {
+  protected void onClear() {
     graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     if (isReady) {
       onPen();
@@ -332,7 +333,7 @@ public class CanvasController {
    *
    * @throws Exception
    */
-  private void updatePredictionText() throws Exception {
+  protected void updatePredictionText() throws Exception {
 
     // Updates the GUI to display the predictions
     predictionLabel.setText(predictionString);
@@ -587,7 +588,7 @@ public class CanvasController {
    * @throws Exception
    */
   @FXML
-  private void onReady() throws Exception {
+  protected void onReady() throws Exception {
     // Enables the canvas
     canvas.setDisable(false);
 
