@@ -5,62 +5,137 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1150.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.DashboardController">
    <children>
-      <VBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="370.0">
+      <Pane prefHeight="783.0" prefWidth="1110.0">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onSwitchToProfile" prefHeight="47.0" prefWidth="95.0" text="Profile">
+            <ImageView fitHeight="800.0" fitWidth="1391.0" layoutX="-20.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Frame%206%20(3).png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER" layoutX="948.0" layoutY="59.0" mnemonicParsing="false" onAction="#onSwitchToProfile" prefHeight="52.0" prefWidth="136.0" text="Profile">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Comic Sans MS" size="24.0" />
+               </font>
+            </Button>
+            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="407.0" layoutY="66.0" prefHeight="23.0" prefWidth="355.0" text="Welcome, .......... !" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS" size="36.0" />
+               </font>
+            </Label>
+            <MenuButton fx:id="accuracySettingButton" layoutX="65.0" layoutY="273.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" text="Accuracy" textAlignment="CENTER">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onAccuracySetEasy" text="Easy" />
+                  <MenuItem mnemonicParsing="false" onAction="#onAccuracySetMedium" text="Medium" />
+                  <MenuItem mnemonicParsing="false" onAction="#onAccuracySetHard" text="Hard" />
+               </items>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </MenuButton>
+            <MenuButton fx:id="wordsSettingButton" layoutX="65.0" layoutY="349.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" text="Words" textAlignment="CENTER">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onWordsSetEasy" text="Easy" />
+                  <MenuItem mnemonicParsing="false" onAction="#onWordsSetMedium" text="Medium" />
+                  <MenuItem mnemonicParsing="false" onAction="#onWordsSetHard" text="Hard" />
+                  <MenuItem mnemonicParsing="false" onAction="#onWordsSetMaster" text="Master" />
+               </items>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </MenuButton>
+            <MenuButton fx:id="timeSettingButton" layoutX="65.0" layoutY="426.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" text="Time" textAlignment="CENTER">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onTimeSetEasy" text="Easy" />
+                  <MenuItem mnemonicParsing="false" onAction="#onTimeSetMedium" text="Medium" />
+                  <MenuItem mnemonicParsing="false" onAction="#onTimeSetHard" text="Hard" />
+                  <MenuItem mnemonicParsing="false" onAction="#onTimeSetMaster" text="Master" />
+               </items>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </MenuButton>
+            <MenuButton fx:id="confidenceSettingButton" layoutX="65.0" layoutY="504.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" text="Confidence" textAlignment="CENTER">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetEasy" text="Easy" />
+                  <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetMedium" text="Medium" />
+                  <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetHard" text="Hard" />
+                  <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetMaster" text="Master" />
+               </items>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </MenuButton>
+            <Label alignment="CENTER" layoutX="162.0" layoutY="148.0" prefHeight="51.0" prefWidth="376.0" text="Settings (Normal Mode Only!)" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS" size="24.0" />
+               </font>
+            </Label>
+            <TextArea layoutX="299.0" layoutY="266.0" prefHeight="68.0" prefWidth="267.0" text="Accuracy: How many of the top predictions could be accepted." wrapText="true">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </TextArea>
+            <TextArea layoutX="299.0" layoutY="342.0" prefHeight="68.0" prefWidth="267.0" text="Words: Difficulty of the words you may be given to draw." wrapText="true">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </TextArea>
+            <TextArea layoutX="299.0" layoutY="419.0" prefHeight="68.0" prefWidth="267.0" text="Time: How long you get to draw your image." wrapText="true">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </TextArea>
+            <TextArea layoutX="299.0" layoutY="497.0" prefHeight="68.0" prefWidth="267.0" text="Confidence: How confident the machine is in their prediction." wrapText="true">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </TextArea>
+            <ImageView fitHeight="51.0" fitWidth="50.0" layoutX="112.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/setting.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="385.0" layoutX="641.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Group%202%20(2).png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="385.0" layoutX="641.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Group%203%20(1).png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="385.0" layoutX="641.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Group%204.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="848.0" layoutY="272.0" mnemonicParsing="false" onAction="#onSwitchToCanvas" prefHeight="43.0" prefWidth="153.0" text="Start game!">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="848.0" layoutY="435.0" mnemonicParsing="false" onAction="#onSwitchToCanvas" prefHeight="43.0" prefWidth="153.0" text="Start game!">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="848.0" layoutY="601.0" mnemonicParsing="false" onAction="#onSwitchToCanvas" prefHeight="43.0" prefWidth="153.0" text="Start game!">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
                </font>
             </Button>
          </children>
-      </VBox>
-      <Label fx:id="welcomeLabel" alignment="CENTER" prefHeight="23.0" prefWidth="355.0" text="Welcome, .......... !" textAlignment="CENTER">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Region prefHeight="100.0" prefWidth="400.0" />
-      <MenuButton fx:id="accuracySettingButton" mnemonicParsing="false" text="Accuracy">
-         <items>
-            <MenuItem mnemonicParsing="false" onAction="#onAccuracySetEasy" text="Easy" />
-            <MenuItem mnemonicParsing="false" onAction="#onAccuracySetMedium" text="Medium" />
-            <MenuItem mnemonicParsing="false" onAction="#onAccuracySetHard" text="Hard" />
-         </items>
-      </MenuButton>
-      <MenuButton fx:id="wordsSettingButton" mnemonicParsing="false" text="Words">
-         <items>
-            <MenuItem mnemonicParsing="false" onAction="#onWordsSetEasy" text="Easy" />
-            <MenuItem mnemonicParsing="false" onAction="#onWordsSetMedium" text="Medium" />
-            <MenuItem mnemonicParsing="false" onAction="#onWordsSetHard" text="Hard" />
-            <MenuItem mnemonicParsing="false" onAction="#onWordsSetMaster" text="Master" />
-         </items>
-      </MenuButton>
-      <MenuButton fx:id="timeSettingButton" mnemonicParsing="false" text="Time">
-         <items>
-            <MenuItem mnemonicParsing="false" onAction="#onTimeSetEasy" text="Easy" />
-            <MenuItem mnemonicParsing="false" onAction="#onTimeSetMedium" text="Medium" />
-            <MenuItem mnemonicParsing="false" onAction="#onTimeSetHard" text="Hard" />
-            <MenuItem mnemonicParsing="false" onAction="#onTimeSetMaster" text="Master" />
-         </items>
-      </MenuButton>
-      <MenuButton fx:id="confidenceSettingButton" mnemonicParsing="false" text="Confidence">
-         <items>
-            <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetEasy" text="Easy" />
-            <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetMedium" text="Medium" />
-            <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetHard" text="Hard" />
-            <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetMaster" text="Master" />
-         </items>
-      </MenuButton>
-      <Button mnemonicParsing="false" onAction="#onSwitchToCanvas" prefHeight="35.0" prefWidth="110.0" text="Start!">
-         <font>
-            <Font size="18.0" />
-         </font></Button>
+      </Pane>
    </children>
    <padding>
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

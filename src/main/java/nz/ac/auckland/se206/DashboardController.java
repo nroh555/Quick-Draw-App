@@ -30,6 +30,8 @@ public class DashboardController {
 
   @FXML private MenuButton confidenceSettingButton;
 
+  @FXML private Button startNormalGame;
+
   // Create hashmap to store all of the users.
   private HashMap<String, User> usersHashMap = new HashMap<String, User>();
 
