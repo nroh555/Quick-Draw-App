@@ -15,35 +15,53 @@
    <children>
       <Pane prefHeight="1077.0" prefWidth="1110.0">
          <children>
-            <ImageView fitHeight="806.0" fitWidth="1150.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="806.0" fitWidth="1150.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/canvas_frame.png" />
                </image>
             </ImageView>
-            <Button fx:id="backButton" alignment="CENTER" layoutX="33.0" layoutY="52.0" mnemonicParsing="false" onAction="#onSwitchToDashboard" prefHeight="47.0" prefWidth="95.0" text="Back">
-               <font>
-                  <Font name="Comic Sans MS" size="20.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <ProgressBar fx:id="myProgressBar" layoutX="393.0" layoutY="170.0" prefHeight="30.0" prefWidth="356.0" progress="0.0" style="-fx-border-color: black;" />
-            <Label fx:id="time" alignment="CENTER" layoutX="408.0" layoutY="99.0" prefHeight="54.0" prefWidth="355.0" text="time" textAlignment="CENTER">
+            <ProgressBar fx:id="myProgressBar" layoutX="607.0" layoutY="165.0" prefHeight="30.0" prefWidth="356.0" progress="0.0" style="-fx-border-color: black;" />
+            <Label fx:id="time" alignment="CENTER" layoutX="200.0" layoutY="75.0" prefHeight="208.0" prefWidth="377.0" text="time" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="138.0" fitWidth="198.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/timer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Label>
             <Label fx:id="wordLabel" alignment="CENTER" layoutX="408.0" layoutY="60.0" prefHeight="32.0" prefWidth="355.0" text="word" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="penButton" disable="true" layoutX="154.0" layoutY="655.0" mnemonicParsing="false" onAction="#onBlackPen" prefHeight="25.0" prefWidth="130.0" text="Pen" />
-            <Button fx:id="eraserButton" disable="true" layoutX="318.0" layoutY="655.0" mnemonicParsing="false" onAction="#onErase" prefHeight="25.0" prefWidth="130.0" text="Eraser" />
-            <Button fx:id="clearButton" disable="true" layoutX="464.0" layoutY="655.0" mnemonicParsing="false" onAction="#onClear" prefHeight="25.0" prefWidth="130.0" text="Clear" />
-            <Button fx:id="saveDrawingButton" disable="true" layoutX="615.0" layoutY="655.0" mnemonicParsing="false" onAction="#onSaveCurrentSnapshotOnFileSpecific" prefHeight="25.0" prefWidth="130.0" text="Save drawing" />
-            <Button fx:id="playAgainButton" alignment="CENTER" disable="true" layoutX="770.0" layoutY="655.0" mnemonicParsing="false" onAction="#onInitialize" prefHeight="25.0" prefWidth="130.0" text="Play again" />
+            <Button fx:id="penButton" disable="true" layoutX="128.0" layoutY="615.0" mnemonicParsing="false" onAction="#onBlackPen" prefHeight="101.0" prefWidth="115.0">
+               <graphic>
+                  <ImageView fitHeight="110.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/pencil.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="eraserButton" disable="true" layoutX="300.0" layoutY="615.0" mnemonicParsing="false" onAction="#onErase" prefHeight="127.0" prefWidth="115.0">
+               <graphic>
+                  <ImageView fitHeight="87.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/eraser.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="clearButton" disable="true" layoutX="473.0" layoutY="615.0" mnemonicParsing="false" onAction="#onClear" prefHeight="127.0" prefWidth="124.0">
+               <graphic>
+                  <ImageView fitHeight="117.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/clear.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <VBox fx:id="canvasBox" layoutX="128.0" layoutY="286.0" prefHeight="315.0" prefWidth="468.0">
                <children>
                   <Canvas fx:id="canvas" height="314.0" width="467.0">
@@ -59,6 +77,33 @@
                </font>
             </Label>
             <Label fx:id="predictionLabel" layoutX="749.0" layoutY="336.0" prefHeight="200.0" prefWidth="277.0" text="predictions" />
+            <Button fx:id="playAgainButton" disable="true" layoutX="978.0" layoutY="615.0" mnemonicParsing="false" onAction="#onInitialize" prefHeight="127.0" prefWidth="124.0">
+               <graphic>
+                  <ImageView fitHeight="117.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/restart.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="saveDrawingButton" disable="true" layoutX="763.0" layoutY="615.0" mnemonicParsing="false" onAction="#onSaveCurrentSnapshotOnFileSpecific" prefHeight="127.0" prefWidth="124.0">
+               <graphic>
+                  <ImageView fitHeight="117.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/save.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="backButton" disable="true" layoutX="24.0" layoutY="68.0" mnemonicParsing="false" onAction="#onSwitchToDashboard" prefHeight="101.0" prefWidth="115.0">
+               <graphic>
+                  <ImageView fitHeight="87.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
    </children>
