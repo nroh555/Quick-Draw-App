@@ -99,6 +99,28 @@ public class DashboardController {
     Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
     sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.CANVAS));
   }
+  
+  /**
+   * Button to switch to the zen canvas page
+   *
+   * @param event
+   * @throws IOException
+   * @throws TranslateException
+   */
+  @FXML
+  private void onSwitchToCanvasZen(ActionEvent event)
+      throws IOException, ModelException, CsvException, URISyntaxException, TranslateException {
+    // Runs a prediction to reduce lag
+    FXMLLoader canvasZenLoader = SceneManager.getCanvasZenLoader();
+    CanvasZenController canvasZenController = canvasZenLoader.getController();
+    canvasZenController.updatePrediction();
+    canvasZenController.initialize();
+
+    // Changes the scene to canvas
+    Button btnThatWasClicked = (Button) event.getSource();
+    Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
+    sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.CANVAS_ZEN));
+  }
 
   protected void updateWelcomeLabel() {
     // Get current user

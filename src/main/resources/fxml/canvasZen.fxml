@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/canvas.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.CanvasZenController">
+   <children>
+      <Pane prefHeight="1077.0" prefWidth="1110.0">
+         <children>
+            <ImageView fitHeight="806.0" fitWidth="1150.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/canvas_frame.png" />
+               </image>
+            </ImageView>
+            <ProgressBar fx:id="myProgressBar" layoutX="607.0" layoutY="165.0" prefHeight="30.0" prefWidth="356.0" progress="0.0" style="-fx-border-color: black;" />
+            <Label fx:id="time" alignment="CENTER" layoutX="200.0" layoutY="75.0" prefHeight="130.0" prefWidth="377.0" text="time" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="109.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/timer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Label fx:id="wordLabel" alignment="CENTER" layoutX="408.0" layoutY="60.0" prefHeight="32.0" prefWidth="355.0" text="word" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="penButton" disable="true" layoutX="128.0" layoutY="615.0" mnemonicParsing="false" onAction="#onBlackPen" prefHeight="101.0" prefWidth="115.0">
+               <graphic>
+                  <ImageView fitHeight="110.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/pencil.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="eraserButton" disable="true" layoutX="300.0" layoutY="615.0" mnemonicParsing="false" onAction="#onErase" prefHeight="127.0" prefWidth="115.0">
+               <graphic>
+                  <ImageView fitHeight="87.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/eraser.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="clearButton" disable="true" layoutX="473.0" layoutY="615.0" mnemonicParsing="false" onAction="#onClear" prefHeight="127.0" prefWidth="124.0">
+               <graphic>
+                  <ImageView fitHeight="117.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/clear.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <VBox fx:id="canvasBox" layoutX="135.0" layoutY="207.0" prefHeight="315.0" prefWidth="468.0">
+               <children>
+                  <Canvas fx:id="canvas" height="314.0" width="467.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Canvas>
+               </children>
+            </VBox>
+            <Label fx:id="resultLabel" alignment="CENTER" layoutX="723.0" layoutY="570.0" prefHeight="32.0" prefWidth="355.0" text="word" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="predictionLabel" layoutX="749.0" layoutY="336.0" prefHeight="200.0" prefWidth="277.0" text="predictions" />
+            <Button fx:id="playAgainButton" disable="true" layoutX="978.0" layoutY="615.0" mnemonicParsing="false" onAction="#onInitialize" prefHeight="127.0" prefWidth="124.0">
+               <graphic>
+                  <ImageView fitHeight="117.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/restart.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="saveDrawingButton" disable="true" layoutX="763.0" layoutY="615.0" mnemonicParsing="false" onAction="#onSaveCurrentSnapshotOnFileSpecific" prefHeight="127.0" prefWidth="124.0">
+               <graphic>
+                  <ImageView fitHeight="117.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/save.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="backButton" disable="true" layoutX="24.0" layoutY="68.0" mnemonicParsing="false" onAction="#onSwitchToDashboard" prefHeight="101.0" prefWidth="115.0">
+               <graphic>
+                  <ImageView fitHeight="87.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <HBox alignment="CENTER" layoutX="132.0" layoutY="532.0" prefHeight="48.0" prefWidth="473.0" spacing="5">
+               <children>
+                  <Button fx:id="colorRed" mnemonicParsing="false" prefHeight="45.0" prefWidth="40.0" style="-fx-background-color: red;" />
+                  <Button fx:id="colorOrange" mnemonicParsing="false" prefHeight="45.0" prefWidth="40.0" style="-fx-background-color: orange;" />
+                  <Button fx:id="colorYellow" mnemonicParsing="false" prefHeight="45.0" prefWidth="40.0" style="-fx-background-color: yellow;" />
+                  <Button fx:id="colorLawnGreen" mnemonicParsing="false" prefHeight="45.0" prefWidth="40.0" style="-fx-background-color: lawngreen;" />
+                  <Button fx:id="colorGreen" mnemonicParsing="false" prefHeight="45.0" prefWidth="40.0" style="-fx-background-color: green;" />
+                  <Button fx:id="colorBlue" mnemonicParsing="false" prefHeight="45.0" prefWidth="40.0" style="-fx-background-color: blue;" />
+                  <Button fx:id="colorDeepSkyBlue" mnemonicParsing="false" prefHeight="45.0" prefWidth="40.0" style="-fx-background-color: deepskyblue;" />
+                  <Button fx:id="colorBlueViolet" mnemonicParsing="false" prefHeight="45.0" prefWidth="40.0" style="-fx-background-color: blueviolet;" />
+                  <Button fx:id="colorHotPink" mnemonicParsing="false" prefHeight="45.0" prefWidth="40.0" style="-fx-background-color: hotpink;" />
+                  <Button fx:id="colorBrown" mnemonicParsing="false" prefHeight="45.0" prefWidth="40.0" style="-fx-background-color: brown;" />
+                  <Button fx:id="colorBlack" mnemonicParsing="false" prefHeight="45.0" prefWidth="40.0" style="-fx-background-color: black;" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+   </children>
+</VBox>

@@ -114,7 +114,7 @@
                   <Font name="Comic Sans MS" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="startZenGame" layoutX="868.0" layoutY="433.0" mnemonicParsing="false" onAction="#onSwitchToCanvas" prefHeight="43.0" prefWidth="153.0" text="Start game!">
+            <Button fx:id="startZenGame" layoutX="868.0" layoutY="433.0" mnemonicParsing="false" onAction="#onSwitchToCanvasZen" prefHeight="43.0" prefWidth="153.0" text="Start game!">
                <font>
                   <Font name="Comic Sans MS" size="18.0" />
                </font>
