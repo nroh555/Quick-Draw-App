@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import ai.djl.translate.TranslateException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.profile.User;
 
@@ -20,6 +23,54 @@ public class ProfileController {
   @FXML private Label infoLabel;
 
   @FXML private TextArea usedWordsBox;
+
+  @FXML private Text badgeDescription;
+
+  @FXML private Button backButton;
+
+  @FXML private Button logoutButton;
+
+  @FXML private Button b1b;
+
+  @FXML private Button b2b;
+
+  @FXML private Button b3b;
+
+  @FXML private Button b4b;
+
+  @FXML private Button b5b;
+
+  @FXML private Button b6b;
+
+  @FXML private Button b7b;
+
+  @FXML private Button b8b;
+
+  @FXML private Button b9b;
+
+  @FXML private Button b10b;
+
+  @FXML private Button b11b;
+
+  @FXML private Button b12b;
+
+  @FXML private ImageView b1;
+
+  @FXML private ImageView b2;
+
+  @FXML private ImageView b3;
+  @FXML private ImageView b4;
+  @FXML private ImageView b5;
+  @FXML private ImageView b6;
+  @FXML private ImageView b7;
+  @FXML private ImageView b8;
+  @FXML private ImageView b9;
+  @FXML private ImageView b10;
+  @FXML private ImageView b11;
+  @FXML private ImageView b12;
+
+  // Create hashmap to store details about the badges
+  private HashMap<Integer, String> badgesHashMap = new HashMap<Integer, String>();
 
   // Create hashmap to store all of the users.
   private HashMap<String, User> usersHashMap = new HashMap<String, User>();
@@ -49,6 +100,26 @@ public class ProfileController {
     MenuController menuController = menuLoader.getController();
     this.currentUser = menuController.getCurrentUser();
     this.usersHashMap = menuController.getUsersHashMap();
+
+    // Check if badges hashmap has been populated yet
+    if (badgesHashMap.isEmpty()) {
+      // If empty, populate with badge details
+      badgesHashMap.put(1, "Win in under 5 seconds.");
+      badgesHashMap.put(2, "Win in under 10 seconds.");
+      badgesHashMap.put(3, "Win in under 30 seconds.");
+      badgesHashMap.put(4, "Win 50 games.");
+      badgesHashMap.put(5, "Win 25 games.");
+      badgesHashMap.put(6, "Win 10 games.");
+      badgesHashMap.put(7, "Lose 50 games.");
+      badgesHashMap.put(8, "Lose 25 games.");
+      badgesHashMap.put(9, "Lose 10 games.");
+      badgesHashMap.put(10, "Win with all max difficulty.");
+      badgesHashMap.put(11, "Win with all hard difficulty.");
+      badgesHashMap.put(12, "Win with all medium difficulty.");
+    }
+
+    // Toggle badges depending on if user has received any
+    toggleBadges();
 
     // Update welcome label
     welcomeLabel.setText("Welcome, " + currentUser.getUsername() + "!");
@@ -90,5 +161,124 @@ public class ProfileController {
     Button btnThatWasClicked = (Button) event.getSource();
     Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
     sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.DASHBOARD));
+  }
+
+  /** When badge #1 is clicked */
+  @FXML
+  private void onB1Click() {
+    badgeDescription.setText(badgesHashMap.get(1));
+  }
+
+  /** When badge #2 is clicked */
+  @FXML
+  private void onB2Click() {
+    badgeDescription.setText(badgesHashMap.get(2));
+  }
+
+  /** When badge #3 is clicked */
+  @FXML
+  private void onB3Click() {
+    badgeDescription.setText(badgesHashMap.get(3));
+  }
+
+  /** When badge #4 is clicked */
+  @FXML
+  private void onB4Click() {
+    badgeDescription.setText(badgesHashMap.get(4));
+  }
+
+  /** When badge #5 is clicked */
+  @FXML
+  private void onB5Click() {
+    badgeDescription.setText(badgesHashMap.get(5));
+  }
+
+  /** When badge #6 is clicked */
+  @FXML
+  private void onB6Click() {
+    badgeDescription.setText(badgesHashMap.get(6));
+  }
+
+  /** When badge #7 is clicked */
+  @FXML
+  private void onB7Click() {
+    badgeDescription.setText(badgesHashMap.get(7));
+  }
+
+  /** When badge #8 is clicked */
+  @FXML
+  private void onB8Click() {
+    badgeDescription.setText(badgesHashMap.get(8));
+  }
+
+  /** When badge #9 is clicked */
+  @FXML
+  private void onB9Click() {
+    badgeDescription.setText(badgesHashMap.get(9));
+  }
+
+  /** When badge #10 is clicked */
+  @FXML
+  private void onB10Click() {
+    badgeDescription.setText(badgesHashMap.get(10));
+  }
+
+  /** When badge #11 is clicked */
+  @FXML
+  private void onB11Click() {
+    badgeDescription.setText(badgesHashMap.get(11));
+  }
+
+  /** When badge #12 is clicked */
+  @FXML
+  private void onB12Click() {
+    badgeDescription.setText(badgesHashMap.get(12));
+  }
+
+  /** Toggle display of badges based on whether the user has earned them yet */
+  @FXML
+  private void toggleBadges() {
+    // Get current user badges
+    ArrayList<Boolean> badgesArray = currentUser.getBadgesArray();
+
+    // Iterate through the badges
+    for (int i = 0; i < 12; i++) {
+      if (badgesArray.get(i) == true) {
+        getImageView(i).setOpacity(1);
+      } else {
+        getImageView(i).setOpacity(0.2);
+      }
+    }
+  }
+
+  /** Get the corresponding badge imageView component */
+  private ImageView getImageView(int i) {
+    ImageView badgeImage = new ImageView();
+    if (i == 0) {
+      badgeImage = b1;
+    } else if (i == 1) {
+      badgeImage = b2;
+    } else if (i == 2) {
+      badgeImage = b3;
+    } else if (i == 3) {
+      badgeImage = b4;
+    } else if (i == 4) {
+      badgeImage = b5;
+    } else if (i == 5) {
+      badgeImage = b6;
+    } else if (i == 6) {
+      badgeImage = b7;
+    } else if (i == 7) {
+      badgeImage = b8;
+    } else if (i == 8) {
+      badgeImage = b9;
+    } else if (i == 9) {
+      badgeImage = b10;
+    } else if (i == 10) {
+      badgeImage = b11;
+    } else if (i == 11) {
+      badgeImage = b12;
+    }
+    return badgeImage;
   }
 }

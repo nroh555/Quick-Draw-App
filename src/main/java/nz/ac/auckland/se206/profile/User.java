@@ -19,6 +19,9 @@ public class User implements Serializable {
   private Level timeSetting;
   private Level confidenceSetting;
 
+  // Badges
+  private ArrayList<Boolean> badgesArray;
+
   // Used words
   private ArrayList<String> usedWords;
 
@@ -31,6 +34,11 @@ public class User implements Serializable {
     this.wordsSetting = Level.EASY;
     this.timeSetting = Level.EASY;
     this.confidenceSetting = Level.EASY;
+    this.badgesArray =
+        new ArrayList<Boolean>(
+            Arrays.asList(
+                false, false, false, false, false, false, false, false, false, false, false,
+                false));
     this.usedWords = new ArrayList<String>();
   }
 
@@ -50,7 +58,8 @@ public class User implements Serializable {
       Level accuracySetting,
       Level wordsSetting,
       Level timeSetting,
-      Level confidenceSetting) {
+      Level confidenceSetting,
+      ArrayList<Boolean> badgesArray) {
     // Stores the user's details into corresponding variables
     this.username = username;
     this.wins = wins;
@@ -60,6 +69,7 @@ public class User implements Serializable {
     this.wordsSetting = wordsSetting;
     this.timeSetting = timeSetting;
     this.confidenceSetting = confidenceSetting;
+    this.badgesArray = badgesArray;
   }
 
   /**
@@ -74,6 +84,11 @@ public class User implements Serializable {
             Arrays.asList(accuracySetting, wordsSetting, timeSetting, confidenceSetting));
     String difficultySettingsString = formatDifficultySettings(difficultyArray);
 
+    // Format the badges for save
+    String badgesSaveString = formatBadgesForSave(badgesArray);
+
+    System.out.println(badgesSaveString);
+
     // Creates string of the users details
     String saveString =
         username
@@ -84,7 +99,9 @@ public class User implements Serializable {
             + ":"
             + fastestWin.toString()
             + ":"
-            + difficultySettingsString;
+            + difficultySettingsString
+            + ":"
+            + badgesSaveString;
 
     /**
      * Returns the user details which includes username, number of wins and losses as well as
@@ -115,16 +132,7 @@ public class User implements Serializable {
             + "\nLosses: "
             + losses.toString()
             + "\nFastest win: "
-            + fastestWinDisplay
-            + "\n"
-            + formatSettingForDisplay(accuracySetting)
-            + "\n"
-            + formatSettingForDisplay(wordsSetting)
-            + "\n"
-            + formatSettingForDisplay(timeSetting)
-            + "\n"
-            + formatSettingForDisplay(confidenceSetting)
-            + "\nUsed words: ";
+            + fastestWinDisplay;
 
     return displayString;
   }
@@ -289,6 +297,14 @@ public class User implements Serializable {
     }
   }
 
+  public ArrayList<Boolean> getBadgesArray() {
+    return badgesArray;
+  }
+
+  public void setBadgesArray(ArrayList<Boolean> badgesArray) {
+    this.badgesArray = badgesArray;
+  }
+
   /** Sets the user's accuracy setting */
   public void setAccuracySetting(Level accuracySetting) {
     this.accuracySetting = accuracySetting;
@@ -349,5 +365,21 @@ public class User implements Serializable {
       System.out.println("Error - no corresponding difficulty found");
     }
     return difficultyAsString;
+  }
+
+  /** Formats the user's badges for save */
+  private String formatBadgesForSave(ArrayList<Boolean> badgesArray) {
+    String badgesSaveString = "";
+
+    // Iterate through the badges array
+    for (int i = 0; i < badgesArray.size(); i++) {
+      if (badgesArray.get(i) == true) {
+        badgesSaveString = badgesSaveString + "T";
+      } else {
+        badgesSaveString = badgesSaveString + "F";
+      }
+    }
+
+    return badgesSaveString;
   }
 }

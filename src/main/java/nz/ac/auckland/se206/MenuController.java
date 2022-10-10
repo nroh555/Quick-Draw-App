@@ -139,6 +139,23 @@ public class MenuController {
     return difficultyArray;
   }
 
+  /** Load the user's badges into an array from file */
+  private ArrayList<Boolean> loadBadgesFromFile(String badgesSaveString) {
+    ArrayList<Boolean> badgesArray = new ArrayList<Boolean>();
+
+    // using simple for-loop
+    for (int i = 0; i < badgesSaveString.length(); i++) {
+      System.out.print(badgesSaveString.charAt(i));
+      if (badgesSaveString.charAt(i) == 'T') {
+        badgesArray.add(true);
+      } else {
+        badgesArray.add(false);
+      }
+    }
+
+    return badgesArray;
+  }
+
   /**
    * Gets the saved users data from file and loads this data onto the users hash map. This is done
    * before every register/login operation
@@ -164,12 +181,13 @@ public class MenuController {
           loadDifficultySettingsFromFile(parts[4]).get(0),
           loadDifficultySettingsFromFile(parts[4]).get(1),
           loadDifficultySettingsFromFile(parts[4]).get(2),
-          loadDifficultySettingsFromFile(parts[4]).get(3));
+          loadDifficultySettingsFromFile(parts[4]).get(3),
+          loadBadgesFromFile(parts[5]));
       usersHashMap.put(parts[0], insertUser);
 
       // If the user has used words, add those too
-      if (parts.length == 6) {
-        usersHashMap.get(parts[0]).getWordsToArray(parts[5]);
+      if (parts.length == 7) {
+        usersHashMap.get(parts[0]).getWordsToArray(parts[6]);
       }
     }
 
