@@ -164,6 +164,16 @@ public class CanvasController {
     progress = 0.0;
     myProgressBar.setProgress(progress);
 
+    // Makes the save and play again button dissappear
+    saveDrawingButton.setVisible(false);
+    playAgainButton.setVisible(false);
+    backButton.setVisible(true);
+
+    // Makes the pen, eraser and clear appear
+    penButton.setVisible(true);
+    eraserButton.setVisible(true);
+    clearButton.setVisible(true);
+
     noUnderscoreWord = currentWord.replaceAll(" ", "_");
 
     // Set timer count depending on the difficulty value
@@ -206,8 +216,6 @@ public class CanvasController {
   @FXML
   private void onInitialize() throws ModelException, IOException, CsvException, URISyntaxException {
     initialize();
-    playAgainButton.setDisable(true);
-    saveDrawingButton.setDisable(true);
   }
 
   /**
@@ -534,14 +542,17 @@ public class CanvasController {
                 canvas.setDisable(true);
 
                 // Enables the play again, save drawing and back button
+                playAgainButton.setVisible(true);
                 playAgainButton.setDisable(false);
+                saveDrawingButton.setVisible(true);
                 saveDrawingButton.setDisable(false);
+                backButton.setVisible(true);
                 backButton.setDisable(false);
 
                 // Disables the pen, eraser and clear button
-                penButton.setDisable(true);
-                eraserButton.setDisable(true);
-                clearButton.setDisable(true);
+                penButton.setVisible(false);
+                eraserButton.setVisible(false);
+                clearButton.setVisible(false);
 
                 isReady = false;
                 gameOver = false;
@@ -586,7 +597,7 @@ public class CanvasController {
     canvas.setDisable(false);
 
     // Disables the back button
-    backButton.setDisable(true);
+    backButton.setVisible(false);
 
     // Enables eraser and clear buttons
     eraserButton.setDisable(false);
