@@ -54,7 +54,3 @@
   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0.4), 4, 0, 0, 1);
   -fx-background-radius: 18;
 }
-
-#predictionBox1 {
-  -fx-font-size: 13px;
-}
