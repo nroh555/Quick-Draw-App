@@ -77,11 +77,6 @@
                   <Image url="@../images/medal%20(2).png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="53.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/koala.png" />
-               </image>
-            </ImageView>
             <ImageView fx:id="b4" fitHeight="70.0" fitWidth="73.0" layoutX="823.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/medal.png" />
@@ -202,6 +197,46 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <ImageView fx:id="koala" fitHeight="150.0" fitWidth="200.0" layoutX="53.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/koala.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="bear" fitHeight="150.0" fitWidth="200.0" layoutX="53.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/bear.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="cat" fitHeight="150.0" fitWidth="200.0" layoutX="53.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/cat.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="dog" fitHeight="150.0" fitWidth="200.0" layoutX="53.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/dog.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="lion" fitHeight="150.0" fitWidth="200.0" layoutX="53.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/lion.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="monkey" fitHeight="150.0" fitWidth="200.0" layoutX="53.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/monkey.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="panda" fitHeight="150.0" fitWidth="200.0" layoutX="53.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/panda.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="tiger" fitHeight="150.0" fitWidth="200.0" layoutX="53.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/tiger.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

@@ -5,9 +5,6 @@
   -fx-background-radius: 18;
 }
 
-.label {
-}
-
 .root {
   -fx-background-color: #ffebcd;
 }
@@ -35,9 +32,6 @@
 .button:pressed {
   -fx-padding: 10 10 10 10;
   -fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
-}
-
-#welcomeLabel {
 }
 
 #logoutButton {
