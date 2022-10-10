@@ -20,10 +20,9 @@
                   <Image url="@../images/frame_6.png" />
                </image>
             </ImageView>
-            <ProgressBar fx:id="myProgressBar" layoutX="607.0" layoutY="165.0" prefHeight="30.0" prefWidth="356.0" progress="0.0" style="-fx-border-color: black;" />
             <Label fx:id="time" alignment="CENTER" layoutX="200.0" layoutY="75.0" prefHeight="208.0" prefWidth="377.0" text="time" textAlignment="CENTER">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Comic Sans MS" size="40.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="138.0" fitWidth="198.0" pickOnBounds="true" preserveRatio="true">
@@ -35,7 +34,7 @@
             </Label>
             <Label fx:id="wordLabel" alignment="CENTER" layoutX="408.0" layoutY="60.0" prefHeight="32.0" prefWidth="355.0" text="word" textAlignment="CENTER">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Comic Sans MS" size="57.0" />
                </font>
             </Label>
             <Button fx:id="eraserButton" disable="true" layoutX="312.0" layoutY="638.0" mnemonicParsing="false" onAction="#onErase" prefHeight="104.0" prefWidth="115.0">
@@ -55,9 +54,9 @@
                   </Canvas>
                </children>
             </VBox>
-            <Label fx:id="resultLabel" alignment="CENTER" layoutX="723.0" layoutY="570.0" prefHeight="32.0" prefWidth="355.0" text="word" textAlignment="CENTER">
+            <Label fx:id="resultLabel" alignment="CENTER" layoutX="657.0" layoutY="544.0" prefHeight="50.0" prefWidth="468.0" text="word" textAlignment="CENTER">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Comic Sans MS" size="22.0" />
                </font>
             </Label>
             <Label fx:id="predictionLabel" layoutX="755.0" layoutY="337.0" prefHeight="184.0" prefWidth="271.0" text="predictions" />
@@ -106,6 +105,12 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Label layoutX="796.0" layoutY="286.0" text="Top 10 Predictions">
+               <font>
+                  <Font name="Comic Sans MS" size="22.0" />
+               </font>
+            </Label>
+            <ProgressBar fx:id="myProgressBar" layoutX="657.0" layoutY="164.0" prefHeight="51.0" prefWidth="435.0" progress="0.0" style="-fx-border-color: black;" stylesheets="@../css/canvas.css" />
          </children>
       </Pane>
    </children>

@@ -4,9 +4,6 @@
 	-fx-background-radius: 18;
 	-fx-background-insets:0,0 0 5 0,0 0 6 0,0 0 7 0;
 	-fx-effect: dropshadow(gaussian, rgba(0,0,0.4), 4, 0.0, 0, 1);
-	-fx-font-weight:bold;
-    -fx-font-family: papyrus;
-    -fx-font-size: 14px;
 }
 
 .button:hover {
@@ -23,13 +20,9 @@
 	-fx-background-color: #FFEBCD;
 }
 
-#resultLabel{
-    -fx-font-size:17px;
-}
-
 #myProgressBar {
 	-fx-padding:3 4 4 4;
-	-fx-background-radius: 18;
+	-fx-background-radius: 30;
 	-fx-background-insets:0,0 0 5 0,0 0 6 0,0 0 7 0;
 	-fx-effect: dropshadow(gaussian, rgba(0,0,0.4), 4, 0.0, 0, 1);
 }
@@ -48,7 +41,4 @@
 	-fx-background-radius: 18;
 }
 
-/*#predictionBox1 {
-	-fx-font-size:13px;
-}*/
 
