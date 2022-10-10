@@ -8,6 +8,9 @@ import nz.ac.auckland.se206.models.Level;
 public class User implements Serializable {
   private String username;
 
+  // User profile image
+  private Integer profilePic;
+
   // User statistics
   private Integer wins;
   private Integer losses;
@@ -27,6 +30,7 @@ public class User implements Serializable {
 
   public User(String username) {
     this.username = username;
+    this.profilePic = 0;
     this.wins = 0;
     this.losses = 0;
     this.fastestWin = 0;
@@ -52,6 +56,7 @@ public class User implements Serializable {
    */
   public void loadUser(
       String username,
+      Integer profilePicIndex,
       Integer wins,
       Integer losses,
       Integer fastestWin,
@@ -62,6 +67,7 @@ public class User implements Serializable {
       ArrayList<Boolean> badgesArray) {
     // Stores the user's details into corresponding variables
     this.username = username;
+    this.profilePic = profilePicIndex;
     this.wins = wins;
     this.losses = losses;
     this.fastestWin = fastestWin;
@@ -87,11 +93,11 @@ public class User implements Serializable {
     // Format the badges for save
     String badgesSaveString = formatBadgesForSave(badgesArray);
 
-    System.out.println(badgesSaveString);
-
     // Creates string of the users details
     String saveString =
         username
+            + ":"
+            + profilePic
             + ":"
             + wins.toString()
             + ":"
@@ -211,6 +217,14 @@ public class User implements Serializable {
     this.wins = wins;
     this.losses = losses;
     this.fastestWin = fastestWin;
+  }
+
+  public void setProfilePic(Integer profilePicIndex) {
+    this.profilePic = profilePicIndex;
+  }
+
+  public Integer getProfilePic() {
+    return profilePic;
   }
 
   /**

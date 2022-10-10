@@ -20,6 +20,8 @@ import nz.ac.auckland.se206.models.Level;
 import nz.ac.auckland.se206.profile.User;
 
 public class MenuController {
+  private Integer selectedProfile;
+
   @FXML private TextField usernameField;
 
   @FXML private Label userStatusLabel;
@@ -89,27 +91,25 @@ public class MenuController {
     registerButton.setDisable(true);
     usernameField.setDisable(true);
 
-    Integer profileIndex = 0;
     // Loop through every user in the usersHashMap
     for (String thisUser : usersHashMap.keySet()) {
-      if (profileIndex == 0) {
+      if (usersHashMap.get(thisUser).getProfilePic() == 0) {
         playerOneText.setText(thisUser);
-      } else if (profileIndex == 1) {
+      } else if (usersHashMap.get(thisUser).getProfilePic() == 1) {
         playerTwoText.setText(thisUser);
-      } else if (profileIndex == 2) {
+      } else if (usersHashMap.get(thisUser).getProfilePic() == 2) {
         playerThreeText.setText(thisUser);
-      } else if (profileIndex == 3) {
+      } else if (usersHashMap.get(thisUser).getProfilePic() == 3) {
         playerFourText.setText(thisUser);
-      } else if (profileIndex == 4) {
+      } else if (usersHashMap.get(thisUser).getProfilePic() == 4) {
         playerFiveText.setText(thisUser);
-      } else if (profileIndex == 5) {
+      } else if (usersHashMap.get(thisUser).getProfilePic() == 5) {
         playerSixText.setText(thisUser);
-      } else if (profileIndex == 6) {
+      } else if (usersHashMap.get(thisUser).getProfilePic() == 6) {
         playerSevenText.setText(thisUser);
-      } else if (profileIndex == 7) {
+      } else if (usersHashMap.get(thisUser).getProfilePic() == 7) {
         playerEightText.setText(thisUser);
       }
-      profileIndex++;
     }
   }
 
@@ -178,16 +178,17 @@ public class MenuController {
           Integer.valueOf(parts[1]),
           Integer.valueOf(parts[2]),
           Integer.valueOf(parts[3]),
-          loadDifficultySettingsFromFile(parts[4]).get(0),
-          loadDifficultySettingsFromFile(parts[4]).get(1),
-          loadDifficultySettingsFromFile(parts[4]).get(2),
-          loadDifficultySettingsFromFile(parts[4]).get(3),
-          loadBadgesFromFile(parts[5]));
+          Integer.valueOf(parts[4]),
+          loadDifficultySettingsFromFile(parts[5]).get(0),
+          loadDifficultySettingsFromFile(parts[5]).get(1),
+          loadDifficultySettingsFromFile(parts[5]).get(2),
+          loadDifficultySettingsFromFile(parts[5]).get(3),
+          loadBadgesFromFile(parts[6]));
       usersHashMap.put(parts[0], insertUser);
 
       // If the user has used words, add those too
-      if (parts.length == 7) {
-        usersHashMap.get(parts[0]).getWordsToArray(parts[6]);
+      if (parts.length == 8) {
+        usersHashMap.get(parts[0]).getWordsToArray(parts[7]);
       }
     }
 
@@ -209,8 +210,11 @@ public class MenuController {
     if (!usersHashMap.containsKey(usernameField.getText())) {
       // Create a new user profile with the inputted username
       User newUser = new User(usernameField.getText());
-      // Add user to hashmap
 
+      // Update user profile pic
+      newUser.setProfilePic(selectedProfile);
+
+      // Add user to hashmap
       usersHashMap.put(usernameField.getText(), newUser);
       userStatusLabel.setText("Successfully registered!");
 
@@ -309,47 +313,55 @@ public class MenuController {
   @FXML
   private void onP1Click() {
     setProfileDetails(playerOneText);
+    selectedProfile = 0;
   }
 
   /** Handles login/register for when user 1 is clicked */
   @FXML
   private void onP2Click() {
     setProfileDetails(playerTwoText);
+    selectedProfile = 1;
   }
 
   /** Handles login/register for when user 1 is clicked */
   @FXML
   private void onP3Click() {
     setProfileDetails(playerThreeText);
+    selectedProfile = 2;
   }
 
   /** Handles login/register for when user 1 is clicked */
   @FXML
   private void onP4Click() {
     setProfileDetails(playerFourText);
+    selectedProfile = 3;
   }
 
   /** Handles login/register for when user 1 is clicked */
   @FXML
   private void onP5Click() {
     setProfileDetails(playerFiveText);
+    selectedProfile = 4;
   }
 
   /** Handles login/register for when user 1 is clicked */
   @FXML
   private void onP6Click() {
     setProfileDetails(playerSixText);
+    selectedProfile = 5;
   }
 
   /** Handles login/register for when user 1 is clicked */
   @FXML
   private void onP7Click() {
     setProfileDetails(playerSevenText);
+    selectedProfile = 6;
   }
 
   /** Handles login/register for when user 1 is clicked */
   @FXML
   private void onP8Click() {
     setProfileDetails(playerEightText);
+    selectedProfile = 7;
   }
 }

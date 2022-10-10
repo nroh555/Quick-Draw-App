@@ -54,19 +54,30 @@ public class ProfileController {
 
   @FXML private Button b12b;
 
+  @FXML private ImageView profilePic;
+
   @FXML private ImageView b1;
 
   @FXML private ImageView b2;
 
   @FXML private ImageView b3;
+
   @FXML private ImageView b4;
+
   @FXML private ImageView b5;
+
   @FXML private ImageView b6;
+
   @FXML private ImageView b7;
+
   @FXML private ImageView b8;
+
   @FXML private ImageView b9;
+
   @FXML private ImageView b10;
+
   @FXML private ImageView b11;
+
   @FXML private ImageView b12;
 
   // Create hashmap to store details about the badges
