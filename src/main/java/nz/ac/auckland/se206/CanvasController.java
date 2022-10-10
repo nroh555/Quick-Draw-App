@@ -186,7 +186,7 @@ public class CanvasController {
     // Sets the results label to display draw prompt
     resultLabel.setText("Draw on canvas to begin game!");
 
-    onBlackPen();
+    onPen();
 
     // Clears and enables canvas, disables eraser
     canvas.setDisable(false);
@@ -243,6 +243,10 @@ public class CanvasController {
         });
   }
 
+  public void setCurrentColor(Color colour) {
+    this.currentColor = colour;
+  }
+  
   /** Sets the brush to erase */
   @FXML
   private void onErase() {
@@ -258,7 +262,7 @@ public class CanvasController {
 
   /** Sets the brush to pen */
   @FXML
-  private void onBlackPen() {
+  private void onPen() {
     // Enable eraser button
     eraserButton.setDisable(false);
 
@@ -266,7 +270,7 @@ public class CanvasController {
     penButton.setDisable(true);
 
     // Change brush
-    setPen(Color.BLACK, 5.0);
+    setPen(currentColor, 5.0);
   }
 
   /** This method is called when the "Clear" button is pressed. */
@@ -274,7 +278,7 @@ public class CanvasController {
   private void onClear() {
     graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     if (isReady) {
-      onBlackPen();
+      onPen();
     }
   }
 
@@ -595,7 +599,7 @@ public class CanvasController {
     clearButton.setDisable(false);
 
     // Sets the brush to pen
-    onBlackPen();
+    onPen();
 
     // Runs the timer
     runTimer();

@@ -12,6 +12,9 @@ public class CanvasZenController extends CanvasController {
     // Disable pen button
     penButton.setDisable(true);
 
+    // Update current colour
+    setCurrentColor(colour);
+    
     // Change brush
     setPen(colour, 5.0);
   }

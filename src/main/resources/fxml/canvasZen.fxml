@@ -39,7 +39,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="penButton" disable="true" layoutX="128.0" layoutY="615.0" mnemonicParsing="false" onAction="#onBlackPen" prefHeight="101.0" prefWidth="115.0">
+            <Button fx:id="penButton" disable="true" layoutX="128.0" layoutY="615.0" mnemonicParsing="false" onAction="#onPen" prefHeight="101.0" prefWidth="115.0">
                <graphic>
                   <ImageView fitHeight="110.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
                      <image>
