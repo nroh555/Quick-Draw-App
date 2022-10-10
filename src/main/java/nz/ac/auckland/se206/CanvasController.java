@@ -363,7 +363,8 @@ public class CanvasController {
         // Checks if a prediction equals the keyword, if so stops game
         if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
           if (checkConfidenceLevel(classifications, i) == true) {
-            int winTime = initialCount - count;
+            Integer winTime = initialCount - count;
+            updateBadges(winTime);
             addFastestWin(winTime);
             addWin();
             return true;
@@ -377,7 +378,8 @@ public class CanvasController {
         // Checks if a prediction equals the keyword, if so stops game
         if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
           if (checkConfidenceLevel(classifications, i) == true) {
-            int winTime = initialCount - count;
+            Integer winTime = initialCount - count;
+            updateBadges(winTime);
             addFastestWin(winTime);
             addWin();
             return true;
@@ -389,7 +391,8 @@ public class CanvasController {
       // Check top prediction only
       if (classifications.get(0).getClassName().equals(noUnderscoreWord)) {
         if (checkConfidenceLevel(classifications, 0) == true) {
-          int winTime = initialCount - count;
+          Integer winTime = initialCount - count;
+          updateBadges(winTime);
           addFastestWin(winTime);
           addWin();
           return true;
@@ -824,5 +827,92 @@ public class CanvasController {
         e.printStackTrace();
       }
     }
+  }
+
+  /**
+   * Update user badges
+   *
+   * @throws Exception
+   */
+  private void updateBadges(Integer winTime) throws Exception {
+    // Get current user badges
+    ArrayList<Boolean> badgesArray = currentUser.getBadgesArray();
+    // Loop through each of the user badges, and check if need to
+    // be updated (excluding last 3 difficulty badges, which are updated in canvas
+    for (Boolean badge : badgesArray) {
+      if (badge == false) {
+        // Check if player has won in under 5 seconds
+        if (winTime <= 5) {
+          badgesArray.set(0, true);
+        }
+      } else if (badge == false) {
+        // Check if player has won in under 10 seconds
+        if (winTime <= 10) {
+          badgesArray.set(1, true);
+        }
+      } else if (badge == false) {
+        // Check if player has won in under 30 seconds
+        if (winTime <= 30) {
+          badgesArray.set(2, true);
+        }
+      } else if (badge == false) {
+        // Check if player has won 50 games
+        if (currentUser.getWins() >= 50) {
+          badgesArray.set(3, true);
+        }
+      } else if (badge == false) {
+        // Check if player has won 25 games
+        if (currentUser.getWins() >= 25) {
+          badgesArray.set(4, true);
+        }
+      } else if (badge == false) {
+        // Check if player has won 10 games
+        if (currentUser.getWins() >= 10) {
+          badgesArray.set(5, true);
+        }
+      } else if (badge == false) {
+        // Check if player has lost 50 games
+        if (currentUser.getLosses() >= 50) {
+          badgesArray.set(6, true);
+        }
+      } else if (badge == false) {
+        // Check if player has lost 25 games
+        if (currentUser.getLosses() >= 25) {
+          badgesArray.set(7, true);
+        }
+      } else if (badge == false) {
+        // Check if player has lost 10 games
+        if (currentUser.getLosses() >= 10) {
+          badgesArray.set(8, true);
+        }
+      } else if (badge == false) {
+        // Check if player has won a game with all max difficulty
+        if (currentUser.getAccuracySetting() == Level.HARD
+            && currentUser.getConfidenceSetting() == Level.MASTER
+            && currentUser.getTimeSetting() == Level.MASTER
+            && currentUser.getWordsSetting() == Level.MASTER) {
+          badgesArray.set(9, true);
+        }
+      } else if (badge == false) {
+        // Check if player has won a game with all hard difficulty
+        if (currentUser.getAccuracySetting() == Level.HARD
+            && currentUser.getConfidenceSetting() == Level.HARD
+            && currentUser.getTimeSetting() == Level.HARD
+            && currentUser.getWordsSetting() == Level.HARD) {
+          badgesArray.set(10, true);
+        }
+      } else if (badge == false) {
+        // Check if player has won a game with all medium difficulty
+        if (currentUser.getAccuracySetting() == Level.MEDIUM
+            && currentUser.getConfidenceSetting() == Level.MEDIUM
+            && currentUser.getTimeSetting() == Level.MEDIUM
+            && currentUser.getWordsSetting() == Level.MEDIUM) {
+          badgesArray.set(11, true);
+        }
+      }
+    }
+    // Update user and save to file
+    currentUser.setBadgesArray(badgesArray);
+    saveData();
   }
 }

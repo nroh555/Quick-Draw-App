@@ -91,15 +91,14 @@ public class ProfileController {
       badgesHashMap.put(2, "Win in under 10 seconds.");
       badgesHashMap.put(3, "Win in under 30 seconds.");
       badgesHashMap.put(4, "Win 50 games.");
-      badgesHashMap.put(5, "Get 5 consecutive wins.");
-      badgesHashMap.put(6, "Get 2 consecutive wins.");
+      badgesHashMap.put(5, "Win 25 games.");
+      badgesHashMap.put(6, "Win 10 games.");
       badgesHashMap.put(7, "Lose 50 games.");
-      badgesHashMap.put(8, "Get 5 consecutive losses.");
-      badgesHashMap.put(9, "Get 2 consecutive losses.");
-      badgesHashMap.put(10, "Win with all medium difficulty.");
+      badgesHashMap.put(8, "Lose 25 games.");
+      badgesHashMap.put(9, "Lose 10 games.");
+      badgesHashMap.put(10, "Win with all max difficulty.");
       badgesHashMap.put(11, "Win with all hard difficulty.");
-      badgesHashMap.put(12, "Win with all max difficulty.");
-      System.out.println("empty");
+      badgesHashMap.put(12, "Win with all medium difficulty.");
     }
 
     // Update welcome label

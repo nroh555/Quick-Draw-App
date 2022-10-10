@@ -132,8 +132,7 @@ public class User implements Serializable {
             + "\nLosses: "
             + losses.toString()
             + "\nFastest win: "
-            + fastestWinDisplay
-            + "\nUsed words: ";
+            + fastestWinDisplay;
 
     return displayString;
   }
@@ -296,6 +295,14 @@ public class User implements Serializable {
     } else {
       return "Master";
     }
+  }
+
+  public ArrayList<Boolean> getBadgesArray() {
+    return badgesArray;
+  }
+
+  public void setBadgesArray(ArrayList<Boolean> badgesArray) {
+    this.badgesArray = badgesArray;
   }
 
   /** Sets the user's accuracy setting */
