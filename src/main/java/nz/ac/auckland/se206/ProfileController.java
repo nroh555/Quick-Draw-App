@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import ai.djl.translate.TranslateException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.profile.User;
@@ -51,6 +53,21 @@ public class ProfileController {
   @FXML private Button b11b;
 
   @FXML private Button b12b;
+
+  @FXML private ImageView b1;
+
+  @FXML private ImageView b2;
+
+  @FXML private ImageView b3;
+  @FXML private ImageView b4;
+  @FXML private ImageView b5;
+  @FXML private ImageView b6;
+  @FXML private ImageView b7;
+  @FXML private ImageView b8;
+  @FXML private ImageView b9;
+  @FXML private ImageView b10;
+  @FXML private ImageView b11;
+  @FXML private ImageView b12;
 
   // Create hashmap to store details about the badges
   private HashMap<Integer, String> badgesHashMap = new HashMap<Integer, String>();
@@ -100,6 +117,9 @@ public class ProfileController {
       badgesHashMap.put(11, "Win with all hard difficulty.");
       badgesHashMap.put(12, "Win with all medium difficulty.");
     }
+
+    // Toggle badges depending on if user has received any
+    toggleBadges();
 
     // Update welcome label
     welcomeLabel.setText("Welcome, " + currentUser.getUsername() + "!");
@@ -213,5 +233,52 @@ public class ProfileController {
   @FXML
   private void onB12Click() {
     badgeDescription.setText(badgesHashMap.get(12));
+  }
+
+  /** Toggle display of badges based on whether the user has earned them yet */
+  @FXML
+  private void toggleBadges() {
+    // Get current user badges
+    ArrayList<Boolean> badgesArray = currentUser.getBadgesArray();
+
+    // Iterate through the badges
+    for (int i = 0; i < 12; i++) {
+      if (badgesArray.get(i) == true) {
+        getImageView(i).setOpacity(1);
+      } else {
+        getImageView(i).setOpacity(0.2);
+      }
+    }
+  }
+
+  /** Get the corresponding badge imageView component */
+  private ImageView getImageView(int i) {
+    ImageView badgeImage = new ImageView();
+    if (i == 0) {
+      badgeImage = b1;
+    } else if (i == 1) {
+      badgeImage = b2;
+    } else if (i == 2) {
+      badgeImage = b3;
+    } else if (i == 3) {
+      badgeImage = b4;
+    } else if (i == 4) {
+      badgeImage = b5;
+    } else if (i == 5) {
+      badgeImage = b6;
+    } else if (i == 6) {
+      badgeImage = b7;
+    } else if (i == 7) {
+      badgeImage = b8;
+    } else if (i == 8) {
+      badgeImage = b9;
+    } else if (i == 9) {
+      badgeImage = b10;
+    } else if (i == 10) {
+      badgeImage = b11;
+    } else if (i == 11) {
+      badgeImage = b12;
+    }
+    return badgeImage;
   }
 }

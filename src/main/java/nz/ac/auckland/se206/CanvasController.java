@@ -838,17 +838,20 @@ public class CanvasController {
     // Get current user badges
     ArrayList<Boolean> badgesArray = currentUser.getBadgesArray();
     // Loop through each of the user badges, and check if need to
-    // be updated (excluding last 3 difficulty badges, which are updated in canvas
+    // be updated
     for (Boolean badge : badgesArray) {
       if (badge == false) {
         // Check if player has won in under 5 seconds
         if (winTime <= 5) {
           badgesArray.set(0, true);
+          badgesArray.set(1, true);
+          badgesArray.set(2, true);
         }
       } else if (badge == false) {
         // Check if player has won in under 10 seconds
         if (winTime <= 10) {
           badgesArray.set(1, true);
+          badgesArray.set(2, true);
         }
       } else if (badge == false) {
         // Check if player has won in under 30 seconds
