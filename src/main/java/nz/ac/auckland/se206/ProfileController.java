@@ -54,20 +54,47 @@ public class ProfileController {
 
   @FXML private Button b12b;
 
+  @FXML private ImageView profilePic;
+
   @FXML private ImageView b1;
 
   @FXML private ImageView b2;
 
   @FXML private ImageView b3;
+
   @FXML private ImageView b4;
+
   @FXML private ImageView b5;
+
   @FXML private ImageView b6;
+
   @FXML private ImageView b7;
+
   @FXML private ImageView b8;
+
   @FXML private ImageView b9;
+
   @FXML private ImageView b10;
+
   @FXML private ImageView b11;
+
   @FXML private ImageView b12;
+
+  @FXML private ImageView cat;
+
+  @FXML private ImageView dog;
+
+  @FXML private ImageView bear;
+
+  @FXML private ImageView panda;
+
+  @FXML private ImageView monkey;
+
+  @FXML private ImageView lion;
+
+  @FXML private ImageView tiger;
+
+  @FXML private ImageView koala;
 
   // Create hashmap to store details about the badges
   private HashMap<Integer, String> badgesHashMap = new HashMap<Integer, String>();
@@ -100,6 +127,10 @@ public class ProfileController {
     MenuController menuController = menuLoader.getController();
     this.currentUser = menuController.getCurrentUser();
     this.usersHashMap = menuController.getUsersHashMap();
+
+    // Set profile picture
+    disableAllPictures();
+    setProfilePicture(currentUser.getProfilePic());
 
     // Check if badges hashmap has been populated yet
     if (badgesHashMap.isEmpty()) {
@@ -280,5 +311,39 @@ public class ProfileController {
       badgeImage = b12;
     }
     return badgeImage;
+  }
+
+  @FXML
+  private void disableAllPictures() {
+    cat.setVisible(false);
+    dog.setVisible(false);
+    bear.setVisible(false);
+    koala.setVisible(false);
+    tiger.setVisible(false);
+    lion.setVisible(false);
+    monkey.setVisible(false);
+    panda.setVisible(false);
+  }
+
+  @FXML
+  private void setProfilePicture(Integer profilePicIndex) {
+    if (profilePicIndex == 0) {
+      cat.setVisible(true);
+    } else if (profilePicIndex == 1) {
+      dog.setVisible(true);
+    } else if (profilePicIndex == 2) {
+      bear.setVisible(true);
+    } else if (profilePicIndex == 3) {
+      koala.setVisible(true);
+    } else if (profilePicIndex == 4) {
+      lion.setVisible(true);
+    } else if (profilePicIndex == 5) {
+      tiger.setVisible(true);
+    } else if (profilePicIndex == 6) {
+      monkey.setVisible(true);
+    } else if (profilePicIndex == 7) {
+      panda.setVisible(true);
+    }
+    ;
   }
 }
