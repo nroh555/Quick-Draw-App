@@ -69,6 +69,11 @@ public class App extends Application {
     SceneManager.setCanvasZenLoader(canvasZenLoader);
     SceneManager.addUi(SceneManager.AppUi.CANVAS_ZEN, loadFxml(canvasZenLoader));
 
+    // Saves the hidden mode canvas loader to scene manager
+    FXMLLoader canvasHiddenLoader = makeLoader("canvasHidden");
+    SceneManager.setCanvasHiddenLoader(canvasHiddenLoader);
+    SceneManager.addUi(SceneManager.AppUi.CANVAS_HIDDEN, loadFxml(canvasHiddenLoader));
+
     // Saves the dashboard loader to scene manager
     FXMLLoader dashboardLoader = makeLoader("dashboard");
     SceneManager.setDashboardLoader(dashboardLoader);

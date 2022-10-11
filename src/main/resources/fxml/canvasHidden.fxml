@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/canvas.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.CanvasHiddenController">
+   <children>
+      <Pane prefHeight="1077.0" prefWidth="1110.0">
+         <children>
+            <ImageView fitHeight="806.0" fitWidth="1150.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/frame_6.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="time" alignment="CENTER" layoutX="200.0" layoutY="75.0" prefHeight="208.0" prefWidth="377.0" text="time" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS" size="40.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="138.0" fitWidth="198.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/timer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Label fx:id="wordLabel" alignment="CENTER" layoutX="408.0" layoutY="60.0" prefHeight="32.0" prefWidth="355.0" text="word" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS" size="21.0" />
+               </font>
+            </Label>
+            <Button fx:id="eraserButton" disable="true" layoutX="312.0" layoutY="638.0" mnemonicParsing="false" onAction="#onErase" prefHeight="104.0" prefWidth="115.0">
+               <graphic>
+                  <ImageView fitHeight="87.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/eraser.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <VBox fx:id="canvasBox" layoutX="128.0" layoutY="286.0" prefHeight="315.0" prefWidth="468.0">
+               <children>
+                  <Canvas fx:id="canvas" height="308.0" width="468.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Canvas>
+               </children>
+            </VBox>
+            <Label fx:id="resultLabel" alignment="CENTER" layoutX="657.0" layoutY="544.0" prefHeight="50.0" prefWidth="468.0" text="word" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="predictionLabel" layoutX="755.0" layoutY="337.0" prefHeight="184.0" prefWidth="271.0" text="predictions" />
+            <Button fx:id="playAgainButton" disable="true" layoutX="978.0" layoutY="615.0" mnemonicParsing="false" onAction="#onInitialize" prefHeight="127.0" prefWidth="124.0">
+               <graphic>
+                  <ImageView fitHeight="117.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/restart.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="saveDrawingButton" disable="true" layoutX="763.0" layoutY="615.0" mnemonicParsing="false" onAction="#onSaveCurrentSnapshotOnFileSpecific" prefHeight="127.0" prefWidth="124.0">
+               <graphic>
+                  <ImageView fitHeight="117.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/save.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="backButton" disable="true" layoutX="24.0" layoutY="68.0" mnemonicParsing="false" onAction="#onSwitchToDashboard" prefHeight="101.0" prefWidth="115.0">
+               <graphic>
+                  <ImageView fitHeight="87.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="penButton" disable="true" layoutX="111.0" layoutY="638.0" mnemonicParsing="false" onAction="#onPen" prefHeight="104.0" prefWidth="115.0">
+               <graphic>
+                  <ImageView fitHeight="87.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/pencil.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="clearButton" disable="true" layoutX="506.0" layoutY="638.0" mnemonicParsing="false" onAction="#onClear" prefHeight="104.0" prefWidth="115.0">
+               <graphic>
+                  <ImageView fitHeight="87.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/clear.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label layoutX="796.0" layoutY="286.0" text="Top 10 Predictions">
+               <font>
+                  <Font name="Comic Sans MS" size="22.0" />
+               </font>
+            </Label>
+            <ProgressBar fx:id="myProgressBar" layoutX="657.0" layoutY="164.0" prefHeight="51.0" prefWidth="435.0" progress="0.0" style="-fx-border-color: black;" stylesheets="@../css/canvas.css" />
+            <ScrollPane hbarPolicy="NEVER" layoutX="645.0" layoutY="57.0" prefHeight="85.0" prefWidth="497.0">
+               <content>
+                  <Accordion fx:id="resultsAccordion" />
+               </content>
+            </ScrollPane>
+         </children>
+      </Pane>
+   </children>
+</VBox>

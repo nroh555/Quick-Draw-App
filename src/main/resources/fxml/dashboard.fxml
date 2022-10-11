@@ -141,7 +141,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="startHiddenGame" layoutX="868.0" layoutY="598.0" mnemonicParsing="false" onAction="#onSwitchToCanvas" prefHeight="43.0" prefWidth="153.0" text="Start game!">
+            <Button fx:id="startHiddenGame" layoutX="868.0" layoutY="598.0" mnemonicParsing="false" onAction="#onSwitchToCanvasHidden" prefHeight="43.0" prefWidth="153.0" text="Start game!">
                <font>
                   <Font name="Comic Sans MS" size="18.0" />
                </font>

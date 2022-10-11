@@ -15,7 +15,8 @@ public class SceneManager {
     DASHBOARD,
     PROFILE,
     CANVAS,
-    CANVAS_ZEN
+    CANVAS_ZEN,
+    CANVAS_HIDDEN
   }
 
   private static FXMLLoader canvasLoader;
@@ -27,6 +28,8 @@ public class SceneManager {
   private static FXMLLoader profileLoader;
 
   private static FXMLLoader canvasZenLoader;
+
+  private static FXMLLoader canvasHiddenLoader;
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
 
@@ -76,5 +79,13 @@ public class SceneManager {
 
   public static void setCanvasZenLoader(FXMLLoader loader) {
     canvasZenLoader = loader;
+  }
+
+  public static FXMLLoader getCanvasHiddenLoader() {
+    return canvasHiddenLoader;
+  }
+
+  public static void setCanvasHiddenLoader(FXMLLoader loader) {
+    canvasHiddenLoader = loader;
   }
 }
