@@ -168,6 +168,7 @@ public class CanvasController {
     saveDrawingButton.setVisible(false);
     playAgainButton.setVisible(false);
     backButton.setVisible(true);
+    backButton.setDisable(false);
 
     // Makes the pen, eraser and clear appear
     penButton.setVisible(true);
