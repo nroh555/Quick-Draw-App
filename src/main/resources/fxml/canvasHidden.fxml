@@ -34,11 +34,6 @@
                   </ImageView>
                </graphic>
             </Label>
-            <Label fx:id="wordLabel" alignment="CENTER" layoutX="408.0" layoutY="60.0" prefHeight="32.0" prefWidth="355.0" text="word" textAlignment="CENTER">
-               <font>
-                  <Font name="Comic Sans MS" size="21.0" />
-               </font>
-            </Label>
             <Button fx:id="eraserButton" disable="true" layoutX="312.0" layoutY="638.0" mnemonicParsing="false" onAction="#onErase" prefHeight="104.0" prefWidth="115.0">
                <graphic>
                   <ImageView fitHeight="87.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
@@ -113,8 +108,8 @@
                   <Font name="Comic Sans MS" size="22.0" />
                </font>
             </Label>
-            <ProgressBar fx:id="myProgressBar" layoutX="657.0" layoutY="164.0" prefHeight="51.0" prefWidth="435.0" progress="0.0" style="-fx-border-color: black;" stylesheets="@../css/canvas.css" />
-            <ScrollPane hbarPolicy="NEVER" layoutX="645.0" layoutY="57.0" prefHeight="85.0" prefWidth="497.0">
+            <ProgressBar fx:id="myProgressBar" layoutX="657.0" layoutY="164.0" prefHeight="51.0" prefWidth="435.0" progress="0.0" style="-fx-border-color: black;" />
+            <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutX="510.0" layoutY="56.0" prefHeight="82.0" prefWidth="619.0" style="-fx-border-color: black;">
                <content>
                   <Accordion fx:id="resultsAccordion" />
                </content>

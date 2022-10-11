@@ -45,7 +45,7 @@ public class CanvasHiddenController extends CanvasController {
     searchWords(currentWord);
 
     // Displays the random word
-    wordLabel.setText(currentWord);
+    System.out.println(currentWord);
 
     // Initialises the progress bar as green
     myProgressBar.setStyle("-fx-accent:#00FF00;");
@@ -99,18 +99,11 @@ public class CanvasHiddenController extends CanvasController {
 
     try {
       WordInfo wordResult = DictionaryLookup.searchWordInfo(currentWord);
-      System.out.println(
-          "\""
-              + wordResult.getWord()
-              + "\" has "
-              + wordResult.getNumberOfEntries()
-              + " dictionary entries.");
-      TitledPane pane = WordPane.generateWordPane(currentWord, wordResult);
+      TitledPane pane = WordPane.generateWordPane("Definitions", wordResult);
       resultsAccordion.getPanes().add(pane);
     } catch (IOException e) {
       e.printStackTrace();
     } catch (WordNotFoundException e) {
-      System.out.println("\"" + e.getWord() + "\" has problems: " + e.getMessage());
       TitledPane pane = WordPane.generateErrorPane(e);
       resultsAccordion.getPanes().add(pane);
     }
