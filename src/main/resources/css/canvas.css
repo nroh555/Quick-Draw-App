@@ -53,3 +53,5 @@
   -fx-border-color: black;
   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0.4), 4, 0, 0, 1);
   -fx-background-radius: 18;
+ }
+  }
