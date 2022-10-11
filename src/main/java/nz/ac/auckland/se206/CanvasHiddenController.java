@@ -7,6 +7,7 @@ import java.net.URISyntaxException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import nz.ac.auckland.se206.dict.DictionaryLookup;
 import nz.ac.auckland.se206.dict.WordInfo;
@@ -18,6 +19,10 @@ import nz.ac.auckland.se206.panes.WordPane;
 public class CanvasHiddenController extends CanvasController {
 
   @FXML private Accordion resultsAccordion;
+  @FXML private Button hintButton;
+  private String currentWord;
+  private static int counter = 0;
+  private String actualWord = "";
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -41,8 +46,8 @@ public class CanvasHiddenController extends CanvasController {
     this.usersHashMap = menuController.getUsersHashMap();
 
     // Gets a random word depending on difficulty setting
-    currentWord = getRandomWord();
-    searchWords(currentWord);
+    this.currentWord = getRandomWord();
+    searchWords(this.currentWord);
 
     // Displays the random word
     System.out.println(currentWord);
@@ -62,6 +67,11 @@ public class CanvasHiddenController extends CanvasController {
     penButton.setVisible(true);
     eraserButton.setVisible(true);
     clearButton.setVisible(true);
+    hintButton.setVisible(true);
+    hintButton.setDisable(false);
+
+    // Resets the counter variable back to 0
+    counter = 0;
 
     noUnderscoreWord = currentWord.replaceAll(" ", "_");
 
@@ -107,5 +117,32 @@ public class CanvasHiddenController extends CanvasController {
       TitledPane pane = WordPane.generateErrorPane(e);
       resultsAccordion.getPanes().add(pane);
     }
+  }
+
+  /** Provides hints to the user */
+  @FXML
+  private void onHint() {
+    if (counter == 0) {
+      resultLabel.setText("Your word has " + currentWord.length() + " characters");
+    }
+
+    if (counter == 1) {
+      resultLabel.setText("Your word starts with " + currentWord.charAt(0));
+    }
+
+    if (counter == 2) {
+      resultLabel.setText("Your word ends with " + currentWord.charAt(currentWord.length() - 1));
+    }
+    if (counter >= 3) {
+      hintButton.setVisible(false);
+      resultLabel.setText(
+          "Your word has "
+              + currentWord.length()
+              + " characters, starts with "
+              + currentWord.charAt(0)
+              + " and ends with "
+              + currentWord.charAt(currentWord.length() - 1));
+    }
+    counter++;
   }
 }
