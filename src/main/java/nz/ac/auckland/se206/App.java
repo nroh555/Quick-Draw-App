@@ -64,6 +64,11 @@ public class App extends Application {
     SceneManager.setCanvasLoader(canvasLoader);
     SceneManager.addUi(SceneManager.AppUi.CANVAS, loadFxml(canvasLoader));
 
+    // Saves the zen canvas loader to scene manager
+    FXMLLoader canvasZenLoader = makeLoader("canvasZen");
+    SceneManager.setCanvasZenLoader(canvasZenLoader);
+    SceneManager.addUi(SceneManager.AppUi.CANVAS_ZEN, loadFxml(canvasZenLoader));
+
     // Saves the dashboard loader to scene manager
     FXMLLoader dashboardLoader = makeLoader("dashboard");
     SceneManager.setDashboardLoader(dashboardLoader);

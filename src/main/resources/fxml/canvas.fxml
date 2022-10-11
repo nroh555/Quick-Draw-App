@@ -87,7 +87,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="penButton" disable="true" layoutX="111.0" layoutY="638.0" mnemonicParsing="false" onAction="#onBlackPen" prefHeight="104.0" prefWidth="115.0">
+            <Button fx:id="penButton" disable="true" layoutX="111.0" layoutY="638.0" mnemonicParsing="false" onAction="#onPen" prefHeight="104.0" prefWidth="115.0">
                <graphic>
                   <ImageView fitHeight="87.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
                      <image>

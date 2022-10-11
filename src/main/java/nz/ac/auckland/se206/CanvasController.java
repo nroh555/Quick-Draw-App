@@ -58,63 +58,65 @@ import nz.ac.auckland.se206.words.CategorySelector.Difficulty;
  */
 public class CanvasController {
 
-  @FXML private Canvas canvas;
+  @FXML protected Canvas canvas;
 
-  @FXML private Label wordLabel;
+  @FXML protected Label wordLabel;
 
-  @FXML private Label time;
+  @FXML protected Label time;
 
-  @FXML private Label predictionLabel;
+  @FXML protected Label predictionLabel;
 
-  @FXML private Label resultLabel;
+  @FXML protected Label resultLabel;
 
-  @FXML private Button playAgainButton;
+  @FXML protected Button playAgainButton;
 
-  @FXML private Button penButton;
+  @FXML protected Button penButton;
 
-  @FXML private Button eraserButton;
+  @FXML protected Button eraserButton;
 
-  @FXML private Button clearButton;
+  @FXML protected Button clearButton;
 
-  @FXML private Button backButton;
+  @FXML protected Button backButton;
 
-  @FXML private Button saveDrawingButton;
+  @FXML protected Button saveDrawingButton;
 
-  @FXML private ProgressBar myProgressBar;
+  @FXML protected ProgressBar myProgressBar;
 
-  @FXML private Button myButton;
+  @FXML protected Button myButton;
 
-  @FXML private Label myLabel;
+  @FXML protected Label myLabel;
 
-  private double progress;
+  protected double progress;
 
-  private GraphicsContext graphic;
+  protected GraphicsContext graphic;
 
-  private DoodlePrediction model;
+  protected DoodlePrediction model;
 
-  private String currentWord;
+  protected String currentWord;
 
-  private String noUnderscoreWord;
+  protected String noUnderscoreWord;
 
-  private int initialCount = 15;
+  protected int initialCount = 15;
 
-  private int count = initialCount;
+  protected int count = initialCount;
 
-  private boolean gameOver = false;
+  protected boolean gameOver = false;
 
-  private List<Classification> predictionResults;
+  protected List<Classification> predictionResults;
 
-  private String predictionString;
+  protected String predictionString;
 
-  private String endMessage;
+  protected String endMessage;
 
-  private boolean isReady = false;
+  protected boolean isReady = false;
+
+  protected Color currentColor = Color.BLACK;
 
   // Create hashmap to store all of the users.
-  private HashMap<String, User> usersHashMap = new HashMap<String, User>();
+  protected HashMap<String, User> usersHashMap = new HashMap<String, User>();
 
   // Current user logged in
-  private User currentUser = new User("None");
+  protected User currentUser = new User("None");
 
   public HashMap<String, User> getUsersHashMap() {
     return usersHashMap;
@@ -194,7 +196,7 @@ public class CanvasController {
     // Sets the results label to display draw prompt
     resultLabel.setText("Draw on canvas to begin game!");
 
-    onBlackPen();
+    onPen();
 
     // Clears and enables canvas, disables eraser
     canvas.setDisable(false);
@@ -214,7 +216,8 @@ public class CanvasController {
    * @throws URISyntaxException
    */
   @FXML
-  private void onInitialize() throws ModelException, IOException, CsvException, URISyntaxException {
+  protected void onInitialize()
+      throws ModelException, IOException, CsvException, URISyntaxException {
     initialize();
   }
 
@@ -223,7 +226,7 @@ public class CanvasController {
    *
    * @param colour Colour of the brush
    */
-  private void setPen(Color colour, double brushSize) {
+  protected void setPen(Color colour, double brushSize) {
     // save coordinates when mouse is pressed on the canvas
     canvas.setOnMouseDragged(
         e -> {
@@ -249,6 +252,10 @@ public class CanvasController {
         });
   }
 
+  public void setCurrentColor(Color colour) {
+    this.currentColor = colour;
+  }
+
   /** Sets the brush to erase */
   @FXML
   private void onErase() {
@@ -264,7 +271,7 @@ public class CanvasController {
 
   /** Sets the brush to pen */
   @FXML
-  private void onBlackPen() {
+  protected void onPen() {
     // Enable eraser button
     eraserButton.setDisable(false);
 
@@ -272,15 +279,15 @@ public class CanvasController {
     penButton.setDisable(true);
 
     // Change brush
-    setPen(Color.BLACK, 5.0);
+    setPen(currentColor, 5.0);
   }
 
   /** This method is called when the "Clear" button is pressed. */
   @FXML
-  private void onClear() {
+  protected void onClear() {
     graphic.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     if (isReady) {
-      onBlackPen();
+      onPen();
     }
   }
 
@@ -334,7 +341,7 @@ public class CanvasController {
    *
    * @throws Exception
    */
-  private void updatePredictionText() throws Exception {
+  protected void updatePredictionText() throws Exception {
 
     // Updates the GUI to display the predictions
     predictionLabel.setText(predictionString);
@@ -592,7 +599,7 @@ public class CanvasController {
    * @throws Exception
    */
   @FXML
-  private void onReady() throws Exception {
+  protected void onReady() throws Exception {
     // Enables the canvas
     canvas.setDisable(false);
 
@@ -604,7 +611,7 @@ public class CanvasController {
     clearButton.setDisable(false);
 
     // Sets the brush to pen
-    onBlackPen();
+    onPen();
 
     // Runs the timer
     runTimer();
