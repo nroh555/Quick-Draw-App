@@ -24,27 +24,19 @@ public class WordPane {
 
       TextFlow textFlow = new TextFlow();
 
-      Text title =
-          new Text(
-              "Entry "
-                  + (e + 1)
-                  + " of "
-                  + entries.size()
-                  + " ["
-                  + entry.getPartOfSpeech()
-                  + "]:"
-                  + System.lineSeparator());
-      title.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
-
       StringBuffer definitions = new StringBuffer();
       boxForEntries.getChildren().add(textFlow);
 
+      int i = 0;
       for (String definition : entry.getDefinitions()) {
-        definitions.append("  ‣ ").append(definition).append(System.lineSeparator());
+        if (i < 3) {
+          definitions.append("  ‣ ").append(definition).append(System.lineSeparator());
+          i++;
+        }
       }
 
       Text definitionText = new Text(definitions.toString());
-      textFlow.getChildren().addAll(title, definitionText);
+      textFlow.getChildren().addAll(definitionText);
     }
 
     return pane;
