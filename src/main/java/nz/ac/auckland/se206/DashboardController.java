@@ -122,6 +122,28 @@ public class DashboardController {
     sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.CANVAS_ZEN));
   }
 
+  /**
+   * Button to switch to the hidden mode canvas page
+   *
+   * @param event
+   * @throws IOException
+   * @throws TranslateException
+   */
+  @FXML
+  private void onSwitchToCanvasHidden(ActionEvent event)
+      throws IOException, ModelException, CsvException, URISyntaxException, TranslateException {
+    // Runs a prediction to reduce lag
+    FXMLLoader canvasHiddenLoader = SceneManager.getCanvasHiddenLoader();
+    CanvasHiddenController canvasHiddenController = canvasHiddenLoader.getController();
+    canvasHiddenController.updatePrediction();
+    canvasHiddenController.initialize();
+
+    // Changes the scene to canvas
+    Button btnThatWasClicked = (Button) event.getSource();
+    Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
+    sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.CANVAS_HIDDEN));
+  }
+
   protected void updateWelcomeLabel() {
     // Get current user
     FXMLLoader menuLoader = SceneManager.getMenuLoader();
