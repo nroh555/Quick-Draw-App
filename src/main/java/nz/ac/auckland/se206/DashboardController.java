@@ -35,6 +35,7 @@ public class DashboardController {
   @FXML private Button startZenGame;
 
   @FXML private Button startHiddenGame;
+  private String currentWord;
 
   // Create hashmap to store all of the users.
   private HashMap<String, User> usersHashMap = new HashMap<String, User>();
@@ -56,6 +57,14 @@ public class DashboardController {
 
   public void setCurrentUser(User currentUser) {
     this.currentUser = currentUser;
+  }
+
+  public String getCurrentWord() {
+    return currentWord;
+  }
+
+  public void setCurrentWord(String currentWord) {
+    this.currentWord = currentWord;
   }
 
   /**
