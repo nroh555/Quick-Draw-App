@@ -103,6 +103,7 @@ public class CanvasHiddenController extends CanvasController {
 
     // Clears predictions
     predictionLabel.setText("");
+    indicatorLabel.setText("");
   }
 
   /**

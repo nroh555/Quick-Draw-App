@@ -118,6 +118,7 @@
                   <Button fx:id="colorBlack" mnemonicParsing="false" onAction="#onSetBlack" prefHeight="45.0" prefWidth="40.0" style="-fx-background-color: black;" />
                </children>
             </HBox>
+            <Label fx:id="indicatorLabel" alignment="CENTER" layoutX="793.0" layoutY="548.0" prefHeight="17.0" prefWidth="190.0" text="indicatorLabel" />
          </children>
       </Pane>
    </children>
