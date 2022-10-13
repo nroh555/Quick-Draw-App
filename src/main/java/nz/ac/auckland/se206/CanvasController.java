@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206;
 
 import ai.djl.ModelException;
+import ai.djl.modality.Classifications;
 import ai.djl.modality.Classifications.Classification;
 import ai.djl.translate.TranslateException;
 import com.opencsv.exceptions.CsvException;
@@ -86,6 +87,8 @@ public class CanvasController {
 
   @FXML protected Label myLabel;
 
+  @FXML protected Label indicatorLabel;
+
   protected double progress;
 
   protected GraphicsContext graphic;
@@ -111,6 +114,12 @@ public class CanvasController {
   protected boolean isReady = false;
 
   protected Color currentColor = Color.BLACK;
+
+  protected Classification currentClassification;
+
+  protected double currentProbability;
+
+  protected String indicatorMessage;
 
   // Create hashmap to store all of the users.
   protected HashMap<String, User> usersHashMap = new HashMap<String, User>();
@@ -206,6 +215,7 @@ public class CanvasController {
 
     // Clears predictions
     predictionLabel.setText("");
+    indicatorLabel.setText("");
   }
 
   /**
@@ -331,7 +341,9 @@ public class CanvasController {
    */
   public void updatePrediction() throws TranslateException {
     // Gets a list of the predictions
-    predictionResults = model.getPredictions(getCurrentSnapshot(), 10);
+    Classifications classifications = model.getClassifications(getCurrentSnapshot());
+    predictionResults = model.getPredictionsNew(classifications, 10);
+    currentClassification = model.getKeywordClassification(classifications, noUnderscoreWord);
 
     // Gets a string of the predictions
     predictionString = DoodlePrediction.makePredictionString(predictionResults);
@@ -343,9 +355,21 @@ public class CanvasController {
    * @throws Exception
    */
   protected void updatePredictionText() throws Exception {
-
     // Updates the GUI to display the predictions
     predictionLabel.setText(predictionString);
+
+    double newProbability = currentClassification.getProbability();
+
+    // Message of user whether their drawing is becoming more or less accurate
+    if (newProbability > currentProbability) {
+      indicatorMessage = "Closer to top 10";
+    } else if (newProbability < currentProbability) {
+      indicatorMessage = "Further from top 10";
+    }
+
+    indicatorLabel.setText(indicatorMessage);
+
+    currentProbability = newProbability;
 
     // Check if user has won
     if (isWin(predictionResults)) {

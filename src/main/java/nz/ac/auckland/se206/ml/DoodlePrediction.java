@@ -4,6 +4,7 @@ import static nz.ac.auckland.se206.util.ImageUtils.invertBlackAndWhite;
 
 import ai.djl.ModelException;
 import ai.djl.modality.Classifications;
+import ai.djl.modality.Classifications.Classification;
 import ai.djl.modality.cv.BufferedImageFactory;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.transform.ToTensor;
@@ -125,6 +126,54 @@ public class DoodlePrediction {
             .build();
 
     model = ModelZoo.loadModel(criteria);
+  }
+
+  /**
+   * Predicts the categories of the input image and gets the classifications
+   *
+   * @param bufImg
+   * @return classification results
+   * @throws TranslateException
+   */
+  public Classifications getClassifications(BufferedImage bufImg) throws TranslateException {
+    // The model requires a black background and white foreground.
+    bufImg = invertBlackAndWhite(bufImg);
+
+    // The model requires the image to be 65x65 pixels.
+    bufImg =
+        Scalr.resize(
+            bufImg, Scalr.Method.SPEED, Scalr.Mode.FIT_TO_WIDTH, 65, 65, Scalr.OP_ANTIALIAS);
+
+    final Classifications classifications =
+        model.newPredictor().predict(new BufferedImageFactory().fromImage(bufImg));
+
+    return classifications;
+  }
+
+  /**
+   * Gets the top k predictions
+   *
+   * @param classifications
+   * @param k
+   * @return list of top predictions
+   * @throws TranslateException
+   */
+  public List<Classifications.Classification> getPredictionsNew(
+      Classifications classifications, final int k) throws TranslateException {
+    return classifications.topK(k);
+  }
+
+  /**
+   * Gets the classification info of the current word
+   *
+   * @param classifications
+   * @param keyword
+   * @return classification of the keyword
+   * @throws TranslateException
+   */
+  public Classification getKeywordClassification(Classifications classifications, String keyword)
+      throws TranslateException {
+    return classifications.get(keyword);
   }
 
   /**

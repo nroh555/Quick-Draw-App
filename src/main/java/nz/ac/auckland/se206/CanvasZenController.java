@@ -149,6 +149,7 @@ public class CanvasZenController extends CanvasController {
 
     // Clears predictions
     predictionLabel.setText("");
+    indicatorLabel.setText("");
 
     // Stops predictions/timer
     runPredictions = false;
@@ -231,6 +232,19 @@ public class CanvasZenController extends CanvasController {
   protected void updatePredictionText() throws Exception {
     // Updates the GUI to display the predictions
     predictionLabel.setText(predictionString);
+
+    double newProbability = currentClassification.getProbability();
+
+    // Message of user whether their drawing is becoming more or less accurate
+    if (newProbability > currentProbability) {
+      indicatorMessage = "Closer to top 10";
+    } else if (newProbability < currentProbability) {
+      indicatorMessage = "Further from top 10";
+    }
+
+    indicatorLabel.setText(indicatorMessage);
+
+    currentProbability = newProbability;
   }
 
   /** This method runs the timer and updates the predictions */

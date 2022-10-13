@@ -102,6 +102,7 @@ public class CanvasHiddenController extends CanvasController {
 
     // Clears predictions
     predictionLabel.setText("");
+    indicatorLabel.setText("");
   }
 
   public void searchWords(String currentWord) {

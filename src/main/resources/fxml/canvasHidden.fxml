@@ -121,6 +121,7 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Label fx:id="indicatorLabel" alignment="CENTER" layoutX="796.0" layoutY="536.0" prefHeight="17.0" prefWidth="190.0" text="indicatorLabel" />
          </children>
       </Pane>
    </children>
