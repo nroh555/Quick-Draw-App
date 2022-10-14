@@ -4,7 +4,6 @@ import ai.djl.ModelException;
 import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.net.URISyntaxException;
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -25,11 +24,14 @@ import nz.ac.auckland.se206.panes.WordPane;
 
 public class CanvasHiddenController extends CanvasController {
 
-  @FXML private Accordion resultsAccordion;
-  @FXML private Button hintButton;
-  private String currentWord;
+  // Set variables
   private static int counter = 0;
+  private String currentWord;
   private String hintWord;
+
+  @FXML private Accordion resultsAccordion;
+
+  @FXML private Button hintButton;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -41,7 +43,7 @@ public class CanvasHiddenController extends CanvasController {
    * @throws CsvException
    */
   @FXML
-  public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {	  
+  public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
     graphic = canvas.getGraphicsContext2D();
 
     model = new DoodlePrediction();
@@ -112,7 +114,7 @@ public class CanvasHiddenController extends CanvasController {
     predictionLabel.setText("");
     indicatorLabel.setText("");
   }
-  
+
   /**
    * Runs the game (allows the user to interact with the canvas)
    *
@@ -146,7 +148,7 @@ public class CanvasHiddenController extends CanvasController {
 
     saveData();
   }
-  
+
   /** This method runs the timer and updates the predictions */
   @Override
   protected void runTimer() {
@@ -225,6 +227,7 @@ public class CanvasHiddenController extends CanvasController {
           @Override
           protected Void call() throws Exception {
             try {
+              // Search for the word info in the dictionary
               WordInfo wordResult = DictionaryLookup.searchWordInfo(currentWord);
               TitledPane pane = WordPane.generateWordPane("Definitions", wordResult);
 
@@ -234,8 +237,10 @@ public class CanvasHiddenController extends CanvasController {
                     resultsAccordion.getPanes().add(pane);
                   });
             } catch (IOException e) {
+              // catch IO exception error
               e.printStackTrace();
             } catch (WordNotFoundException e) {
+              // The word was not found
               TitledPane pane = WordPane.generateErrorPane(e);
               Platform.runLater(
                   () -> {
@@ -246,6 +251,7 @@ public class CanvasHiddenController extends CanvasController {
           }
         };
 
+    // Start background thread
     Thread backgroundThread = new Thread(backgroundTask);
     backgroundThread.start();
   }
@@ -257,22 +263,24 @@ public class CanvasHiddenController extends CanvasController {
     if (counter == 0) {
       StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < currentWord.length(); i++) {
-          sb.append("_ ");
-        }
-       
-        hintWord = sb.toString().strip();
+      for (int i = 0; i < currentWord.length(); i++) {
+        sb.append("_ ");
+      }
+
+      hintWord = sb.toString().strip();
     }
 
     // The second hint would display the first character of the word
     if (counter == 1) {
-    	hintWord = currentWord.charAt(0) + hintWord.substring(1);
+      hintWord = currentWord.charAt(0) + hintWord.substring(1);
     }
 
     // The third hint would display the last character of the word
     if (counter == 2) {
-    	hintWord = hintWord.substring(0, hintWord.length()-1) + currentWord.charAt(currentWord.length() - 1);
-    	hintButton.setDisable(true);
+      hintWord =
+          hintWord.substring(0, hintWord.length() - 1)
+              + currentWord.charAt(currentWord.length() - 1);
+      hintButton.setDisable(true);
     }
 
     resultLabel.setText("Your word is: " + hintWord);
