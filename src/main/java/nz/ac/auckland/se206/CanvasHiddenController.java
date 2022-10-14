@@ -4,6 +4,10 @@ import ai.djl.ModelException;
 import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -11,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.dict.DictionaryLookup;
 import nz.ac.auckland.se206.dict.WordInfo;
 import nz.ac.auckland.se206.dict.WordNotFoundException;
@@ -24,6 +29,7 @@ public class CanvasHiddenController extends CanvasController {
   @FXML private Button hintButton;
   private String currentWord;
   private static int counter = 0;
+  private String hintWord;
 
   /**
    * JavaFX calls this method once the GUI elements are loaded. In our case we create a listener for
@@ -35,7 +41,7 @@ public class CanvasHiddenController extends CanvasController {
    * @throws CsvException
    */
   @FXML
-  public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
+  public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {	  
     graphic = canvas.getGraphicsContext2D();
 
     model = new DoodlePrediction();
@@ -64,12 +70,11 @@ public class CanvasHiddenController extends CanvasController {
     backButton.setVisible(true);
     backButton.setDisable(false);
 
-    // Makes the pen, eraser and clear appear
+    // Makes the pen, eraser, clear and hint appear
     penButton.setVisible(true);
     eraserButton.setVisible(true);
     clearButton.setVisible(true);
     hintButton.setVisible(true);
-    hintButton.setDisable(false);
 
     // Resets the counter variable back to 0
     counter = 0;
@@ -96,14 +101,109 @@ public class CanvasHiddenController extends CanvasController {
 
     onPen();
 
-    // Clears and enables canvas, disables eraser
+    // Clears and enables canvas, disables eraser, hint, clear
     canvas.setDisable(false);
     eraserButton.setDisable(true);
+    hintButton.setDisable(true);
+    clearButton.setDisable(true);
     onClear();
 
     // Clears predictions
     predictionLabel.setText("");
     indicatorLabel.setText("");
+  }
+  
+  /**
+   * Runs the game (allows the user to interact with the canvas)
+   *
+   * @throws Exception
+   */
+  @FXML
+  @Override
+  protected void onReady() throws Exception {
+    // Enables the canvas
+    canvas.setDisable(false);
+
+    // Disables the back button
+    backButton.setVisible(false);
+
+    // Enables eraser and clear buttons
+    eraserButton.setDisable(false);
+    clearButton.setDisable(false);
+    hintButton.setDisable(false);
+
+    // Sets the brush to pen
+    onPen();
+
+    // Runs the timer
+    runTimer();
+
+    // Adds current word to list of used words
+    currentUser.addUsedWord(currentWord);
+
+    // Sets the results label to display draw prompt
+    resultLabel.setText("");
+
+    saveData();
+  }
+  
+  /** This method runs the timer and updates the predictions */
+  @Override
+  protected void runTimer() {
+    Timeline timeline = new Timeline();
+    KeyFrame keyframe =
+        new KeyFrame(
+            Duration.seconds(1),
+            e -> {
+              count--;
+              increaseProgress();
+
+              // Updates timer label
+              time.setText(String.valueOf(count));
+              try {
+                // Runs predictions
+                updatePrediction();
+                updatePredictionText();
+              } catch (Exception e1) {
+                e1.printStackTrace();
+              }
+
+              // Checks if game is over
+              if (count <= 0 || gameOver) {
+                // Speaks the result aloud
+                talk();
+
+                // Stops the timer
+                timeline.stop();
+
+                // Disables the canvas
+                canvas.setDisable(true);
+
+                // Enables the play again, save drawing and back button
+                playAgainButton.setVisible(true);
+                playAgainButton.setDisable(false);
+                saveDrawingButton.setVisible(true);
+                saveDrawingButton.setDisable(false);
+                backButton.setVisible(true);
+                backButton.setDisable(false);
+
+                // Disables the pen, eraser and clear button
+                penButton.setVisible(false);
+                eraserButton.setVisible(false);
+                clearButton.setVisible(false);
+                hintButton.setVisible(false);
+
+                isReady = false;
+                gameOver = false;
+              }
+            });
+
+    // Sets up the timer
+    timeline.getKeyFrames().add(keyframe);
+    timeline.setCycleCount(Animation.INDEFINITE);
+
+    // Starts the timer
+    timeline.play();
   }
 
   /**
@@ -155,30 +255,27 @@ public class CanvasHiddenController extends CanvasController {
   private void onHint() {
     // The first hint would display the length of the word
     if (counter == 0) {
-      resultLabel.setText("Your word has " + currentWord.length() + " characters");
+      StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < currentWord.length(); i++) {
+          sb.append("_ ");
+        }
+       
+        hintWord = sb.toString().strip();
     }
 
     // The second hint would display the first character of the word
     if (counter == 1) {
-      resultLabel.setText("Your word starts with " + currentWord.charAt(0));
+    	hintWord = currentWord.charAt(0) + hintWord.substring(1);
     }
 
     // The third hint would display the last character of the word
     if (counter == 2) {
-      resultLabel.setText("Your word ends with " + currentWord.charAt(currentWord.length() - 1));
+    	hintWord = hintWord.substring(0, hintWord.length()-1) + currentWord.charAt(currentWord.length() - 1);
+    	hintButton.setDisable(true);
     }
 
-    // The final hint would display all of the above hints
-    if (counter >= 3) {
-      hintButton.setVisible(false);
-      resultLabel.setText(
-          "Your word has "
-              + currentWord.length()
-              + " characters, starts with "
-              + currentWord.charAt(0)
-              + " and ends with "
-              + currentWord.charAt(currentWord.length() - 1));
-    }
+    resultLabel.setText("Your word is: " + hintWord);
     counter++;
   }
 }
