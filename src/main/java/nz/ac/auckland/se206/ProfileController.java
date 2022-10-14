@@ -105,22 +105,43 @@ public class ProfileController {
   // Current user logged in
   private User currentUser = new User("None");
 
+  /**
+   * Get the registered users hashmap
+   *
+   * @return hashmap containing all the registered users
+   */
   public HashMap<String, User> getUsersHashMap() {
     return usersHashMap;
   }
 
+  /**
+   * Set the registered users hashmap
+   *
+   * @param usersHashMap containing all the registered users
+   */
   public void setUsersHashMap(HashMap<String, User> usersHashMap) {
     this.usersHashMap = usersHashMap;
   }
 
+  /**
+   * Get the current user that is logged in
+   *
+   * @return the current user
+   */
   public User getCurrentUser() {
     return currentUser;
   }
 
+  /**
+   * Set the current user that is logged in
+   *
+   * @param currentUser that is logged in
+   */
   public void setCurrentUser(User currentUser) {
     this.currentUser = currentUser;
   }
 
+  /** Update the labels on the profile page */
   protected void updateLabels() {
     // Get current user
     FXMLLoader menuLoader = SceneManager.getMenuLoader();
@@ -135,15 +156,19 @@ public class ProfileController {
     // Check if badges hashmap has been populated yet
     if (badgesHashMap.isEmpty()) {
       // If empty, populate with badge details
+      // Badges for win times
       badgesHashMap.put(1, "Win in under 5 seconds.");
       badgesHashMap.put(2, "Win in under 10 seconds.");
       badgesHashMap.put(3, "Win in under 30 seconds.");
+      // Badges for games won
       badgesHashMap.put(4, "Win 50 games.");
       badgesHashMap.put(5, "Win 25 games.");
       badgesHashMap.put(6, "Win 10 games.");
+      // Badges for games lost
       badgesHashMap.put(7, "Lose 50 games.");
       badgesHashMap.put(8, "Lose 25 games.");
       badgesHashMap.put(9, "Lose 10 games.");
+      // Badges for difficulty
       badgesHashMap.put(10, "Win with all max difficulty.");
       badgesHashMap.put(11, "Win with all hard difficulty.");
       badgesHashMap.put(12, "Win with all medium difficulty.");
@@ -160,8 +185,6 @@ public class ProfileController {
 
     // Update used words label
     usedWordsBox.setText(currentUser.getUsedWordsString());
-
-    System.out.println(currentUser.getUsedWordsString());
   }
 
   /**
@@ -275,8 +298,10 @@ public class ProfileController {
     // Iterate through the badges
     for (int i = 0; i < 12; i++) {
       if (badgesArray.get(i) == true) {
+        // Brighten badge if user has obtained it
         getImageView(i).setOpacity(1);
       } else {
+        // Dull badge if user has not obtained it
         getImageView(i).setOpacity(0.2);
       }
     }
@@ -285,6 +310,7 @@ public class ProfileController {
   /** Get the corresponding badge imageView component */
   private ImageView getImageView(int i) {
     ImageView badgeImage = new ImageView();
+    // Time badges
     if (i == 0) {
       badgeImage = b1;
     } else if (i == 1) {
@@ -292,42 +318,57 @@ public class ProfileController {
     } else if (i == 2) {
       badgeImage = b3;
     } else if (i == 3) {
+      // Games won badges
       badgeImage = b4;
     } else if (i == 4) {
       badgeImage = b5;
     } else if (i == 5) {
       badgeImage = b6;
     } else if (i == 6) {
+      // Games lost badges
       badgeImage = b7;
     } else if (i == 7) {
       badgeImage = b8;
     } else if (i == 8) {
       badgeImage = b9;
     } else if (i == 9) {
+      // Difficulty badges
       badgeImage = b10;
     } else if (i == 10) {
       badgeImage = b11;
     } else if (i == 11) {
       badgeImage = b12;
     }
+
+    // Return the badge image corresponding to the badge
     return badgeImage;
   }
 
+  /** Disable all the profile pictures initially */
   @FXML
   private void disableAllPictures() {
+    // Set all profile pics invisible
     cat.setVisible(false);
     dog.setVisible(false);
     bear.setVisible(false);
     koala.setVisible(false);
+    // Last four
     tiger.setVisible(false);
     lion.setVisible(false);
     monkey.setVisible(false);
     panda.setVisible(false);
   }
 
+  /**
+   * Set the user's profile picture
+   *
+   * @param profilePicIndex corresponding index of the profile pic
+   */
   @FXML
   private void setProfilePicture(Integer profilePicIndex) {
+    // Check profile picture index, and set the corresponding image
     if (profilePicIndex == 0) {
+      // First four
       cat.setVisible(true);
     } else if (profilePicIndex == 1) {
       dog.setVisible(true);
@@ -336,6 +377,7 @@ public class ProfileController {
     } else if (profilePicIndex == 3) {
       koala.setVisible(true);
     } else if (profilePicIndex == 4) {
+      // Last four
       lion.setVisible(true);
     } else if (profilePicIndex == 5) {
       tiger.setVisible(true);
