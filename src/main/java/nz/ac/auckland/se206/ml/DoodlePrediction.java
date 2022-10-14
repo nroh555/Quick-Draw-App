@@ -85,12 +85,11 @@ public class DoodlePrediction {
 
     // Creates a string builder containing the information of the top predictions
     for (final Classifications.Classification classification : predictions) {
-      sb.append("TOP ")
-          .append(i)
-          .append(" : ")
+      sb.append(i)
+          .append(". ")
           .append(classification.getClassName().replaceAll("_", " "))
-          .append(" : ")
-          .append(String.format("%.2f%%", 100 * classification.getProbability()))
+          .append(" - ")
+          .append(String.format("%.0f%%", 100 * classification.getProbability()))
           .append(System.lineSeparator());
 
       i++;

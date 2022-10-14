@@ -318,7 +318,7 @@ public class CanvasController {
   }
 
   /** This function would increase the progress bar to match with the timer */
-  private void increaseProgress() {
+  protected void increaseProgress() {
     // Increases the progress bar by a frequency per initial count number of seconds
     progress += (1.0 / initialCount);
     myProgressBar.setProgress(progress);
@@ -379,7 +379,7 @@ public class CanvasController {
       gameOver = true;
     } else if (count <= 0) {
       // Prints lose message
-      endMessage = "Sorry, you have lost :(";
+      endMessage = "Nice try! The word was " + noUnderscoreWord;
       resultLabel.setText(endMessage);
       gameOver = true;
       addLoss();
@@ -600,7 +600,7 @@ public class CanvasController {
   }
 
   /** Uses text to speech to say the results message */
-  private void talk() {
+  protected void talk() {
     // This task uses text to speech to say the result aloud
     Task<Void> speakTask =
         new Task<Void>() {
@@ -784,8 +784,7 @@ public class CanvasController {
    *
    * @throws Exception
    */
-  @FXML
-  private void saveData() throws Exception {
+protected void saveData() throws Exception {
     updateUserAndMap();
 
     // Save all the new data to the file
