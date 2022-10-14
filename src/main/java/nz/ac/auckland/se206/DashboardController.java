@@ -35,6 +35,7 @@ public class DashboardController {
   @FXML private Button startZenGame;
 
   @FXML private Button startHiddenGame;
+
   private String currentWord;
 
   // Create hashmap to store all of the users.
@@ -43,26 +44,56 @@ public class DashboardController {
   // Current user logged in
   private User currentUser = new User("None");
 
+  /**
+   * Get the registered users hash map
+   *
+   * @return HashMap<String, User> of all the registered users
+   */
   public HashMap<String, User> getUsersHashMap() {
     return usersHashMap;
   }
 
+  /**
+   * Set the registered users hash map
+   *
+   * @param usersHashMap of all the users hashmap
+   */
   public void setUsersHashMap(HashMap<String, User> usersHashMap) {
     this.usersHashMap = usersHashMap;
   }
 
+  /**
+   * Get the current logged in user
+   *
+   * @return User that is logged in
+   */
   public User getCurrentUser() {
     return currentUser;
   }
 
+  /**
+   * Set the current logged in user
+   *
+   * @param currentUser that is logged in
+   */
   public void setCurrentUser(User currentUser) {
     this.currentUser = currentUser;
   }
 
+  /**
+   * Get the current word for the user
+   *
+   * @return Current word
+   */
   public String getCurrentWord() {
     return currentWord;
   }
 
+  /**
+   * Set the current word for the user
+   *
+   * @param currentWord
+   */
   public void setCurrentWord(String currentWord) {
     this.currentWord = currentWord;
   }
@@ -153,6 +184,7 @@ public class DashboardController {
     sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.CANVAS_HIDDEN));
   }
 
+  /** Update the welcome label for the user */
   protected void updateWelcomeLabel() {
     // Get current user
     FXMLLoader menuLoader = SceneManager.getMenuLoader();
@@ -174,101 +206,118 @@ public class DashboardController {
     welcomeLabel.setText("Welcome, " + currentUser.getUsername() + "!");
   }
 
+  /** Update user accuracy level to easy */
   @FXML
   private void onAccuracySetEasy() {
     accuracySettingButton.setText("Accuracy: Easy");
     updateCurrentUser("Accuracy", Level.EASY);
   }
 
+  /** Update user accuracy level to medium */
   @FXML
   private void onAccuracySetMedium() {
     accuracySettingButton.setText("Accuracy: Medium");
     updateCurrentUser("Accuracy", Level.MEDIUM);
   }
 
+  /** Update user accuracy level to hard */
   @FXML
   private void onAccuracySetHard() {
     accuracySettingButton.setText("Accuracy: Hard");
     updateCurrentUser("Accuracy", Level.HARD);
   }
 
+  /** Update user words level to easy */
   @FXML
   private void onWordsSetEasy() {
     wordsSettingButton.setText("Words: Easy");
     updateCurrentUser("Words", Level.EASY);
   }
 
+  /** Update user words level to medium */
   @FXML
   private void onWordsSetMedium() {
     wordsSettingButton.setText("Words: Medium");
     updateCurrentUser("Words", Level.MEDIUM);
   }
 
+  /** Update user words level to hard */
   @FXML
   private void onWordsSetHard() {
     wordsSettingButton.setText("Words: Hard");
     updateCurrentUser("Words", Level.HARD);
   }
 
+  /** Update user words level to master */
   @FXML
   private void onWordsSetMaster() {
     wordsSettingButton.setText("Words: Master");
     updateCurrentUser("Words", Level.MASTER);
   }
 
+  /** Update user time level to easy */
   @FXML
   private void onTimeSetEasy() {
     timeSettingButton.setText("Time: Easy");
     updateCurrentUser("Time", Level.EASY);
   }
 
+  /** Update user time level to medium */
   @FXML
   private void onTimeSetMedium() {
     timeSettingButton.setText("Time: Medium");
     updateCurrentUser("Time", Level.MEDIUM);
   }
 
+  /** Update user time level to hard */
   @FXML
   private void onTimeSetHard() {
     timeSettingButton.setText("Time: Hard");
     updateCurrentUser("Time", Level.HARD);
   }
 
+  /** Update user time level to master */
   @FXML
   private void onTimeSetMaster() {
     timeSettingButton.setText("Time: Master");
     updateCurrentUser("Time", Level.MASTER);
   }
 
+  /** Update user confidence level to easy */
   @FXML
   private void onConfidenceSetEasy() {
     confidenceSettingButton.setText("Confidence: Easy");
     updateCurrentUser("Confidence", Level.EASY);
   }
 
+  /** Update user confidence level to medium */
   @FXML
   private void onConfidenceSetMedium() {
     confidenceSettingButton.setText("Confidence: Medium");
     updateCurrentUser("Confidence", Level.MEDIUM);
   }
 
+  /** Update user confidence level to hard */
   @FXML
   private void onConfidenceSetHard() {
     confidenceSettingButton.setText("Confidence: Hard");
     updateCurrentUser("Confidence", Level.HARD);
   }
 
+  /** Update user confidence level to master */
   @FXML
   private void onConfidenceSetMaster() {
     confidenceSettingButton.setText("Confidence: Master");
     updateCurrentUser("Confidence", Level.MASTER);
   }
 
+  /**
+   * Update the current user difficulty settings
+   *
+   * @param difficultyCategory difficulty setting to update
+   * @param levelSetting the level of difficulty the user would like to choose
+   */
   private void updateCurrentUser(String difficultyCategory, Level levelSetting) {
-    // Get current user
-    // FXMLLoader menuLoader = SceneManager.getMenuLoader();
-    // MenuController menuController = menuLoader.getController();
-    // User currentUser = menuController.getCurrentUser();
 
     // Update appropriate difficulty category for the current user
     if (difficultyCategory == "Accuracy") {
@@ -278,6 +327,7 @@ public class DashboardController {
     } else if (difficultyCategory == "Time") {
       currentUser.setTimeSetting(levelSetting);
     } else {
+      // In all other cases, this would be the confidence setting
       currentUser.setConfidenceSetting(levelSetting);
     }
 
