@@ -132,8 +132,6 @@ public class CanvasZenController extends CanvasController {
 
     noUnderscoreWord = currentWord.replaceAll(" ", "_");
 
-    time.setText("∞");
-
     // Sets the results label to display draw prompt
     resultLabel.setText("Draw on canvas to begin game!");
 

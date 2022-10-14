@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
@@ -17,35 +18,15 @@
          <children>
             <ImageView fitHeight="806.0" fitWidth="1150.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/canvas_frame.png" />
+                  <Image url="@../images/frame_6.png" />
                </image>
             </ImageView>
-            <Label fx:id="time" alignment="CENTER" layoutX="200.0" layoutY="75.0" prefHeight="130.0" prefWidth="377.0" text="time" textAlignment="CENTER">
+            <Label fx:id="wordLabel" alignment="CENTER" layoutX="301.0" layoutY="63.0" prefHeight="80.0" prefWidth="548.0" text="word" textAlignment="CENTER">
                <font>
-                  <Font size="18.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="109.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/timer.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Label>
-            <Label fx:id="wordLabel" alignment="CENTER" layoutX="408.0" layoutY="60.0" prefHeight="32.0" prefWidth="355.0" text="word" textAlignment="CENTER">
-               <font>
-                  <Font size="18.0" />
+                  <Font name="Comic Sans MS" size="57.0" />
                </font>
             </Label>
-            <Button fx:id="penButton" disable="true" layoutX="128.0" layoutY="615.0" mnemonicParsing="false" onAction="#onPen" prefHeight="101.0" prefWidth="115.0">
-               <graphic>
-                  <ImageView fitHeight="110.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/pencil.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <Button fx:id="eraserButton" disable="true" layoutX="300.0" layoutY="615.0" mnemonicParsing="false" onAction="#onErase" prefHeight="127.0" prefWidth="115.0">
+            <Button fx:id="eraserButton" disable="true" layoutX="315.0" layoutY="636.0" mnemonicParsing="false" onAction="#onErase" prefHeight="105.0" prefWidth="105.0">
                <graphic>
                   <ImageView fitHeight="87.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -53,30 +34,28 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="clearButton" disable="true" layoutX="473.0" layoutY="615.0" mnemonicParsing="false" onAction="#onClear" prefHeight="127.0" prefWidth="124.0">
-               <graphic>
-                  <ImageView fitHeight="117.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/clear.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <VBox fx:id="canvasBox" layoutX="135.0" layoutY="207.0" prefHeight="315.0" prefWidth="468.0">
+            <VBox fx:id="canvasBox" layoutX="126.0" layoutY="226.0" prefHeight="315.0" prefWidth="468.0">
                <children>
-                  <Canvas fx:id="canvas" height="314.0" width="467.0">
+                  <Canvas fx:id="canvas" height="308.0" width="468.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Canvas>
                </children>
             </VBox>
-            <Label fx:id="resultLabel" alignment="CENTER" layoutX="723.0" layoutY="570.0" prefHeight="32.0" prefWidth="355.0" text="word" textAlignment="CENTER">
+            <Label fx:id="resultLabel" alignment="CENTER" layoutX="657.0" layoutY="581.0" prefHeight="40.0" prefWidth="468.0" text="result" textAlignment="CENTER">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Comic Sans MS" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="predictionLabel" layoutX="749.0" layoutY="336.0" prefHeight="200.0" prefWidth="277.0" text="predictions" />
-            <Button fx:id="playAgainButton" disable="true" layoutX="978.0" layoutY="615.0" mnemonicParsing="false" onAction="#onInitialize" prefHeight="127.0" prefWidth="124.0">
+            <Label fx:id="predictionLabel" alignment="TOP_LEFT" layoutX="752.0" layoutY="292.0" prefHeight="272.0" prefWidth="270.0" text="predictions">
+               <font>
+                  <Font name="Comic Sans MS" size="16.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></Label>
+            <Button fx:id="playAgainButton" disable="true" layoutX="927.0" layoutY="625.0" mnemonicParsing="false" onAction="#onInitialize" prefHeight="115.0" prefWidth="115.0">
                <graphic>
                   <ImageView fitHeight="117.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -85,9 +64,9 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="saveDrawingButton" disable="true" layoutX="763.0" layoutY="615.0" mnemonicParsing="false" onAction="#onSaveCurrentSnapshotOnFileSpecific" prefHeight="127.0" prefWidth="124.0">
+            <Button fx:id="saveDrawingButton" disable="true" layoutX="734.0" layoutY="625.0" mnemonicParsing="false" onAction="#onSaveCurrentSnapshotOnFileSpecific" prefHeight="115.0" prefWidth="115.0">
                <graphic>
-                  <ImageView fitHeight="117.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="82.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/save.png" />
                      </image>
@@ -103,7 +82,39 @@
                   </ImageView>
                </graphic>
             </Button>
-            <HBox alignment="CENTER" layoutX="132.0" layoutY="532.0" prefHeight="48.0" prefWidth="473.0" spacing="5">
+            <Button fx:id="penButton" disable="true" layoutX="137.0" layoutY="638.0" mnemonicParsing="false" onAction="#onPen" prefHeight="105.0" prefWidth="105.0">
+               <graphic>
+                  <ImageView fitHeight="87.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/pencil.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="clearButton" disable="true" layoutX="492.0" layoutY="635.0" mnemonicParsing="false" onAction="#onClear" prefHeight="105.0" prefWidth="105.0">
+               <graphic>
+                  <ImageView fitHeight="87.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/clear.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label alignment="CENTER" layoutX="752.0" layoutY="247.0" prefHeight="32.0" prefWidth="270.0" text="Top 10 Predictions">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="indicatorLabel" alignment="CENTER" layoutX="794.0" layoutY="527.0" prefHeight="17.0" prefWidth="190.0" text="indicatorLabel">
+               <font>
+                  <Font name="Comic Sans MS" size="19.0" />
+               </font></Label>
+            <Label fx:id="gamemodeLabel" alignment="CENTER" layoutX="1013.0" layoutY="55.0" prefHeight="48.0" prefWidth="133.0" style="-fx-border-color: #aadf91#aadf91;" text="Zen Mode">
+               <font>
+                  <Font name="Comic Sans MS" size="20.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" layoutX="124.0" layoutY="564.0" prefHeight="48.0" prefWidth="473.0" spacing="5">
                <children>
                   <Button fx:id="colorRed" mnemonicParsing="false" onAction="#onSetRed" prefHeight="45.0" prefWidth="40.0" style="-fx-background-color: red;" />
                   <Button fx:id="colorOrange" mnemonicParsing="false" onAction="#onSetOrange" prefHeight="45.0" prefWidth="40.0" style="-fx-background-color: orange;" />
@@ -118,7 +129,6 @@
                   <Button fx:id="colorBlack" mnemonicParsing="false" onAction="#onSetBlack" prefHeight="45.0" prefWidth="40.0" style="-fx-background-color: black;" />
                </children>
             </HBox>
-            <Label fx:id="indicatorLabel" alignment="CENTER" layoutX="793.0" layoutY="548.0" prefHeight="17.0" prefWidth="190.0" text="indicatorLabel" />
          </children>
       </Pane>
    </children>

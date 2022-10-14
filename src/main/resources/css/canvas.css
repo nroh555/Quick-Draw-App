@@ -30,10 +30,6 @@
   -fx-background-color: #ffebcd;
 }
 
-#resultLabel {
-  -fx-font-size: 17px;
-}
-
 #myProgressBar {
   -fx-padding: 3 4 4 4;
   -fx-background-radius: 18;
@@ -53,5 +49,13 @@
   -fx-border-color: black;
   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0.4), 4, 0, 0, 1);
   -fx-background-radius: 18;
+  -fx-padding: 5 0 0 10;
+ }
+ 
+ #gamemodeLabel {
+  -fx-background-color: white;
+  -fx-border-color: #98cdff;
+  -fx-border-radius: 18;
+  -fx-border-width: 3;
  }
  
