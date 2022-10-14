@@ -28,6 +28,7 @@ public class User implements Serializable {
   // Used words
   private ArrayList<String> usedWords;
 
+  // Constructor for user object
   public User(String username) {
     this.username = username;
     this.profilePic = 0;
@@ -49,10 +50,10 @@ public class User implements Serializable {
   /**
    * This loads user details from the file to create a user instance
    *
-   * @param username
-   * @param wins
-   * @param losses
-   * @param fastestWin
+   * @param username The user's username
+   * @param wins How many wins the user has
+   * @param losses How many losses the user has
+   * @param fastestWin The fastest time for which the user has won
    */
   public void loadUser(
       String username,
@@ -146,7 +147,7 @@ public class User implements Serializable {
   /**
    * This returns the array list of used words
    *
-   * @return ArrayList<String>
+   * @return ArrayList<String> of all the words the user has drawn already
    */
   public ArrayList<String> getUsedWords() {
     return usedWords;
@@ -155,7 +156,7 @@ public class User implements Serializable {
   /**
    * This adds a word to the list of used words
    *
-   * @param word
+   * @param word The word to be added
    */
   public void addUsedWord(String word) {
     this.usedWords.add(word);
@@ -164,7 +165,7 @@ public class User implements Serializable {
   /**
    * This returns a string containing the used words on new lines
    *
-   * @return
+   * @return string of all the used words
    */
   public String getUsedWordsString() {
     StringBuilder sb = new StringBuilder();
@@ -195,7 +196,7 @@ public class User implements Serializable {
   /**
    * This gets the string version of all the used words and chucks them all into an array
    *
-   * @param wordsString
+   * @param wordsString string of all the words
    */
   public void getWordsToArray(String wordsString) {
 
@@ -209,9 +210,9 @@ public class User implements Serializable {
   /**
    * Sets either of the wins, losses, or fastestWins stats for the user
    *
-   * @param wins
-   * @param losses
-   * @param fastestWin
+   * @param wins Number of times the user has won
+   * @param losses Number of times the user has lost
+   * @param fastestWin Fastest time in which the user has won
    */
   public void setStats(Integer wins, Integer losses, Integer fastestWin) {
     this.wins = wins;
@@ -219,10 +220,20 @@ public class User implements Serializable {
     this.fastestWin = fastestWin;
   }
 
+  /**
+   * Sets the corresponding index number for the profile pic
+   *
+   * @param profilePicIndex Index number for the profile pic
+   */
   public void setProfilePic(Integer profilePicIndex) {
     this.profilePic = profilePicIndex;
   }
 
+  /**
+   * Gets the corresponding index number for the profile pic
+   *
+   * @return the profile picture index number
+   */
   public Integer getProfilePic() {
     return profilePic;
   }
@@ -230,7 +241,7 @@ public class User implements Serializable {
   /**
    * Gets the user's username
    *
-   * @return String
+   * @return String of the user's username
    */
   public String getUsername() {
     return username;
@@ -239,7 +250,7 @@ public class User implements Serializable {
   /**
    * Gets the user's number of wins
    *
-   * @return Integer
+   * @return Integer of the number of wins
    */
   public Integer getWins() {
     return wins;
@@ -248,7 +259,7 @@ public class User implements Serializable {
   /**
    * Gets the user's number of losses
    *
-   * @return Integer
+   * @return Integer of the number of losses
    */
   public Integer getLosses() {
     return losses;
@@ -257,7 +268,7 @@ public class User implements Serializable {
   /**
    * Gets the user's fastest win
    *
-   * @return Integer
+   * @return Integer of the user's fastest win
    */
   public Integer getFastestWin() {
     return fastestWin;
@@ -266,7 +277,7 @@ public class User implements Serializable {
   /**
    * Gets the user's accuracy setting
    *
-   * @return Level
+   * @return Level of the user's accuracy setting
    */
   public Level getAccuracySetting() {
     return accuracySetting;
@@ -275,7 +286,7 @@ public class User implements Serializable {
   /**
    * Gets the user's words setting
    *
-   * @return Level
+   * @return Level of the user's word setting
    */
   public Level getWordsSetting() {
     return wordsSetting;
@@ -284,7 +295,7 @@ public class User implements Serializable {
   /**
    * Gets the user's time setting
    *
-   * @return Level
+   * @return Level of the user's time setting
    */
   public Level getTimeSetting() {
     return timeSetting;
@@ -293,13 +304,18 @@ public class User implements Serializable {
   /**
    * Gets the user's confidence setting
    *
-   * @return Level
+   * @return Level of the user's confidence setting
    */
   public Level getConfidenceSetting() {
     return confidenceSetting;
   }
 
+  /**
+   * @param thisLevel
+   * @return String of the level the user has selected
+   */
   public String getDifficultyString(Level thisLevel) {
+    // Check which level they selected, and return the corresponding string
     if (thisLevel == Level.EASY) {
       return "Easy";
     } else if (thisLevel == Level.MEDIUM) {
@@ -307,93 +323,113 @@ public class User implements Serializable {
     } else if (thisLevel == Level.HARD) {
       return "Hard";
     } else {
+      // In all other cases it will be master
       return "Master";
     }
   }
 
+  /**
+   * @return ArrayList<Boolean>
+   */
   public ArrayList<Boolean> getBadgesArray() {
     return badgesArray;
   }
 
+  /**
+   * Set / update the user's collected badges
+   *
+   * @param badgesArray array of the user's earned badges
+   */
   public void setBadgesArray(ArrayList<Boolean> badgesArray) {
     this.badgesArray = badgesArray;
   }
 
-  /** Sets the user's accuracy setting */
+  /**
+   * Sets the user's accuracy setting
+   *
+   * @param accuracySetting the current setting for accuracy
+   */
   public void setAccuracySetting(Level accuracySetting) {
     this.accuracySetting = accuracySetting;
   }
 
-  /** Sets the user's words setting */
+  /**
+   * Sets the user's word setting
+   *
+   * @param wordsSetting the current setting for words
+   */
   public void setWordsSetting(Level wordsSetting) {
     this.wordsSetting = wordsSetting;
   }
 
-  /** Sets the user's time setting */
+  /**
+   * Sets the user's time setting
+   *
+   * @param timeSetting the current setting for time
+   */
   public void setTimeSetting(Level timeSetting) {
     this.timeSetting = timeSetting;
   }
 
-  /** Sets the user's confidence setting */
+  /**
+   * Sets the user's confidence setting
+   *
+   * @param confidence the current setting for confidence
+   */
   public void setConfidenceSetting(Level confidenceSetting) {
     this.confidenceSetting = confidenceSetting;
   }
 
+  /**
+   * Formats the difficulty settings so that it is easy for save
+   *
+   * @param difficultyArray array containing all the user settings for difficulty
+   * @return String of all the user settings for difficulty
+   */
   private String formatDifficultySettings(ArrayList<Level> difficultyArray) {
-    String difficultyString = "";
+    StringBuilder difficultyStringBuilder = new StringBuilder();
     for (int i = 0; i < difficultyArray.size(); i++) {
       if (difficultyArray.get(i) == Level.EASY) {
-        difficultyString = difficultyString + "E";
+        // Represent easy with E
+        difficultyStringBuilder.append("E");
       } else if (difficultyArray.get(i) == Level.MEDIUM) {
-        difficultyString = difficultyString + "M";
+        // Represent medium with M
+        difficultyStringBuilder.append("M");
       } else if (difficultyArray.get(i) == Level.HARD) {
-        difficultyString = difficultyString + "H";
+        // Represent hard with H
+        difficultyStringBuilder.append("H");
       } else if (difficultyArray.get(i) == Level.MASTER) {
-        difficultyString = difficultyString + "S";
+        // Represent master with S
+        difficultyStringBuilder.append("S");
       } else {
         System.out.println("Error - no corresponding difficulty found");
       }
     }
 
+    // Convert stringbuilder to string, and return
+    String difficultyString = difficultyStringBuilder.toString();
     return difficultyString;
   }
 
   /**
-   * Takes the difficulty level and returns the string of the difficulty level the setting
-   * corresponds to
+   * Formats the user's badges for save
    *
-   * @param difficultyLevel
-   * @return String of what the difficulty level corresponds to
+   * @param badgesArray array containing all of the badges
    */
-  private String formatSettingForDisplay(Level difficultyLevel) {
-    String difficultyAsString = "";
-    if (difficultyLevel == Level.EASY) {
-      difficultyAsString = "Easy";
-    } else if (difficultyLevel == Level.MEDIUM) {
-      difficultyAsString = "Medium";
-    } else if (difficultyLevel == Level.HARD) {
-      difficultyAsString = "Hard";
-    } else if (difficultyLevel == Level.MASTER) {
-      difficultyAsString = "Master";
-    } else {
-      System.out.println("Error - no corresponding difficulty found");
-    }
-    return difficultyAsString;
-  }
-
-  /** Formats the user's badges for save */
   private String formatBadgesForSave(ArrayList<Boolean> badgesArray) {
-    String badgesSaveString = "";
+    StringBuilder badgesSaveStringBuilder = new StringBuilder();
 
     // Iterate through the badges array
     for (int i = 0; i < badgesArray.size(); i++) {
       if (badgesArray.get(i) == true) {
-        badgesSaveString = badgesSaveString + "T";
+        badgesSaveStringBuilder.append("T");
       } else {
-        badgesSaveString = badgesSaveString + "F";
+        badgesSaveStringBuilder.append("F");
       }
     }
 
+    // Convert string builder to string, and return
+    String badgesSaveString = badgesSaveStringBuilder.toString();
     return badgesSaveString;
   }
 }

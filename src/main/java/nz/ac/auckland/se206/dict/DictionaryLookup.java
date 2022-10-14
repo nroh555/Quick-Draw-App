@@ -32,11 +32,11 @@ public class DictionaryLookup {
     } catch (ClassCastException e) {
     }
 
-    JSONArray jArray = (JSONArray) new JSONTokener(jsonString).nextValue();
+    JSONArray jsonArray = (JSONArray) new JSONTokener(jsonString).nextValue();
     List<WordEntry> entries = new ArrayList<WordEntry>();
 
-    for (int e = 0; e < jArray.length(); e++) {
-      JSONObject jsonEntryObj = jArray.getJSONObject(e);
+    for (int e = 0; e < jsonArray.length(); e++) {
+      JSONObject jsonEntryObj = jsonArray.getJSONObject(e);
       JSONArray jsonMeanings = jsonEntryObj.getJSONArray("meanings");
 
       String partOfSpeech = "[not specified]";
