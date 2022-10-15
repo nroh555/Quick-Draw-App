@@ -20,7 +20,7 @@
          <children>
             <ImageView fitHeight="806.0" fitWidth="1150.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/frame_6.png" />
+                  <Image url="@../images/frame_canvas.png" />
                </image>
             </ImageView>
             <Label fx:id="time" layoutX="260.0" layoutY="148.0" prefHeight="115.0" prefWidth="190.0" text="time" textAlignment="CENTER">

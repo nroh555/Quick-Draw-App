@@ -18,7 +18,7 @@
          <children>
             <ImageView fitHeight="806.0" fitWidth="1150.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/frame_6.png" />
+                  <Image url="@../images/frame_zen_2.png" />
                </image>
             </ImageView>
             <Label fx:id="wordLabel" alignment="CENTER" layoutX="301.0" layoutY="63.0" prefHeight="80.0" prefWidth="548.0" text="word" textAlignment="CENTER">
@@ -48,7 +48,7 @@
                   <Font name="Comic Sans MS" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="predictionLabel" alignment="TOP_LEFT" layoutX="752.0" layoutY="292.0" prefHeight="272.0" prefWidth="270.0" text="predictions">
+            <Label fx:id="predictionLabel" alignment="TOP_LEFT" layoutX="752.0" layoutY="251.0" prefHeight="272.0" prefWidth="270.0" text="predictions">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>
@@ -100,12 +100,12 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Label alignment="CENTER" layoutX="752.0" layoutY="247.0" prefHeight="32.0" prefWidth="270.0" text="Top 10 Predictions">
+            <Label alignment="CENTER" layoutX="754.0" layoutY="206.0" prefHeight="40.0" prefWidth="270.0" text="Top 10 Predictions">
                <font>
                   <Font name="Comic Sans MS Bold" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="indicatorLabel" alignment="CENTER" layoutX="794.0" layoutY="527.0" prefHeight="17.0" prefWidth="190.0" text="indicatorLabel">
+            <Label fx:id="indicatorLabel" alignment="CENTER" layoutX="792.0" layoutY="487.0" prefHeight="17.0" prefWidth="190.0" text="indicatorLabel">
                <font>
                   <Font name="Comic Sans MS" size="19.0" />
                </font></Label>
