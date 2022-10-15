@@ -165,9 +165,16 @@ public class CanvasZenController extends CanvasController {
   @Override
   protected void onInitialize()
       throws ModelException, IOException, CsvException, URISyntaxException {
+    // initialize the game for the user
     initialize();
   }
 
+  /**
+   * Set the pen details: colour and brush size
+   *
+   * @param colour of the pen
+   * @param brushSize of the pen
+   */
   @Override
   protected void setPen(Color colour, double brushSize) {
     // save coordinates when mouse is pressed on the canvas
@@ -195,6 +202,7 @@ public class CanvasZenController extends CanvasController {
         });
   }
 
+  /** Gets ready for the user to start drawing */
   @Override
   @FXML
   protected void onReady() {
@@ -226,11 +234,17 @@ public class CanvasZenController extends CanvasController {
     runPredictions = false;
   }
 
+  /**
+   * Updates the prediction text for the user's drawing
+   *
+   * @throws Exception
+   */
   @Override
   protected void updatePredictionText() throws Exception {
     // Updates the GUI to display the predictions
     predictionLabel.setText(predictionString);
 
+    // Get the probability that the user's drawing is right (confidence)
     double newProbability = currentClassification.getProbability();
 
     // Message of user whether their drawing is becoming more or less accurate
@@ -240,8 +254,10 @@ public class CanvasZenController extends CanvasController {
       indicatorMessage = "Further from top 10";
     }
 
+    // UPdate the indicator text
     indicatorLabel.setText(indicatorMessage);
 
+    // Set new probability
     currentProbability = newProbability;
   }
 
@@ -249,6 +265,8 @@ public class CanvasZenController extends CanvasController {
   @Override
   protected void runTimer() {
     Timeline timeline = new Timeline();
+
+    // Create a new keyframe
     KeyFrame keyframe =
         new KeyFrame(
             Duration.seconds(1),

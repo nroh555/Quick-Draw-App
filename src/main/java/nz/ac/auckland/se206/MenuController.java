@@ -68,32 +68,61 @@ public class MenuController {
   // Current user logged in
   private User currentUser = new User("None");
 
+  /**
+   * Get the hashmap of registered users
+   *
+   * @return HashMap<String, User> of registered users
+   */
   public HashMap<String, User> getUsersHashMap() {
     return usersHashMap;
   }
 
+  /**
+   * Set the hashmap of registered users
+   *
+   * @param usersHashMap of registered users
+   */
   public void setUsersHashMap(HashMap<String, User> usersHashMap) {
     this.usersHashMap = usersHashMap;
   }
 
+  /**
+   * Get the current user that is logged in
+   *
+   * @return User that is logged in
+   */
   public User getCurrentUser() {
     return currentUser;
   }
 
+  /**
+   * Sets the current user that is logged in
+   *
+   * @param currentUser that is logged in
+   */
   public void setCurrentUser(User currentUser) {
     this.currentUser = currentUser;
   }
 
+  /**
+   * Initialises the entire menu page for the user
+   *
+   * @throws IOException
+   */
   public void initialize() throws IOException {
+    // Fetch all registered users
     loadUsers();
 
+    // Disable all buttons on start
     loginButton.setDisable(true);
     registerButton.setDisable(true);
     usernameField.setDisable(true);
 
     // Loop through every user in the usersHashMap
     for (String thisUser : usersHashMap.keySet()) {
+      // Display every user to their corresponding animal profile pic
       if (usersHashMap.get(thisUser).getProfilePic() == 0) {
+        // Top 4 profile pics
         playerOneText.setText(thisUser);
       } else if (usersHashMap.get(thisUser).getProfilePic() == 1) {
         playerTwoText.setText(thisUser);
@@ -102,6 +131,7 @@ public class MenuController {
       } else if (usersHashMap.get(thisUser).getProfilePic() == 3) {
         playerFourText.setText(thisUser);
       } else if (usersHashMap.get(thisUser).getProfilePic() == 4) {
+        // Bottom 4 profile pics
         playerFiveText.setText(thisUser);
       } else if (usersHashMap.get(thisUser).getProfilePic() == 5) {
         playerSixText.setText(thisUser);
@@ -204,6 +234,7 @@ public class MenuController {
   @FXML
   private void onRegister() throws IOException {
 
+    // Fetch all registered users
     loadUsers();
 
     // If the username does not already exist, register user
@@ -244,6 +275,7 @@ public class MenuController {
         }
       }
     } else {
+      // Name is taken, user can't register
       userStatusLabel.setText("Sorry, this name is taken!");
     }
   }
@@ -289,7 +321,11 @@ public class MenuController {
     }
   }
 
-  /** Sets the profile details on click */
+  /**
+   * Sets the profile details on click
+   *
+   * @param thisText username for this profile
+   */
   private void setProfileDetails(Text thisText) {
     // If the user profile has already been registered
     if (!thisText.getText().equals("+")) {
@@ -316,49 +352,49 @@ public class MenuController {
     selectedProfile = 0;
   }
 
-  /** Handles login/register for when user 1 is clicked */
+  /** Handles login/register for when user 2 is clicked */
   @FXML
   private void onP2Click() {
     setProfileDetails(playerTwoText);
     selectedProfile = 1;
   }
 
-  /** Handles login/register for when user 1 is clicked */
+  /** Handles login/register for when user 3 is clicked */
   @FXML
   private void onP3Click() {
     setProfileDetails(playerThreeText);
     selectedProfile = 2;
   }
 
-  /** Handles login/register for when user 1 is clicked */
+  /** Handles login/register for when user 4 is clicked */
   @FXML
   private void onP4Click() {
     setProfileDetails(playerFourText);
     selectedProfile = 3;
   }
 
-  /** Handles login/register for when user 1 is clicked */
+  /** Handles login/register for when user 5 is clicked */
   @FXML
   private void onP5Click() {
     setProfileDetails(playerFiveText);
     selectedProfile = 4;
   }
 
-  /** Handles login/register for when user 1 is clicked */
+  /** Handles login/register for when user 6 is clicked */
   @FXML
   private void onP6Click() {
     setProfileDetails(playerSixText);
     selectedProfile = 5;
   }
 
-  /** Handles login/register for when user 1 is clicked */
+  /** Handles login/register for when user 7 is clicked */
   @FXML
   private void onP7Click() {
     setProfileDetails(playerSevenText);
     selectedProfile = 6;
   }
 
-  /** Handles login/register for when user 1 is clicked */
+  /** Handles login/register for when user 8 is clicked */
   @FXML
   private void onP8Click() {
     setProfileDetails(playerEightText);

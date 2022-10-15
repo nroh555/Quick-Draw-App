@@ -127,18 +127,38 @@ public class CanvasController {
   // Current user logged in
   protected User currentUser = new User("None");
 
+  /**
+   * Get the hashmap with all registered users
+   *
+   * @return HashMap<String, User> of all registered users
+   */
   public HashMap<String, User> getUsersHashMap() {
     return usersHashMap;
   }
 
+  /**
+   * Set the hashmap with all registered users
+   *
+   * @param usersHashMap of all registered users
+   */
   public void setUsersHashMap(HashMap<String, User> usersHashMap) {
     this.usersHashMap = usersHashMap;
   }
 
+  /**
+   * Get the current logged in user
+   *
+   * @return User that is logged in
+   */
   public User getCurrentUser() {
     return currentUser;
   }
 
+  /**
+   * Set the current logged in user
+   *
+   * @param currentUser that is logged in
+   */
   public void setCurrentUser(User currentUser) {
     this.currentUser = currentUser;
   }
@@ -186,6 +206,7 @@ public class CanvasController {
     eraserButton.setVisible(true);
     clearButton.setVisible(true);
 
+    // Format words appropriately for display
     noUnderscoreWord = currentWord.replaceAll(" ", "_");
 
     // Set timer count depending on the difficulty value
@@ -219,7 +240,7 @@ public class CanvasController {
   }
 
   /**
-   * Initialises the game
+   * Initialises the game before playing
    *
    * @throws ModelException
    * @throws IOException
@@ -244,6 +265,7 @@ public class CanvasController {
           // Begin game if user clicks canvas for the first time
           if (!isReady && count == initialCount) {
             try {
+              // Check if user is ready
               onReady();
               isReady = true;
             } catch (Exception e1) {
@@ -263,6 +285,11 @@ public class CanvasController {
         });
   }
 
+  /**
+   * Set the current color of the brush
+   *
+   * @param colour we wish to set
+   */
   public void setCurrentColor(Color colour) {
     this.currentColor = colour;
   }
@@ -367,8 +394,8 @@ public class CanvasController {
       indicatorMessage = "Further from top 10";
     }
 
+    // Continuously update the indicator message
     indicatorLabel.setText(indicatorMessage);
-
     currentProbability = newProbability;
 
     // Check if user has won
@@ -403,6 +430,7 @@ public class CanvasController {
         // Checks if a prediction equals the keyword, if so stops game
         if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
           if (checkConfidenceLevel(classifications, i) == true) {
+            // Update the user details with stats after this game
             Integer winTime = initialCount - count;
             updateBadges(winTime);
             addFastestWin(winTime);
@@ -418,6 +446,7 @@ public class CanvasController {
         // Checks if a prediction equals the keyword, if so stops game
         if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
           if (checkConfidenceLevel(classifications, i) == true) {
+            // Update the user stats
             Integer winTime = initialCount - count;
             updateBadges(winTime);
             addFastestWin(winTime);
@@ -431,6 +460,7 @@ public class CanvasController {
       // Check top prediction only
       if (classifications.get(0).getClassName().equals(noUnderscoreWord)) {
         if (checkConfidenceLevel(classifications, 0) == true) {
+          // Update the user stats
           Integer winTime = initialCount - count;
           updateBadges(winTime);
           addFastestWin(winTime);
@@ -443,9 +473,12 @@ public class CanvasController {
     return false;
   }
 
-  /*
-   * Checks if the confidence level of the top predictions are of sufficient
-   * percentage for a win
+  /**
+   * Checks if the confidence level of the top predictions are of sufficient percentage for a win
+   *
+   * @param classifications of the predictions
+   * @param wordIndex index of the word we are looking for
+   * @return boolean of whether the confidence level is sufficient
    */
   private boolean checkConfidenceLevel(List<Classification> classifications, Integer wordIndex) {
     // If user confidence level setting is easy
@@ -784,7 +817,7 @@ public class CanvasController {
    *
    * @throws Exception
    */
-protected void saveData() throws Exception {
+  protected void saveData() throws Exception {
     updateUserAndMap();
 
     // Save all the new data to the file
@@ -872,7 +905,7 @@ protected void saveData() throws Exception {
   }
 
   /**
-   * Update user badges
+   * Update the badges that the user has earned
    *
    * @throws Exception
    */
