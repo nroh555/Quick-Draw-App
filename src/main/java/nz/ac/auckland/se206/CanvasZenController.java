@@ -130,7 +130,7 @@ public class CanvasZenController extends CanvasController {
     // Displays the random word
     wordLabel.setText(currentWord);
 
-    noUnderscoreWord = currentWord.replaceAll(" ", "_");
+    underscoreWord = currentWord.replaceAll(" ", "_");
 
     // Sets the results label to display draw prompt
     resultLabel.setText("Draw on canvas to begin game!");

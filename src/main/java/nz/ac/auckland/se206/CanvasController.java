@@ -97,7 +97,7 @@ public class CanvasController {
 
   protected String currentWord;
 
-  protected String noUnderscoreWord;
+  protected String underscoreWord;
 
   protected int initialCount = 15;
 
@@ -174,6 +174,19 @@ public class CanvasController {
    */
   @FXML
   public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
+    generalInitialise();
+
+    // Gets a random word depending on difficulty setting
+    currentWord = getRandomWord();
+
+    // Displays the random word
+    wordLabel.setText(currentWord);
+
+    // Format words appropriately for display
+    underscoreWord = currentWord.replaceAll(" ", "_");
+  }
+
+  protected void generalInitialise() throws ModelException, IOException {
     graphic = canvas.getGraphicsContext2D();
 
     model = new DoodlePrediction();
@@ -184,18 +197,12 @@ public class CanvasController {
     this.currentUser = menuController.getCurrentUser();
     this.usersHashMap = menuController.getUsersHashMap();
 
-    // Gets a random word depending on difficulty setting
-    currentWord = getRandomWord();
-
-    // Displays the random word
-    wordLabel.setText(currentWord);
-
     // Initialises the progress bar as green
     myProgressBar.setStyle("-fx-accent:#00FF00;");
     progress = 0.0;
     myProgressBar.setProgress(progress);
 
-    // Makes the save and play again button dissappear
+    // Makes the save and play again button disappear
     saveDrawingButton.setVisible(false);
     playAgainButton.setVisible(false);
     backButton.setVisible(true);
@@ -205,9 +212,6 @@ public class CanvasController {
     penButton.setVisible(true);
     eraserButton.setVisible(true);
     clearButton.setVisible(true);
-
-    // Format words appropriately for display
-    noUnderscoreWord = currentWord.replaceAll(" ", "_");
 
     // Set timer count depending on the difficulty value
     if (currentUser.getTimeSetting() == Level.EASY) {
@@ -232,6 +236,7 @@ public class CanvasController {
     // Clears and enables canvas, disables eraser
     canvas.setDisable(false);
     eraserButton.setDisable(true);
+    clearButton.setDisable(true);
     onClear();
 
     // Clears predictions
@@ -370,7 +375,7 @@ public class CanvasController {
     // Gets a list of the predictions
     Classifications classifications = model.getClassifications(getCurrentSnapshot());
     predictionResults = model.getPredictionsNew(classifications, 10);
-    currentClassification = model.getKeywordClassification(classifications, noUnderscoreWord);
+    currentClassification = model.getKeywordClassification(classifications, underscoreWord);
 
     // Gets a string of the predictions
     predictionString = DoodlePrediction.makePredictionString(predictionResults);
@@ -406,7 +411,7 @@ public class CanvasController {
       gameOver = true;
     } else if (count <= 0) {
       // Prints lose message
-      endMessage = "Nice try! The word was " + noUnderscoreWord;
+      endMessage = "Nice try! The word was " + currentWord;
       resultLabel.setText(endMessage);
       gameOver = true;
       addLoss();
@@ -428,7 +433,7 @@ public class CanvasController {
       // Loops through top 3 predictions
       for (int i = 0; i < 3; i++) {
         // Checks if a prediction equals the keyword, if so stops game
-        if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
+        if (classifications.get(i).getClassName().equals(underscoreWord)) {
           if (checkConfidenceLevel(classifications, i) == true) {
             // Update the user details with stats after this game
             Integer winTime = initialCount - count;
@@ -444,7 +449,7 @@ public class CanvasController {
       // Loops through top 2 predictions
       for (int i = 0; i < 2; i++) {
         // Checks if a prediction equals the keyword, if so stops game
-        if (classifications.get(i).getClassName().equals(noUnderscoreWord)) {
+        if (classifications.get(i).getClassName().equals(underscoreWord)) {
           if (checkConfidenceLevel(classifications, i) == true) {
             // Update the user stats
             Integer winTime = initialCount - count;
@@ -458,7 +463,7 @@ public class CanvasController {
       // If accuracy setting is hard, player could win if word is in top 1
     } else if (currentUser.getAccuracySetting() == Level.HARD) {
       // Check top prediction only
-      if (classifications.get(0).getClassName().equals(noUnderscoreWord)) {
+      if (classifications.get(0).getClassName().equals(underscoreWord)) {
         if (checkConfidenceLevel(classifications, 0) == true) {
           // Update the user stats
           Integer winTime = initialCount - count;

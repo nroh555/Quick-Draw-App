@@ -3,8 +3,6 @@ package nz.ac.auckland.se206;
 import ai.djl.ModelException;
 import ai.djl.translate.TranslateException;
 import com.opencsv.exceptions.CsvException;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -332,11 +330,11 @@ public class DashboardController {
     }
 
     try {
-    FXMLLoader canvasLoader = SceneManager.getCanvasLoader();
-    CanvasController canvasController = canvasLoader.getController();
-    canvasController.setCurrentUser(currentUser);
-    canvasController.setUsersHashMap(usersHashMap);
-    canvasController.saveData();
+      FXMLLoader canvasLoader = SceneManager.getCanvasLoader();
+      CanvasController canvasController = canvasLoader.getController();
+      canvasController.setCurrentUser(currentUser);
+      canvasController.setUsersHashMap(usersHashMap);
+      canvasController.saveData();
     } catch (Exception e) {
       e.printStackTrace();
     }
