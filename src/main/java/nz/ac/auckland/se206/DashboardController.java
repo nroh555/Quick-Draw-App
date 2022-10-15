@@ -90,7 +90,7 @@ public class DashboardController {
   /**
    * Set the current word for the user
    *
-   * @param currentWord
+   * @param currentWord current word
    */
   public void setCurrentWord(String currentWord) {
     this.currentWord = currentWord;
@@ -99,9 +99,9 @@ public class DashboardController {
   /**
    * Button to switch to the profile page
    *
-   * @param event
-   * @throws IOException
-   * @throws TranslateException
+   * @param event click event
+   * @throws IOException If the file is not found.
+   * @throws TranslateException If error is raised during processing of input/output
    */
   @FXML
   private void onSwitchToProfile(ActionEvent event) throws IOException, TranslateException {
@@ -116,13 +116,15 @@ public class DashboardController {
     sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.PROFILE));
   }
 
-  /**
-   * Button to switch to the canvas page
-   *
-   * @param event
-   * @throws IOException
-   * @throws TranslateException
-   */
+/**
+ * Button to switch to canvas
+ * @param event click event
+ * @throws IOException If the file is not found.
+ * @throws ModelException If the model cannot be found on the file system.
+ * @throws CsvException Base class for all exceptions for opencsv
+ * @throws URISyntaxException If string could not be parsed as a URI reference
+ * @throws TranslateException If error is raised during processing of input/output
+ */
   @FXML
   private void onSwitchToCanvas(ActionEvent event)
       throws IOException, ModelException, CsvException, URISyntaxException, TranslateException {
@@ -138,13 +140,15 @@ public class DashboardController {
     sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.CANVAS));
   }
 
-  /**
-   * Button to switch to the zen canvas page
-   *
-   * @param event
-   * @throws IOException
-   * @throws TranslateException
-   */
+/**
+ * Button to switch to the zen canvas page
+ * @param event click event
+ * @throws IOException If the file is not found.
+ * @throws ModelException If the model cannot be found on the file system.
+ * @throws CsvException Base class for all exceptions for opencsv
+ * @throws URISyntaxException If string could not be parsed as a URI reference
+ * @throws TranslateException If error is raised during processing of input/output
+ */
   @FXML
   private void onSwitchToCanvasZen(ActionEvent event)
       throws IOException, ModelException, CsvException, URISyntaxException, TranslateException {
@@ -160,13 +164,15 @@ public class DashboardController {
     sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.CANVAS_ZEN));
   }
 
-  /**
-   * Button to switch to the hidden mode canvas page
-   *
-   * @param event
-   * @throws IOException
-   * @throws TranslateException
-   */
+/**
+ * Button to switch to the hidden mode canvas page
+ * @param event click event
+ * @throws IOException If the file is not found.
+ * @throws ModelException If there is an error in reading the input/output of the DL model.
+ * @throws CsvException Base class for all exceptions for opencsv
+ * @throws URISyntaxException If string could not be parsed as a URI reference
+ * @throws TranslateException If error is raised during processing of input/output
+ */
   @FXML
   private void onSwitchToCanvasHidden(ActionEvent event)
       throws IOException, ModelException, CsvException, URISyntaxException, TranslateException {

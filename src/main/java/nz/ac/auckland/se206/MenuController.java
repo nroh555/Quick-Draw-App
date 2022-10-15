@@ -107,7 +107,7 @@ public class MenuController {
   /**
    * Initialises the entire menu page for the user
    *
-   * @throws IOException
+   * @throws IOException If the file is not found.
    */
   public void initialize() throws IOException {
     // Fetch all registered users
@@ -190,7 +190,7 @@ public class MenuController {
    * Gets the saved users data from file and loads this data onto the users hash map. This is done
    * before every register/login operation
    *
-   * @throws IOException
+   * @throws IOException If the file is not found.
    */
   private void loadUsers() throws IOException {
     String line;
@@ -229,7 +229,7 @@ public class MenuController {
    * Handles registration of new users. Will check if their username exists in the hashmap, and if
    * not, it registers them.
    *
-   * @throws IOException
+   * @throws IOException If the file is not found.
    */
   @FXML
   private void onRegister() throws IOException {
@@ -284,7 +284,7 @@ public class MenuController {
    * For log in functionality - checks if a username exists in the hashmap, and if it does, it logs
    * them in (displays their main stats).
    *
-   * @throws IOException
+   * @throws IOException If the file is not found.
    */
   @FXML
   private void onLogin(ActionEvent event) throws IOException {

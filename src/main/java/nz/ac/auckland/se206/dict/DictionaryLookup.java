@@ -21,8 +21,8 @@ public class DictionaryLookup {
    *
    * @param query of the word we are looking for
    * @return information about the word
-   * @throws IOException
-   * @throws WordNotFoundException
+   * @throws IOException If the file is not found
+   * @throws WordNotFoundException If the word is not found
    */
   public static WordInfo searchWordInfo(String query) throws IOException, WordNotFoundException {
 

@@ -169,8 +169,8 @@ public class CanvasController {
    *
    * @throws ModelException If there is an error in reading the input/output of the DL model.
    * @throws IOException If the model cannot be found on the file system.
-   * @throws URISyntaxException
-   * @throws CsvException
+   * @throws URISyntaxException If string could not be parsed as a URI reference
+   * @throws CsvException Base class for all exceptions for opencsv
    */
   @FXML
   public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
@@ -186,6 +186,11 @@ public class CanvasController {
     underscoreWord = currentWord.replaceAll(" ", "_");
   }
 
+  /**
+   * General method that initialises game
+   * @throws ModelException If there is an error in reading the input/output of the DL model.
+   * @throws IOException If the model cannot be found on the file system.
+   */
   protected void generalInitialise() throws ModelException, IOException {
     graphic = canvas.getGraphicsContext2D();
 
@@ -247,10 +252,10 @@ public class CanvasController {
   /**
    * Initialises the game before playing
    *
-   * @throws ModelException
-   * @throws IOException
-   * @throws CsvException
-   * @throws URISyntaxException
+   * @throws ModelException If there is an error in reading the input/output of the DL model.
+   * @throws IOException If the file is not found.
+   * @throws CsvException Base class for all exceptions for opencsv
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   @FXML
   protected void onInitialize()
@@ -337,9 +342,9 @@ public class CanvasController {
   /**
    * Button to switch to the dashboard page *
    *
-   * @param event
-   * @throws IOException
-   * @throws TranslateException
+   * @param event click event
+   * @throws IOException If the file is not found.
+   * @throws TranslateException If error is raised during processing of input/output
    */
   @FXML
   private void onSwitchToDashboard(ActionEvent event) throws IOException, TranslateException {
@@ -369,7 +374,7 @@ public class CanvasController {
   /**
    * Gets the latest predictions every second
    *
-   * @throws TranslateException
+   * @throws TranslateException If error is raised during processing of input/output
    */
   public void updatePrediction() throws TranslateException {
     // Gets a list of the predictions
@@ -384,7 +389,7 @@ public class CanvasController {
   /**
    * Updates the prediction UI
    *
-   * @throws Exception
+   * @throws Exception General exception
    */
   protected void updatePredictionText() throws Exception {
     // Updates the GUI to display the predictions
@@ -424,7 +429,7 @@ public class CanvasController {
    *
    * @param classifications the list of predictions
    * @return A boolean which indicates if the user won
-   * @throws Exception
+   * @throws Exception General exception
    */
   private boolean isWin(List<Classification> classifications) throws Exception {
 
@@ -659,7 +664,7 @@ public class CanvasController {
   /**
    * Runs the game (allows the user to interact with the canvas)
    *
-   * @throws Exception
+   * @throws Exception General exception
    */
   @FXML
   protected void onReady() throws Exception {
@@ -691,7 +696,7 @@ public class CanvasController {
   /**
    * Adds 1 to the current user's wins count
    *
-   * @throws Exception
+   * @throws Exception General exception
    */
   @FXML
   private void addWin() throws Exception {
@@ -711,7 +716,7 @@ public class CanvasController {
   /**
    * Adds 1 to the current user's loss count
    *
-   * @throws Exception
+   * @throws Exception General exception
    */
   @FXML
   private void addLoss() throws Exception {
@@ -728,9 +733,9 @@ public class CanvasController {
    * This method generates the random word that the user has to draw
    *
    * @return
-   * @throws IOException
-   * @throws CsvException
-   * @throws URISyntaxException
+   * @throws IOException If the file is not found.
+   * @throws CsvException Base class for all exceptions for opencsv
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   protected String getRandomWord() throws IOException, CsvException, URISyntaxException {
     ArrayList<String> usedWords = currentUser.getUsedWords();
@@ -789,7 +794,7 @@ public class CanvasController {
   /**
    * Updates the user's fastest win time if the current win time is faster than the record time.
    *
-   * @throws Exception
+   * @throws Exception General exception
    */
   private void addFastestWin(int currentWinTime) throws Exception {
     int recordFastestWin = currentUser.getFastestWin();
@@ -820,7 +825,7 @@ public class CanvasController {
    * Saves any stats data. This is a manual save that is performed via a button (as it's going to be
    * very time consuming to write the save contents all the time)
    *
-   * @throws Exception
+   * @throws Exception General exception
    */
   protected void saveData() throws Exception {
     updateUserAndMap();
@@ -912,7 +917,7 @@ public class CanvasController {
   /**
    * Update the badges that the user has earned
    *
-   * @throws Exception
+   * @throws Exception General exception
    */
   private void updateBadges(Integer winTime) throws Exception {
     // Get current user badges

@@ -35,8 +35,8 @@ public class CanvasHiddenController extends CanvasController {
    *
    * @throws ModelException If there is an error in reading the input/output of the DL model.
    * @throws IOException If the model cannot be found on the file system.
-   * @throws URISyntaxException
-   * @throws CsvException
+   * @throws URISyntaxException If string could not be parsed as a URI reference
+   * @throws CsvException Base class for all exceptions for opencsv
    */
   @FXML
   public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
@@ -63,7 +63,7 @@ public class CanvasHiddenController extends CanvasController {
   /**
    * Runs the game (allows the user to interact with the canvas)
    *
-   * @throws Exception
+   * @throws Exception General exception
    */
   @FXML
   @Override
