@@ -4,16 +4,12 @@ import ai.djl.ModelException;
 import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.dict.DictionaryLookup;
 import nz.ac.auckland.se206.dict.WordInfo;
 import nz.ac.auckland.se206.dict.WordNotFoundException;
@@ -41,7 +37,7 @@ public class CanvasHiddenController extends CanvasController {
   @FXML
   public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
     generalInitialise();
-    
+
     isHiddenMode = true;
 
     // Gets a random word depending on difficulty setting
