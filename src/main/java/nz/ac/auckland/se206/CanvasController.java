@@ -83,7 +83,7 @@ public class CanvasController {
 
   @FXML protected ProgressBar myProgressBar;
 
-  @FXML protected Button myButton;
+  @FXML protected Button hintButton;
 
   @FXML protected Label myLabel;
 
@@ -120,6 +120,8 @@ public class CanvasController {
   protected double currentProbability;
 
   protected String indicatorMessage;
+  
+  protected boolean isHiddenMode = false;
 
   // Create hashmap to store all of the users.
   protected HashMap<String, User> usersHashMap = new HashMap<String, User>();
@@ -628,6 +630,11 @@ public class CanvasController {
                 penButton.setVisible(false);
                 eraserButton.setVisible(false);
                 clearButton.setVisible(false);
+                
+                // Hides hint button if current canvas is hidden mode
+                if (isHiddenMode) {
+                	hintButton.setVisible(false);
+                }
 
                 isReady = false;
                 gameOver = false;

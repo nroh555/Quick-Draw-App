@@ -41,6 +41,8 @@ public class CanvasHiddenController extends CanvasController {
   @FXML
   public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
     generalInitialise();
+    
+    isHiddenMode = true;
 
     // Gets a random word depending on difficulty setting
     currentWord = getRandomWord();
@@ -92,65 +94,6 @@ public class CanvasHiddenController extends CanvasController {
     resultLabel.setText("");
 
     saveData();
-  }
-
-  /** This method runs the timer and updates the predictions */
-  @Override
-  protected void runTimer() {
-    Timeline timeline = new Timeline();
-    KeyFrame keyframe =
-        new KeyFrame(
-            Duration.seconds(1),
-            e -> {
-              count--;
-              increaseProgress();
-
-              // Updates timer label
-              time.setText(String.valueOf(count));
-              try {
-                // Runs predictions
-                updatePrediction();
-                updatePredictionText();
-              } catch (Exception e1) {
-                e1.printStackTrace();
-              }
-
-              // Checks if game is over
-              if (count <= 0 || gameOver) {
-                // Speaks the result aloud
-                talk();
-
-                // Stops the timer
-                timeline.stop();
-
-                // Disables the canvas
-                canvas.setDisable(true);
-
-                // Enables the play again, save drawing and back button
-                playAgainButton.setVisible(true);
-                playAgainButton.setDisable(false);
-                saveDrawingButton.setVisible(true);
-                saveDrawingButton.setDisable(false);
-                backButton.setVisible(true);
-                backButton.setDisable(false);
-
-                // Disables the pen, eraser and clear button
-                penButton.setVisible(false);
-                eraserButton.setVisible(false);
-                clearButton.setVisible(false);
-                hintButton.setVisible(false);
-
-                isReady = false;
-                gameOver = false;
-              }
-            });
-
-    // Sets up the timer
-    timeline.getKeyFrames().add(keyframe);
-    timeline.setCycleCount(Animation.INDEFINITE);
-
-    // Starts the timer
-    timeline.play();
   }
 
   /**
