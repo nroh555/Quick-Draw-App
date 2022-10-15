@@ -50,7 +50,7 @@
                </graphic></Button>
             <VBox fx:id="canvasBox" layoutX="128.0" layoutY="286.0" prefHeight="315.0" prefWidth="468.0">
                <children>
-                  <Canvas fx:id="canvas" height="308.0" width="468.0">
+                  <Canvas fx:id="canvas" height="313.0" width="468.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
