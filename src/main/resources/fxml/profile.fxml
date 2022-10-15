@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -42,7 +43,7 @@
                   <Font name="Comic Sans MS" size="18.0" />
                </font>
             </TextArea>
-            <Label fx:id="infoLabel" layoutX="44.0" layoutY="299.0" prefHeight="183.0" prefWidth="414.0" text="infoLabel">
+            <Label fx:id="infoLabel" layoutX="44.0" layoutY="228.0" prefHeight="254.0" prefWidth="216.0" text="infoLabel">
                <font>
                   <Font name="Comic Sans MS" size="18.0" />
                </font>
@@ -237,6 +238,7 @@
                   <Image url="@../images/tiger.png" />
                </image>
             </ImageView>
+            <PieChart fx:id="pieChart" layoutX="159.0" layoutY="223.0" legendVisible="false" prefHeight="300.0" prefWidth="388.0" />
          </children>
       </Pane>
    </children>

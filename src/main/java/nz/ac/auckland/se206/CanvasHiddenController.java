@@ -44,7 +44,7 @@ public class CanvasHiddenController extends CanvasController {
 
     // Gets a random word depending on difficulty setting
     currentWord = getRandomWord();
-    searchWords(currentWord); // Perhaps to minimise the issue we could use background thread
+    searchWords(currentWord);
 
     // Displays the random word
     System.out.println(currentWord);

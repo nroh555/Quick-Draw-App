@@ -4,10 +4,13 @@ import ai.djl.translate.TranslateException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -96,6 +99,8 @@ public class ProfileController {
 
   @FXML private ImageView koala;
 
+  @FXML private PieChart pieChart;
+
   // Create hashmap to store details about the badges
   private HashMap<Integer, String> badgesHashMap = new HashMap<Integer, String>();
 
@@ -182,6 +187,13 @@ public class ProfileController {
 
     // Update info label
     infoLabel.setText(currentUser.formatUserDetails());
+
+    // Displays the user-statistics in a pie chart form
+    ObservableList<PieChart.Data> pieChartData =
+        FXCollections.observableArrayList(
+            new PieChart.Data("Wins", currentUser.getWins()),
+            new PieChart.Data("Losses", currentUser.getLosses()));
+    pieChart.setData(pieChartData);
 
     // Update used words label
     usedWordsBox.setText(currentUser.getUsedWordsString());
