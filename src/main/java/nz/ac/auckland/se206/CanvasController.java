@@ -125,6 +125,11 @@ public class CanvasController {
 
   protected boolean isHiddenMode = false;
 
+  // mouse coordinates
+  protected double currentX;
+
+  protected double currentY;
+
   // Create hashmap to store all of the users.
   protected HashMap<String, User> usersHashMap = new HashMap<String, User>();
 
@@ -275,6 +280,12 @@ public class CanvasController {
    */
   protected void setPen(Color colour, double brushSize) {
     // save coordinates when mouse is pressed on the canvas
+    canvas.setOnMousePressed(
+        e -> {
+          currentX = e.getX();
+          currentY = e.getY();
+        });
+
     canvas.setOnMouseDragged(
         e -> {
           // Begin game if user clicks canvas for the first time
@@ -295,8 +306,15 @@ public class CanvasController {
           final double y = e.getY() - size / 2;
 
           // This is the colour of the brush.
-          graphic.setFill(colour);
-          graphic.fillOval(x, y, size, size);
+          graphic.setStroke(colour);
+          graphic.setLineWidth(size);
+
+          // Create a line that goes from the point (currentX, currentY) and (x,y)
+          graphic.strokeLine(currentX, currentY, x, y);
+
+          // update the coordinates
+          currentX = x;
+          currentY = y;
         });
   }
 
