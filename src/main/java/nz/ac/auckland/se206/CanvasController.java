@@ -124,6 +124,10 @@ public class CanvasController {
   protected String indicatorMessage;
 
   protected boolean isHiddenMode = false;
+  
+  protected boolean isZenMode = false;
+  
+  protected boolean runPredictions = false;
 
   // mouse coordinates
   protected double currentX;
@@ -289,7 +293,7 @@ public class CanvasController {
     canvas.setOnMouseDragged(
         e -> {
           // Begin game if user clicks canvas for the first time
-          if (!isReady && count == initialCount) {
+          if ((!isReady && count == initialCount)||(isZenMode && !runPredictions)) {
             try {
               // Check if user is ready
               onReady();
