@@ -3,8 +3,6 @@ package nz.ac.auckland.se206;
 import ai.djl.ModelException;
 import ai.djl.translate.TranslateException;
 import com.opencsv.exceptions.CsvException;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -332,71 +330,13 @@ public class DashboardController {
     }
 
     try {
-      saveData();
+      FXMLLoader canvasLoader = SceneManager.getCanvasLoader();
+      CanvasController canvasController = canvasLoader.getController();
+      canvasController.setCurrentUser(currentUser);
+      canvasController.setUsersHashMap(usersHashMap);
+      canvasController.saveData();
     } catch (Exception e) {
       e.printStackTrace();
     }
-  }
-
-  /**
-   * Saves any stats data. This is a manual save that is performed via a button (as it's going to be
-   * very time consuming to write the save contents all the time)
-   *
-   * @throws Exception
-   */
-  @FXML
-  private void saveData() throws Exception {
-    updateUserAndMap();
-
-    // Save all the new data to the file
-    BufferedWriter bf = null;
-
-    // Overwrite existing file data for the first line we save
-    try {
-      // Create new BufferedWriter for the output file, append mode on
-      bf = new BufferedWriter(new FileWriter("users.txt"));
-
-      Boolean isFirst = true;
-      for (String key : usersHashMap.keySet()) {
-        if (isFirst == true) {
-          // If user doesn't have any used words
-          if (usersHashMap.get(key).getUsedWords().isEmpty()) {
-            // Add information regarding first user to each first
-            bf.write(usersHashMap.get(key).getSaveDetails());
-          } else {
-            bf.write(
-                usersHashMap.get(key).getSaveDetails()
-                    + ":"
-                    + usersHashMap
-                        .get(key)
-                        .formatWordsForSave(usersHashMap.get(key).getUsedWords()));
-          }
-          isFirst = false;
-        } else {
-          break;
-        }
-      }
-      bf.newLine();
-      bf.flush();
-    } catch (IOException e) {
-      // Print exceptions
-      e.printStackTrace();
-    } finally {
-      try {
-        // Close the writer
-        bf.close();
-      } catch (Exception e) {
-        // Print exceptions
-        e.printStackTrace();
-      }
-    }
-  }
-
-  /** Updates the user hash map and current user in the menu controller */
-  private void updateUserAndMap() {
-    FXMLLoader menuLoader = SceneManager.getMenuLoader();
-    MenuController menuController = menuLoader.getController();
-    menuController.setUsersHashMap(usersHashMap);
-    menuController.setCurrentUser(currentUser);
   }
 }

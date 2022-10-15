@@ -10,7 +10,6 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
@@ -18,15 +17,12 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.dict.DictionaryLookup;
 import nz.ac.auckland.se206.dict.WordInfo;
 import nz.ac.auckland.se206.dict.WordNotFoundException;
-import nz.ac.auckland.se206.ml.DoodlePrediction;
-import nz.ac.auckland.se206.models.Level;
 import nz.ac.auckland.se206.panes.WordPane;
 
 public class CanvasHiddenController extends CanvasController {
 
   // Set variables
   private static int counter = 0;
-  private String currentWord;
   private String hintWord;
 
   @FXML private Accordion resultsAccordion;
@@ -44,75 +40,24 @@ public class CanvasHiddenController extends CanvasController {
    */
   @FXML
   public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
-    graphic = canvas.getGraphicsContext2D();
-
-    model = new DoodlePrediction();
-
-    // Get updated current user
-    FXMLLoader menuLoader = SceneManager.getMenuLoader();
-    MenuController menuController = menuLoader.getController();
-    this.currentUser = menuController.getCurrentUser();
-    this.usersHashMap = menuController.getUsersHashMap();
+    generalInitialise();
 
     // Gets a random word depending on difficulty setting
-    this.currentWord = getRandomWord();
+    currentWord = getRandomWord();
     searchWords(currentWord); // Perhaps to minimise the issue we could use background thread
 
     // Displays the random word
     System.out.println(currentWord);
 
-    // Initialises the progress bar as green
-    myProgressBar.setStyle("-fx-accent:#00FF00;");
-    progress = 0.0;
-    myProgressBar.setProgress(progress);
+    // Format words appropriately for display
+    underscoreWord = currentWord.replaceAll(" ", "_");
 
-    // Makes the save and play again button dissappear
-    saveDrawingButton.setVisible(false);
-    playAgainButton.setVisible(false);
-    backButton.setVisible(true);
-    backButton.setDisable(false);
-
-    // Makes the pen, eraser, clear and hint appear
-    penButton.setVisible(true);
-    eraserButton.setVisible(true);
-    clearButton.setVisible(true);
+    // Disables hint button and makes it appear
     hintButton.setVisible(true);
+    hintButton.setDisable(true);
 
     // Resets the counter variable back to 0
     counter = 0;
-
-    noUnderscoreWord = currentWord.replaceAll(" ", "_");
-
-    // Set timer count depending on the difficulty value
-    if (currentUser.getTimeSetting() == Level.EASY) {
-      initialCount = 60;
-    } else if (currentUser.getTimeSetting() == Level.MEDIUM) {
-      initialCount = 45;
-    } else if (currentUser.getTimeSetting() == Level.HARD) {
-      initialCount = 30;
-    } else if (currentUser.getTimeSetting() == Level.MASTER) {
-      initialCount = 15;
-    }
-
-    count = initialCount;
-
-    time.setText(String.valueOf(count));
-
-    // Sets the results label to display draw prompt
-    resultLabel.setText("Draw on canvas to begin game!");
-
-    onPen();
-
-    // Clears and enables canvas, disables eraser, hint, clear
-    canvas.setDisable(false);
-    eraserButton.setDisable(true);
-    hintButton.setDisable(true);
-    clearButton.setDisable(true);
-    onClear();
-
-    // Clears predictions
-    predictionLabel.setText("");
-    indicatorLabel.setText("");
   }
 
   /**
