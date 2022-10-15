@@ -418,6 +418,7 @@ public class CanvasController {
       // Prints win message
       endMessage = "Congratulations, you have won! :)";
       resultLabel.setText(endMessage);
+      MenuController.playSound("win.wav");
       gameOver = true;
     } else if (count <= 0) {
       // Prints lose message
