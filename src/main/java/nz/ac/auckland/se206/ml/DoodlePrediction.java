@@ -127,13 +127,13 @@ public class DoodlePrediction {
     model = ModelZoo.loadModel(criteria);
   }
 
-  /**
-   * Predicts the categories of the input image and gets the classifications
-   *
-   * @param bufImg
-   * @return classification results
-   * @throws TranslateException
-   */
+  
+/**
+ * Predicts the categories of the input image and gets the classifications
+ * @param bufImg image of the canvas
+ * @return classification results
+ * @throws TranslateException If error is raised during processing of input/output
+ */
   public Classifications getClassifications(BufferedImage bufImg) throws TranslateException {
     // The model requires a black background and white foreground.
     bufImg = invertBlackAndWhite(bufImg);
@@ -152,10 +152,10 @@ public class DoodlePrediction {
   /**
    * Gets the top k predictions
    *
-   * @param classifications
-   * @param k
+   * @param classifications total classifications
+   * @param k number of predictions to get
    * @return list of top predictions
-   * @throws TranslateException
+   * @throws TranslateException If error is raised during processing of input/output
    */
   public List<Classifications.Classification> getPredictionsNew(
       Classifications classifications, final int k) throws TranslateException {
@@ -165,10 +165,10 @@ public class DoodlePrediction {
   /**
    * Gets the classification info of the current word
    *
-   * @param classifications
-   * @param keyword
+   * @param classifications total classifications
+   * @param keyword current word
    * @return classification of the keyword
-   * @throws TranslateException
+   * @throws TranslateException If error is raised during processing of input/output
    */
   public Classification getKeywordClassification(Classifications classifications, String keyword)
       throws TranslateException {

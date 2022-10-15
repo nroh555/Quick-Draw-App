@@ -202,9 +202,9 @@ public class ProfileController {
   /**
    * Button to switch to the menu page
    *
-   * @param event
-   * @throws IOException
-   * @throws TranslateException
+   * @param event click event
+   * @throws IOException If the file is not found.
+   * @throws TranslateException If error is raised during processing of input/output
    */
   @FXML
   private void onSwitchToMenu(ActionEvent event) throws IOException, TranslateException {
@@ -217,9 +217,9 @@ public class ProfileController {
   /**
    * Button to switch to the dashboard page
    *
-   * @param event
-   * @throws IOException
-   * @throws TranslateException
+   * @param event click event
+   * @throws IOException If the file is not found.
+   * @throws TranslateException If error is raised during processing of input/output
    */
   @FXML
   private void onSwitchToDashboard(ActionEvent event) throws IOException, TranslateException {

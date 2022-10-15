@@ -27,6 +27,12 @@ public class CategorySelector {
 
   private Map<Difficulty, List<String>> difficulty2categories;
 
+  /**
+   * Chooses the category
+   * @throws IOException If the file is not found
+   * @throws CsvException Base class for all exceptions for opencsv
+   * @throws URISyntaxException If string could not be parsed as a URI reference
+   */
   public CategorySelector() throws IOException, CsvException, URISyntaxException {
     difficulty2categories = new HashMap<>();
 
@@ -57,9 +63,9 @@ public class CategorySelector {
    * This method goes reads the lines in the CSV file and puts them into a list of strings
    *
    * @return A list of strings of the lines
-   * @throws IOException
-   * @throws CsvException
-   * @throws URISyntaxException
+   * @throws IOException If the file is not found
+   * @throws CsvException Base class for all exceptions for opencsv
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   protected List<String[]> getLines() throws IOException, CsvException, URISyntaxException {
     File file = new File(CategorySelector.class.getResource("/category_difficulty.csv").toURI());

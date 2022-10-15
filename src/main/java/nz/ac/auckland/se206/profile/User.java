@@ -180,7 +180,7 @@ public class User implements Serializable {
   /**
    * Takes the list of used words and chucks it all into a string so it can be saved to a file
    *
-   * @param usedWords
+   * @param usedWords array list of used word
    * @return String format of the used words
    */
   public String formatWordsForSave(ArrayList<String> usedWords) {
@@ -311,7 +311,7 @@ public class User implements Serializable {
   }
 
   /**
-   * @param thisLevel
+   * @param thisLevel selected level
    * @return String of the level the user has selected
    */
   public String getDifficultyString(Level thisLevel) {

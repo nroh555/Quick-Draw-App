@@ -108,8 +108,8 @@ public class CanvasZenController extends CanvasController {
    *
    * @throws ModelException If there is an error in reading the input/output of the DL model.
    * @throws IOException If the model cannot be found on the file system.
-   * @throws URISyntaxException
-   * @throws CsvException
+   * @throws URISyntaxException If string could not be parsed as a URI reference
+   * @throws CsvException Base class for all exceptions for opencsv
    */
   @Override
   @FXML
@@ -156,10 +156,10 @@ public class CanvasZenController extends CanvasController {
   /**
    * Initialises the game
    *
-   * @throws ModelException
-   * @throws IOException
-   * @throws CsvException
-   * @throws URISyntaxException
+   * @throws ModelException If there is an error in reading the input/output of the DL model.
+   * @throws IOException If the file is not found.
+   * @throws CsvException Base class for all exceptions for opencsv
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   @FXML
   @Override
@@ -219,9 +219,9 @@ public class CanvasZenController extends CanvasController {
   /**
    * Button to switch to the dashboard page *
    *
-   * @param event
-   * @throws IOException
-   * @throws TranslateException
+   * @param event click event
+   * @throws IOException If the file is not found.
+   * @throws TranslateException If error is raised during processing of input/output
    */
   @FXML
   private void onSwitchToDashboard(ActionEvent event) throws IOException, TranslateException {
@@ -237,7 +237,7 @@ public class CanvasZenController extends CanvasController {
   /**
    * Updates the prediction text for the user's drawing
    *
-   * @throws Exception
+   * @throws Exception General exception
    */
   @Override
   protected void updatePredictionText() throws Exception {
