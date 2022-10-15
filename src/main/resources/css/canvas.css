@@ -26,13 +26,11 @@
   -fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
 }
 
-.root {
-  -fx-background-color: #ffebcd;
-}
-
 #myProgressBar {
+  -fx-background-color:#ffebcd;
   -fx-padding: 3 4 4 4;
   -fx-background-radius: 18;
+  -fx-border-color:black;
   -fx-background-insets: 0, 0 0 5 0, 0 0 6 0, 0 0 7 0;
   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0.4), 4, 0, 0, 1);
 }
