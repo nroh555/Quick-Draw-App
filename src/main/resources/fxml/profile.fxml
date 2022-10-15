@@ -238,7 +238,7 @@
                   <Image url="@../images/tiger.png" />
                </image>
             </ImageView>
-            <PieChart fx:id="pieChart" layoutX="159.0" layoutY="223.0" legendVisible="false" prefHeight="300.0" prefWidth="388.0" />
+            <PieChart fx:id="pieChart" clockwise="false" labelLineLength="10.0" labelsVisible="false" layoutX="189.0" layoutY="228.0" prefHeight="282.0" prefWidth="388.0" />
          </children>
       </Pane>
    </children>
