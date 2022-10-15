@@ -127,13 +127,13 @@ public class DoodlePrediction {
     model = ModelZoo.loadModel(criteria);
   }
 
-  
-/**
- * Predicts the categories of the input image and gets the classifications
- * @param bufImg image of the canvas
- * @return classification results
- * @throws TranslateException If error is raised during processing of input/output
- */
+  /**
+   * Predicts the categories of the input image and gets the classifications
+   *
+   * @param bufImg image of the canvas
+   * @return classification results
+   * @throws TranslateException If error is raised during processing of input/output
+   */
   public Classifications getClassifications(BufferedImage bufImg) throws TranslateException {
     // The model requires a black background and white foreground.
     bufImg = invertBlackAndWhite(bufImg);

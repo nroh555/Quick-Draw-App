@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
@@ -14,6 +15,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.models.Level;
@@ -226,6 +229,18 @@ public class MenuController {
   }
 
   /**
+   * This function would play the specified sound
+   *
+   * @param fileName The fileName that contains the music in wav format
+   * @throws URISyntaxException
+   */
+  public static void playSound(String fileName) throws URISyntaxException {
+    Media music = new Media(App.class.getResource("/sounds/" + fileName).toURI().toString());
+    MediaPlayer mediaPlayer = new MediaPlayer(music);
+    mediaPlayer.play();
+  }
+
+  /**
    * Handles registration of new users. Will check if their username exists in the hashmap, and if
    * not, it registers them.
    *
@@ -345,16 +360,26 @@ public class MenuController {
     }
   }
 
-  /** Handles login/register for when user 1 is clicked */
+  /**
+   * Handles login/register for when user 1 is clicked
+   *
+   * @throws URISyntaxException
+   */
   @FXML
-  private void onP1Click() {
+  private void onP1Click() throws URISyntaxException {
+    playSound("cat.wav");
     setProfileDetails(playerOneText);
     selectedProfile = 0;
   }
 
-  /** Handles login/register for when user 2 is clicked */
+  /**
+   * Handles login/register for when user 2 is clicked
+   *
+   * @throws URISyntaxException
+   */
   @FXML
-  private void onP2Click() {
+  private void onP2Click() throws URISyntaxException {
+    playSound("dog.wav");
     setProfileDetails(playerTwoText);
     selectedProfile = 1;
   }
@@ -387,9 +412,14 @@ public class MenuController {
     selectedProfile = 5;
   }
 
-  /** Handles login/register for when user 7 is clicked */
+  /**
+   * Handles login/register for when user 7 is clicked
+   *
+   * @throws URISyntaxException
+   */
   @FXML
-  private void onP7Click() {
+  private void onP7Click() throws URISyntaxException {
+    playSound("monkey.wav");
     setProfileDetails(playerSevenText);
     selectedProfile = 6;
   }

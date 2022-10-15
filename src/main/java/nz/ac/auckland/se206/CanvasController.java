@@ -31,6 +31,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -120,7 +122,7 @@ public class CanvasController {
   protected double currentProbability;
 
   protected String indicatorMessage;
-  
+
   protected boolean isHiddenMode = false;
 
   // Create hashmap to store all of the users.
@@ -190,6 +192,7 @@ public class CanvasController {
 
   /**
    * General method that initialises game
+   *
    * @throws ModelException If there is an error in reading the input/output of the DL model.
    * @throws IOException If the model cannot be found on the file system.
    */
@@ -587,9 +590,16 @@ public class CanvasController {
     }
   }
 
-  /** This method runs the timer and updates the predictions */
-  protected void runTimer() {
+  /**
+   * This method runs the timer and updates the predictions
+   *
+   * @throws URISyntaxException
+   */
+  protected void runTimer() throws URISyntaxException {
     Timeline timeline = new Timeline();
+    Media mySong = new Media(App.class.getResource("/sounds/timer.wav").toURI().toString());
+    MediaPlayer mediaPlayer = new MediaPlayer(mySong);
+
     KeyFrame keyframe =
         new KeyFrame(
             Duration.seconds(1),
@@ -609,6 +619,9 @@ public class CanvasController {
 
               // Checks if game is over
               if (count <= 0 || gameOver) {
+
+                // Once the game ends the music player will stop
+                mediaPlayer.stop();
                 // Speaks the result aloud
                 talk();
 
@@ -630,14 +643,23 @@ public class CanvasController {
                 penButton.setVisible(false);
                 eraserButton.setVisible(false);
                 clearButton.setVisible(false);
-                
+
                 // Hides hint button if current canvas is hidden mode
                 if (isHiddenMode) {
-                	hintButton.setVisible(false);
+                  hintButton.setVisible(false);
                 }
 
                 isReady = false;
                 gameOver = false;
+              } else {
+                // Refreshes the music player after the song has stopped playing
+                mediaPlayer.setOnEndOfMedia(
+                    new Runnable() {
+                      public void run() {
+                        mediaPlayer.seek(Duration.ZERO);
+                      }
+                    });
+                mediaPlayer.play();
               }
             });
 

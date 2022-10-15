@@ -29,6 +29,7 @@ public class CategorySelector {
 
   /**
    * Chooses the category
+   *
    * @throws IOException If the file is not found
    * @throws CsvException Base class for all exceptions for opencsv
    * @throws URISyntaxException If string could not be parsed as a URI reference
