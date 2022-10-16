@@ -72,7 +72,7 @@ public class LeaderboardController {
       }
     }
 
-    // Sort the user scores
+    // Sort the user speed scores
     List<Entry<String, Integer>> sortedUserFastestWins = sortRankings(userFastestWins, true);
 
     // Get the appropriate formatting for the text to display on the leaderboard
@@ -92,7 +92,7 @@ public class LeaderboardController {
       userWins.put(user, usersHashMap.get(user).getWins());
     }
 
-    // Sort the user scores
+    // Sort the user win counts
     List<Entry<String, Integer>> sortedUserWins = sortRankings(userWins, false);
 
     // Get the appropriate formatting for the text to display on the leaderboard
@@ -105,13 +105,22 @@ public class LeaderboardController {
 
   /** Updates the leaderboard with the ranking in accordance to most badges obtained */
   public void setBadgesLeaderboard() {
-    System.out.println(currentUser);
+    Map<String, Integer> userBadges = new HashMap<>();
 
-    // Update the leaderboard text
-    firstPlace.setText("hsdfey");
-    secondPlace.setText("hesdfy");
-    thirdPlace.setText("hesdfy");
-    otherPlacings.setText("hsdfey");
+    // Add all users and their win counts to hashmap
+    for (String user : usersHashMap.keySet()) {
+      userBadges.put(user, usersHashMap.get(user).getBadgesCount());
+    }
+
+    // Sort the user badge counts
+    List<Entry<String, Integer>> sortedUserBadges = sortRankings(userBadges, false);
+
+    // Get the appropriate formatting for the text to display on the leaderboard
+    ArrayList<String> displayText = generateText(sortedUserBadges, " badges");
+
+    // Update the leaderboard UI
+    updateLeaderboardText(
+        displayText.get(0), displayText.get(1), displayText.get(2), displayText.get(3));
   }
 
   /**

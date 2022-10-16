@@ -311,6 +311,27 @@ public class User implements Serializable {
   }
 
   /**
+   * Gets the number of badges that the user has earned
+   *
+   * @return number of badges earned by the user
+   */
+  public Integer getBadgesCount() {
+    Integer badgesCount = 0;
+    String toSearch = formatBadgesForSave(badgesArray);
+
+    // Loop through all of the users badges, and count up how many they have
+    // obtained
+    for (int i = 0; i < toSearch.length(); i++) {
+      if (toSearch.charAt(i) == 'T') {
+        badgesCount++;
+      }
+    }
+
+    // Reutrn the number of badges
+    return badgesCount;
+  }
+
+  /**
    * @param thisLevel selected level
    * @return String of the level the user has selected
    */

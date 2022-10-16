@@ -4,4 +4,4 @@ werw:0:0:0:0:EEEE:FFFFFFFFFFFF
 ssss:5:0:0:0:EEEE:FFFFFFFFFFFF
 Cat:4:2:0:3:EEEE:TTTFFFFFFFFF:telephone;hexagon
 Something:0:1:1:30:EEEE:FFFFFFFFFFFF:peas;lightning;cloud
-Dog:1:2:0:3:EEEE:TTTFFFFFFFFF:telephone;hexagon
+Dog:1:4:1:3:EESE:TTTFFFFFFFFF:telephone;hexagon;cannon;streetlight;feather
