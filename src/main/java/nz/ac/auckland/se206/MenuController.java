@@ -24,6 +24,47 @@ import nz.ac.auckland.se206.models.Level;
 import nz.ac.auckland.se206.profile.User;
 
 public class MenuController {
+
+  /**
+   * This function would initialise the specified sound
+   *
+   * @param fileName The name of the file in wav format
+   * @return The object media player
+   * @throws URISyntaxException If string could not be parsed as a URI reference
+   */
+  public static MediaPlayer setSound(String fileName) throws URISyntaxException {
+    Media music = new Media(App.class.getResource("/sounds/" + fileName).toURI().toString());
+    MediaPlayer mediaPlayer = new MediaPlayer(music);
+    return mediaPlayer;
+  }
+
+  /**
+   * This function would allow the music to play back
+   *
+   * @param mediaPlayer The object that contains the music player
+   * @throws URISyntaxException If string could not be parsed as a URI reference
+   */
+  public static void playback(MediaPlayer mediaPlayer) throws URISyntaxException {
+    mediaPlayer.setOnEndOfMedia(
+        new Runnable() {
+
+          public void run() {
+            mediaPlayer.seek(Duration.ZERO);
+          }
+        });
+    mediaPlayer.play();
+  }
+
+  /**
+   * This function would play the sound for the button
+   *
+   * @throws URISyntaxException If string could not be parsed as a URI reference
+   */
+  public static void buttonSound() throws URISyntaxException {
+    MediaPlayer buttonSound = setSound("button.wav");
+    buttonSound.play();
+  }
+
   private Integer selectedProfile;
 
   @FXML private TextField usernameField;
@@ -229,46 +270,6 @@ public class MenuController {
     }
 
     reader.close();
-  }
-
-  /**
-   * This function would initialise the specified sound
-   *
-   * @param fileName The name of the file in wav format
-   * @return The object media player
-   * @throws URISyntaxException If string could not be parsed as a URI reference
-   */
-  public static MediaPlayer setSound(String fileName) throws URISyntaxException {
-    Media music = new Media(App.class.getResource("/sounds/" + fileName).toURI().toString());
-    MediaPlayer mediaPlayer = new MediaPlayer(music);
-    return mediaPlayer;
-  }
-
-  /**
-   * This function would allow the music to play back
-   *
-   * @param mediaPlayer The object that contains the music player
-   * @throws URISyntaxException If string could not be parsed as a URI reference
-   */
-  public static void playback(MediaPlayer mediaPlayer) throws URISyntaxException {
-    mediaPlayer.setOnEndOfMedia(
-        new Runnable() {
-
-          public void run() {
-            mediaPlayer.seek(Duration.ZERO);
-          }
-        });
-    mediaPlayer.play();
-  }
-
-  /**
-   * This function would play the sound for the button
-   *
-   * @throws URISyntaxException If string could not be parsed as a URI reference
-   */
-  public static void buttonSound() throws URISyntaxException {
-    MediaPlayer buttonSound = setSound("button.wav");
-    buttonSound.play();
   }
 
   /**
