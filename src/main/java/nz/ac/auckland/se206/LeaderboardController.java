@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import ai.djl.translate.TranslateException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -47,17 +48,25 @@ public class LeaderboardController {
    * @param event click event
    * @throws IOException If the file is not found.
    * @throws TranslateException If error is raised during processing of input/output
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   @FXML
-  private void onSwitchToDashboard(ActionEvent event) throws IOException, TranslateException {
+  private void onSwitchToDashboard(ActionEvent event)
+      throws IOException, TranslateException, URISyntaxException {
+    MenuController.buttonSound();
     // Changes the scene to dashboard
     Button btnThatWasClicked = (Button) event.getSource();
     Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
     sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.DASHBOARD));
   }
 
-  /** Updates the leaderboard with the ranking in accordance to fastest time */
-  public void setSpeedLeaderboard() {
+  /**
+   * Updates the leaderboard with the ranking in accordance to fastest time
+   *
+   * @throws URISyntaxException If string could not be parsed as a URI reference
+   */
+  public void setSpeedLeaderboard() throws URISyntaxException {
+    MenuController.buttonSound();
     Map<String, Integer> userFastestWins = new HashMap<>();
 
     // Add all users and their fastest speeds to hashmap
@@ -79,8 +88,13 @@ public class LeaderboardController {
         displayText.get(0), displayText.get(1), displayText.get(2), displayText.get(3));
   }
 
-  /** Updates the leaderboard with the ranking in accordance to most games won */
-  public void setWinsLeaderboard() {
+  /**
+   * Updates the leaderboard with the ranking in accordance to most games won
+   *
+   * @throws URISyntaxException If string could not be parsed as a URI reference
+   */
+  public void setWinsLeaderboard() throws URISyntaxException {
+    MenuController.buttonSound();
     Map<String, Integer> userWins = new HashMap<>();
 
     // Add all users and their win counts to hashmap
@@ -99,8 +113,13 @@ public class LeaderboardController {
         displayText.get(0), displayText.get(1), displayText.get(2), displayText.get(3));
   }
 
-  /** Updates the leaderboard with the ranking in accordance to most badges obtained */
-  public void setBadgesLeaderboard() {
+  /**
+   * Updates the leaderboard with the ranking in accordance to most badges obtained
+   *
+   * @throws URISyntaxException If string could not be parsed as a URI reference
+   */
+  public void setBadgesLeaderboard() throws URISyntaxException {
+    MenuController.buttonSound();
     Map<String, Integer> userBadges = new HashMap<>();
 
     // Add all users and their win counts to hashmap
