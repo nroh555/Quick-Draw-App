@@ -19,8 +19,6 @@ import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.ml.DoodlePrediction;
 
 public class CanvasZenController extends CanvasController {
-  protected boolean runPredictions = false;
-
   /** Change pen colour */
   private void changePen(Color colour) {
     // Enable eraser button
@@ -114,6 +112,8 @@ public class CanvasZenController extends CanvasController {
   @Override
   @FXML
   public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
+	 isZenMode = true;
+	  
     graphic = canvas.getGraphicsContext2D();
 
     model = new DoodlePrediction();
@@ -167,39 +167,6 @@ public class CanvasZenController extends CanvasController {
       throws ModelException, IOException, CsvException, URISyntaxException {
     // initialize the game for the user
     initialize();
-  }
-
-  /**
-   * Set the pen details: colour and brush size
-   *
-   * @param colour of the pen
-   * @param brushSize of the pen
-   */
-  @Override
-  protected void setPen(Color colour, double brushSize) {
-    // save coordinates when mouse is pressed on the canvas
-    canvas.setOnMouseDragged(
-        e -> {
-          // Begin game if user clicks canvas for the first time
-          if (!runPredictions) {
-            try {
-              onReady();
-              isReady = true;
-            } catch (Exception e1) {
-              e1.printStackTrace();
-            }
-          }
-
-          // Brush size (you can change this, it should not be too small or too large).
-          final double size = brushSize;
-
-          final double x = e.getX() - size / 2;
-          final double y = e.getY() - size / 2;
-
-          // This is the colour of the brush.
-          graphic.setFill(colour);
-          graphic.fillOval(x, y, size, size);
-        });
   }
 
   /** Gets ready for the user to start drawing */
