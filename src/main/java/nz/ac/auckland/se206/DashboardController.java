@@ -203,6 +203,8 @@ public class DashboardController {
     // Update welcome label in profile
     FXMLLoader leaderboardLoader = SceneManager.getLeaderboardLoader();
     LeaderboardController leaderboardController = leaderboardLoader.getController();
+    leaderboardController.fetchUsersHashmap();
+    leaderboardController.setSpeedLeaderboard();
 
     // Changes the scene to canvas
     Button btnThatWasClicked = (Button) event.getSource();

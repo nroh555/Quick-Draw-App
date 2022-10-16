@@ -32,7 +32,7 @@
                   <Font name="Comic Sans MS" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="secondplace" alignment="CENTER" layoutX="281.0" layoutY="302.0" prefHeight="44.0" prefWidth="366.0" text="Settings (Normal Mode Only!)" textAlignment="CENTER">
+            <Label fx:id="secondPlace" alignment="CENTER" layoutX="281.0" layoutY="302.0" prefHeight="44.0" prefWidth="366.0" text="Settings (Normal Mode Only!)" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />
                </font>
@@ -42,7 +42,7 @@
                   <Font name="Comic Sans MS" size="24.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" layoutX="196.0" layoutY="148.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="219.0" text="Sort by Speed">
+            <Button alignment="CENTER" layoutX="196.0" layoutY="148.0" mnemonicParsing="false" onAction="#setSpeedLeaderboard" prefHeight="42.0" prefWidth="219.0" text="Sort by Speed">
                <font>
                   <Font name="Comic Sans MS" size="18.0" />
                </font>
@@ -50,7 +50,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" layoutX="446.0" layoutY="148.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="219.0" text="Sort by Wins">
+            <Button alignment="CENTER" layoutX="446.0" layoutY="148.0" mnemonicParsing="false" onAction="#setWinsLeaderboard" prefHeight="42.0" prefWidth="219.0" text="Sort by Wins">
                <font>
                   <Font name="Comic Sans MS" size="18.0" />
                </font>
@@ -58,7 +58,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" layoutX="696.0" layoutY="148.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="219.0" text="Sort by Badges">
+            <Button alignment="CENTER" layoutX="696.0" layoutY="148.0" mnemonicParsing="false" onAction="#setBadgesLeaderboard" prefHeight="42.0" prefWidth="219.0" text="Sort by Badges">
                <font>
                   <Font name="Comic Sans MS" size="18.0" />
                </font>
