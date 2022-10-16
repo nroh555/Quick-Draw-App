@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.SceneManager.AppUi;
 import nz.ac.auckland.se206.models.Level;
 import nz.ac.auckland.se206.profile.User;
@@ -111,10 +112,13 @@ public class MenuController {
    * Initialises the entire menu page for the user
    *
    * @throws IOException If the file is not found.
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
-  public void initialize() throws IOException {
+  public void initialize() throws IOException, URISyntaxException {
     // Fetch all registered users
     loadUsers();
+    MediaPlayer backgroundSound = setSound("jungle.wav");
+    backgroundSound.play();
 
     // Disable all buttons on start
     loginButton.setDisable(true);
@@ -229,15 +233,43 @@ public class MenuController {
   }
 
   /**
-   * This function would play the specified sound
+   * This function would initialise the specified sound
    *
-   * @param fileName The fileName that contains the music in wav format
-   * @throws URISyntaxException
+   * @param fileName The name of the file in wav format
+   * @return The object media player
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
-  public static void playSound(String fileName) throws URISyntaxException {
+  public static MediaPlayer setSound(String fileName) throws URISyntaxException {
     Media music = new Media(App.class.getResource("/sounds/" + fileName).toURI().toString());
     MediaPlayer mediaPlayer = new MediaPlayer(music);
+    return mediaPlayer;
+  }
+
+  /**
+   * This function would allow the music to play back
+   *
+   * @param mediaPlayer The object that contains the music player
+   * @throws URISyntaxException If string could not be parsed as a URI reference
+   */
+  public static void playback(MediaPlayer mediaPlayer) throws URISyntaxException {
+    mediaPlayer.setOnEndOfMedia(
+        new Runnable() {
+
+          public void run() {
+            mediaPlayer.seek(Duration.ZERO);
+          }
+        });
     mediaPlayer.play();
+  }
+
+  /**
+   * This function would play the sound for the button
+   *
+   * @throws URISyntaxException If string could not be parsed as a URI reference
+   */
+  public static void buttonSound() throws URISyntaxException {
+    MediaPlayer buttonSound = setSound("button.wav");
+    buttonSound.play();
   }
 
   /**
@@ -245,12 +277,14 @@ public class MenuController {
    * not, it registers them.
    *
    * @throws IOException If the file is not found.
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   @FXML
-  private void onRegister() throws IOException {
+  private void onRegister() throws IOException, URISyntaxException {
 
     // Fetch all registered users
     loadUsers();
+    buttonSound();
 
     // If the username does not already exist, register user
     if (!usersHashMap.containsKey(usernameField.getText())) {
@@ -300,11 +334,13 @@ public class MenuController {
    * them in (displays their main stats).
    *
    * @throws IOException If the file is not found.
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   @FXML
-  private void onLogin(ActionEvent event) throws IOException {
+  private void onLogin(ActionEvent event) throws IOException, URISyntaxException {
 
     loadUsers();
+    buttonSound();
 
     // Check if username does exist
     if (usersHashMap.containsKey(usernameField.getText())) {
@@ -363,11 +399,12 @@ public class MenuController {
   /**
    * Handles login/register for when user 1 is clicked
    *
-   * @throws URISyntaxException
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   @FXML
   private void onP1Click() throws URISyntaxException {
-    playSound("cat.wav");
+    MediaPlayer catSound = setSound("cat.wav");
+    catSound.play();
     setProfileDetails(playerOneText);
     selectedProfile = 0;
   }
@@ -375,11 +412,12 @@ public class MenuController {
   /**
    * Handles login/register for when user 2 is clicked
    *
-   * @throws URISyntaxException
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   @FXML
   private void onP2Click() throws URISyntaxException {
-    playSound("dog.wav");
+    MediaPlayer dogSound = setSound("dog.wav");
+    dogSound.play();
     setProfileDetails(playerTwoText);
     selectedProfile = 1;
   }
@@ -398,9 +436,15 @@ public class MenuController {
     selectedProfile = 3;
   }
 
-  /** Handles login/register for when user 5 is clicked */
+  /**
+   * Handles login/register for when user 5 is clicked
+   *
+   * @throws URISyntaxException If string could not be parsed as a URI reference
+   */
   @FXML
-  private void onP5Click() {
+  private void onP5Click() throws URISyntaxException {
+    MediaPlayer lionSound = setSound("lion.wav");
+    lionSound.play();
     setProfileDetails(playerFiveText);
     selectedProfile = 4;
   }
@@ -415,11 +459,12 @@ public class MenuController {
   /**
    * Handles login/register for when user 7 is clicked
    *
-   * @throws URISyntaxException
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   @FXML
   private void onP7Click() throws URISyntaxException {
-    playSound("monkey.wav");
+    MediaPlayer monkeySound = setSound("monkey.wav");
+    monkeySound.play();
     setProfileDetails(playerSevenText);
     selectedProfile = 6;
   }

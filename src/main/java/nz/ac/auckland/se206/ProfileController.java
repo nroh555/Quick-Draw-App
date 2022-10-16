@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import ai.djl.translate.TranslateException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.collections.FXCollections;
@@ -205,10 +206,13 @@ public class ProfileController {
    * @param event click event
    * @throws IOException If the file is not found.
    * @throws TranslateException If error is raised during processing of input/output
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   @FXML
-  private void onSwitchToMenu(ActionEvent event) throws IOException, TranslateException {
+  private void onSwitchToMenu(ActionEvent event)
+      throws IOException, TranslateException, URISyntaxException {
     // Changes the scene to canvas
+    MenuController.buttonSound();
     Button btnThatWasClicked = (Button) event.getSource();
     Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
     sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.MENU));
@@ -220,10 +224,13 @@ public class ProfileController {
    * @param event click event
    * @throws IOException If the file is not found.
    * @throws TranslateException If error is raised during processing of input/output
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   @FXML
-  private void onSwitchToDashboard(ActionEvent event) throws IOException, TranslateException {
+  private void onSwitchToDashboard(ActionEvent event)
+      throws IOException, TranslateException, URISyntaxException {
     // Changes the scene to canvas
+    MenuController.buttonSound();
     Button btnThatWasClicked = (Button) event.getSource();
     Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
     sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.DASHBOARD));

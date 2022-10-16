@@ -22,15 +22,7 @@
                   <Image url="@../images/Frame%206%20(3).png" />
                </image>
             </ImageView>
-            <Button alignment="CENTER" layoutX="901.0" layoutY="71.0" mnemonicParsing="false" onAction="#onSwitchToProfile" prefHeight="61.0" prefWidth="145.0" text="Profile">
-               <font>
-                  <Font name="Comic Sans MS" size="24.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="378.0" layoutY="76.0" prefHeight="23.0" prefWidth="355.0" text="Welcome, .......... !" textAlignment="CENTER">
+            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="192.0" layoutY="76.0" prefHeight="80.0" prefWidth="648.0" text="Welcome, .......... !" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="36.0" />
                </font>
@@ -159,6 +151,15 @@
                   <Font name="Comic Sans MS" size="17.0" />
                </font>
             </TextArea>
+            <Button layoutX="919.0" layoutY="52.0" mnemonicParsing="false" onAction="#onSwitchToProfile" prefHeight="101.0" prefWidth="115.0">
+               <graphic>
+                  <ImageView fitHeight="87.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/stats.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
    </children>
