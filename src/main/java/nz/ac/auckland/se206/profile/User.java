@@ -72,6 +72,7 @@ public class User implements Serializable {
     this.wins = wins;
     this.losses = losses;
     this.fastestWin = fastestWin;
+    // User settings
     this.accuracySetting = accuracySetting;
     this.wordsSetting = wordsSetting;
     this.timeSetting = timeSetting;

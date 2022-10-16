@@ -153,7 +153,7 @@ public class MenuController {
   /**
    * Gets the difficulty string from file, and puts the difficulty settings into an array
    *
-   * @param difficultyString
+   * @param difficultyString string representing difficulty
    * @return ArrayList of the 4 different levels for the user difficulty settings
    */
   private ArrayList<Level> loadDifficultySettingsFromFile(String difficultyString) {

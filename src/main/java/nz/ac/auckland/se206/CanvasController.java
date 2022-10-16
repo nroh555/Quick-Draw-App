@@ -706,7 +706,7 @@ public class CanvasController {
   /**
    * This method runs the timer and updates the predictions
    *
-   * @throws URISyntaxException
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   protected void runTimer() throws URISyntaxException {
     Timeline timeline = new Timeline();
