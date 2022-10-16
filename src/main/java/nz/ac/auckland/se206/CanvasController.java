@@ -92,13 +92,13 @@ public class CanvasController {
   @FXML protected Label myLabel;
 
   @FXML protected Label indicatorLabel;
-  
+
   @FXML protected Label penLabel;
-  
+
   @FXML protected Label eraserLabel;
-  
+
   @FXML protected Slider penSlider;
-  
+
   @FXML protected Slider eraserSlider;
 
   protected double progress;
@@ -134,15 +134,15 @@ public class CanvasController {
   protected String indicatorMessage;
 
   protected boolean isHiddenMode = false;
-  
+
   protected boolean isZenMode = false;
-  
+
   protected boolean runPredictions = false;
-  
+
   protected boolean isPen = true;
-  
+
   protected double penSize = 5.0;
-  
+
   protected double eraserSize = 12.0;
 
   // mouse coordinates
@@ -276,6 +276,8 @@ public class CanvasController {
     // Clears predictions
     predictionLabel.setText("");
     indicatorLabel.setText("");
+
+    initialisePenEraserDisplay();
   }
 
   /**
@@ -308,7 +310,7 @@ public class CanvasController {
     canvas.setOnMouseDragged(
         e -> {
           // Begin game if user clicks canvas for the first time
-          if ((!isReady && count == initialCount)||(isZenMode && !runPredictions)) {
+          if ((!isReady && count == initialCount) || (isZenMode && !runPredictions)) {
             try {
               // Check if user is ready
               onReady();
@@ -336,9 +338,10 @@ public class CanvasController {
           currentY = y;
         });
   }
-  
+
   /** Add listener to eraser slider to adjust eraser size */
   protected void addListenerEraserSlider() {
+    // Add listener to eraser slider
     eraserSlider
         .valueProperty()
         .addListener(
@@ -347,8 +350,11 @@ public class CanvasController {
               @Override
               public void changed(
                   ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                // Retrieve eraser value from slider
                 eraserSize = (double) eraserSlider.getValue();
+                // Update eraser size label
                 eraserLabel.setText("Eraser size: " + eraserSize);
+                // Update eraser if it is currently equipped
                 if (!isPen) {
                   onErase();
                 }
@@ -358,6 +364,7 @@ public class CanvasController {
 
   /** Add listener to pen slider to adjust pen size */
   protected void addListenerPenSlider() {
+    // Add listener to pen slider
     penSlider
         .valueProperty()
         .addListener(
@@ -366,13 +373,35 @@ public class CanvasController {
               @Override
               public void changed(
                   ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                // Retrieve pen value from slider
                 penSize = (double) penSlider.getValue();
+                // Update pen size label
                 penLabel.setText("Pen size: " + penSize);
+                // Update pen if it is currently equipped
                 if (isPen) {
                   onPen();
                 }
               }
             });
+  }
+
+  /** Initialise pen and eraser labels and sliders */
+  protected void initialisePenEraserDisplay() {
+    // Set up pen and eraser size
+    penSize = 5.0;
+    eraserSize = 12.0;
+
+    // Reset slider
+    penSlider.setValue(penSize);
+    eraserSlider.setValue(eraserSize);
+
+    // Set pen and eraser label
+    penLabel.setText("Pen size: " + penSize);
+    eraserLabel.setText("Eraser size: " + eraserSize);
+
+    // Add listener to pen and eraser slider
+    addListenerEraserSlider();
+    addListenerPenSlider();
   }
 
   /**
@@ -392,7 +421,7 @@ public class CanvasController {
 
     // Enable pen button
     penButton.setDisable(false);
-    
+
     isPen = false;
 
     // Change brush
@@ -409,7 +438,7 @@ public class CanvasController {
     penButton.setDisable(true);
 
     isPen = true;
-    
+
     // Change brush
     setPen(currentColor, penSize);
   }

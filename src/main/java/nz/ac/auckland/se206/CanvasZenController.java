@@ -103,8 +103,8 @@ public class CanvasZenController extends CanvasController {
   @Override
   @FXML
   public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
-	 isZenMode = true;
-	  
+    isZenMode = true;
+
     graphic = canvas.getGraphicsContext2D();
 
     model = new DoodlePrediction();
@@ -142,22 +142,8 @@ public class CanvasZenController extends CanvasController {
 
     // Stops predictions/timer
     runPredictions = false;
-    
-    // Set up pen and eraser size
-    penSize = 5.0;
-    eraserSize = 12.0;
-    
-    // Reset slider
-    penSlider.setValue(penSize);
-    eraserSlider.setValue(eraserSize);
-    
-    // Set pen and eraser label
-    penLabel.setText("Pen size: " + penSize);
-    eraserLabel.setText("Eraser size: " + eraserSize);
-    
-    // Add listener to pen and eraser slider
-    addListenerEraserSlider();
-    addListenerPenSlider();
+
+    initialisePenEraserDisplay();
   }
 
   /**
