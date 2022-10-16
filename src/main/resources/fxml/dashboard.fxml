@@ -159,6 +159,18 @@
                   <Font name="Comic Sans MS" size="17.0" />
                </font>
             </TextArea>
+            <Button layoutX="48.0" layoutY="65.0" mnemonicParsing="false" prefHeight="113.0" prefWidth="104.0" />
+            <ImageView fitHeight="75.0" fitWidth="96.0" layoutX="62.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/podium.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="40.0" layoutY="146.0" prefHeight="29.0" prefWidth="120.0" text="Leaderboard" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="15.0" />
+               </font>
+            </Label>
+            <Button layoutX="48.0" layoutY="65.0" mnemonicParsing="false" onAction="#onSwitchToLeaderboard" prefHeight="113.0" prefWidth="104.0" />
          </children>
       </Pane>
    </children>

@@ -16,7 +16,8 @@ public class SceneManager {
     PROFILE,
     CANVAS,
     CANVAS_ZEN,
-    CANVAS_HIDDEN
+    CANVAS_HIDDEN,
+    LEADERBOARD
   }
 
   private static FXMLLoader canvasLoader;
@@ -30,6 +31,8 @@ public class SceneManager {
   private static FXMLLoader canvasZenLoader;
 
   private static FXMLLoader canvasHiddenLoader;
+
+  private static FXMLLoader leaderboardLoader;
 
   private static HashMap<AppUi, Parent> sceneMap = new HashMap<AppUi, Parent>();
 
@@ -87,5 +90,13 @@ public class SceneManager {
 
   public static void setCanvasHiddenLoader(FXMLLoader loader) {
     canvasHiddenLoader = loader;
+  }
+
+  public static FXMLLoader getLeaderboardLoader() {
+    return leaderboardLoader;
+  }
+
+  public static void setLeaderboardLoader(FXMLLoader loader) {
+    leaderboardLoader = loader;
   }
 }
