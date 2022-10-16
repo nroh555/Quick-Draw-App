@@ -143,7 +143,7 @@ public class User implements Serializable {
             + "\nLosses: "
             + losses.toString()
             + "\nWinrate: "
-            + Double.toString(winrate)
+            + String.format("%.2f", winrate)
             + "%\nFastest win: "
             + fastestWinDisplay;
 
