@@ -21,17 +21,8 @@ import nz.ac.auckland.se206.ml.DoodlePrediction;
 public class CanvasZenController extends CanvasController {
   /** Change pen colour */
   private void changePen(Color colour) {
-    // Enable eraser button
-    eraserButton.setDisable(false);
-
-    // Disable pen button
-    penButton.setDisable(true);
-
-    // Update current colour
     setCurrentColor(colour);
-
-    // Change brush
-    setPen(colour, 5.0);
+    onPen();
   }
 
   /** Change pen colour to red */
@@ -151,6 +142,22 @@ public class CanvasZenController extends CanvasController {
 
     // Stops predictions/timer
     runPredictions = false;
+    
+    // Set up pen and eraser size
+    penSize = 5.0;
+    eraserSize = 12.0;
+    
+    // Reset slider
+    penSlider.setValue(penSize);
+    eraserSlider.setValue(eraserSize);
+    
+    // Set pen and eraser label
+    penLabel.setText("Pen size: " + penSize);
+    eraserLabel.setText("Eraser size: " + eraserSize);
+    
+    // Add listener to pen and eraser slider
+    addListenerEraserSlider();
+    addListenerPenSlider();
   }
 
   /**
