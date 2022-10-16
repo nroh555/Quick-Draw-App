@@ -15,6 +15,14 @@ import nz.ac.auckland.se206.profile.User;
 public class LeaderboardController {
   @FXML private Label welcomeLabel;
 
+  @FXML private Label firstPlace;
+
+  @FXML private Label secondPlace;
+
+  @FXML private Label thirdPlace;
+
+  @FXML private Label otherPlacings;
+
   // Create hashmap to store all of the users.
   private HashMap<String, User> usersHashMap = new HashMap<String, User>();
 
@@ -88,4 +96,11 @@ public class LeaderboardController {
     // Update welcome label
     welcomeLabel.setText("Welcome, " + currentUser.getUsername() + "!");
   }
+
+  /**
+   * Updates the leaderboard with the ranking in accordance to fastest time
+   *
+   * @param currentUser that is logged in
+   */
+  public void setSpeedLeaderboard() {}
 }

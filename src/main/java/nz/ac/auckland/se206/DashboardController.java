@@ -202,7 +202,7 @@ public class DashboardController {
   private void onSwitchToLeaderboard(ActionEvent event) throws IOException, TranslateException {
     // Update welcome label in profile
     FXMLLoader leaderboardLoader = SceneManager.getLeaderboardLoader();
-    DashboardController leaderboardController = leaderboardLoader.getController();
+    LeaderboardController leaderboardController = leaderboardLoader.getController();
 
     // Changes the scene to canvas
     Button btnThatWasClicked = (Button) event.getSource();

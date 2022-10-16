@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1150.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.DashboardController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1150.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.LeaderboardController">
    <children>
       <Pane prefHeight="783.0" prefWidth="1110.0">
          <children>
@@ -19,7 +19,7 @@
                   <Image url="@../images/Frame%208.png" />
                </image>
             </ImageView>
-            <Button alignment="CENTER" layoutX="27.0" layoutY="64.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="135.0" text="Back">
+            <Button alignment="CENTER" layoutX="27.0" layoutY="64.0" mnemonicParsing="false" onAction="#onSwitchToDashboard" prefHeight="51.0" prefWidth="135.0" text="Back">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />
                </font>
@@ -32,12 +32,12 @@
                   <Font name="Comic Sans MS" size="36.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="281.0" layoutY="302.0" prefHeight="44.0" prefWidth="366.0" text="Settings (Normal Mode Only!)" textAlignment="CENTER">
+            <Label fx:id="secondplace" alignment="CENTER" layoutX="281.0" layoutY="302.0" prefHeight="44.0" prefWidth="366.0" text="Settings (Normal Mode Only!)" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="281.0" layoutY="219.0" prefHeight="44.0" prefWidth="366.0" text="Settings (Normal Mode Only!)" textAlignment="CENTER">
+            <Label fx:id="firstPlace" alignment="CENTER" layoutX="281.0" layoutY="219.0" prefHeight="44.0" prefWidth="366.0" text="Settings (Normal Mode Only!)" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />
                </font>
@@ -66,12 +66,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label alignment="CENTER" layoutX="281.0" layoutY="387.0" prefHeight="44.0" prefWidth="366.0" text="Settings (Normal Mode Only!)" textAlignment="CENTER">
+            <Label fx:id="thirdPlace" alignment="CENTER" layoutX="281.0" layoutY="387.0" prefHeight="44.0" prefWidth="366.0" text="Settings (Normal Mode Only!)" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="281.0" layoutY="486.0" prefHeight="187.0" prefWidth="576.0" text="Settings (Normal Mode Only!)" textAlignment="CENTER">
+            <Label fx:id="otherPlacings" alignment="CENTER" layoutX="281.0" layoutY="486.0" prefHeight="187.0" prefWidth="576.0" text="Settings (Normal Mode Only!)" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />
                </font>
