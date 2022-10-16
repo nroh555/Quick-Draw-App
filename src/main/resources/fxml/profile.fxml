@@ -53,12 +53,7 @@
                   <Font name="Comic Sans MS" size="26.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="786.0" layoutY="96.0" prefHeight="50.0" prefWidth="102.0" text="Badges" textAlignment="CENTER">
-               <font>
-                  <Font name="Comic Sans MS" size="26.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="50.0" fitWidth="63.0" layoutX="736.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="63.0" layoutX="978.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/medal%20(3).png" />
                </image>
@@ -239,6 +234,11 @@
                </image>
             </ImageView>
             <PieChart fx:id="pieChart" clockwise="false" labelLineLength="10.0" labelsVisible="false" layoutX="272.0" layoutY="228.0" legendSide="RIGHT" prefHeight="208.0" prefWidth="305.0" />
+            <ImageView fitHeight="118.0" fitWidth="356.0" layoutX="376.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/profile.gif" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
