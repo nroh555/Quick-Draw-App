@@ -197,6 +197,27 @@ public class DashboardController {
     sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.CANVAS_HIDDEN));
   }
 
+  /**
+   * Button to switch to the leaderboard page
+   *
+   * @param event click event
+   * @throws IOException If the file is not found.
+   * @throws TranslateException If error is raised during processing of input/output
+   */
+  @FXML
+  private void onSwitchToLeaderboard(ActionEvent event) throws IOException, TranslateException {
+    // Update welcome label in profile
+    FXMLLoader leaderboardLoader = SceneManager.getLeaderboardLoader();
+    LeaderboardController leaderboardController = leaderboardLoader.getController();
+    leaderboardController.fetchUsersHashmap();
+    leaderboardController.setSpeedLeaderboard();
+
+    // Changes the scene to canvas
+    Button btnThatWasClicked = (Button) event.getSource();
+    Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
+    sceneThatThisButtonIsIn.setRoot(SceneManager.getUi(AppUi.LEADERBOARD));
+  }
+
   /** Update the welcome label for the user */
   protected void updateWelcomeLabel() {
     // Get current user

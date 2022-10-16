@@ -22,7 +22,15 @@
                   <Image url="@../images/Frame%206%20(3).png" />
                </image>
             </ImageView>
-            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="192.0" layoutY="76.0" prefHeight="80.0" prefWidth="648.0" text="Welcome, .......... !" textAlignment="CENTER">
+            <Button alignment="CENTER" layoutX="901.0" layoutY="71.0" mnemonicParsing="false" onAction="#onSwitchToProfile" prefHeight="61.0" prefWidth="145.0" text="Profile">
+               <font>
+                  <Font name="Comic Sans MS" size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="270.0" layoutY="76.0" prefHeight="51.0" prefWidth="570.0" text="Welcome, .......... !" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="36.0" />
                </font>
@@ -34,7 +42,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#onAccuracySetHard" text="Hard" />
                </items>
                <font>
-                  <Font size="20.0" />
+                  <Font size="16.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -48,7 +56,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#onWordsSetMaster" text="Master" />
                </items>
                <font>
-                  <Font size="20.0" />
+                  <Font size="16.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -62,7 +70,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#onTimeSetMaster" text="Master" />
                </items>
                <font>
-                  <Font size="20.0" />
+                  <Font size="16.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -76,7 +84,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetMaster" text="Master" />
                </items>
                <font>
-                  <Font size="20.0" />
+                  <Font size="16.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -151,15 +159,21 @@
                   <Font name="Comic Sans MS" size="17.0" />
                </font>
             </TextArea>
-            <Button layoutX="919.0" layoutY="52.0" mnemonicParsing="false" onAction="#onSwitchToProfile" prefHeight="101.0" prefWidth="115.0">
-               <graphic>
-                  <ImageView fitHeight="87.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/stats.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+            <Button layoutX="48.0" layoutY="65.0" mnemonicParsing="false" prefHeight="113.0" prefWidth="104.0" />
+            <ImageView fitHeight="75.0" fitWidth="96.0" layoutX="62.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/podium.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="40.0" layoutY="146.0" prefHeight="29.0" prefWidth="120.0" text="Leaderboard" textAlignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="leaderboardButton" layoutX="48.0" layoutY="65.0" mnemonicParsing="false" onAction="#onSwitchToLeaderboard" prefHeight="113.0" prefWidth="104.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </Pane>
    </children>

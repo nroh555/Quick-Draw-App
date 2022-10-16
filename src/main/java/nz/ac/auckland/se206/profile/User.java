@@ -125,6 +125,9 @@ public class User implements Serializable {
   public String formatUserDetails() {
     String fastestWinDisplay;
 
+    // Calculate the winrate
+    double winrate = Double.valueOf(wins) / (Double.valueOf(wins) + Double.valueOf(losses)) * 100;
+
     // Change fastest win display text depending on if the user has won yet
     if (fastestWin == 0) {
       fastestWinDisplay = "N/A";
@@ -138,7 +141,9 @@ public class User implements Serializable {
             + wins.toString()
             + "\nLosses: "
             + losses.toString()
-            + "\nFastest win: "
+            + "\nWinrate: "
+            + Double.toString(winrate)
+            + "%\nFastest win: "
             + fastestWinDisplay;
 
     return displayString;
@@ -308,6 +313,27 @@ public class User implements Serializable {
    */
   public Level getConfidenceSetting() {
     return confidenceSetting;
+  }
+
+  /**
+   * Gets the number of badges that the user has earned
+   *
+   * @return number of badges earned by the user
+   */
+  public Integer getBadgesCount() {
+    Integer badgesCount = 0;
+    String toSearch = formatBadgesForSave(badgesArray);
+
+    // Loop through all of the users badges, and count up how many they have
+    // obtained
+    for (int i = 0; i < toSearch.length(); i++) {
+      if (toSearch.charAt(i) == 'T') {
+        badgesCount++;
+      }
+    }
+
+    // Reutrn the number of badges
+    return badgesCount;
   }
 
   /**

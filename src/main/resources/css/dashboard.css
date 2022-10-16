@@ -57,3 +57,8 @@
   -fx-border-radius: 18;
   -fx-border-width: 3;
 }
+
+#leaderboardButton {
+  -fx-background-radius: 25;
+  -fx-background-color: rgba(0, 0, 0, 0);
+}

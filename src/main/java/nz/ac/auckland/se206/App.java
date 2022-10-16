@@ -87,6 +87,11 @@ public class App extends Application {
     SceneManager.setProfileLoader(profileLoader);
     SceneManager.addUi(SceneManager.AppUi.PROFILE, loadFxml(profileLoader));
 
+    // Saves the leaderboard loader to scene manager
+    FXMLLoader leaderboardLoader = makeLoader("leaderboard");
+    SceneManager.setLeaderboardLoader(leaderboardLoader);
+    SceneManager.addUi(SceneManager.AppUi.LEADERBOARD, loadFxml(leaderboardLoader));
+
     final Scene scene = new Scene(SceneManager.getUi(SceneManager.AppUi.MENU), 1150, 800);
 
     // Close all threads when app is closed

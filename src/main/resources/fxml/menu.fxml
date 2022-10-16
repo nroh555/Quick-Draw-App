@@ -101,42 +101,42 @@
             </ImageView>
             <Text fx:id="playerOneText" layoutX="251.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+" textAlignment="CENTER" wrappingWidth="106.359375">
                <font>
-                  <Font name="Comic Sans MS" size="22.0" />
+                  <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Text>
             <Text fx:id="playerTwoText" layoutX="417.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+" textAlignment="CENTER" wrappingWidth="106.359375">
                <font>
-                  <Font name="Comic Sans MS" size="22.0" />
+                  <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Text>
             <Text fx:id="playerThreeText" layoutX="584.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+" textAlignment="CENTER" wrappingWidth="106.359375">
                <font>
-                  <Font name="Comic Sans MS" size="22.0" />
+                  <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Text>
             <Text fx:id="playerFourText" layoutX="749.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+" textAlignment="CENTER" wrappingWidth="106.359375">
                <font>
-                  <Font name="Comic Sans MS" size="22.0" />
+                  <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Text>
             <Text fx:id="playerFiveText" layoutX="251.0" layoutY="508.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+" textAlignment="CENTER" wrappingWidth="106.359375">
                <font>
-                  <Font name="Comic Sans MS" size="22.0" />
+                  <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Text>
             <Text fx:id="playerSixText" layoutX="417.0" layoutY="507.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+" textAlignment="CENTER" wrappingWidth="106.359375">
                <font>
-                  <Font name="Comic Sans MS" size="22.0" />
+                  <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Text>
             <Text fx:id="playerSevenText" layoutX="584.0" layoutY="507.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+" textAlignment="CENTER" wrappingWidth="106.359375">
                <font>
-                  <Font name="Comic Sans MS" size="22.0" />
+                  <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Text>
             <Text fx:id="playerEightText" layoutX="749.0" layoutY="507.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+" textAlignment="CENTER" wrappingWidth="106.359375">
                <font>
-                  <Font name="Comic Sans MS" size="22.0" />
+                  <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Text>
             <Button fx:id="playerOneButton" layoutX="234.0" layoutY="223.0" mnemonicParsing="false" onAction="#onP1Click" prefHeight="140.0" prefWidth="140.0">
