@@ -112,8 +112,8 @@ public class CanvasZenController extends CanvasController {
   @Override
   @FXML
   public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
-	 isZenMode = true;
-	  
+    isZenMode = true;
+
     graphic = canvas.getGraphicsContext2D();
 
     model = new DoodlePrediction();

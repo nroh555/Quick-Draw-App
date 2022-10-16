@@ -203,9 +203,12 @@ public class DashboardController {
    * @param event click event
    * @throws IOException If the file is not found.
    * @throws TranslateException If error is raised during processing of input/output
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   @FXML
-  private void onSwitchToLeaderboard(ActionEvent event) throws IOException, TranslateException {
+  private void onSwitchToLeaderboard(ActionEvent event)
+      throws IOException, TranslateException, URISyntaxException {
+    MenuController.buttonSound();
     // Update welcome label in profile
     FXMLLoader leaderboardLoader = SceneManager.getLeaderboardLoader();
     LeaderboardController leaderboardController = leaderboardLoader.getController();

@@ -174,16 +174,16 @@
                   <Font name="System Bold" size="32.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="74.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="78.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/profile.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Label layoutX="949.0" layoutY="140.0" prefHeight="25.0" prefWidth="104.0" text=" Profile">
+            <Label layoutX="949.0" layoutY="140.0" prefHeight="25.0" prefWidth="120.0" text="  Profile">
                <font>
-                  <Font name="Comic Sans MS Bold" size="18.0" />
+                  <Font name="Comic Sans MS Bold" size="15.0" />
                </font>
             </Label>
          </children>
