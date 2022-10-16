@@ -19,6 +19,8 @@ import java.util.Random;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -30,6 +32,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -90,6 +93,14 @@ public class CanvasController {
 
   @FXML protected Label indicatorLabel;
 
+  @FXML protected Label penLabel;
+
+  @FXML protected Label eraserLabel;
+
+  @FXML protected Slider penSlider;
+
+  @FXML protected Slider eraserSlider;
+
   protected double progress;
 
   protected GraphicsContext graphic;
@@ -127,6 +138,12 @@ public class CanvasController {
   protected boolean isZenMode = false;
 
   protected boolean runPredictions = false;
+
+  protected boolean isPen = true;
+
+  protected double penSize = 5.0;
+
+  protected double eraserSize = 12.0;
 
   // mouse coordinates
   protected double currentX;
@@ -259,6 +276,8 @@ public class CanvasController {
     // Clears predictions
     predictionLabel.setText("");
     indicatorLabel.setText("");
+
+    initialisePenEraserDisplay();
   }
 
   /**
@@ -320,6 +339,71 @@ public class CanvasController {
         });
   }
 
+  /** Add listener to eraser slider to adjust eraser size */
+  protected void addListenerEraserSlider() {
+    // Add listener to eraser slider
+    eraserSlider
+        .valueProperty()
+        .addListener(
+            new ChangeListener<Number>() {
+
+              @Override
+              public void changed(
+                  ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                // Retrieve eraser value from slider
+                eraserSize = (double) eraserSlider.getValue();
+                // Update eraser size label
+                eraserLabel.setText("Eraser size: " + eraserSize);
+                // Update eraser if it is currently equipped
+                if (!isPen) {
+                  onErase();
+                }
+              }
+            });
+  }
+
+  /** Add listener to pen slider to adjust pen size */
+  protected void addListenerPenSlider() {
+    // Add listener to pen slider
+    penSlider
+        .valueProperty()
+        .addListener(
+            new ChangeListener<Number>() {
+
+              @Override
+              public void changed(
+                  ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                // Retrieve pen value from slider
+                penSize = (double) penSlider.getValue();
+                // Update pen size label
+                penLabel.setText("Pen size: " + penSize);
+                // Update pen if it is currently equipped
+                if (isPen) {
+                  onPen();
+                }
+              }
+            });
+  }
+
+  /** Initialise pen and eraser labels and sliders */
+  protected void initialisePenEraserDisplay() {
+    // Set up pen and eraser size
+    penSize = 5.0;
+    eraserSize = 12.0;
+
+    // Reset slider
+    penSlider.setValue(penSize);
+    eraserSlider.setValue(eraserSize);
+
+    // Set pen and eraser label
+    penLabel.setText("Pen size: " + penSize);
+    eraserLabel.setText("Eraser size: " + eraserSize);
+
+    // Add listener to pen and eraser slider
+    addListenerEraserSlider();
+    addListenerPenSlider();
+  }
+
   /**
    * Set the current color of the brush
    *
@@ -338,8 +422,10 @@ public class CanvasController {
     // Enable pen button
     penButton.setDisable(false);
 
+    isPen = false;
+
     // Change brush
-    setPen(Color.WHITE, 12.0);
+    setPen(Color.WHITE, eraserSize);
   }
 
   /** Sets the brush to pen */
@@ -351,8 +437,10 @@ public class CanvasController {
     // Disable pen button
     penButton.setDisable(true);
 
+    isPen = true;
+
     // Change brush
-    setPen(currentColor, 5.0);
+    setPen(currentColor, penSize);
   }
 
   /** This method is called when the "Clear" button is pressed. */
@@ -618,7 +706,7 @@ public class CanvasController {
   /**
    * This method runs the timer and updates the predictions
    *
-   * @throws URISyntaxException
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   protected void runTimer() throws URISyntaxException {
     Timeline timeline = new Timeline();

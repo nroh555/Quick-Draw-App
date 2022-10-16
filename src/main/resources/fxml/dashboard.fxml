@@ -82,7 +82,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </MenuButton>
-            <Label alignment="CENTER" layoutX="162.0" layoutY="201.0" prefHeight="51.0" prefWidth="376.0" text="Settings (Normal Mode Only!)" textAlignment="CENTER">
+            <Label alignment="CENTER" layoutX="284.0" layoutY="199.0" prefHeight="51.0" prefWidth="120.0" text="Settings" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="26.0" />
                </font>
@@ -97,7 +97,7 @@
                   <Font name="Comic Sans MS" size="17.0" />
                </font>
             </TextArea>
-            <ImageView fitHeight="51.0" fitWidth="50.0" layoutX="110.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="51.0" fitWidth="50.0" layoutX="232.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/setting.png" />
                </image>
