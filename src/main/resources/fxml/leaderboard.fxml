@@ -19,7 +19,7 @@
                   <Image url="@../images/Frame%208.png" />
                </image>
             </ImageView>
-            <Button alignment="CENTER" layoutX="27.0" layoutY="64.0" mnemonicParsing="false" onAction="#onSwitchToDashBoard" prefHeight="51.0" prefWidth="135.0" text="Back">
+            <Button alignment="CENTER" layoutX="27.0" layoutY="64.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="135.0" text="Back">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />
                </font>

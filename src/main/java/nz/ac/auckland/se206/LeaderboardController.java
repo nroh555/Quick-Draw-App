@@ -58,14 +58,15 @@ public class LeaderboardController {
   }
 
   /**
-   * Button to switch to the profile page
+   * Button to switch to the dashboard page
    *
    * @param event click event
    * @throws IOException If the file is not found.
    * @throws TranslateException If error is raised during processing of input/output
    */
   @FXML
-  private void onSwitchToDashbaord(ActionEvent event) throws IOException, TranslateException {
+  private void onSwitchToDashboard(ActionEvent event) throws IOException, TranslateException {
+    System.out.println("SWITCH");
     // Update welcome label in profile
     FXMLLoader dashboardLoader = SceneManager.getDashboardLoader();
     DashboardController dashboardController = dashboardLoader.getController();

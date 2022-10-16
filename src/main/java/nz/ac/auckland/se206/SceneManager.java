@@ -68,6 +68,14 @@ public class SceneManager {
     SceneManager.profileLoader = profileLoader;
   }
 
+  public static FXMLLoader getLeaderboardLoader() {
+    return leaderboardLoader;
+  }
+
+  public static void setLeaderboardLoader(FXMLLoader loader) {
+    leaderboardLoader = loader;
+  }
+
   public static FXMLLoader getCanvasLoader() {
     return canvasLoader;
   }
@@ -90,13 +98,5 @@ public class SceneManager {
 
   public static void setCanvasHiddenLoader(FXMLLoader loader) {
     canvasHiddenLoader = loader;
-  }
-
-  public static FXMLLoader getLeaderboardLoader() {
-    return leaderboardLoader;
-  }
-
-  public static void setLeaderboardLoader(FXMLLoader loader) {
-    leaderboardLoader = loader;
   }
 }
