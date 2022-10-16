@@ -73,7 +73,7 @@ public class LeaderboardController {
     }
 
     // Sort the user scores
-    List<Entry<String, Integer>> sortedUserFastestWins = sortRankings(userFastestWins);
+    List<Entry<String, Integer>> sortedUserFastestWins = sortRankings(userFastestWins, true);
 
     // Get the appropriate formatting for the text to display on the leaderboard
     ArrayList<String> displayText = generateText(sortedUserFastestWins, " seconds");
@@ -85,13 +85,22 @@ public class LeaderboardController {
 
   /** Updates the leaderboard with the ranking in accordance to most games won */
   public void setWinsLeaderboard() {
-    System.out.println(currentUser);
+    Map<String, Integer> userWins = new HashMap<>();
 
-    // Update the leaderboard text
-    firstPlace.setText("hey2");
-    secondPlace.setText("hey3");
-    thirdPlace.setText("hey4");
-    otherPlacings.setText("hey1");
+    // Add all users and their win counts to hashmap
+    for (String user : usersHashMap.keySet()) {
+      userWins.put(user, usersHashMap.get(user).getWins());
+    }
+
+    // Sort the user scores
+    List<Entry<String, Integer>> sortedUserWins = sortRankings(userWins, false);
+
+    // Get the appropriate formatting for the text to display on the leaderboard
+    ArrayList<String> displayText = generateText(sortedUserWins, " wins");
+
+    // Update the leaderboard UI
+    updateLeaderboardText(
+        displayText.get(0), displayText.get(1), displayText.get(2), displayText.get(3));
   }
 
   /** Updates the leaderboard with the ranking in accordance to most badges obtained */
@@ -126,8 +135,10 @@ public class LeaderboardController {
    * Sort the list of user scores either ascending or descending
    *
    * @param rankingsMap hashmap of all the user scores, unsorted
+   * @return List of sorted user rankings on selected category
    */
-  private List<Entry<String, Integer>> sortRankings(Map<String, Integer> rankingsMap) {
+  private List<Entry<String, Integer>> sortRankings(
+      Map<String, Integer> rankingsMap, Boolean order) {
     // Convert hashmap to list to prepare for sorting
     List<Entry<String, Integer>> sortedMap =
         new LinkedList<Entry<String, Integer>>(rankingsMap.entrySet());
@@ -138,7 +149,13 @@ public class LeaderboardController {
         new Comparator<Entry<String, Integer>>() {
           public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2) {
             // Compare both values
-            return o1.getValue().compareTo(o2.getValue());
+            if (order) {
+              // Ascending order
+              return o1.getValue().compareTo(o2.getValue());
+            } else {
+              // Descending order
+              return o2.getValue().compareTo(o1.getValue());
+            }
           }
         });
 
@@ -150,6 +167,7 @@ public class LeaderboardController {
    *
    * @param sortedRankings list of hashmap of all the user scores, sorted
    * @param units the string of the units for the category to be displayed
+   * @return array of the strings of the text to be displayed on the leaderboard
    */
   private ArrayList<String> generateText(
       List<Entry<String, Integer>> sortedRankings, String units) {
