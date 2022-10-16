@@ -31,7 +31,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -188,7 +187,6 @@ public class CanvasController {
   @FXML
   public void initialize() throws ModelException, IOException, CsvException, URISyntaxException {
     generalInitialise();
-
     // Gets a random word depending on difficulty setting
     currentWord = getRandomWord();
 
@@ -372,9 +370,12 @@ public class CanvasController {
    * @param event click event
    * @throws IOException If the file is not found.
    * @throws TranslateException If error is raised during processing of input/output
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   @FXML
-  private void onSwitchToDashboard(ActionEvent event) throws IOException, TranslateException {
+  private void onSwitchToDashboard(ActionEvent event)
+      throws IOException, TranslateException, URISyntaxException {
+    MenuController.buttonSound();
     // Changes the scene to canvas
     Button btnThatWasClicked = (Button) event.getSource();
     Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
@@ -440,6 +441,8 @@ public class CanvasController {
       // Prints win message
       endMessage = "Congratulations, you have won! :)";
       resultLabel.setText(endMessage);
+      MediaPlayer winSound = MenuController.setSound("win.wav");
+      winSound.play();
       gameOver = true;
     } else if (count <= 0) {
       // Prints lose message
@@ -619,9 +622,7 @@ public class CanvasController {
    */
   protected void runTimer() throws URISyntaxException {
     Timeline timeline = new Timeline();
-    Media mySong = new Media(App.class.getResource("/sounds/timer.wav").toURI().toString());
-    MediaPlayer mediaPlayer = new MediaPlayer(mySong);
-
+    MediaPlayer timerSound = MenuController.setSound("timer.wav");
     KeyFrame keyframe =
         new KeyFrame(
             Duration.seconds(1),
@@ -643,7 +644,7 @@ public class CanvasController {
               if (count <= 0 || gameOver) {
 
                 // Once the game ends the music player will stop
-                mediaPlayer.stop();
+                timerSound.stop();
                 // Speaks the result aloud
                 talk();
 
@@ -674,14 +675,12 @@ public class CanvasController {
                 isReady = false;
                 gameOver = false;
               } else {
-                // Refreshes the music player after the song has stopped playing
-                mediaPlayer.setOnEndOfMedia(
-                    new Runnable() {
-                      public void run() {
-                        mediaPlayer.seek(Duration.ZERO);
-                      }
-                    });
-                mediaPlayer.play();
+                try {
+                  MenuController.playback(timerSound);
+                } catch (URISyntaxException e1) {
+                  // TODO Auto-generated catch block
+                  e1.printStackTrace();
+                }
               }
             });
 

@@ -102,9 +102,12 @@ public class DashboardController {
    * @param event click event
    * @throws IOException If the file is not found.
    * @throws TranslateException If error is raised during processing of input/output
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   @FXML
-  private void onSwitchToProfile(ActionEvent event) throws IOException, TranslateException {
+  private void onSwitchToProfile(ActionEvent event)
+      throws IOException, TranslateException, URISyntaxException {
+    MenuController.buttonSound();
     // Update welcome label in profile
     FXMLLoader profileLoader = SceneManager.getProfileLoader();
     ProfileController profileController = profileLoader.getController();
@@ -129,6 +132,7 @@ public class DashboardController {
   @FXML
   private void onSwitchToCanvas(ActionEvent event)
       throws IOException, ModelException, CsvException, URISyntaxException, TranslateException {
+    MenuController.buttonSound();
     // Runs a prediction to reduce lag
     FXMLLoader canvasLoader = SceneManager.getCanvasLoader();
     CanvasController canvasController = canvasLoader.getController();
@@ -154,6 +158,7 @@ public class DashboardController {
   @FXML
   private void onSwitchToCanvasZen(ActionEvent event)
       throws IOException, ModelException, CsvException, URISyntaxException, TranslateException {
+    MenuController.buttonSound();
     // Runs a prediction to reduce lag
     FXMLLoader canvasZenLoader = SceneManager.getCanvasZenLoader();
     CanvasZenController canvasZenController = canvasZenLoader.getController();
@@ -179,6 +184,7 @@ public class DashboardController {
   @FXML
   private void onSwitchToCanvasHidden(ActionEvent event)
       throws IOException, ModelException, CsvException, URISyntaxException, TranslateException {
+    MenuController.buttonSound();
     // Runs a prediction to reduce lag
     FXMLLoader canvasHiddenLoader = SceneManager.getCanvasHiddenLoader();
     CanvasHiddenController canvasHiddenController = canvasHiddenLoader.getController();
