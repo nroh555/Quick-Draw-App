@@ -30,7 +30,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="378.0" layoutY="76.0" prefHeight="23.0" prefWidth="355.0" text="Welcome, .......... !" textAlignment="CENTER">
+            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="192.0" layoutY="76.0" prefHeight="80.0" prefWidth="648.0" text="Welcome, .......... !" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="36.0" />
                </font>

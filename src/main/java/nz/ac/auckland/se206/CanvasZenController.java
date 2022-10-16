@@ -222,9 +222,12 @@ public class CanvasZenController extends CanvasController {
    * @param event click event
    * @throws IOException If the file is not found.
    * @throws TranslateException If error is raised during processing of input/output
+   * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   @FXML
-  private void onSwitchToDashboard(ActionEvent event) throws IOException, TranslateException {
+  private void onSwitchToDashboard(ActionEvent event)
+      throws IOException, TranslateException, URISyntaxException {
+    MenuController.buttonSound();
     // Changes the scene to canvas
     Button btnThatWasClicked = (Button) event.getSource();
     Scene sceneThatThisButtonIsIn = btnThatWasClicked.getScene();
