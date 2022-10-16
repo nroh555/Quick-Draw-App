@@ -45,9 +45,9 @@ public class MenuController {
    * @throws URISyntaxException If string could not be parsed as a URI reference
    */
   public static void playback(MediaPlayer mediaPlayer) throws URISyntaxException {
+    // Continously play the media until the stop instruction is given
     mediaPlayer.setOnEndOfMedia(
         new Runnable() {
-
           public void run() {
             mediaPlayer.seek(Duration.ZERO);
           }
