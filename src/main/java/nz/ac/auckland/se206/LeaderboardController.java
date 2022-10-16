@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import ai.djl.translate.TranslateException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -61,14 +62,6 @@ public class LeaderboardController {
 
   /** Updates the leaderboard with the ranking in accordance to fastest time */
   public void setSpeedLeaderboard() {
-    System.out.println(currentUser);
-
-    getSpeedLeaderboard();
-  }
-
-  /** Updates the leaderboard with the ranking in accordance to fastest time */
-  private void getSpeedLeaderboard() {
-
     Map<String, Integer> userFastestWins = new HashMap<>();
 
     // Add all users and their fastest speeds to hashmap
@@ -79,44 +72,15 @@ public class LeaderboardController {
       }
     }
 
-    // Convert hashmap to list to prepare for sorting
-    List<Entry<String, Integer>> sortedUserFastestWins =
-        new LinkedList<Entry<String, Integer>>(userFastestWins.entrySet());
+    // Sort the user scores
+    List<Entry<String, Integer>> sortedUserFastestWins = sortRankings(userFastestWins);
 
-    // Sorting all elements so fastest speed is at the top
-    Collections.sort(
-        sortedUserFastestWins,
-        new Comparator<Entry<String, Integer>>() {
-          public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2) {
-            // Compare both values
-            return o1.getValue().compareTo(o2.getValue());
-          }
-        });
+    // Get the appropriate formatting for the text to display on the leaderboard
+    ArrayList<String> displayText = generateText(sortedUserFastestWins, " seconds");
 
-    // Set the text for the placings
-    String firstString = "";
-    String secondString = "";
-    String thirdString = "";
-    String otherString = "";
-
-    // Set the text depending on what is used
-    Integer numPlacing = 1;
-    for (Entry<String, Integer> entry : sortedUserFastestWins) {
-      if (numPlacing == 1) {
-        System.out.println("First");
-        firstString = entry.getKey() + ": " + entry.getValue().toString() + " seconds";
-        System.out.println(firstString);
-      } else if (numPlacing == 2) {
-        secondString = entry.getKey() + ": " + entry.getValue().toString() + " seconds";
-      } else if (numPlacing == 3) {
-        thirdString = entry.getKey() + ": " + entry.getValue().toString() + " seconds";
-      } else {
-        otherString = entry.getKey() + ": " + entry.getValue().toString() + " seconds";
-      }
-      numPlacing++;
-    }
-
-    updateLeaderboardText(firstString, secondString, thirdString, otherString);
+    // Update the leaderboard UI
+    updateLeaderboardText(
+        displayText.get(0), displayText.get(1), displayText.get(2), displayText.get(3));
   }
 
   /** Updates the leaderboard with the ranking in accordance to most games won */
@@ -141,7 +105,14 @@ public class LeaderboardController {
     otherPlacings.setText("hsdfey");
   }
 
-  /** Updates the leaderboard with the ranking in accordance to most badges obtained */
+  /**
+   * Updates the text (top users) on the leaderboard
+   *
+   * @param firstPlaceText text to display for first place
+   * @param secondPlaceText text to display for second place
+   * @param thirdPlaceText text to display for third place
+   * @param otherPlaceText text to display for other places
+   */
   private void updateLeaderboardText(
       String firstPlaceText, String secondPlaceText, String thirdPlaceText, String otherPlaceText) {
     // Update the leaderboard text
@@ -149,5 +120,72 @@ public class LeaderboardController {
     secondPlace.setText(secondPlaceText);
     thirdPlace.setText(thirdPlaceText);
     otherPlacings.setText(otherPlaceText);
+  }
+
+  /**
+   * Sort the list of user scores either ascending or descending
+   *
+   * @param rankingsMap hashmap of all the user scores, unsorted
+   */
+  private List<Entry<String, Integer>> sortRankings(Map<String, Integer> rankingsMap) {
+    // Convert hashmap to list to prepare for sorting
+    List<Entry<String, Integer>> sortedMap =
+        new LinkedList<Entry<String, Integer>>(rankingsMap.entrySet());
+
+    // Sorting all elements so fastest speed is at the top
+    Collections.sort(
+        sortedMap,
+        new Comparator<Entry<String, Integer>>() {
+          public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2) {
+            // Compare both values
+            return o1.getValue().compareTo(o2.getValue());
+          }
+        });
+
+    return sortedMap;
+  }
+
+  /**
+   * Generate the text to display on the leaderboard
+   *
+   * @param sortedRankings list of hashmap of all the user scores, sorted
+   * @param units the string of the units for the category to be displayed
+   */
+  private ArrayList<String> generateText(
+      List<Entry<String, Integer>> sortedRankings, String units) {
+    // Set the text for the placings
+    String firstString = "";
+    String secondString = "";
+    String thirdString = "";
+    String otherString = "";
+
+    // Set the text depending on what is used
+    Integer numPlacing = 1;
+    for (Entry<String, Integer> entry : sortedRankings) {
+      if (numPlacing == 1) {
+        // First place
+        firstString = entry.getKey() + ": " + entry.getValue().toString() + units;
+      } else if (numPlacing == 2) {
+        // Second place
+        secondString = entry.getKey() + ": " + entry.getValue().toString() + units;
+      } else if (numPlacing == 3) {
+        // Third place
+        thirdString = entry.getKey() + ": " + entry.getValue().toString() + units;
+      } else {
+        // All other places
+        otherString = entry.getKey() + ": " + entry.getValue().toString() + units + "\n";
+      }
+      numPlacing++;
+    }
+
+    // Generate arraylist containing all strings to be returned
+    ArrayList<String> displayText = new ArrayList<String>();
+    displayText.add(firstString);
+    displayText.add(secondString);
+    displayText.add(thirdString);
+    displayText.add(otherString);
+
+    // Return the array of text to display
+    return displayText;
   }
 }
