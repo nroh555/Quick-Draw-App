@@ -125,6 +125,9 @@ public class User implements Serializable {
   public String formatUserDetails() {
     String fastestWinDisplay;
 
+    // Calculate the winrate
+    double winrate = Double.valueOf(wins) / (Double.valueOf(wins) + Double.valueOf(losses)) * 100;
+
     // Change fastest win display text depending on if the user has won yet
     if (fastestWin == 0) {
       fastestWinDisplay = "N/A";
@@ -138,7 +141,9 @@ public class User implements Serializable {
             + wins.toString()
             + "\nLosses: "
             + losses.toString()
-            + "\nFastest win: "
+            + "\nWinrate: "
+            + Double.toString(winrate)
+            + "%\nFastest win: "
             + fastestWinDisplay;
 
     return displayString;

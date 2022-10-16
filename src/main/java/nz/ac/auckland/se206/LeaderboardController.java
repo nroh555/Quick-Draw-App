@@ -33,15 +33,11 @@ public class LeaderboardController {
   // Create hashmap to store all of the users.
   private HashMap<String, User> usersHashMap = new HashMap<String, User>();
 
-  // Current user logged in
-  private User currentUser = new User("None");
-
   /** Fetch the updated hashmap of registered users */
   public void fetchUsersHashmap() {
     // Get updated current user and users hashmap
     FXMLLoader menuLoader = SceneManager.getMenuLoader();
     MenuController menuController = menuLoader.getController();
-    this.currentUser = menuController.getCurrentUser();
     this.usersHashMap = menuController.getUsersHashMap();
   }
 
@@ -184,7 +180,7 @@ public class LeaderboardController {
     String firstString = "";
     String secondString = "";
     String thirdString = "";
-    String otherString = "";
+    StringBuilder otherString = new StringBuilder();
 
     // Set the text depending on what is used
     Integer numPlacing = 1;
@@ -200,7 +196,8 @@ public class LeaderboardController {
         thirdString = entry.getKey() + ": " + entry.getValue().toString() + units;
       } else {
         // All other places
-        otherString = entry.getKey() + ": " + entry.getValue().toString() + units + "\n";
+        otherString =
+            otherString.append(entry.getKey() + ": " + entry.getValue().toString() + units + "\n");
       }
       numPlacing++;
     }
@@ -210,7 +207,7 @@ public class LeaderboardController {
     displayText.add(firstString);
     displayText.add(secondString);
     displayText.add(thirdString);
-    displayText.add(otherString);
+    displayText.add(otherString.toString());
 
     // Return the array of text to display
     return displayText;

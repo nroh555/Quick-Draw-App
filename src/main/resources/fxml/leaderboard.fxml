@@ -27,17 +27,17 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="378.0" layoutY="64.0" prefHeight="23.0" prefWidth="355.0" text="Leaderboard" textAlignment="CENTER">
+            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="345.0" layoutY="64.0" prefHeight="23.0" prefWidth="355.0" text="Leaderboard" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="36.0" />
                </font>
             </Label>
-            <Label fx:id="secondPlace" alignment="CENTER" layoutX="281.0" layoutY="302.0" prefHeight="44.0" prefWidth="366.0" text="Settings (Normal Mode Only!)" textAlignment="CENTER">
+            <Label fx:id="secondPlace" alignment="CENTER" layoutX="281.0" layoutY="302.0" prefHeight="44.0" prefWidth="512.0">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="firstPlace" alignment="CENTER" layoutX="281.0" layoutY="219.0" prefHeight="44.0" prefWidth="366.0" text="Settings (Normal Mode Only!)" textAlignment="CENTER">
+            <Label fx:id="firstPlace" alignment="CENTER" layoutX="281.0" layoutY="219.0" prefHeight="44.0" prefWidth="512.0">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />
                </font>
@@ -66,16 +66,21 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="thirdPlace" alignment="CENTER" layoutX="281.0" layoutY="387.0" prefHeight="44.0" prefWidth="366.0" text="Settings (Normal Mode Only!)" textAlignment="CENTER">
+            <Label fx:id="thirdPlace" alignment="CENTER" layoutX="281.0" layoutY="387.0" prefHeight="44.0" prefWidth="512.0">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="otherPlacings" alignment="CENTER" layoutX="281.0" layoutY="486.0" prefHeight="187.0" prefWidth="576.0" text="Settings (Normal Mode Only!)" textAlignment="CENTER">
+            <Label fx:id="otherPlacings" alignment="CENTER" layoutX="281.0" layoutY="486.0" prefHeight="187.0" prefWidth="576.0">
                <font>
-                  <Font name="Comic Sans MS" size="24.0" />
+                  <Font name="Comic Sans MS" size="20.0" />
                </font>
             </Label>
+            <ImageView fitHeight="65.0" fitWidth="66.0" layoutX="646.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/trophy.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

@@ -178,7 +178,6 @@ public class MenuController {
 
     // using simple for-loop
     for (int i = 0; i < badgesSaveString.length(); i++) {
-      System.out.print(badgesSaveString.charAt(i));
       if (badgesSaveString.charAt(i) == 'T') {
         badgesArray.add(true);
       } else {

@@ -48,7 +48,7 @@
                   <Font name="Comic Sans MS" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="220.0" layoutY="178.0" prefHeight="50.0" prefWidth="283.0" text="Welcome, .......... !" textAlignment="CENTER">
+            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="220.0" layoutY="178.0" prefHeight="50.0" prefWidth="333.0" text="Welcome, .......... !" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="26.0" />
                </font>
@@ -238,7 +238,7 @@
                   <Image url="@../images/tiger.png" />
                </image>
             </ImageView>
-            <PieChart fx:id="pieChart" clockwise="false" labelLineLength="10.0" labelsVisible="false" layoutX="189.0" layoutY="228.0" legendSide="RIGHT" prefHeight="282.0" prefWidth="388.0" />
+            <PieChart fx:id="pieChart" clockwise="false" labelLineLength="10.0" labelsVisible="false" layoutX="272.0" layoutY="228.0" legendSide="RIGHT" prefHeight="208.0" prefWidth="305.0" />
          </children>
       </Pane>
    </children>

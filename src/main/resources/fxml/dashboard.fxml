@@ -30,7 +30,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="378.0" layoutY="76.0" prefHeight="23.0" prefWidth="355.0" text="Welcome, .......... !" textAlignment="CENTER">
+            <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="270.0" layoutY="76.0" prefHeight="51.0" prefWidth="570.0" text="Welcome, .......... !" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="36.0" />
                </font>
@@ -42,7 +42,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#onAccuracySetHard" text="Hard" />
                </items>
                <font>
-                  <Font size="20.0" />
+                  <Font size="16.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -56,7 +56,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#onWordsSetMaster" text="Master" />
                </items>
                <font>
-                  <Font size="20.0" />
+                  <Font size="16.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -70,7 +70,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#onTimeSetMaster" text="Master" />
                </items>
                <font>
-                  <Font size="20.0" />
+                  <Font size="16.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -84,7 +84,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#onConfidenceSetMaster" text="Master" />
                </items>
                <font>
-                  <Font size="20.0" />
+                  <Font size="16.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
